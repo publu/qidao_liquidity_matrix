@@ -1,0 +1,72 @@
+<%= form_with(model: token) do |form| %>
+  <% if token.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(token.errors.count, "error") %> prohibited this token from being saved:</h2>
+
+      <ul>
+        <% token.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :asset, style: "display: block" %>
+    <%= form.text_field :asset %>
+  </div>
+
+  <div>
+    <%= form.label :symbol, style: "display: block" %>
+    <%= form.text_field :symbol %>
+  </div>
+
+  <div>
+    <%= form.label :contract_address, style: "display: block" %>
+    <%= form.text_field :contract_address %>
+  </div>
+
+  <div>
+    <%= form.label :rubric, style: "display: block" %>
+    <%= form.text_field :rubric %>
+  </div>
+
+  <div>
+    <%= form.label :coingecko, style: "display: block" %>
+    <%= form.text_field :coingecko %>
+  </div>
+
+  <div>
+    <%= form.label :network, style: "display: block" %>
+    <%= form.select :network_id, options_for_select(@networks.collect { |network| [network.name, network.id]}) %>
+  </div>
+
+  <div>
+    <%= form.label :liquidity, style: "display: block" %>
+    <%= form.text_field :liquidity %>
+  </div>
+
+  <div>
+    <%= form.label :trade_slippage, style: "display: block" %>
+    <%= form.text_field :trade_slippage %>
+  </div>
+
+  <div>
+    <%= form.label :volume, style: "display: block" %>
+    <%= form.text_field :volume %>
+  </div>
+
+  <div>
+    <%= form.label :centralized, style: "display: block" %>
+    <%= form.check_box :centralized %>
+  </div>
+
+  <div>
+    <%= form.label :grade, style: "display: block" %>
+    <%= form.text_field :grade %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

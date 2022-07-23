@@ -1,0 +1,57 @@
+
+<div id="tokens">
+  <table class="table table-striped">
+    <tr class="table-header">
+      <th>Asset</th>
+      <th>Chain</th>
+      <th class="text-end">Total onchain liquidity</th>
+      <th class="text-end">Largest stable trade <10% slippage</th>
+      <th class="text-end">1M Average Daily Volume</th>
+      <th class="text-center">Does one wallet own >20% of tokens?</th>
+      <th class="text-center">Risk grading</th>
+      <th class="text-center">Links</th>
+      <th class="text-end">Last updated</th>
+    </tr>
+    <% @tokens.each do |token| %>
+    <tr>
+      <td>
+        <%= token.symbol %>
+      </td>
+      <td style="color: <%= token.network.color %>">
+        <%= token.network.name %>
+      </td>
+      <td class="text-end">
+        <%= number_to_currency(token.liquidity) %>
+      </td>
+      <td class="text-end">
+        <%= number_to_currency(token.trade_slippage) %>
+      </td>
+      <td class="text-end">
+        <%= number_to_currency(token.volume) %>
+      </td>
+      <td class="text-center">
+        <% if token.centralized? %>
+          <span class="text-danger">YES</span>
+        <% else %>
+          NO
+        <% end %>
+      </td>
+      <td class="text-center">
+        <% if token.rubric? %>
+          <%= link_to token.rubric, target: "_blank", title: "Rubric for " + token.asset + " on " + token.network.name do %><strong><%= token.grade %><% end %>
+        <% else %>
+          <%= token.grade %>
+        <% end %>
+      </td>
+      <td class="text-center">
+        <%= link_to token.network.blockchain_explorer + token.contract_address, title: "Blockchain Explorer", target: "_blank" do %><%= image_tag "https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/344/external-blockchain-cryptocurrency-vitaliy-gorbachev-fill-vitaly-gorbachev-1.png", width: "15px", alt: "Blockchain Explorer" %><% end %>
+        &nbsp;
+        <%= link_to token.coingecko, title: "Coingecko", target: "_blank" do %><%= image_tag "https://img.icons8.com/ios-filled/344/lizard.png", width: "15px", alt: "Coingecko" %><% end %>
+      </td>
+      <td class="text-end">
+        <%= token.updated_at.strftime("%d %B, %Y") %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+</div>

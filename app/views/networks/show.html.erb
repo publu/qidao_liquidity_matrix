@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= @network.name %>
+
+<div>
+  <%= link_to "Edit this network", edit_network_path(@network) %> |
+  <%= link_to "Back to networks", networks_path %>
+
+  <%= button_to "Destroy this network", @network, method: :delete %>
+</div>

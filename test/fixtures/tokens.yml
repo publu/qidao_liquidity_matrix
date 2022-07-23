@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  asset: MyString
+  symbol: MyString
+  liquidity: 1.5
+  trade_slippage: 1.5
+  volume: 1.5
+  centralized: false
+  grade: MyString
+
+two:
+  asset: MyString
+  symbol: MyString
+  liquidity: 1.5
+  trade_slippage: 1.5
+  volume: 1.5
+  centralized: false
+  grade: MyString
