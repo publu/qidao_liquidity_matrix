@@ -1,24 +1,23 @@
-# README
+# QiDao Liquidity Matrix
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A matrix of collaterals used on the QiDao protocol along with their liquidity information.
 
-Things you may want to cover:
+The liquidity matrix contains the following information:
 
-* Ruby version
+* Collateral name and symbol
 
-* System dependencies
+* Available networks
 
-* Configuration
+* Onchain liquidity
 
-* Database creation
+* Trade slippage for stables under 10%
 
-* Database initialization
+* One month average daily volume
 
-* How to run the test suite
+* Wallet centralizations
 
-* Services (job queues, cache servers, search engines, etc.)
+* Risk analysis score with link to risk matrix calculations
 
-* Deployment instructions
+* Links to blockchain explorer and Coingecko pages for additional information.
 
-* ...
+Brought to you by Spicy Muad'dib
