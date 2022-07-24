@@ -45,14 +45,14 @@
     <td colspan="1" rowspan="2" class="text-center bold gray"><%= token.grade %></td>
   </tr>
   <tr>
-    <td colspan="2" class="text-center bold gray">B+</td>
-    <td colspan="1" class="text-center bold gray">C+</td>
-    <td colspan="1" class="text-center bold gray">B+</td>
-    <td colspan="1" class="text-center bold gray">B</td>
-    <td colspan="1" class="text-center bold gray">A+</td>
-    <td colspan="1" class="text-center bold gray">A</td>
-    <td colspan="1" class="text-center bold gray">B</td>
-    <td colspan="1" class="text-center bold gray">A-</td>
+    <td colspan="2" class="text-center bold gray"><%= risk_grade(token) %></td>
+    <td colspan="1" class="text-center bold gray"><%= holder_grade(token) %></td>
+    <td colspan="1" class="text-center bold gray"><%= permissions_grade(token) %></td>
+    <td colspan="1" class="text-center bold gray">DivAvg</td>
+    <td colspan="1" class="text-center bold gray"><%= marketcap_grade(token) %></td>
+    <td colspan="1" class="text-center bold gray"><%= volume_grade(token) %></td>
+    <td colspan="1" class="text-center bold gray"><%= volatility_grade(token) %></td>
+    <td colspan="1" class="text-center bold gray">DivAvg</td>
 </table>
 <br />
 <div class="clearfix"></div>
@@ -64,7 +64,7 @@
 <table class="rubric">
   <tr class="top">
     <th colspan="2" rowspan="2" class="left gray"></th>
-    <th colspan="1" class="text-center left">Days</th>
+    <th colspan="1" class="text-center left right">Days</th>
     <th colspan="1" class="text-center right">Transactions</th>
     <th colspan="1" class="text-center right">Holders</th>
     <th colspan="1" class="text-center right">Permission</th>
