@@ -1,16 +1,10 @@
 <p style="color: green"><%= notice %></p>
-<%= link_to root_url, title: "Go home" do %>
-  <%= image_tag "https://mai-universe.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F8e4f1353-986d-4bd2-bf9f-3af9ca66502c%2FGroup_1_16.svg?table=block&id=e55bc607-6d87-4f5c-a151-25019e233d7c&spaceId=ee0afcd0-179b-4a92-ad82-aa60c4dc6568&userId=&cache=v2", class: "img-fluid logo float-start" %>
-<% end %>
-<h2 class="float-start">
-  QiDao Liquidity Matrix
-</h2>
 
 <div class="float-end">
   <%= form_tag tokens_path, method: :get, data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search", action: "input->search#submit" } do |f| %>
     <div class="input-group input-group-sm">
       <span class="input-group-text" id="basic-addon1"><%= image_tag "https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/344/external-blockchain-cryptocurrency-vitaliy-gorbachev-fill-vitaly-gorbachev-1.png", width: "25px", alt: "Blockchain Explorer" %></span>
-      <select name="query" id="query" class="form-control">
+      <select name="query" id="query" class="form-select">
         <option value="">All</option>
         <option value="7">Arbitrum</option>
         <option value="3">Avalanche</option>

@@ -51,6 +51,9 @@
       <td class="text-end">
         <%= token.updated_at.strftime("%d %B, %Y") %>
       </td>
+      <td class="text-end">
+        <%= link_to "Edit", edit_token_path(token), title: "Edit" + token.symbol, target: "_blank" %>
+      </td>
     </tr>
   <% end %>
   </table>

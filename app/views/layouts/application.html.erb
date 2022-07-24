@@ -15,6 +15,12 @@
 
   <body>
     <main class="container"><br />
+      <%= link_to root_url, title: "Go home" do %>
+        <%= image_tag "https://mai-universe.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F8e4f1353-986d-4bd2-bf9f-3af9ca66502c%2FGroup_1_16.svg?table=block&id=e55bc607-6d87-4f5c-a151-25019e233d7c&spaceId=ee0afcd0-179b-4a92-ad82-aa60c4dc6568&userId=&cache=v2", class: "img-fluid logo float-start" %>
+      <% end %>
+      <h2 class="float-start">
+        QiDao Liquidity Matrix
+      </h2>
       <%= yield %>
     </main>
   </body>

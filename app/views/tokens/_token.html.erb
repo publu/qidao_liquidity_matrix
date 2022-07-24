@@ -1,3 +1,5 @@
+<div class="clearfix"></div>
+
 <div id="<%= dom_id token %>">
   <p>
     <strong>Asset:</strong>
@@ -33,5 +35,7 @@
     <strong>Grade:</strong>
     <%= token.grade %>
   </p>
+
+  <strong>Network:</strong> <%= @token.network.name %>
 
 </div>

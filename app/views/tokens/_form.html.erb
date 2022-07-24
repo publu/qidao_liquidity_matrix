@@ -11,61 +11,65 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :asset, style: "display: block" %>
-    <%= form.text_field :asset %>
+  <div class="input-group input-group-sm">
+    <%= form.label :asset, class: "input-group-text" %>
+    <%= form.text_field :asset, class: "form-control" %>
   </div>
-
-  <div>
-    <%= form.label :symbol, style: "display: block" %>
-    <%= form.text_field :symbol %>
+  <br />
+  <div class="input-group input-group-sm">
+    <%= form.label :symbol, class: "input-group-text" %>
+    <%= form.text_field :symbol, class: "form-control" %>
   </div>
-
-  <div>
-    <%= form.label :contract_address, style: "display: block" %>
-    <%= form.text_field :contract_address %>
+  <br />
+  <div class="input-group input-group-sm">
+    <%= form.label :contract_address, class: "input-group-text" %>
+    <%= form.text_field :contract_address, class: "form-control"  %>
   </div>
-
-  <div>
-    <%= form.label :rubric, style: "display: block" %>
-    <%= form.text_field :rubric %>
+  <br />
+  <div class="input-group input-group-sm">
+    <%= form.label :rubric, class: "input-group-text" %>
+    <%= form.text_field :rubric, class: "form-control"  %>
   </div>
-
-  <div>
-    <%= form.label :coingecko, style: "display: block" %>
-    <%= form.text_field :coingecko %>
+  <br />
+  <div class="input-group input-group-sm">
+    <%= form.label :coingecko, class: "input-group-text" %>
+    <%= form.text_field :coingecko, class: "form-control"  %>
   </div>
-
-  <div>
-    <%= form.label :network, style: "display: block" %>
-    <%= form.select :network_id, options_for_select(@networks.collect { |network| [network.name, network.id]}) %>
+  <br />
+  <div class="input-group input-group-sm">
+    <%= form.label :network, class: "input-group-text" %>
+    <% if token.network_id? %>
+      <%= form.select :network_id, options_from_collection_for_select(@networks, "id", "name", token.network_id), class: "form-select" %>
+    <% else %>
+      <%= form.select :network_id, options_from_collection_for_select(@networks, "id", "name"), class: "form-select" %>
+    <% end %>
   </div>
-
-  <div>
-    <%= form.label :liquidity, style: "display: block" %>
-    <%= form.text_field :liquidity %>
+  <br />
+  <div class="input-group input-group-sm">
+    <%= form.label :liquidity, class: "input-group-text" %>
+    <%= form.text_field :liquidity, class: "form-control"  %>
   </div>
-
-  <div>
-    <%= form.label :trade_slippage, style: "display: block" %>
-    <%= form.text_field :trade_slippage %>
+  <br />
+  <div class="input-group input-group-sm">
+    <%= form.label :trade_slippage, class: "input-group-text" %>
+    <%= form.text_field :trade_slippage, class: "form-control"  %>
   </div>
-
-  <div>
-    <%= form.label :volume, style: "display: block" %>
-    <%= form.text_field :volume %>
+  <br />
+  <div class="input-group input-group-sm">
+    <%= form.label :volume, class: "input-group-text" %>
+    <%= form.text_field :volume, class: "form-control"  %>
   </div>
-
-  <div>
-    <%= form.label :centralized, style: "display: block" %>
+  <br />
+  <div class="input-group input-group-sm">
+    <%= form.label :centralized, class: "input-group-text" %>
     <%= form.check_box :centralized %>
   </div>
-
-  <div>
-    <%= form.label :grade, style: "display: block" %>
-    <%= form.text_field :grade %>
+  <br />
+  <div class="input-group input-group-sm">
+    <%= form.label :grade, class: "input-group-text" %>
+    <%= form.text_field :grade, class: "form-control"  %>
   </div>
-
+  <br />
   <div>
     <%= form.submit %>
   </div>

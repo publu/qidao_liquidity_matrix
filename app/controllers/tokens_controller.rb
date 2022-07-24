@@ -4,8 +4,8 @@ class TokensController < ApplicationController
 
   # GET /tokens or /tokens.json
   def index
-    # @tokens = Token.all.order(liquidity: :desc, symbol: :asc)
-    @tokens = Token.search(params).order(liquidity: :desc, symbol: :asc)
+      @tokens = Token.search(params).order(liquidity: :desc, symbol: :asc)
+      # @tokens = Token.all.order(liquidity: :desc, symbol: :asc)
   end
 
   # GET /tokens/1 or /tokens/1.json
