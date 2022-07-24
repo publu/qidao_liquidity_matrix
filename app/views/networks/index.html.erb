@@ -7,17 +7,17 @@
       <th>Network</th>
       <th>Blockchain explorer</th>
       <th class="text-end">Total Onchain Liquidity</th>
-      <th class="text-center">Token Count</th>
-      <th class="text-end">Color</th>
+      <th class="text-end">1M Average Trading Volume</th>
+      <th class="text-center">Collateral Count</th>
       <th class="text-end">Last updated</th>
     </tr>
     <% @networks.each do |network| %>
       <tr>
-        <td><%= network.name %></td>
+        <td><span style="color: <%= network.color %> !important"><strong><%= network.name %></strong></span></td>
         <td><%= network.blockchain_explorer %></td>
         <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:liquidity)) %></td>
+        <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:volume)) %></td>
         <td class="text-center"><%= Token.where(network_id: network.id).count %></td>
-        <td class="text-end"><span style="color: <%= network.color %> !important"><strong><%= network.color %></span></td>
         <td class="text-end"><%= network.updated_at.strftime("%d %B, %Y") %></td>
         <td class="text-center"><%= link_to edit_network_path(network), title: "Edit " + network.name do %><%= image_tag "https://img.icons8.com/ios-glyphs/344/edit--v1.png", width: "15px" %><% end %></td>
       </tr>
