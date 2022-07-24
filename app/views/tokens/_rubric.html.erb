@@ -6,6 +6,7 @@
   <li><strong>Coingecko link:</strong> <%= link_to token.coingecko, token.coingecko, title: "Coingecko" %></li>
   <li><strong>Coinmarketcap link:</strong> <%= link_to token.coinmarketcap, token.coinmarketcap, title: "CoinMarketCap" %></li>
   <li><strong>Blockchain explorer:</strong> <%= link_to token.network.blockchain_explorer + token.contract_address, token.network.blockchain_explorer + token.contract_address %></li>
+  <li><strong>Last updated:</strong> <%= token.updated_at.strftime("%d %B, %Y") %></li>
 </ul>
 <br />
 <table class="table-bordered rubric">

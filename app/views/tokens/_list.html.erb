@@ -45,9 +45,6 @@
       <td class="text-end">
         <%= token.updated_at.strftime("%d %B, %Y") %>
       </td>
-      <td class="text-center">
-        <%= link_to edit_token_path(token), title: "Edit" + token.symbol, target: "_blank" do %><%= image_tag "https://img.icons8.com/ios-glyphs/344/edit--v1.png", width: "15px" %><% end %>
-      </td>
     </tr>
   <% end %>
   </table>
