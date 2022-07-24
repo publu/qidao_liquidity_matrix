@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_23_185845) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_24_195735) do
   create_table "networks", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -33,6 +33,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_23_185845) do
     t.string "contract_address"
     t.string "coingecko"
     t.string "rubric"
+    t.string "coinmarketcap"
+    t.integer "contract_days"
+    t.integer "contract_transactions"
+    t.integer "holders"
+    t.string "permissions"
+    t.float "risk_marketcap"
+    t.float "risk_volume"
+    t.decimal "risk_volatility", precision: 10, scale: 4
     t.index ["network_id"], name: "index_tokens_on_network_id"
   end
 

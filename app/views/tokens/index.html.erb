@@ -1,31 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<div class="float-end">
-  <%= form_tag tokens_path, method: :get, data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search", action: "input->search#submit" } do |f| %>
-    <div class="input-group input-group-sm">
-      <span class="input-group-text" id="basic-addon1"><%= image_tag "https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/344/external-blockchain-cryptocurrency-vitaliy-gorbachev-fill-vitaly-gorbachev-1.png", width: "25px", alt: "Blockchain Explorer" %></span>
-      <select name="query" id="query" class="form-select">
-        <option value="">All</option>
-        <option value="7">Arbitrum</option>
-        <option value="3">Avalanche</option>
-        <option value="9">BNB Chain</option>
-        <option value="2">Fantom</option>
-        <option value="6">Gnosis Chain</option>
-        <option value="5">Harmony</option>
-        <option value="11">Metis</option>
-        <option value="10">Moonbeam</option>
-        <option value="4">Moonriver</option>
-        <option value="8">Optimism</option>
-        <option value="1">Polygon</option>
-      </select>
-    </div>
-    <br />
-  <% end %>
-</div>
-
-<%= turbo_frame_tag "search-results" do %>
-  <%= render partial: "list", locals: { tokens: @tokens } %>
-<% end %>
+<%= render partial: "list", locals: { tokens: @tokens } %>
 
 <p>
   <%= link_to "New token", new_token_path, class:"btn btn-outline-primary" %>

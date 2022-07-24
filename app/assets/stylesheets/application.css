@@ -17,16 +17,73 @@ body {
   font-size: 9.5pt;
 }
 
-.table-header {
-  background-color: #F16E6A;
-}
-
 .logo {
   width: 50px;
   vertical-align: middle;
   padding-right: 10px;
 }
 
-th {
+th.red {
   color: white !important;
+  background-color: #F16E6A;
+}
+
+table.rubric th,td {
+  padding: 10px !important;
+}
+
+tr.top td,th {
+  border-top: thin solid black;
+}
+
+tr.bottom td {
+  border-bottom: thin solid black;
+}
+
+td.left {
+  border-left: thin solid black;
+}
+
+th.left {
+  border-left: thin solid black;
+}
+
+td.right {
+  border-right: thin solid black;
+}
+
+th.right {
+  border-right: thin solid black;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.gray {
+  background-color: #f5f6fa;
+}
+
+.token_name {
+  font-size: 12pt !important;
+}
+
+.a {
+  color: #00cec9;
+  font-weight: bold;
+}
+
+.b {
+  color: #6c5ce7;
+  font-weight: bold;
+}
+
+.c {
+  color: #a29bfe;
+  font-weight: bold;
+}
+
+.d {
+  color: #d63031;
+  font-weight: bold;
 }
