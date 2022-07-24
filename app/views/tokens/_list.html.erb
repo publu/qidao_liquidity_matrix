@@ -5,7 +5,7 @@
       <th>Asset</th>
       <th>Chain</th>
       <th class="text-end">Total onchain liquidity</th>
-      <th class="text-end">Largest stable trade <10% slippage</th>
+      <th class="text-end">Largest trade <10% slippage</th>
       <th class="text-end">1M Average Daily Volume</th>
       <th class="text-center">Does one wallet own >20% of tokens?</th>
       <th class="text-center">Risk grading</th>
@@ -51,8 +51,8 @@
       <td class="text-end">
         <%= token.updated_at.strftime("%d %B, %Y") %>
       </td>
-      <td class="text-end">
-        <%= link_to "Edit", edit_token_path(token), title: "Edit" + token.symbol, target: "_blank" %>
+      <td class="text-center">
+        <%= link_to edit_token_path(token), title: "Edit" + token.symbol, target: "_blank" do %><%= image_tag "https://img.icons8.com/ios-glyphs/344/edit--v1.png", width: "15px" %><% end %>
       </td>
     </tr>
   <% end %>

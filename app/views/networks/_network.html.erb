@@ -1,7 +1,19 @@
+<div class="clearfix"></div>
+
 <div id="<%= dom_id network %>">
   <p>
     <strong>Name:</strong>
     <%= network.name %>
+  </p>
+
+  <p>
+    <strong>Blockchain Explorer:</strong>
+    <%= network.blockchain_explorer %>
+  </p>
+
+  <p>
+    <strong>Color:</strong>
+    <span style="color: <%= network.color %> !important"><strong><%= network.color%></strong></span>
   </p>
 
 </div>
