@@ -4,24 +4,12 @@ A matrix of collaterals used on the QiDao protocol along with their liquidity in
 
 ![QiDao Liquidity Matrix](https://github.com/spicy-muaddib/qidao_liquidity_matrix/blob/main/qidao_liquidity_matrix.png?raw=true)
 
-The liquidity matrix contains the following information:
+The liquidity matrix contains the information such as token name and symbol, available chains, onchain liquidity, trade slippage, wallet centralization information, 1M average daily volume, and relevant links such as links to a token's CoinGecko, CoinMarketCap, and native blockchain explorer. Additional, a risk grading is given based on a risk assessment performed on a linked rubric.
 
-* Collateral name and symbol
+![QiDao Rubric](https://github.com/spicy-muaddib/qidao_liquidity_matrix/blob/main/qidao_rubric.png?raw=true
 
-* Available networks
+The QiDao rubric is based on Aave's risk assessment matrix and is a way to analyze the health of a token in order to add it as collateral, in QiDao's case, to mint the MAI stablecoin.
 
-* Onchain liquidity
+The rubric takes into account various onchain data such as token holders, number of transactions, and token age, as well as global liquidity information such as marketcap, trading volume, price volatility, and more.
 
-* Trade slippage for stables under 10%
-
-* One month average daily volume
-
-* Wallet centralizations
-
-* Risk analysis score with link to risk matrix calculations
-
-* Links to blockchain explorer and Coingecko pages for additional information.
-
-![QiDao Rubric](https://github.com/spicy-muaddib/qidao_liquidity_matrix/blob/main/qidao_rubric.png?raw=true)
-
-Brought to you by Spicy Muad'dib (aka geekvine)
+Brought to you with love by Spicy Muad'dib (aka geekvine)
