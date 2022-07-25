@@ -1,19 +1,48 @@
 <div class="clearfix"></div>
 
 <div id="<%= dom_id network %>">
-  <p>
-    <strong>Name:</strong>
-    <%= network.name %>
-  </p>
-
-  <p>
-    <strong>Blockchain Explorer:</strong>
-    <%= network.blockchain_explorer %>
-  </p>
-
-  <p>
-    <strong>Color:</strong>
-    <span style="color: <%= network.color %> !important"><strong><%= network.color%></strong></span>
-  </p>
-
+  <table class="table table-striped">
+    <tr class="table-header">
+      <th class="red">Asset</th>
+      <th class="red">Chain</th>
+      <th class="red text-end">Total onchain liquidity</th>
+      <th width="15%" class="red text-end">Largest trade for stable with < 10% slippage</th>
+      <th class="red text-end">1M Average Daily Volume</th>
+      <th width="15%" class="red text-end">Does one wallet own more than 20% of tokens in onchain LPs? (Y/N)</th>
+      <th class="red text-center">Risk grading</th>
+      <th class="red text-end">Last updated</th>
+    </tr>
+    <% network.tokens.each do |token| %>
+    <tr>
+      <td>
+        <%= token.symbol %>
+      </td>
+      <td style="color: <%= token.network.color %>">
+        <%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "plain_link" %>
+      </td>
+      <td class="text-end">
+        <%= number_to_currency(token.liquidity) %>
+      </td>
+      <td class="text-end">
+        <%= number_to_currency(token.trade_slippage) %>
+      </td>
+      <td class="text-end">
+        <%= number_to_currency(token.volume) %>
+      </td>
+      <td class="text-center">
+        <% if token.centralized? %>
+          <span class="text-danger">Yes</span>
+        <% else %>
+          No
+        <% end %>
+      </td>
+      <td class="text-center">
+        <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name do %><strong><%= overall_score(token) %><% end %>
+      </td>
+      <td class="text-end">
+        <%= token.updated_at.strftime("%d %B, %Y") %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
 </div>

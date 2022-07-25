@@ -17,7 +17,7 @@
         <%= token.symbol %>
       </td>
       <td style="color: <%= token.network.color %>">
-        <%= token.network.name %>
+        <%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "plain_link" %>
       </td>
       <td class="text-end">
         <%= number_to_currency(token.liquidity) %>
