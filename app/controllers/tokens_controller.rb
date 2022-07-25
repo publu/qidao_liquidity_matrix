@@ -4,7 +4,6 @@ class TokensController < ApplicationController
 
   # GET /tokens or /tokens.json
   def index
-      # @tokens = Token.search(params).order(liquidity: :desc, symbol: :asc)
       @tokens = Token.all.order(liquidity: :desc, symbol: :asc)
       respond_to do |format|
         format.html

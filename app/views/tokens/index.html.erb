@@ -1,3 +1,5 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title do %>
+  QiDao Liquidity Matrix
+<% end %>
 
 <%= render partial: "list", locals: { tokens: @tokens } %>

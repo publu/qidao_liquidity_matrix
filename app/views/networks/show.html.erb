@@ -1,4 +1,7 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title do %>
+  QiDao Liquidity Matrix | <%= @network.name %>
+<% end %>
+
 <div class="clearfix"></div>
 
 <%= render @network %>
