@@ -104,3 +104,14 @@ th.right {
 a {
   text-decoration: none;
 }
+
+a.plain_link {
+  text-decoration: none;
+  color: inherit;
+}
+
+a.plain_link:hover {
+  text-decoration: underline;
+  color: inherit;
+  font-style: italic;
+}

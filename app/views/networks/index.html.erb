@@ -14,13 +14,12 @@
     <% @networks.each do |network| %>
       <tr>
         <td>
-          <span style="color: <%= network.color %> !important"><strong><%= network.name %></strong></span>
-          <%= link_to edit_network_path(network), title: "Edit " + network.name do %><%= image_tag "https://img.icons8.com/ios-glyphs/344/edit--v1.png", width: "15px" %><% end %>
+          <span style="color: <%= network.color %> !important"><%= link_to network.name, network, title: "View chain information for " + network.name, class: "plain_link" %></span>
         </td>
-        <td><%= network.blockchain_explorer %></td>
+        <td><%= link_to bc_link(network.blockchain_explorer), bc_link(network.blockchain_explorer), title: "View blockchain explorer", target: "_blank" %></td>
         <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:liquidity)) %></td>
         <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:volume)) %></td>
-        <td class="text-center"><%= Token.where(network_id: network.id).count %></td>
+        <td class="text-center"><%= link_to network.tokens.count, network, title: "View chain information for " + network.name %></td>
         <td class="text-end"><%= network.updated_at.strftime("%d %B, %Y") %></td>
       </tr>
     <% end %>
