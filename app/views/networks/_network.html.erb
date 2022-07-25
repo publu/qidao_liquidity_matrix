@@ -3,8 +3,8 @@
 <div id="<%= dom_id network %>">
   <table class="table table-striped">
     <tr class="table-header">
-      <th class="red">Asset</th>
       <th class="red">Chain</th>
+      <th class="red">Asset</th>
       <th class="red text-end">Total onchain liquidity</th>
       <th width="15%" class="red text-end">Largest trade for stable with < 10% slippage</th>
       <th class="red text-end">1M Average Daily Volume</th>
@@ -14,11 +14,11 @@
     </tr>
     <% network.tokens.each do |token| %>
     <tr>
-      <td>
-        <%= token.symbol %>
-      </td>
       <td style="color: <%= token.network.color %>">
-        <%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "plain_link" %>
+        <%= token.network.name %>
+      </td>
+      <td>
+        <%= link_to token.symbol, token, title: "View rubric for " + token.symbol + " on " + token.network.name %>
       </td>
       <td class="text-end">
         <%= number_to_currency(token.liquidity) %>
@@ -44,5 +44,15 @@
       </td>
     </tr>
     <% end %>
+    <tr>
+      <td><strong>Totals</strong></td>
+      <td><%= network.tokens.count %></td>
+      <td class="text-end"><%= number_to_currency(network.tokens.sum(:liquidity)) %></td>
+      <td class="text-end">-</td>
+      <td class="text-end"><%= number_to_currency(network.tokens.sum(:volume)) %></td>
+      <td class="text-center">-</td>
+      <td class="text-center">-</td>
+      <td class="text-end">-</td>
+    </tr>
   </table>
 </div>
