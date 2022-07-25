@@ -3,9 +3,9 @@
 <ul class="list-unstyled">
   <li class="token_name"><strong>Token Name:</strong> <%= token.symbol %> (<%= token.network.name %>)</li>
   <br />
-  <li><strong>Coingecko link:</strong> <%= link_to token.coingecko, token.coingecko, title: "Coingecko" %></li>
-  <li><strong>Coinmarketcap link:</strong> <%= link_to token.coinmarketcap, token.coinmarketcap, title: "CoinMarketCap" %></li>
-  <li><strong>Blockchain explorer:</strong> <%= link_to token.network.blockchain_explorer + token.contract_address, token.network.blockchain_explorer + token.contract_address %></li>
+  <li><strong>Coingecko link:</strong> <%= link_to token.coingecko, token.coingecko, title: "Coingecko", target: "_blank" %></li>
+  <li><strong>Coinmarketcap link:</strong> <%= link_to token.coinmarketcap, token.coinmarketcap, title: "CoinMarketCap", target: "_blank" %></li>
+  <li><strong>Blockchain explorer:</strong> <%= link_to token.network.blockchain_explorer + token.contract_address, token.network.blockchain_explorer + token.contract_address, title: "Blockchain Explorer", target: "_blank" %></li>
   <li><strong>Last updated:</strong> <%= token.updated_at.strftime("%d %B, %Y") %></li>
 </ul>
 <br />
