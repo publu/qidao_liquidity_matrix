@@ -28,6 +28,10 @@ th.red {
   background-color: #F16E6A;
 }
 
+table.rubric {
+  width: 90%;
+}
+
 table.rubric th,td {
   padding: 10px !important;
 }
@@ -86,4 +90,8 @@ th.right {
 .d {
   color: #d63031;
   font-weight: bold;
+}
+
+a {
+  text-decoration: none;
 }

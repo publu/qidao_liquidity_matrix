@@ -37,7 +37,7 @@
       </td>
       <td class="text-center">
         <% if token.rubric? %>
-          <%= link_to token, title: "Rubric for " + token.asset + " on " + token.network.name do %><strong><%= token.grade %><% end %>
+          <%= link_to token, title: "Rubric for " + token.asset + " on " + token.network.name do %><strong><%= overall_score(token) %><% end %>
         <% else %>
           <%= token.grade %>
         <% end %>

@@ -42,17 +42,17 @@
     <td colspan="1" class="text-center bold">Liquidity</td>
     <td colspan="1" class="text-center bold">Volatility</td>
     <td colspan="1" class="text-center bold">Diversified Average</td>
-    <td colspan="1" rowspan="2" class="text-center bold gray"><%= token.grade %></td>
+    <td colspan="1" rowspan="2" class="text-center bold gray"><%= overall_score(token) %></td>
   </tr>
   <tr>
-    <td colspan="2" class="text-center bold gray"><%= risk_grade(token) %></td>
-    <td colspan="1" class="text-center bold gray"><%= holder_grade(token) %></td>
-    <td colspan="1" class="text-center bold gray"><%= permissions_grade(token) %></td>
-    <td colspan="1" class="text-center bold gray">DivAvg</td>
-    <td colspan="1" class="text-center bold gray"><%= marketcap_grade(token) %></td>
-    <td colspan="1" class="text-center bold gray"><%= volume_grade(token) %></td>
-    <td colspan="1" class="text-center bold gray"><%= volatility_grade(token) %></td>
-    <td colspan="1" class="text-center bold gray">DivAvg</td>
+    <td colspan="2" class="text-center bold gray"><%= num_to_grade(risk_grade(token).to_f) %></td>
+    <td colspan="1" class="text-center bold gray"><%= num_to_grade(holder_grade(token).to_f) %></td>
+    <td colspan="1" class="text-center bold gray"><%= num_to_grade(permissions_grade(token).to_f) %></td>
+    <td colspan="1" class="text-center bold gray"><%= counterparty_grade(token) %></td>
+    <td colspan="1" class="text-center bold gray"><%= num_to_grade(marketcap_grade(token).to_f) %></td>
+    <td colspan="1" class="text-center bold gray"><%= num_to_grade(volume_grade(token).to_f) %></td>
+    <td colspan="1" class="text-center bold gray"><%= num_to_grade(volatility_grade(token).to_f) %></td>
+    <td colspan="1" class="text-center bold gray"><%= market_grade(token) %></td>
 </table>
 <br />
 <div class="clearfix"></div>
