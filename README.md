@@ -4,7 +4,9 @@ A matrix of collaterals used on the QiDao protocol along with their liquidity in
 
 ![QiDao Liquidity Matrix](https://github.com/spicy-muaddib/qidao_liquidity_matrix/blob/main/qidao_liquidity_matrix.png?raw=true)
 
-The liquidity matrix contains the information such as token name and symbol, available chains, onchain liquidity, trade slippage, wallet centralization information, 1M average daily volume, and relevant links such as links to a token's CoinGecko, CoinMarketCap, and native blockchain explorer. Additional, a risk grading is given based on a risk assessment performed on a linked rubric.
+The liquidity matrix contains the information such as token name and symbol, available chains, onchain liquidity, trade slippage, wallet centralization information, 1M average daily volume, and relevant links such as links to a token's CoinGecko, CoinMarketCap, and native blockchain explorer.
+
+Additional, a collateral risk grading is given based on a risk assessment performed on a linked rubric.
 
 ![QiDao Rubric](https://github.com/spicy-muaddib/qidao_liquidity_matrix/blob/main/qidao_rubric.png?raw=true)
 
