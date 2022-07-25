@@ -28,6 +28,10 @@ th.red {
   background-color: #F16E6A;
 }
 
+th {
+  vertical-align: middle;
+}
+
 table.rubric {
   width: 90%;
 }

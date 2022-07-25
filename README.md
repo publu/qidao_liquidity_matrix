@@ -22,4 +22,6 @@ The liquidity matrix contains the following information:
 
 * Links to blockchain explorer and Coingecko pages for additional information.
 
-Brought to you by Spicy Muad'dib
+![QiDao Rubric](https://github.com/spicy-muaddib/qidao_liquidity_matrix/blob/main/qidao_rubric.png?raw=true)
+
+Brought to you by Spicy Muad'dib (aka geekvine)
