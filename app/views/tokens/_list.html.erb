@@ -30,17 +30,13 @@
       </td>
       <td class="text-center">
         <% if token.centralized? %>
-          <span class="text-danger">YES</span>
+          <span class="text-danger">Yes</span>
         <% else %>
-          NO
+          No
         <% end %>
       </td>
       <td class="text-center">
-        <% if token.rubric? %>
-          <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name do %><strong><%= overall_score(token) %><% end %>
-        <% else %>
-          <%= token.grade %>
-        <% end %>
+        <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name do %><strong><%= overall_score(token) %><% end %>
       </td>
       <td class="text-end">
         <%= token.updated_at.strftime("%d %B, %Y") %>

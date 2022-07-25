@@ -17,6 +17,10 @@ body {
   font-size: 9.5pt;
 }
 
+.container {
+  width: 85%;
+}
+
 .logo {
   width: 50px;
   vertical-align: middle;
@@ -33,7 +37,8 @@ th {
 }
 
 table.rubric {
-  width: 90%;
+  width: 100%;
+  margin: 0 auto;
 }
 
 table.rubric th,td {
