@@ -14,7 +14,7 @@
     <% @tokens.each do |token| %>
     <tr>
       <td>
-        <%= token.symbol %>
+        <strong><%= token.symbol %></strong>
       </td>
       <td style="color: <%= token.network.color %>">
         <%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "plain_link" %>

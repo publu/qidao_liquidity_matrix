@@ -15,10 +15,10 @@
     <% network.tokens.each do |token| %>
     <tr>
       <td style="color: <%= token.network.color %>">
-        <%= token.network.name %>
+        <strong><%= token.network.name %></strong>
       </td>
       <td>
-        <%= link_to token.symbol, token, title: "View rubric for " + token.symbol + " on " + token.network.name %>
+        <%= link_to token.symbol, token, title: "View rubric for " + token.symbol + " on " + token.network.name, class: "plain_link" %>
       </td>
       <td class="text-end">
         <%= number_to_currency(token.liquidity) %>
