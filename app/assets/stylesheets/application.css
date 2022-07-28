@@ -125,11 +125,22 @@ a.plain_link:hover {
   font-style: italic;
 }
 
-.github {
+.btn-header {
+  border: 1px solid #ccc;
+  border-radius: 10px 10px 0 0;
+  background-color: inherit;
+  padding: 10px;
+  cursor: pointer;
+  color: inherit;
+  vertical-align: middle;
+}
+
+.btn-footer {
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: inherit;
   padding: 10px;
   cursor: pointer;
   color: inherit;
+  vertical-align: middle;
 }

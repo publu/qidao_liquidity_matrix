@@ -1,3 +1,5 @@
+require 'csv'
+
 class TokensController < ApplicationController
   before_action :set_token, only: %i[ show edit update destroy ]
   before_action :set_networks
@@ -60,6 +62,17 @@ class TokensController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tokens_url, notice: "Token was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def export
+    @tokens = Token.all.order(asset: :asc, network_id: :asc)
+
+    respond_to do |format|
+      format.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=qidao_liquidity_matrix.csv"
+      end
     end
   end
 
