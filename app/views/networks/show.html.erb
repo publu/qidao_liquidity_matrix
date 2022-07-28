@@ -2,11 +2,4 @@
   QiDao Liquidity Matrix | <%= @network.name %>
 <% end %>
 
-<div class="clearfix"></div>
-
 <%= render @network %>
-
-<div class="text-center">
-  <%= link_to "Edit this chain", edit_network_path(@network), class: "btn btn-outline-primary" %> |
-  <%= link_to "Destroy this chain", @network, method: :delete, class: "btn btn-outline-danger" %>
-</div>

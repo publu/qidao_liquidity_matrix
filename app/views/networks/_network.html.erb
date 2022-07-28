@@ -1,7 +1,10 @@
-<div class="clearfix"></div>
-
 <div id="<%= dom_id network %>">
   <table class="table table-striped">
+    <div class="float-end">
+      <%= link_to "Edit this chain", edit_network_path(@network), class: "btn btn-outline-primary btn-sm" %> &nbsp;
+      <%= link_to "Destroy this chain", @network, method: :delete, class: "btn btn-outline-danger btn-sm" %>
+      <a href="export.csv" title="Export data as CSV", class="btn-header">Export as CSV</a>
+    </div>
     <tr class="table-header">
       <th class="red">Chain</th>
       <th class="red">Asset</th>

@@ -2,11 +2,10 @@
   QiDao Liquidity Matrix | <%= @token.symbol %> Risk Assessment
 <% end %>
 
+<div class="text-end">
+  <%= link_to "Edit this token", edit_token_path(@token), class: "btn btn-outline-primary btn-sm" %> &nbsp;
+  <%= link_to "Destroy this token", @token, method: :delete, class: "btn btn-outline-danger btn-sm" %>
+</div>
 <%= render "rubric", token: @token %>
 
-<div class="text-center">
-  <%= link_to "Edit this token", edit_token_path(@token), class: "btn btn-outline-primary" %> |
-  <%= link_to "Destroy this token", @token, method: :delete, class: "btn btn-outline-danger" %>
-</div>
 <div class="clearfix"></div>
-<br />
