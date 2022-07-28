@@ -1,6 +1,7 @@
 class TokensController < ApplicationController
   before_action :set_token, only: %i[ show edit update destroy ]
   before_action :set_networks
+  before_action :update_scores, only: %i[ update ]
 
   # GET /tokens or /tokens.json
   def index
@@ -75,5 +76,9 @@ class TokensController < ApplicationController
 
     def set_networks
       @networks = Network.all.order(name: :asc)
+    end
+
+    def update_scores
+      @token.grade = helpers.overall_score(@token)
     end
 end

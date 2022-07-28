@@ -52,7 +52,7 @@
     <td colspan="1" class="text-center bold gray"><%= num_to_grade(marketcap_grade(token).to_f) %></td>
     <td colspan="1" class="text-center bold gray"><%= num_to_grade(volume_grade(token).to_f) %></td>
     <td colspan="1" class="text-center bold gray"><%= num_to_grade(volatility_grade(token).to_f) %></td>
-    <td colspan="1" class="text-center bold gray"><%= market_grade(token) %></td>
+    <td colspan="1" class="text-center bold gray"><%= token.grade %></td>
 </table>
 <br />
 <div class="clearfix"></div>
