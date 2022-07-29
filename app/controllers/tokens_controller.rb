@@ -3,12 +3,12 @@ require 'csv'
 class TokensController < ApplicationController
   before_action :set_token, only: %i[ show edit update destroy ]
   before_action :set_networks
-  before_action :update_scores, only: %i[ create update ]
+  before_action :update_scores, only: %i[ update ]
 
   # GET /tokens or /tokens.json
   def index
       # @tokens = Token.all.order(liquidity: :desc, symbol: :asc)
-      @tokens = Token.all.order_by_grade
+      @tokens = Token.all.order_by_grade.order(liquidity: :desc)
       respond_to do |format|
         format.html
         format.js

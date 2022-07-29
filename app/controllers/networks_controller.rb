@@ -3,7 +3,7 @@ class NetworksController < ApplicationController
 
   # GET /networks or /networks.json
   def index
-    @networks = Network.all.order(name: :asc)
+    @networks = Network.all.order(name: :desc)
   end
 
   # GET /networks/1 or /networks/1.json
