@@ -168,3 +168,8 @@ a.plain_link:hover {
 .sort-asc {
   border-bottom: 8px solid #fff;
 }
+
+.footer a {
+  color: #000000;
+  font-size: 9pt;
+}
