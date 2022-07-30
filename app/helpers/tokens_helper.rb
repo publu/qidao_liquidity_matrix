@@ -1,5 +1,17 @@
 module TokensHelper
 
+    def sort_link(column:, label:)
+      if column == params[:column]
+        link_to(label, tokens_path(column: column, direction: next_direction))
+      else
+        link_to(label, tokens_path(column: column, direction: 'asc'))
+      end
+    end
+
+    def next_direction
+      params[:direction] == 'asc' ? 'desc' : 'asc'
+    end
+
     def risk_grade(token)
       risk_average = ((token.contract_days.to_f + token.contract_transactions.to_f)/2)
       if risk_average >= 500000000

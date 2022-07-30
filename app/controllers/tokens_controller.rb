@@ -7,8 +7,12 @@ class TokensController < ApplicationController
 
   # GET /tokens or /tokens.json
   def index
-      # @tokens = Token.all.order(liquidity: :desc, symbol: :asc)
-      @tokens = Token.all.order_by_grade.order(liquidity: :desc)
+      if params[:column] && params[:direction]
+        #@tokens = Token.all.order(Arel.sql(params[:sort]))
+        @tokens = Token.all.order("#{params[:column]} #{params[:direction]}")
+      else
+        @tokens = Token.all.order_by_grade.order(liquidity: :desc)
+      end
       respond_to do |format|
         format.xlsx do
           response.headers['Content-Disposition'] = "attachment; filename=qidao_liquidity_matrix.xlsx"

@@ -2,13 +2,13 @@
   <table class="table table-striped">
     <%= link_to 'Export Data', tokens_path(format: :xlsx), title: "Export data to spreadsheet", class: "btn-header float-end" %>
     <tr class="table-header">
-      <th class="red">Asset</th>
-      <th class="red">Chain</th>
-      <th class="red text-end">Total onchain liquidity</th>
-      <th width="15%" class="red text-end">Largest trade for stable with < 10% slippage</th>
-      <th class="red text-end">1M Average Daily Volume</th>
+      <th class="red"><%= sort_link(column: "symbol", label: "Token") %></th>
+      <th class="red"><%= sort_link(column: "network_id", label: "Chain") %></th>
+      <th class="red text-end"><%= sort_link(column: "liquidity", label: "Total Onchain Liquidity") %></th>
+      <th width="15%" class="red text-end"><%= sort_link(column: "trade_slippage", label: "Largest trade for stable with < 10% slippage") %></th>
+      <th class="red text-end"><%= sort_link(column: "volume", label: "1M Average Daily Volume") %></th>
       <th width="15%" class="red text-end">Does one wallet own more than 20% of tokens in onchain LPs? (Y/N)</th>
-      <th class="red text-center">Risk grading</th>
+      <th class="red text-center"><%= link_to tokens_path do %>Risk Grading<% end %></th>
       <th class="red text-end">Last updated</th>
     </tr>
     <% @tokens.each do |token| %>
