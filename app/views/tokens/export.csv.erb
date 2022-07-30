@@ -1,5 +1,0 @@
-<% headers = ['Token', 'Network', 'Total Onchain Liquidity', 'Largest trade for stable with < 10% slippage', '1M Average Daily Volume', 'Does one wallet own more than 20% of tokens in onchain LPs?', 'Risk Grading'] %>
-<%= CSV.generate_line headers %>
-<% @tokens.each do |token| %>
-  <%= CSV.generate_line([token.asset, token.network.name, token.liquidity, token.trade_slippage, token.volume, token.centralized, token.grade]) %>
-<% end %>

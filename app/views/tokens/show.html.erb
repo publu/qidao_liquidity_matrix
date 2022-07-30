@@ -3,8 +3,9 @@
 <% end %>
 
 <div class="text-end">
-  <%= link_to "Edit this token", edit_token_path(@token), class: "btn btn-outline-primary btn-sm" %> &nbsp;
-  <%= link_to "Destroy this token", @token, method: :delete, class: "btn btn-outline-danger btn-sm" %>
+  <%= link_to "Edit token", edit_token_path(@token), class: "btn btn-outline-primary btn-sm" %> &nbsp;
+  <%= link_to "Destroy token", @token, method: :delete, class: "btn btn-outline-danger btn-sm" %>
+  <%= link_to "Back to matrix", tokens_path, class: "btn-nav btn-end" %>
 </div>
 <%= render "rubric", token: @token %>
 

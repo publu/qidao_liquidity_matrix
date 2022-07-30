@@ -129,17 +129,17 @@ a.plain_link:hover {
   border: 1px solid #ccc;
   border-radius: 10px 10px 0 0;
   background-color: inherit;
-  padding: 10px;
+  padding: 8px;
   cursor: pointer;
   color: inherit;
   vertical-align: middle;
 }
 
-.btn-footer {
+.btn-nav {
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 5px 5px 5px 5px;
   background-color: inherit;
-  padding: 10px;
+  padding: 10px 15px 10px 15px;
   cursor: pointer;
   color: inherit;
   vertical-align: middle;

@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   resources :networks
   resources :tokens
 
-  get "export", to: "tokens#export"
-
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

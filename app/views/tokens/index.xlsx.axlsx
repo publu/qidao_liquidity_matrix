@@ -1,0 +1,31 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  project_heading = style.add_style(b: true, sz: 14)
+  heading = style.add_style(b: true, fg_color: 'ffffff', bg_color: 'F16E6A', alignment: { horizontal: :center, vertical: :center, wrap_text: true })
+  left = style.add_style(alignment: { horizontal: :left })
+  center = style.add_style(alignment: { horizontal: :center })
+  right = style.add_style(alignment: { horizontal: :right })
+
+  wb.add_worksheet(name: "Liquidity Matrix") do |sheet|
+    # Add a title row
+    sheet.add_row ["QiDao Liquidity Matrix"], style: project_heading
+    # Add the date this was downloaded
+    sheet.add_row ["Downloaded on " + Time.now.strftime("%d %b, %Y")]
+    # Add a blank row
+    sheet.add_row []
+    # Create the header row
+    sheet.add_row ["Asset", "Chain", "Total Onchain Liquidity", "Largest trade for stable with < 10% slippage", "1M Average Daily Volume", "Does one wallet own more than 20% of tokens in onchain LPs?", "Risk Grading"], style: heading, height: 50
+    # Create entries for each item
+    @tokens.each do |token|
+      if token.centralized?
+        sheet.add_row [token.symbol, token.network.name, number_to_currency(token.liquidity), number_to_currency(token.trade_slippage), number_to_currency(token.volume), "Yes", token.grade], style: [left, left, right, right, right, center, center]
+      else
+        sheet.add_row [token.symbol, token.network.name, number_to_currency(token.liquidity), number_to_currency(token.trade_slippage), number_to_currency(token.volume), "No", token.grade], style: [left, left, right, right, right, center, center]
+      end
+    end
+    # Set column widths
+    sheet.column_widths 15, 15, 20, 20, 25, 20, 15
+  end
+
+end
