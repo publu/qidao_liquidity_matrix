@@ -14,4 +14,8 @@ The QiDao rubric is based on Aave's risk assessment matrix and is a way to analy
 
 The rubric takes into account various onchain data such as token holders, number of transactions, and token age, as well as global liquidity information such as marketcap, trading volume, price volatility, and more.
 
+![QiDao Matrix Spreadsheet](https://github.com/spicy-muaddib/qidao_liquidity_matrix/blob/main/qidao_sheet.png?raw=true)
+
+Want to export the data and see it for yourself? No problem, click the "Export data" button and grab yourself a spreadsheet.
+
 Brought to you with love by the Spicy Muad'dib (aka geekvine).
