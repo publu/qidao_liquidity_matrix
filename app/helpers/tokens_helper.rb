@@ -207,6 +207,36 @@ module TokensHelper
       end
     end
 
+    def grade_to_number(grade)
+      if grade == "A+"
+        "97"
+      elsif grade == "A"
+        "94"
+      elsif grade == "A-"
+        "90"
+      elsif grade == "B+"
+        "87"
+      elsif grade == "B"
+        "84"
+      elsif grade == "B-"
+        "80"
+      elsif grade == "C+"
+        "77"
+      elsif grade == "C"
+        "74"
+      elsif grade == "C-"
+        "70"
+      elsif grade == "D+"
+        "67"
+      elsif grade == "D"
+        "64"
+      elsif grade == "D-"
+        "60"
+      else
+       "Error"
+      end
+    end
+
     def counterparty_grade(token)
       num_to_grade((holder_grade(token).to_f + permissions_grade(token).to_f)/2)
     end
