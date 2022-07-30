@@ -2,7 +2,10 @@
   <table class="table table-striped">
     <%= link_to 'Export Data', tokens_path(format: :xlsx), title: "Export data to spreadsheet", class: "btn-header float-end" %>
     <tr class="table-header">
-      <th class="red">Token</th>
+      <th class="red">
+        <%= sort_link(column: "symbol", label: "Token") %>
+        <%= sort_indicator if params[:column] == "symbol" %>
+      </th>
       <th class="red">Chain</th>
       <th class="red text-end">
         <%= sort_link(column: "liquidity", label: "Total Onchain Liquidity") %>
