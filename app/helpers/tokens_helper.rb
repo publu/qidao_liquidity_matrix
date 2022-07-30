@@ -4,12 +4,16 @@ module TokensHelper
       if column == params[:column]
         link_to(label, tokens_path(column: column, direction: next_direction))
       else
-        link_to(label, tokens_path(column: column, direction: 'asc'))
+        link_to(label, tokens_path(column: column, direction: 'desc'))
       end
     end
 
     def next_direction
       params[:direction] == 'asc' ? 'desc' : 'asc'
+    end
+
+    def sort_indicator
+      tag.span(class: "sort sort-#{params[:direction]}")
     end
 
     def risk_grade(token)

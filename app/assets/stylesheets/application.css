@@ -159,3 +159,22 @@ a.plain_link:hover {
   color: inherit;
   vertical-align: middle;
 }
+
+.sort {
+  position: absolute;
+  margin-top: 6px;
+  margin-left: 3px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  color: #fffff;
+}
+
+.sort-desc {
+  border-top: 8px solid #fff;
+}
+
+.sort-asc {
+  border-bottom: 8px solid #fff;
+}
