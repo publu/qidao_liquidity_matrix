@@ -31,7 +31,7 @@
     <% @tokens.each do |token| %>
     <tr>
       <td>
-        <strong><%= token.symbol %></strong>
+        <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name, class: "plain_link" do %><strong><%= token.symbol %><% end %>
       </td>
       <td style="color: <%= token.network.color %>">
         <%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "plain_link" %>
