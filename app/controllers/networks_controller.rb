@@ -9,9 +9,10 @@ class NetworksController < ApplicationController
   # GET /networks/1 or /networks/1.json
   def show
     if params[:column] && params[:direction]
-      @tokens = Token.where(network_id: @network.id).order(Arel.sql("#{params[:column]} #{params[:direction]}"))
+      @pagy, @tokens = pagy(Token.where(network_id: @network.id).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
     else
-      @tokens = Token.where(network_id: @network.id).order_by_grade.order(liquidity: :desc)
+      @pagy, @tokens = pagy(Token.where(network_id: @network.id).order_by_grade.order(liquidity: :desc))
+      @token_count = Token.where(network_id: @network.id).count
     end
     respond_to do |format|
       format.xlsx do

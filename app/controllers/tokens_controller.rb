@@ -8,9 +8,10 @@ class TokensController < ApplicationController
   # GET /tokens or /tokens.json
   def index
       if params[:column] && params[:direction]
-        @tokens = Token.all.order(Arel.sql("#{params[:column]} #{params[:direction]}"))
+        @pagy, @tokens = pagy(Token.all.order(Arel.sql("#{params[:column]} #{params[:direction]}")))
       else
-        @tokens = Token.all.order_by_grade.order(liquidity: :desc)
+        @pagy, @tokens = pagy(Token.all.order_by_grade.order(liquidity: :desc))
+        @token_count = Token.all.count
       end
       respond_to do |format|
         format.xlsx do

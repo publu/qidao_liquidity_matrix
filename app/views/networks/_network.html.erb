@@ -3,7 +3,8 @@
     <div class="float-end">
       <%= link_to "Edit this chain", edit_network_path(@network), class: "btn btn-outline-primary btn-sm" %> &nbsp;
       <%= link_to "Destroy this chain", @network, method: :delete, class: "btn btn-outline-danger btn-sm" %> &nbsp;
-      <%= link_to "Back to matrix", tokens_path, class: "btn-nav btn-end" %>
+      <%= link_to tokens_path, class: "btn-nav", title: "Go home" do %><ion-icon name="home-outline"></ion-icon><% end %>
+      <a href="https://github.com/spicy-muaddib/qidao_liquidity_matrix" target="_blank" title="Github" class="btn-nav"><ion-icon name="logo-github"></ion-icon></a>
     </div>
     <tr class="table-header">
       <th class="red">Chain</th>
@@ -83,4 +84,7 @@
       <td class="text-end">-</td>
     </tr>
   </table>
+  <% if @token_count > 15 %>
+    <%== pagy_bootstrap_nav(@pagy) %>
+  <% end %>
 </div>

@@ -5,7 +5,8 @@
 <div class="text-end">
   <%= link_to "Edit token", edit_token_path(@token), class: "btn btn-outline-primary btn-sm" %> &nbsp;
   <%= link_to "Destroy token", @token, method: :delete, class: "btn btn-outline-danger btn-sm" %>
-  <%= link_to "Back to matrix", tokens_path, class: "btn-nav btn-end" %>
+  <%= link_to tokens_path, class: "btn-nav", title: "Go home" do %><ion-icon name="home-outline"></ion-icon><% end %>
+  <a href="https://github.com/spicy-muaddib/qidao_liquidity_matrix" target="_blank" title="Github" class="btn-nav"><ion-icon name="logo-github"></ion-icon></a>
 </div>
 <%= render "rubric", token: @token %>
 
