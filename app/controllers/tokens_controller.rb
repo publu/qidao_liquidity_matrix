@@ -11,8 +11,8 @@ class TokensController < ApplicationController
         @pagy, @tokens = pagy(Token.all.order(Arel.sql("#{params[:column]} #{params[:direction]}")))
       else
         @pagy, @tokens = pagy(Token.all.order_by_grade.order(liquidity: :desc))
-        @token_count = Token.all.count
       end
+      @token_count = Token.all.count
       respond_to do |format|
         format.xlsx do
           @tokens = Token.all.order_by_grade.order(liquidity: :desc)
