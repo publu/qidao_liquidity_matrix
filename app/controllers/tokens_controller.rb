@@ -12,7 +12,7 @@ class TokensController < ApplicationController
       else
         @pagy, @tokens = pagy(Token.all.order_by_grade.order(liquidity: :desc))
       end
-      @token_count = Token.all.count
+      @token_count = Token.all.size
       respond_to do |format|
         format.xlsx do
           @tokens = Token.all.order_by_grade.order(liquidity: :desc)

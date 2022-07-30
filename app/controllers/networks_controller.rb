@@ -12,7 +12,7 @@ class NetworksController < ApplicationController
       @pagy, @tokens = pagy(Token.where(network_id: @network.id).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
     else
       @pagy, @tokens = pagy(Token.where(network_id: @network.id).order_by_grade.order(liquidity: :desc))
-      @token_count = Token.where(network_id: @network.id).count
+      @token_count = Token.where(network_id: @network.id).size
     end
     respond_to do |format|
       format.xlsx do

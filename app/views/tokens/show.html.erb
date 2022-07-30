@@ -1,7 +1,7 @@
 <% content_for :title do %>
   QiDao Liquidity Matrix | <%= @token.symbol %> Risk Assessment
 <% end %>
-
+<p style="notice"><%= notice %></p>
 <div class="text-end">
   <%= link_to "Edit token", edit_token_path(@token), class: "btn btn-outline-primary btn-sm" %> &nbsp;
   <%= link_to "Destroy token", @token, method: :delete, class: "btn btn-outline-danger btn-sm" %>
