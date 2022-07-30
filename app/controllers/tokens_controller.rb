@@ -15,6 +15,7 @@ class TokensController < ApplicationController
       end
       respond_to do |format|
         format.xlsx do
+          @tokens = Token.all.order_by_grade.order(liquidity: :desc)
           response.headers['Content-Disposition'] = "attachment; filename=qidao_liquidity_matrix.xlsx"
         end
         format.html
