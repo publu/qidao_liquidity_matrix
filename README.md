@@ -4,18 +4,14 @@ A matrix of collaterals used on the QiDao protocol along with their liquidity in
 
 ![QiDao Liquidity Matrix](https://github.com/spicy-muaddib/qidao_liquidity_matrix/blob/main/qidao_liquidity_matrix.png?raw=true)
 
-The liquidity matrix contains the information such as token name and symbol, available chains, onchain liquidity, trade slippage, wallet centralization information, 1M average daily volume, and relevant links such as links to a token's CoinGecko, CoinMarketCap, and native blockchain explorer.
+The liquidity matrix contains the information such as token name and symbol, available chains, onchain liquidity, trade slippage, wallet centralization information, 1M average daily volume, and relevant links such as links to a token's CoinGecko, CoinMarketCap, and native blockchain explorer. Data can be sorted directly from the site by table columns, or exported as an Excel-formatted spreadsheet. 
 
-Additional, a collateral risk grading is given based on a risk assessment performed on a linked rubric.
+Additionally, a collateral risk grading is given based on a risk assessment performed on a linked rubric.
 
 ![QiDao Rubric](https://github.com/spicy-muaddib/qidao_liquidity_matrix/blob/main/qidao_rubric.png?raw=true)
 
 The QiDao rubric is based on Aave's risk assessment matrix and is a way to analyze the health of a token in order to add it as collateral, in QiDao's case, to mint the MAI stablecoin.
 
 The rubric takes into account various onchain data such as token holders, number of transactions, and token age, as well as global liquidity information such as marketcap, trading volume, price volatility, and more.
-
-![QiDao Matrix Spreadsheet](https://github.com/spicy-muaddib/qidao_liquidity_matrix/blob/main/qidao_sheet.png?raw=true)
-
-Want to export the data and see it for yourself? No problem, click the "Export data" button and grab yourself a spreadsheet.
 
 Brought to you with love by the Spicy Muad'dib (aka geekvine).
