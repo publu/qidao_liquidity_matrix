@@ -8,6 +8,18 @@ class NetworksController < ApplicationController
 
   # GET /networks/1 or /networks/1.json
   def show
+    if params[:column] && params[:direction]
+      @tokens = Token.where(network_id: @network.id).order(Arel.sql("#{params[:column]} #{params[:direction]}"))
+    else
+      @tokens = Token.where(network_id: @network.id).order_by_grade.order(liquidity: :desc)
+    end
+    respond_to do |format|
+      format.xlsx do
+        response.headers['Content-Disposition'] = "attachment; filename=qidao_liquidity_matrix.xlsx"
+      end
+      format.html
+      format.js
+    end
   end
 
   # GET /networks/new

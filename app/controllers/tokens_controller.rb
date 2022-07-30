@@ -8,8 +8,7 @@ class TokensController < ApplicationController
   # GET /tokens or /tokens.json
   def index
       if params[:column] && params[:direction]
-        #@tokens = Token.all.order(Arel.sql(params[:sort]))
-        @tokens = Token.all.order("#{params[:column]} #{params[:direction]}")
+        @tokens = Token.all.order(Arel.sql("#{params[:column]} #{params[:direction]}"))
       else
         @tokens = Token.all.order_by_grade.order(liquidity: :desc)
       end

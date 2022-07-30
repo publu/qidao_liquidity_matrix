@@ -6,7 +6,9 @@
         <%= sort_link(column: "symbol", label: "Token") %>
         <%= sort_indicator if params[:column] == "symbol" %>
       </th>
-      <th class="red">Chain</th>
+      <th class="red">
+        Chain
+      </th>
       <th class="red text-end">
         <%= sort_link(column: "liquidity", label: "Total Onchain Liquidity") %>
         <%= sort_indicator if params[:column] == "liquidity" %>
@@ -23,7 +25,7 @@
         <%= sort_link(column: "centralized", label: "Does one wallet own more than 20% of tokens in onchain LPs?") %>
         <%= sort_indicator if params[:column] == "centralized" %>
       </th>
-      <th class="red text-center"><%= link_to tokens_path do %>Risk Grading<% end %></th>
+      <th class="red text-center"><%= link_to "Risk Grading", tokens_path %></th>
       <th class="red text-end">Last updated</th>
     </tr>
     <% @tokens.each do |token| %>

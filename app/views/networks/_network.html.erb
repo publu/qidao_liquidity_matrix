@@ -2,19 +2,35 @@
   <table class="table table-striped">
     <div class="float-end">
       <%= link_to "Edit this chain", edit_network_path(@network), class: "btn btn-outline-primary btn-sm" %> &nbsp;
-      <%= link_to "Destroy this chain", @network, method: :delete, class: "btn btn-outline-danger btn-sm" %>
+      <%= link_to "Destroy this chain", @network, method: :delete, class: "btn btn-outline-danger btn-sm" %> &nbsp;
+      <%= link_to "Back to matrix", tokens_path, class: "btn-nav btn-end" %>
     </div>
     <tr class="table-header">
       <th class="red">Chain</th>
-      <th class="red">Asset</th>
-      <th class="red text-end">Total onchain liquidity</th>
-      <th width="15%" class="red text-end">Largest trade for stable with < 10% slippage</th>
-      <th class="red text-end">1M Average Daily Volume</th>
-      <th width="15%" class="red text-end">Does one wallet own more than 20% of tokens in onchain LPs? (Y/N)</th>
-      <th class="red text-center">Risk grading</th>
+      <th class="red">
+        <%= sort_network_link(column: "symbol", label: "Asset") %>
+        <%= sort_indicator if params[:column] == "symbol" %>
+      </th>
+      <th class="red text-end">
+        <%= sort_network_link(column: "liquidity", label: "Total onchain liquidity") %>
+        <%= sort_indicator if params[:column] == "liquidity" %>
+      </th>
+      <th width="15%" class="red text-end">
+        <%= sort_network_link(column: "trade_slippage", label: "Largest trade for stable with < 10% slippage") %>
+        <%= sort_indicator if params[:column] == "trade_slippage" %>
+      </th>
+      <th class="red text-end">
+        <%= sort_network_link(column: "volume", label: "1M Average Daily Volume") %>
+        <%= sort_indicator if params[:column] == "volume" %>
+      </th>
+      <th width="15%" class="red text-end">
+        <%= sort_network_link(column: "centralized", label: "TDoes one wallet own more than 20% of tokens in onchain LPs?") %>
+        <%= sort_indicator if params[:column] == "centralized" %>
+      </th>
+      <th class="red text-center"><%= link_to "Risk grading", network_path %></th>
       <th class="red text-end">Last updated</th>
     </tr>
-    <% network.tokens.each do |token| %>
+    <% @tokens.each do |token| %>
     <tr>
       <td style="color: <%= token.network.color %>">
         <strong><%= token.network.name %></strong>
