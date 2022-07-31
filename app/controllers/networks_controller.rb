@@ -1,6 +1,7 @@
 class NetworksController < ApplicationController
   before_action :set_network, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ create new edit update destroy ]
+  before_action :authenticate_admin, only: %i[ create new edit update destroy ]
 
   # GET /networks or /networks.json
   def index
@@ -80,5 +81,14 @@ class NetworksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def network_params
       params.require(:network).permit(:name, :color, :blockchain_explorer)
+    end
+
+    # Check if user is admin before accessing CRUD actions
+    def authenticate_admin
+      redirect_to '/', alert: 'Not authorized.' unless current_user && access_whitelist
+    end
+
+    def access_whitelist
+      current_user.try(:admin?)
     end
 end

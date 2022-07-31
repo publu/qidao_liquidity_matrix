@@ -4,6 +4,7 @@ class TokensController < ApplicationController
   before_action :set_token, only: %i[ show edit update destroy ]
   before_action :set_networks
   before_action :authenticate_user!, only: %i[ create new edit update destroy ]
+  before_action :authenticate_admin, only: %i[ create new edit update destroy ]
   before_action :update_scores, only: %i[ update ]
 
   # GET /tokens or /tokens.json
@@ -92,5 +93,14 @@ class TokensController < ApplicationController
 
     def update_scores
       @token.grade = helpers.overall_score(@token)
+    end
+
+    # Check if user is admin before accessing CRUD actions
+    def authenticate_admin
+      redirect_to '/', alert: 'Not authorized.' unless current_user && access_whitelist
+    end
+
+    def access_whitelist
+      current_user.try(:admin?)
     end
 end
