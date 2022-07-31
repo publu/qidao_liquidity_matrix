@@ -1,11 +1,10 @@
 <% content_for :title do %>
   QiDao Liquidity Matrix | New chain
 <% end %>
-<h1>New chain</h1>
+<div class="clearfix"></div>
+<h3>New chain</h3>
 
 <%= render "form", network: @network %>
-
-<br>
 
 <div>
   <%= link_to "Back to networks", networks_path %>

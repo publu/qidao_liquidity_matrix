@@ -148,6 +148,7 @@ a.plain_link:hover {
 .btn-nav {
   border: 1px solid #ccc;
   border-radius: 5px;
+  min-height: 35px;
   background-color: inherit;
   padding: 8px;
   cursor: pointer;
