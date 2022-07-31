@@ -1,6 +1,6 @@
 class NetworksController < ApplicationController
   before_action :set_network, only: %i[ show edit update destroy ]
-  before_action :authenticate_member!, only: %i[ create edit update destroy ]
+  before_action :authenticate_user!, only: %i[ create new edit update destroy ]
 
   # GET /networks or /networks.json
   def index

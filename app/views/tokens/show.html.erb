@@ -1,15 +1,7 @@
 <% content_for :title do %>
   QiDao Liquidity Matrix | <%= @token.symbol %> Risk Assessment
 <% end %>
-<div class="float-end">
-  <%= link_to "Edit token", edit_token_path(@token), class: "btn btn-outline-primary btn-sm" %> &nbsp;
-  <%= link_to "Destroy token", @token, method: :delete, class: "btn btn-outline-danger btn-sm" %>
-  <%= link_to tokens_path, class: "btn-nav", title: "Go home" do %><ion-icon name="home-outline"></ion-icon><% end %>
-  <a href="https://github.com/spicy-muaddib/qidao_liquidity_matrix" target="_blank" title="Github" class="btn-nav"><ion-icon name="logo-github"></ion-icon></a>
-  <% if user_signed_in? %>
-    <%= link_to destroy_user_session_path, 'data-turbo-method': :delete do %><ion-icon name="log-out-outline"></ion-icon><% end %>
-  <% end %>
-</div>
+
 <%= render "rubric", token: @token %>
 
 <div class="clearfix"></div>
