@@ -1,9 +1,5 @@
 <div id="tokens">
   <table class="table table-striped">
-    <div class="float-end">
-      <%= link_to tokens_path(format: :xlsx), title: "Export data to spreadsheet", class: "btn-nav" do %><ion-icon name="cloud-download-outline"></ion-icon><% end %>
-      <a href="https://github.com/spicy-muaddib/qidao_liquidity_matrix" target="_blank" title="Github" class="btn-nav"><ion-icon name="logo-github"></ion-icon></a>
-    </div>
     <tr class="table-header">
       <th class="red">
         <%= sort_link(column: "symbol", label: "Token") %>

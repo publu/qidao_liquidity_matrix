@@ -34,6 +34,9 @@ gem 'caxlsx_rails'
 # Add table pagination
 gem 'pagy', '~> 5.10' # omit patch digit
 
+# User authentication
+gem 'devise', github: 'heartcombo/devise', branch: 'main'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

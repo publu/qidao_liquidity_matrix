@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root "tokens#index"
   resources :networks
   resources :tokens
