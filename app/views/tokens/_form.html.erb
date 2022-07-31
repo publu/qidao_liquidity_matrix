@@ -1,120 +1,122 @@
-<%= form_with(model: token) do |form| %>
-  <% if token.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(token.errors.count, "error") %> prohibited this token from being saved:</h2>
+<div class="info">
+  <%= form_with(model: token) do |form| %>
+    <% if token.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(token.errors.count, "error") %> prohibited this token from being saved:</h2>
 
-      <ul>
-        <% token.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <ul>
+          <% token.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <div class="row">
+    <div class="col">
+      <ul class="list-unstyled"><li class="token_name"><strong>Token information</strong></li></ul>
+      <div class="input-group input-group-sm">
+        <%= form.label :asset, "Token Name", class: "input-group-text" %>
+        <%= form.text_field :asset, class: "form-control" %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :symbol, class: "input-group-text" %>
+        <%= form.text_field :symbol, class: "form-control" %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :contract_address, class: "input-group-text" %>
+        <%= form.text_field :contract_address, class: "form-control"  %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :coingecko, "CoinGecko", class: "input-group-text" %>
+        <%= form.text_field :coingecko, class: "form-control"  %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :coinmarketcap, "CoinMarketCap", class: "input-group-text" %>
+        <%= form.text_field :coinmarketcap, class: "form-control" %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :network, "Chain", class: "input-group-text" %>
+        <% if token.network_id? %>
+          <%= form.select :network_id, options_from_collection_for_select(@networks, "id", "name", token.network_id), class: "form-select" %>
+        <% else %>
+          <%= form.select :network_id, options_from_collection_for_select(@networks, "id", "name"), class: "form-select" %>
         <% end %>
-      </ul>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :liquidity, "Onchain Liquidity", class: "input-group-text" %>
+        <%= form.text_field :liquidity, class: "form-control"  %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :trade_slippage, "Trade slippage for stables < 10%", class: "input-group-text" %>
+        <%= form.text_field :trade_slippage, class: "form-control"  %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :volume, "1M Average Volume", class: "input-group-text" %>
+        <%= form.text_field :volume, class: "form-control"  %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :centralized, "Does one wallet hold > 20% of tokens?", class: "input-group-text" %>
+        <div class="input-group-text">
+          <%= form.check_box :centralized, class: "form-check-input mt-0" %>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-<div class="row">
-  <div class="col">
-    <ul class="list-unstyled"><li class="token_name"><strong>Token information</strong></li></ul>
-    <div class="input-group input-group-sm">
-      <%= form.label :asset, "Token Name", class: "input-group-text" %>
-      <%= form.text_field :asset, class: "form-control" %>
-    </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :symbol, class: "input-group-text" %>
-      <%= form.text_field :symbol, class: "form-control" %>
-    </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :contract_address, class: "input-group-text" %>
-      <%= form.text_field :contract_address, class: "form-control"  %>
-    </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :coingecko, "CoinGecko", class: "input-group-text" %>
-      <%= form.text_field :coingecko, class: "form-control"  %>
-    </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :coinmarketcap, "CoinMarketCap", class: "input-group-text" %>
-      <%= form.text_field :coinmarketcap, class: "form-control" %>
-    </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :network, "Chain", class: "input-group-text" %>
-      <% if token.network_id? %>
-        <%= form.select :network_id, options_from_collection_for_select(@networks, "id", "name", token.network_id), class: "form-select" %>
-      <% else %>
-        <%= form.select :network_id, options_from_collection_for_select(@networks, "id", "name"), class: "form-select" %>
-      <% end %>
-    </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :liquidity, "Onchain Liquidity", class: "input-group-text" %>
-      <%= form.text_field :liquidity, class: "form-control"  %>
-    </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :trade_slippage, "Trade slippage for stables < 10%", class: "input-group-text" %>
-      <%= form.text_field :trade_slippage, class: "form-control"  %>
-    </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :volume, "1M Average Volume", class: "input-group-text" %>
-      <%= form.text_field :volume, class: "form-control"  %>
-    </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :centralized, "Does one wallet hold > 20% of tokens?", class: "input-group-text" %>
-      <div class="input-group-text">
-        <%= form.check_box :centralized, class: "form-check-input mt-0" %>
+    <div class="col">
+      <ul class="list-unstyled"><li class="token_name"><strong>Rubric data</strong></li></ul>
+      <div class="input-group input-group-sm">
+        <%= form.label :contract_days, class: "input-group-text" %>
+        <%= form.text_field :contract_days, class: "form-control"   %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :contract_transactions, "Onchain Transactions", class: "input-group-text" %>
+        <%= form.text_field :contract_transactions, class: "form-control"   %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :holders, class: "input-group-text" %>
+        <%= form.text_field :holders, class: "form-control"   %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :permissions, class: "input-group-text" %>
+        <%= form.text_field :permissions, class: "form-control"   %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :risk_marketcap, "Market Cap", class: "input-group-text" %>
+        <%= form.text_field :risk_marketcap, class: "form-control"   %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :risk_volume, "Average Daily Volume 3M", class: "input-group-text" %>
+        <%= form.text_field :risk_volume, class: "form-control"   %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <%= form.label :risk_volatility, "Normalized Volatility", class: "input-group-text" %>
+        <%= form.text_field :risk_volatility, class: "form-control"   %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
+        <div class="input-group-text">Risk Grading</div>
+        <div class="form-control gray"><%= token.grade %></div>
       </div>
     </div>
   </div>
-  <div class="col">
-    <ul class="list-unstyled"><li class="token_name"><strong>Rubric data</strong></li></ul>
-    <div class="input-group input-group-sm">
-      <%= form.label :contract_days, class: "input-group-text" %>
-      <%= form.text_field :contract_days, class: "form-control"   %>
-    </div>
     <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :contract_transactions, "Onchain Transactions", class: "input-group-text" %>
-      <%= form.text_field :contract_transactions, class: "form-control"   %>
+    <div>
+      <%= form.submit "Submit", class: "btn btn-primary" %>
     </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :holders, class: "input-group-text" %>
-      <%= form.text_field :holders, class: "form-control"   %>
-    </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :permissions, class: "input-group-text" %>
-      <%= form.text_field :permissions, class: "form-control"   %>
-    </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :risk_marketcap, "Market Cap", class: "input-group-text" %>
-      <%= form.text_field :risk_marketcap, class: "form-control"   %>
-    </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :risk_volume, "Average Daily Volume 3M", class: "input-group-text" %>
-      <%= form.text_field :risk_volume, class: "form-control"   %>
-    </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <%= form.label :risk_volatility, "Normalized Volatility", class: "input-group-text" %>
-      <%= form.text_field :risk_volatility, class: "form-control"   %>
-    </div>
-    <br />
-    <div class="input-group input-group-sm">
-      <div class="input-group-text">Risk Grading</div>
-      <div class="form-control gray"><%= token.grade %></div>
-    </div>
-  </div>
+  <% end %>
 </div>
-  <br />
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>

@@ -1,33 +1,35 @@
-<%= form_with(model: network) do |form| %>
-  <% if network.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(network.errors.count, "error") %> prohibited this network from being saved:</h2>
+<div class="info">
+  <%= form_with(model: network) do |form| %>
+    <% if network.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(network.errors.count, "error") %> prohibited this network from being saved:</h2>
 
-      <ul>
-        <% network.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% network.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <ul class="list-unstyled"><li class="token_name"><strong>Chain information</strong></li></ul>
+    <div class="input-group input-group-sm">
+      <%= form.label :name, class: "input-group-text" %>
+      <%= form.text_field :name, class: "form-control"   %>
+    </div>
+    <br />
+    <div class="input-group input-group-sm">
+      <%= form.label :blockchain_explorer, class: "input-group-text" %>
+      <%= form.text_field :blockchain_explorer, class: "form-control"   %>
+    </div>
+    <br />
+    <div class="input-group input-group-sm">
+      <%= form.label :color, class: "input-group-text" %>
+      <%= form.text_field :color, class: "form-control"   %>
+    </div>
+    <br />
+    <div class="input-group input-group-sm">
+      <%= form.submit "Submit", class: "btn btn-primary" %>
     </div>
   <% end %>
-
-  <ul class="list-unstyled"><li class="token_name"><strong>Network information</strong></li></ul>
-  <div class="input-group input-group-sm">
-    <%= form.label :name, class: "input-group-text" %>
-    <%= form.text_field :name, class: "form-control"   %>
-  </div>
-  <br />
-  <div class="input-group input-group-sm">
-    <%= form.label :blockchain_explorer, class: "input-group-text" %>
-    <%= form.text_field :blockchain_explorer, class: "form-control"   %>
-  </div>
-  <br />
-  <div class="input-group input-group-sm">
-    <%= form.label :color, class: "input-group-text" %>
-    <%= form.text_field :color, class: "form-control"   %>
-  </div>
-  <br />
-  <div class="input-group input-group-sm">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
