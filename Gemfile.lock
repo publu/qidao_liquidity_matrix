@@ -102,6 +102,7 @@ GEM
     caxlsx_rails (0.6.3)
       actionpack (>= 3.1)
       caxlsx (>= 3.0)
+    chartkick (4.2.0)
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
@@ -248,6 +249,7 @@ DEPENDENCIES
   capybara
   caxlsx
   caxlsx_rails
+  chartkick
   debug
   devise!
   importmap-rails
