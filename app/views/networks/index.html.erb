@@ -5,7 +5,7 @@
 <%if user_signed_in? && current_user.admin? %>
   <div class="float-end">
     <%= form_with url: import_networks_path, method: :post do |form| %>
-      <%= form.file_field :file, accept: ".csv" %>
+      <%= form.file_field :file, class: "form-control-sm", accept: ".csv" %>
       <%= form.button "Import" %>
     <% end %>
   </div>

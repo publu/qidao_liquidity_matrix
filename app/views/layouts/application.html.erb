@@ -28,7 +28,8 @@
         <% if current_page?(root_url) %>
           <%= link_to tokens_path(format: :xlsx), title: "Export data to spreadsheet", class: "btn-nav" do %><ion-icon name="cloud-download-outline"></ion-icon><% end %>
           <% if user_signed_in? %>
-            <%= link_to dashboard_path, title: "Dashboard", class: "btn-nav" do %><ion-icon name="bar-chart-outline"></ion-icon><% end %>
+            <%= link_to dashboard_path, title: "Dashboard", class: "btn-nav" do %><ion-icon name="pie-chart-outline"></ion-icon><% end %>
+            <%= link_to networks_path, title: "Chains", class: "btn-nav" do %><ion-icon name="git-network-outline"></ion-icon><% end %>
             <% if current_user.admin? %>
             <span class="dropdown">
               <a class="btn-nav dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,13 +43,15 @@
             <% end %>
             <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn-nav" %>
           <% else %>
-            <%= link_to dashboard_path, title: "Dashboard", class: "btn-nav" do %><ion-icon name="bar-chart-outline"></ion-icon><% end %>
+            <%= link_to dashboard_path, title: "Dashboard", class: "btn-nav" do %><ion-icon name="pie-chart-outline"></ion-icon><% end %>
+            <%= link_to networks_path, title: "Chains", class: "btn-nav" do %><ion-icon name="git-network-outline"></ion-icon><% end %>
             <a href="https://github.com/spicy-muaddib/qidao_liquidity_matrix" target="_blank" title="Github" class="btn-nav"><ion-icon name="logo-github"></ion-icon></a>
           <% end %>
         <% else %>
           <%= link_to root_url, class: "btn-nav", title: "Go home" do %><ion-icon name="home-outline"></ion-icon><% end %>
           <% if user_signed_in? %>
-            <%= link_to dashboard_path, title: "Dashboard", class: "btn-nav" do %><ion-icon name="bar-chart-outline"></ion-icon><% end %>
+            <%= link_to dashboard_path, title: "Dashboard", class: "btn-nav" do %><ion-icon name="pie-chart-outline"></ion-icon><% end %>
+            <%= link_to networks_path, title: "Chains", class: "btn-nav" do %><ion-icon name="git-network-outline"></ion-icon><% end %>
             <% if current_user.admin? %>
               <% if controller.controller_name == "networks" && controller.action_name == "show" %>
                 <span class="dropdown">
@@ -91,7 +94,8 @@
             <% end %>
             <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn-nav" %>
           <% else %>
-            <%= link_to dashboard_path, title: "Dashboard", class: "btn-nav" do %><ion-icon name="bar-chart-outline"></ion-icon><% end %>
+            <%= link_to dashboard_path, title: "Dashboard", class: "btn-nav" do %><ion-icon name="pie-chart-outline"></ion-icon><% end %>
+            <%= link_to networks_path, title: "Chains", class: "btn-nav" do %><ion-icon name="git-network-outline"></ion-icon><% end %>
             <a href="https://github.com/spicy-muaddib/qidao_liquidity_matrix" target="_blank" title="Github" class="btn-nav"><ion-icon name="logo-github"></ion-icon></a>
           <% end %>
         <% end %>

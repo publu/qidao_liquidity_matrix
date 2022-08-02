@@ -14,7 +14,7 @@ class NetworksController < ApplicationController
 
   # GET /networks or /networks.json
   def index
-    @networks = Network.all.order(name: :desc)
+    @networks = Network.all.order(name: :asc)
     respond_to do |format|
       format.csv do
         @networks = Network.all.order(id: :asc)
