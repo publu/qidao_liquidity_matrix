@@ -2,9 +2,26 @@ class NetworksController < ApplicationController
   before_action :set_network, only: %i[ show edit update destroy ]
   before_action :authenticate_admin, only: %i[ import create new edit update destroy ]
 
+
+  def import
+    file = params[:file]
+    return redirect_to networks_path, notice: 'Only CSV please' unless file.content_type == 'text/csv'
+
+    CsvImportNetworksService.new.call(file)
+
+    redirect_to networks_path, notice: 'Chains imported!'
+  end
+
   # GET /networks or /networks.json
   def index
     @networks = Network.all.order(name: :desc)
+    respond_to do |format|
+      format.csv do
+        send_data @networks.to_csv
+      end
+      format.html
+      format.js
+    end
   end
 
   # GET /networks/1 or /networks/1.json

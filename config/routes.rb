@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   root "tokens#index"
-  resources :networks
+  resources :networks do
+    collection do
+      post :import
+    end
+  end
   resources :tokens
   get "dashboard" => "dashboards#index"
 
