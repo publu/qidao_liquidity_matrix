@@ -26,6 +26,10 @@ wb.styles do |style|
     end
     # Set column widths
     sheet.column_widths 15, 15, 20, 20, 25, 20, 15
+    # Do not display gridlines
+    sheet.sheet_view.show_grid_lines = false
+    # Add link to header
+    sheet.add_hyperlink location: 'https://github.com/spicy-muaddib/qidao_liquidity_matrix', ref: 'A1'
   end
 
 end
