@@ -1,6 +1,8 @@
 class Network < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   has_many :tokens
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 
   GRADES_ORDERED = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-"]
   scope :order_by_grade, -> { order(Arel.sql(order_by_case)) }

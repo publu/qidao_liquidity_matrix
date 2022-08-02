@@ -34,6 +34,9 @@ gem 'caxlsx_rails'
 # Add table pagination
 gem 'pagy', '~> 5.10' # omit patch digit
 
+# Add slugs for human readable IDs
+gem 'friendly_id', '~> 5.4.0'
+
 # User authentication
 gem 'devise', github: 'heartcombo/devise', branch: 'main'
 

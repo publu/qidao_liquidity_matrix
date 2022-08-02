@@ -75,7 +75,7 @@ class NetworksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_network
-      @network = Network.find(params[:id])
+      @network = Network.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

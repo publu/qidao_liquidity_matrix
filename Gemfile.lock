@@ -111,6 +111,8 @@ GEM
       reline (>= 0.3.1)
     digest (3.1.0)
     erubi (1.10.0)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     htmlentities (4.3.4)
@@ -252,6 +254,7 @@ DEPENDENCIES
   chartkick
   debug
   devise!
+  friendly_id (~> 5.4.0)
   importmap-rails
   jbuilder
   pagy (~> 5.10)

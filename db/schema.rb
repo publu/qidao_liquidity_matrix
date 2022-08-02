@@ -10,13 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_30_233328) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_02_133901) do
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
   create_table "networks", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "color"
     t.string "blockchain_explorer"
+    t.string "slug"
+    t.index ["slug"], name: "index_networks_on_slug", unique: true
   end
 
   create_table "tokens", force: :cascade do |t|
@@ -41,7 +54,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_30_233328) do
     t.float "risk_marketcap"
     t.float "risk_volume"
     t.decimal "risk_volatility", precision: 10, scale: 4
+    t.string "slug"
     t.index ["network_id"], name: "index_tokens_on_network_id"
+    t.index ["slug"], name: "index_tokens_on_slug", unique: true
   end
 
   create_table "users", force: :cascade do |t|

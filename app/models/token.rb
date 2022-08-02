@@ -2,6 +2,9 @@ class Token < ApplicationRecord
   validates :network_id, presence: true
   belongs_to :network
 
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
   GRADES_ORDERED = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-"]
   scope :order_by_grade, -> { order(Arel.sql(order_by_case)) }
 
@@ -12,5 +15,14 @@ class Token < ApplicationRecord
     end
       ret << " END"
   end
+
+  def network_name
+    self.network.name
+  end
+
+  def slug_candidates
+	   [ "#{symbol}-#{network_name}" ]
+	end
+
 
 end
