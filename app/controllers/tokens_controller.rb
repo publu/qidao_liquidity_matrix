@@ -3,8 +3,7 @@ require 'csv'
 class TokensController < ApplicationController
   before_action :set_token, only: %i[ show edit update destroy ]
   before_action :set_networks
-  before_action :authenticate_user!, only: %i[ create new edit update destroy ]
-  before_action :authenticate_admin, only: %i[ create new edit update destroy ]
+  before_action :authenticate_admin, only: %i[ import create new edit update destroy ]
   before_action :update_scores, only: %i[ create update ]
 
   # GET /tokens or /tokens.json
