@@ -6,6 +6,15 @@ class TokensController < ApplicationController
   before_action :authenticate_admin, only: %i[ import create new edit update destroy ]
   before_action :update_scores, only: %i[ create update ]
 
+  def import
+    file = params[:file]
+    return redirect_to tokens_path, notice: 'Only CSV please' unless file.content_type == 'text/csv'
+
+    CsvImportTokensService.new.call(file)
+
+    redirect_to tokens_path, notice: 'Tokens imported!'
+  end
+
   # GET /tokens or /tokens.json
   def index
       if params[:column] && params[:direction]
@@ -18,6 +27,10 @@ class TokensController < ApplicationController
         format.xlsx do
           @tokens = Token.all.order_by_grade.order(liquidity: :desc)
           response.headers['Content-Disposition'] = "attachment; filename=qidao_liquidity_matrix.xlsx"
+        end
+        format.csv do
+          @tokens = Token.all.order(network_id: :asc)
+          send_data @tokens.to_csv
         end
         format.html
         format.js

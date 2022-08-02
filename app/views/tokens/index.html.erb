@@ -1,5 +1,13 @@
 <% content_for :title do %>
   QiDao Liquidity Matrix
 <% end %>
-
+<div class="clearfix"></div>
+<%if user_signed_in? && current_user.admin? %>
+  <div class="float-end">
+    <%= form_with url: import_tokens_path, method: :post do |form| %>
+      <%= form.file_field :file, accept: ".csv" %>
+      <%= form.button "Import" %>
+    <% end %>
+  </div>
+<% end %>
 <%= render partial: "list", locals: { tokens: @tokens } %>

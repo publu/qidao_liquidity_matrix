@@ -17,6 +17,7 @@ class NetworksController < ApplicationController
     @networks = Network.all.order(name: :desc)
     respond_to do |format|
       format.csv do
+        @networks = Network.all.order(id: :asc)
         send_data @networks.to_csv
       end
       format.html
