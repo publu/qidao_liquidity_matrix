@@ -23,8 +23,9 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: qidaomatrix
-  host: localhost
+  database: <%= ENV['db_name'] %>
+  host: <%= ENV['db_host'] %>
+  port: <%= ENV['db_port'] %>
   pool: 5
-  username: postgres
+  username: <%= ENV['db_user'] %>
   password: <%= ENV['db_password'] %>
