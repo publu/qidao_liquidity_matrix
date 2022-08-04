@@ -17,7 +17,7 @@ class CsvImportTokensService
       token_hash[:coingecko] = row['coingecko']
       token_hash[:coinmarketcap] = row['coinmarketcap']
       token_hash[:contract_address] = row['contract_address']
-      token_hash[:contract_days] = row['contract_address']
+      token_hash[:contract_days] = row['contract_days']
       token_hash[:contract_transactions] = row['contract_transactions']
       token_hash[:holders] = row['holders']
       token_hash[:permissions] = row['permissions']
