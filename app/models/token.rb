@@ -1,6 +1,8 @@
 class Token < ApplicationRecord
   validates :network_id, presence: true
+  validates :minter_id, presence: true
   belongs_to :network
+  belongs_to :minter
 
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged

@@ -1,0 +1,36 @@
+<% content_for :title do %>
+  QiDao Liquidity Matrix | Platform Information
+<% end %>
+<div class="clearfix"></div>
+<%if user_signed_in? && current_user.admin? %>
+  <div class="float-end">
+    <%= form_with url: import_minters_path, method: :post do |form| %>
+      <%= form.file_field :file, class: "form-control-sm", accept: ".csv" %>
+      <%= form.button "Import" %>
+    <% end %>
+  </div>
+<% end %>
+<div id="minters">
+  <table class="table table-striped table-hover">
+    <tr class="table-header">
+      <th class="red">Platform</th>
+      <th class="red">Website</th>
+      <th class="red text-end">Relevant Onchain Liquidity</th>
+      <th class="red text-end">1M Average Trading Volume</th>
+      <th class="red text-center">Collateral Count</th>
+      <th class="red text-end">Last updated</th>
+    </tr>
+    <% @minters.each do |minter| %>
+      <tr>
+        <td>
+          <span><%= link_to minter.name, minter, title: "View platform information for " + minter.name, class: "plain_link" %></span>
+        </td>
+        <td><%= link_to bc_link(minter.link), bc_link(minter.link), title: "View website", target: "_blank" %></td>
+        <td class="text-end"><%= number_to_currency(Token.where(minter_id: minter.id).sum(:liquidity)) %></td>
+        <td class="text-end"><%= number_to_currency(Token.where(minter_id: minter.id).sum(:volume)) %></td>
+        <td class="text-center"><%= link_to minter.tokens.count, minter, title: "View chain information for " + minter.name %></td>
+        <td class="text-end"><%= minter.updated_at.strftime("%d %B, %Y") %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

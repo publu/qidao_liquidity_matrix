@@ -1,0 +1,30 @@
+<div class="info">
+  <%= form_with(model: minter) do |form| %>
+    <% if minter.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(minter.errors.count, "error") %> prohibited this minter from being saved:</h2>
+
+        <ul>
+          <% minter.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <ul class="list-unstyled"><li class="token_name"><strong>Platform information</strong></li></ul>
+    <div class="input-group input-group-sm">
+      <%= form.label :name, class: "input-group-text" %>
+      <%= form.text_field :name, class: "form-control"   %>
+    </div>
+    <br />
+    <div class="input-group input-group-sm">
+      <%= form.label :link, class: "input-group-text" %>
+      <%= form.text_field :link, class: "form-control"   %>
+    </div>
+    <br />
+    <div class="input-group input-group-sm">
+      <%= form.submit "Submit", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

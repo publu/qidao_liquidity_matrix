@@ -1,38 +1,38 @@
-<div id="<%= dom_id network %>">
+<div id="<%= dom_id minter %>">
   <table class="table table-striped">
     <tr class="table-header">
-      <th class="red">Chain</th>
+      <th class="red">Availability</th>
       <th class="red">
-        <%= sort_network_link(column: "symbol", label: "Asset") %>
+        <%= sort_minter_link(column: "symbol", label: "Asset") %>
         <%= sort_indicator if params[:column] == "symbol" %>
       </th>
       <th class="red text-end">
-        <%= sort_network_link(column: "liquidity", label: "Total onchain liquidity") %>
+        <%= sort_minter_link(column: "liquidity", label: "Total onchain liquidity") %>
         <%= sort_indicator if params[:column] == "liquidity" %>
       </th>
       <th width="15%" class="red text-end">
-        <%= sort_network_link(column: "trade_slippage", label: "Largest trade for stable with < 10% slippage") %>
+        <%= sort_minter_link(column: "trade_slippage", label: "Largest trade for stable with < 10% slippage") %>
         <%= sort_indicator if params[:column] == "trade_slippage" %>
       </th>
       <th class="red text-end">
-        <%= sort_network_link(column: "volume", label: "1M Average Daily Volume") %>
+        <%= sort_minter_link(column: "volume", label: "1M Average Daily Volume") %>
         <%= sort_indicator if params[:column] == "volume" %>
       </th>
       <th width="15%" class="red text-end">
-        <%= sort_network_link(column: "centralized", label: "Does one wallet own more than 20% of tokens in onchain LPs?") %>
+        <%= sort_minter_link(column: "centralized", label: "Does one wallet own more than 20% of tokens in onchain LPs?") %>
         <%= sort_indicator if params[:column] == "centralized" %>
       </th>
-      <th class="red text-center">Availability</th>
-      <th class="red text-center"><%= link_to "Risk grading", network_path %></th>
+      <th class="red text-center"><%= link_to "Risk grading", minter_path %></th>
+      <th class="red text-end">Last updated</th>
     </tr>
     <% @tokens.each do |token| %>
     <tr>
-      <td style="color: <%= token.network.color %>">
-        <%= token.network.name %>
+      <td>
+        <%= token.minter.name %>
       </td>
       <td>
         <strong>
-          <%= link_to token.symbol, token, title: "View rubric for " + token.symbol + " on " + token.network.name, class: "plain_link" %>
+          <%= link_to token.symbol, token, title: "View rubric for " + token.symbol + " on " + token.minter.name, class: "plain_link" %>
         </strong>
       </td>
       <td class="text-end">
@@ -51,22 +51,22 @@
           No
         <% end %>
       </td>
-      <td class="text-start">
-        <%= link_to token.minter.name, token.minter.link, title: "Go to " + token.minter.name, class: "plain_link" %>
-      </td>
       <td class="text-center">
-        <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name do %><strong><%= token.grade %><% end %>
+        <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.minter.name do %><strong><%= token.grade %><% end %>
+      </td>
+      <td class="text-end">
+        <%= token.updated_at.strftime("%d %B, %Y") %>
       </td>
     </tr>
     <% end %>
-    <% if network.tokens.count > 0 %>
+    <% if minter.tokens.count > 0 %>
       <tr>
         <td><strong>Totals</strong></td>
-          <td><strong><%= network.tokens.count %></strong></td>
-          <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:liquidity)) %></strong></td>
-          <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:trade_slippage) / network.tokens.count) %> (Avg)</strong></td>
-          <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:volume)) %></strong></td>
-          <td class="text-center"><strong><%= network.tokens.where(centralized: true).count %></strong></td>
+          <td><strong><%= minter.tokens.count %></strong></td>
+          <td class="text-end"><strong><%= number_to_currency(minter.tokens.sum(:liquidity)) %></strong></td>
+          <td class="text-end"><strong><%= number_to_currency(minter.tokens.sum(:trade_slippage) / minter.tokens.count) %> (Avg)</strong></td>
+          <td class="text-end"><strong><%= number_to_currency(minter.tokens.sum(:volume)) %></strong></td>
+          <td class="text-center"><strong><%= minter.tokens.where(centralized: true).count %></strong></td>
           <td class="text-center">
             <% sum = 0 %>
             <% @tokens.each do |t| %>
@@ -74,7 +74,7 @@
                 <% sum += product %>
                 <% product %>
             <% end %>
-            <strong><%= num_to_grade(sum / network.tokens.count) %> (Avg)</strong>
+            <strong><%= num_to_grade(sum / minter.tokens.count) %> (Avg)</strong>
         </td>
         <td class="text-end">-</td>
       </tr>

@@ -34,9 +34,6 @@ class NetworksController < ApplicationController
       @token_count = Token.where(network_id: @network.id).size
     end
     respond_to do |format|
-      format.xlsx do
-        response.headers['Content-Disposition'] = "attachment; filename=qidao_liquidity_matrix.xlsx"
-      end
       format.html
       format.js
     end

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :minters do
+    collection do
+      post :import
+    end
+  end
   devise_for :users
   root "tokens#index"
   resources :networks do
