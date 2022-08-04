@@ -29,7 +29,6 @@
 !/tmp/storage/
 !/tmp/storage/.keep
 **/.DS_Store
-/Gemfile.lock
 
 /public/assets
 
