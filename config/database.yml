@@ -23,7 +23,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: qidao_matrix
+  database: qidaomatrix
   host: localhost
   pool: 5
   username: postgres
