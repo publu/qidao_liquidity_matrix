@@ -13,6 +13,7 @@ class CsvImportTokensService
       token_hash[:volume] = row['volume']
       token_hash[:centralized] = row['centralized']
       token_hash[:network_id] = row['network_id']
+      token_hash[:minter_id] = row['minter_id']
       token_hash[:coingecko] = row['coingecko']
       token_hash[:coinmarketcap] = row['coinmarketcap']
       token_hash[:contract_address] = row['contract_address']
