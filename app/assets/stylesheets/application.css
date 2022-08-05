@@ -33,9 +33,14 @@ body {
   margin-left: auto;
 }
 
+.navbar-links a {
+  color: #ffffff;
+}
+
 .navbar-name {
   font-size: 15pt;
   vertical-align: middle;
+  color: #ffffff;
 }
 
 .notice {
@@ -191,9 +196,15 @@ a.plain_link:hover {
   border-bottom: 8px solid #fff;
 }
 
-.footer a {
-  color: #000000;
+.pagination {
   font-size: 9pt;
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+.pagination a {
+  font-size: 9pt;
+  color: #000000;
 }
 
 .credentials {
@@ -209,20 +220,15 @@ a.plain_link:hover {
 }
 
 .info {
-  width: 90%;
+  width: 100%;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: 0 0 10px 10px;
+  padding: 10px 20px 10px 20px;
   margin: 0 auto;
 }
 
 .info h3 {
   font-size: 15pt;
-}
-
-.charts {
-  width: 90%;
-  margin: auto;
 }
 
 .col {
@@ -231,8 +237,6 @@ a.plain_link:hover {
 
 .info-box {
   font-size: 10pt;
-  border: 1px solid #ccc;
-  border-radius: 10px;
   padding: 10px;
 }
 

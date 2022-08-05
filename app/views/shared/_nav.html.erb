@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <div class="float-start d-none d-xl-block">
       <a class="navbar-brand" href="/">
@@ -34,33 +34,9 @@
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Admin
               </a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu dropdown-menu-dark">
                 <li><%= link_to "Add new token", new_token_path, title: "Add new token", class: "dropdown-item" %></li>
                 <li><%= link_to "Add new chain", new_network_path, title: "Add new chain", class: "dropdown-item" %></li>
-                <% if controller.controller_name == "networks" && controller.action_name == "show" %>
-                  <li>
-                    <%= link_to edit_network_path(@network), title: "Edit this chain", class: "dropdown-item" do %>
-                      Edit this chain
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to @network, method: :delete, title: "Delete this chain", class: "dropdown-item" do %>
-                      Delete this chain
-                    <% end %>
-                  </li>
-                <% end %>
-                <% if controller.controller_name == "tokens" && controller.action_name == "show" %>
-                  <li>
-                    <%= link_to edit_token_path(@token), title: "Edit this token", class: "dropdown-item" do %>
-                      Edit this token
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to @token, method: :delete, title: "Delete this token", class: "dropdown-item" do %>
-                      Delete this token
-                    <% end %>
-                  </li>
-                <% end %>
               </ul>
             </li>
           <% end %>

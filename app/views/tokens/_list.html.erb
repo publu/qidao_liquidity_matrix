@@ -1,5 +1,5 @@
-<div id="tokens">
-  <table class="table table-striped">
+<div id="tokens" class="table-responsive">
+  <table class="table table-striped align-middle">
     <tr class="table-header">
       <th class="red">
         <%= sort_link(column: "symbol", label: "Token") %>
@@ -26,6 +26,9 @@
       </th>
       <th class="red text-center">Availability</th>
       <th class="red text-center"><%= link_to "Risk Grading", tokens_path %></th>
+      <% if user_signed_in? && current_user.admin? %>
+        <th class="red text-center">Actions</th>
+      <% end %>
     </tr>
     <% @tokens.each do |token| %>
     <tr>
@@ -51,16 +54,32 @@
           No
         <% end %>
       </td>
-      <td class="text-start">
+      <td class="text-center">
         <%= link_to token.minter.name, token.minter.link, title: "Go to " + token.minter.name, class: "plain_link" %>
       </td>
       <td class="text-center">
         <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name do %><strong><%= token.grade %><% end %>
       </td>
+      <% if user_signed_in? && current_user.admin? %>
+        <td>
+          <ul class="list-unstyled list-group list-group-horizontal">
+            <li>
+              <%= link_to edit_token_path(token), title: "Edit this token" do %>
+                <ion-icon name="create-outline"></ion-icon>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to token, method: :delete, title: "Delete this token" do %>
+                <ion-icon name="trash-outline"></ion-icon>
+              <% end %>
+            </li>
+          </ul>
+        </td>
+      <% end %>
     </tr>
   <% end %>
   </table>
   <% if @token_count > 15 %>
-    <div class="footer"><%== pagy_bootstrap_nav(@pagy) %></div>
+    <div class="position-absolute start-50 translate-middle-x"><%== pagy_bootstrap_nav(@pagy) %></div>
   <% end %>
 </div>

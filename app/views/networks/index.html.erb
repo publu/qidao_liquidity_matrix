@@ -10,7 +10,7 @@
     <% end %>
   </div>
 <% end %>
-<div id="networks">
+<div id="networks" class="table-responsive">
   <table class="table table-striped table-hover">
     <tr class="table-header">
       <th class="red">Chain</th>
@@ -19,6 +19,9 @@
       <th class="red text-end">1M Average Trading Volume</th>
       <th class="red text-center">Collateral Count</th>
       <th class="red text-end">Last updated</th>
+      <% if user_signed_in? && current_user.admin? %>
+        <th class="red text-center">Actions</th>
+      <% end %>
     </tr>
     <% @networks.each do |network| %>
       <tr>
@@ -30,6 +33,22 @@
         <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:volume)) %></td>
         <td class="text-center"><%= link_to network.tokens.count, network, title: "View chain information for " + network.name %></td>
         <td class="text-end"><%= network.updated_at.strftime("%d %B, %Y") %></td>
+        <% if user_signed_in? && current_user.admin? %>
+          <td>
+            <ul class="list-unstyled list-group list-group-horizontal">
+              <li>
+                <%= link_to edit_network_path(network), title: "Edit this chain" do %>
+                  <ion-icon name="create-outline"></ion-icon>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to network, method: :delete, title: "Delete this chain" do %>
+                  <ion-icon name="trash-outline"></ion-icon>
+                <% end %>
+              </li>
+            </ul>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </table>

@@ -50,6 +50,15 @@
       </div>
       <br />
       <div class="input-group input-group-sm">
+        <%= form.label :minter, "MAI Platform", class: "input-group-text" %>
+        <% if token.minter_id? %>
+          <%= form.select :minter_id, options_from_collection_for_select(@minters, "id", "name", token.minter_id), class: "form-select" %>
+        <% else %>
+          <%= form.select :minter_id, options_from_collection_for_select(@minters, "id", "name"), class: "form-select" %>
+        <% end %>
+      </div>
+      <br />
+      <div class="input-group input-group-sm">
         <%= form.label :liquidity, "Onchain Liquidity", class: "input-group-text" %>
         <%= form.text_field :liquidity, class: "form-control"  %>
       </div>
