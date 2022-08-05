@@ -29,20 +29,28 @@ body {
   width: 85%;
 }
 
+.navbar-links {
+  margin-left: auto;
+}
+
+.navbar-name {
+  font-size: 15pt;
+  vertical-align: middle;
+}
+
 .notice {
   color: #2980b9;
 }
 
 ion-icon {
-  font-size: 24px;
-  vertical-align: middle;
+  font-size: 14pt;
   color: #000000;
 }
 
 .logo {
   width: 40px;
   vertical-align: middle;
-  padding-right: 10px;
+  padding-right: 5px;
 }
 
 h2.nav-float {
