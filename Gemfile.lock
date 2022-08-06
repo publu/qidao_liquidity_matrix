@@ -104,6 +104,7 @@ GEM
       caxlsx (>= 3.0)
     chartkick (4.2.0)
     childprocess (4.1.0)
+    coingecko_ruby (0.4.2)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     debug (1.6.1)
@@ -256,6 +257,7 @@ DEPENDENCIES
   caxlsx
   caxlsx_rails
   chartkick
+  coingecko_ruby
   debug
   devise!
   friendly_id (~> 5.4.0)

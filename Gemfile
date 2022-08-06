@@ -43,6 +43,9 @@ gem 'devise', github: 'heartcombo/devise', branch: 'main'
 # Charting library
 gem 'chartkick'
 
+# Coingecko library
+gem 'coingecko_ruby'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
