@@ -12,7 +12,7 @@
         <%= sort_link(column: "liquidity", label: "Total Onchain Liquidity") %>
         <%= sort_indicator if params[:column] == "liquidity" %>
       </th>
-      <th width="15%" class="red text-end">
+      <th class="red text-end td-15">
         <%= sort_link(column: "trade_slippage", label: "Largest trade for stable with < 10% slippage") %>
         <%= sort_indicator if params[:column] == "trade_slippage" %>
       </th>
@@ -20,7 +20,7 @@
         <%= sort_link(column: "volume", label: "1M Average Daily Volume") %>
         <%= sort_indicator if params[:column] == "volume" %>
       </th>
-      <th width="15%" class="red text-end">
+      <th class="red text-end td-15">
         <%= sort_link(column: "centralized", label: "Does one wallet own more than 20% of tokens in onchain LPs?") %>
         <%= sort_indicator if params[:column] == "centralized" %>
       </th>

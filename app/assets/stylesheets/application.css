@@ -109,6 +109,10 @@ th.right {
   border-right: thin solid black;
 }
 
+.td-15 {
+  width: 15%;
+}
+
 .bold {
   font-weight: bold;
 }
