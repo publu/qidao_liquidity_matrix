@@ -1,5 +1,8 @@
 <% content_for :title do %>
   QiDao Liquidity Matrix | <%= @network.name %> Tokens
 <% end %>
+<% content_for :description do %>
+  <meta name="description" content="Collaterals accepted by QiDao protocol on <%= @network.name %>" />
+<% end %>
 
 <%= render @network %>

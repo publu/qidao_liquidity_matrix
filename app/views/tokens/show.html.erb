@@ -1,6 +1,9 @@
 <% content_for :title do %>
   QiDao Liquidity Matrix | <%= @token.symbol %> (<%= @token.network.name %>) Risk Assessment
 <% end %>
+<% content_for :description do %>
+  <meta name="description" content="QiDao's risk assessment rubric for <%= @token.symbol %> on <%= @token.network.name %>" />
+<% end %>
 
 <%= render "rubric", token: @token %>
 

@@ -1,6 +1,9 @@
 <% content_for :title do %>
   QiDao Liquidity Matrix
 <% end %>
+<% content_for :description do %>
+  <meta name="description" content="QiDao Liquidity Matrix, providing risk assessments considering market, counter-party and smart contract risks for collaterals backing the MAI stablecoin.">
+<% end %>
 <div class="clearfix"></div>
 <%= render partial: "list", locals: { tokens: @tokens } %>
 <% if user_signed_in? && current_user.admin? %>
