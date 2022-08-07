@@ -1,8 +1,19 @@
 <% content_for :title do %>
-  QiDao Liquidity Matrix | <%= @token.symbol %> (<%= @token.network.name %>) Risk Assessment
+QiDao Liquidity Matrix | <%= @token.symbol %> (<%= @token.network.name %>) Risk Assessment
 <% end %>
 <% content_for :description do %>
-  <meta name="description" content="QiDao's risk assessment rubric for <%= @token.symbol %> on <%= @token.network.name %>" />
+<meta name="description" content="QiDao's risk assessment rubric for <%= @token.symbol %> on <%= @token.network.name %>">
+<meta property="og:url" content="https://riskmanagement.qidao.community">
+<meta name="og:title" content="QiDao Liquidity Matrix | <%= @token.symbol %> (<%= @token.network.name %>) Risk Assessment">
+<meta property="og:description" content="QiDao's risk assessment rubric for <%= @token.symbol %> on <%= @token.network.name %>">
+<meta name=“og:image” content=“https://raw.githubusercontent.com/spicy-muaddib/qidao_liquidity_matrix/main/qidao_liquidity_matrix.png”>
+<meta name=“twitter:card” content=“summary_large_image”>
+<meta property="twitter:domain" content="riskmanagement.qidao.community">
+<meta property="twitter:url" content="https://riskmanagement.qidao.community">
+<meta name=“twitter:title” content=“QiDao Liquidity Matrix | <%= @token.symbol %> (<%= @token.network.name %>) Risk Assessment“>
+<meta name=“twitter:description” content=“QiDao's risk assessment rubric for <%= @token.symbol %> on <%= @token.network.name %>">
+<meta name=“twitter:creator” content=“@geekvine”>
+<meta name=“twitter:image” content=“https://raw.githubusercontent.com/spicy-muaddib/qidao_liquidity_matrix/main/qidao_liquidity_matrix.png”>
 <% end %>
 
 <%= render "rubric", token: @token %>

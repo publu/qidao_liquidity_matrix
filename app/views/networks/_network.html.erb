@@ -23,7 +23,7 @@
         <%= sort_indicator if params[:column] == "centralized" %>
       </th>
       <th class="red text-center">Availability</th>
-      <th class="red text-center"><%= link_to "Risk grading", network_path %></th>
+      <th class="red text-center"><%= link_to "Risk grading", network_path, title: "Risk Grading" %></th>
       <% if user_signed_in? && current_user.admin? %>
         <th class="red text-center">Actions</th>
       <% end %>
