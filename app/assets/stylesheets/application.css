@@ -38,9 +38,10 @@ body {
 }
 
 .navbar-name {
-  font-size: 15pt;
+  font-size: 14pt;
   vertical-align: middle;
   color: #ffffff;
+  margin: 0;
 }
 
 .notice {

@@ -1,7 +1,7 @@
-<div id="<%= dom_id network %>" class="table-responsive">
+<div  itemscope itemtype="https://schema.org/Table" id="<%= dom_id network %>" class="table-responsive">
   <table class="table table-striped">
     <tr class="table-header">
-      <th class="red">
+      <th itemprop="about" class="red">
         <%= sort_network_link(column: "symbol", label: "Asset") %>
         <%= sort_indicator if params[:column] == "symbol" %>
       </th>
@@ -30,12 +30,12 @@
     </tr>
     <% @tokens.each do |token| %>
     <tr>
-      <td>
+      <td itemprop="name">
         <strong>
           <%= link_to token.symbol, token, title: "View rubric for " + token.symbol + " on " + token.network.name, class: "plain_link" %>
         </strong>
       </td>
-      <td style="color: <%= token.network.color %>">
+      <td itemprop="genre" style="color: <%= token.network.color %>">
         <%= token.network.name %>
       </td>
       <td class="text-end">
@@ -57,7 +57,7 @@
       <td class="text-center">
         <%= link_to token.minter.name, token.minter.link, title: "Go to " + token.minter.name, class: "plain_link" %>
       </td>
-      <td class="text-center">
+      <td itemprop="aggregateRating" class="text-center">
         <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name do %><strong><%= token.grade %><% end %>
       </td>
       <% if user_signed_in? && current_user.admin? %>

@@ -5,10 +5,10 @@
   <meta name="description" content="Chains supported by QiDao protocol lending vaults." />
 <% end %>
 <div class="clearfix"></div>
-<div id="networks" class="table-responsive">
+<div itemscope itemtype="https://schema.org/Table" id="networks" class="table-responsive">
   <table class="table table-striped table-hover">
     <tr class="table-header">
-      <th class="red">Chain</th>
+      <th itemprop="about" class="red">Chain</th>
       <th class="red">Blockchain explorer</th>
       <th class="red text-end">Relevant Onchain Liquidity</th>
       <th class="red text-end">1M Average Trading Volume</th>
@@ -20,10 +20,10 @@
     </tr>
     <% @networks.each do |network| %>
       <tr>
-        <td>
+        <td itemprop="name">
           <span style="color: <%= network.color %> !important"><%= link_to network.name, network, title: "View chain information for " + network.name, class: "plain_link" %></span>
         </td>
-        <td><%= link_to bc_link(network.blockchain_explorer), bc_link(network.blockchain_explorer), title: "View blockchain explorer", target: "_blank" %></td>
+        <td itemprop="url"><%= link_to bc_link(network.blockchain_explorer), bc_link(network.blockchain_explorer), title: "View blockchain explorer", target: "_blank" %></td>
         <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:liquidity)) %></td>
         <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:volume)) %></td>
         <td class="text-center"><%= link_to network.tokens.count, network, title: "View chain information for " + network.name %></td>
