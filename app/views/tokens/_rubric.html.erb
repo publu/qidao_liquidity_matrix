@@ -1,220 +1,220 @@
 <div class="clearfix"></div>
 <div class="info">
-<ul class="list-unstyled">
-  <li class="token_name"><strong>Token Name:</strong> <%= token.symbol %> (<%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "plain_link", style: "color: #{token.network.color}" %>)</li>
+  <ul class="list-unstyled">
+    <li class="token_name"><strong>Token Name:</strong> <%= token.symbol %> (<%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "plain_link", style: "color: #{token.network.color}" %>)</li>
+    <br />
+    <li><strong>Coingecko link:</strong> <%= link_to token.coingecko, token.coingecko, title: "Coingecko", target: "_blank" %></li>
+    <li><strong>Coinmarketcap link:</strong> <%= link_to token.coinmarketcap, token.coinmarketcap, title: "CoinMarketCap", target: "_blank" %></li>
+    <li><strong>Blockchain explorer:</strong> <%= link_to token.network.blockchain_explorer + token.contract_address, token.network.blockchain_explorer + token.contract_address, title: "Blockchain Explorer", target: "_blank" %></li>
+    <li><strong>Last updated:</strong> <%= token.updated_at.strftime("%d %B, %Y") %></li>
+  </ul>
+  <table class="table-bordered rubric">
+    <tr class="table-header">
+      <th colspan="2" class="text-center bold">Smart Contract Risk</th>
+      <th colspan="3" class="text-center bold">Counterparty Risk</th>
+      <th colspan="4" class="text-center bold">Market Risk</th>
+      <th colspan="1" rowspan="3" class="text-center bold">Overall Risk</th>
+    </tr>
+    <tr>
+      <td colspan="1" class="text-center bold">Days</td>
+      <td colspan="1" class="text-center bold ">Transactions</td>
+      <td colspan="1" class="text-center bold">Holders</td>
+      <td colspan="2" class="text-center bold">Permission</td>
+      <td colspan="2" class="text-center bold">Market Cap</td>
+      <td colspan="1" class="text-center bold">Average Daily Volume 3M</td>
+      <td colspan="1" class="text-center bold">Normalized Volatility</td>
+    </tr>
+    <tr>
+      <td colspan="1" class="text-center"><%= token.contract_days %></td>
+      <td colspan="1" class="text-center"><%= token.contract_transactions %></td>
+      <td colspan="1" class="text-center"><%= token.holders %></td>
+      <td colspan="2" class="text-center"><%= token.permissions %></td>
+      <td colspan="2" class="text-center"><%= number_to_currency(token.risk_marketcap) %></td>
+      <td colspan="1" class="text-center"><%= number_to_currency(token.risk_volume) %></td>
+      <td colspan="1" class="text-center"><%= token.risk_volatility %></td>
+    <tr>
+      <td colspan="2" class="text-center bold">Maturity</td>
+      <td colspan="1" class="text-center bold">Centralization</td>
+      <td colspan="1" class="text-center bold">Trust</td>
+      <td colspan="1" class="text-center bold">Diversified Average</td>
+      <td colspan="1" class="text-center bold">Market Cap</td>
+      <td colspan="1" class="text-center bold">Liquidity</td>
+      <td colspan="1" class="text-center bold">Volatility</td>
+      <td colspan="1" class="text-center bold">Diversified Average</td>
+      <td colspan="1" rowspan="2" class="text-center bold gray"><%= overall_score(token) %></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="text-center bold gray"><%= num_to_grade(risk_grade(token).to_f) %></td>
+      <td colspan="1" class="text-center bold gray"><%= num_to_grade(holder_grade(token).to_f) %></td>
+      <td colspan="1" class="text-center bold gray"><%= num_to_grade(permissions_grade(token).to_f) %></td>
+      <td colspan="1" class="text-center bold gray"><%= counterparty_grade(token) %></td>
+      <td colspan="1" class="text-center bold gray"><%= num_to_grade(marketcap_grade(token).to_f) %></td>
+      <td colspan="1" class="text-center bold gray"><%= num_to_grade(volume_grade(token).to_f) %></td>
+      <td colspan="1" class="text-center bold gray"><%= num_to_grade(volatility_grade(token).to_f) %></td>
+      <td colspan="1" class="text-center bold gray"><%= num_to_grade((marketcap_grade(token).to_f + volume_grade(token).to_f + volatility_grade(token).to_f)/3) %></td>
+  </table>
   <br />
-  <li><strong>Coingecko link:</strong> <%= link_to token.coingecko, token.coingecko, title: "Coingecko", target: "_blank" %></li>
-  <li><strong>Coinmarketcap link:</strong> <%= link_to token.coinmarketcap, token.coinmarketcap, title: "CoinMarketCap", target: "_blank" %></li>
-  <li><strong>Blockchain explorer:</strong> <%= link_to token.network.blockchain_explorer + token.contract_address, token.network.blockchain_explorer + token.contract_address, title: "Blockchain Explorer", target: "_blank" %></li>
-  <li><strong>Last updated:</strong> <%= token.updated_at.strftime("%d %B, %Y") %></li>
-</ul>
-<table class="table-bordered rubric">
-  <tr class="table-header">
-    <th colspan="2" class="text-center bold">Smart Contract Risk</th>
-    <th colspan="3" class="text-center bold">Counterparty Risk</th>
-    <th colspan="4" class="text-center bold">Market Risk</th>
-    <th colspan="1" rowspan="3" class="text-center bold">Overall Risk</th>
-  </tr>
-  <tr>
-    <td colspan="1" class="text-center bold">Days</td>
-    <td colspan="1" class="text-center bold ">Transactions</td>
-    <td colspan="1" class="text-center bold">Holders</td>
-    <td colspan="2" class="text-center bold">Permission</td>
-    <td colspan="2" class="text-center bold">Market Cap</td>
-    <td colspan="1" class="text-center bold">Average Daily Volume 3M</td>
-    <td colspan="1" class="text-center bold">Normalized Volatility</td>
-  </tr>
-  <tr>
-    <td colspan="1" class="text-center"><%= token.contract_days %></td>
-    <td colspan="1" class="text-center"><%= token.contract_transactions %></td>
-    <td colspan="1" class="text-center"><%= token.holders %></td>
-    <td colspan="2" class="text-center"><%= token.permissions %></td>
-    <td colspan="2" class="text-center"><%= number_to_currency(token.risk_marketcap) %></td>
-    <td colspan="1" class="text-center"><%= number_to_currency(token.risk_volume) %></td>
-    <td colspan="1" class="text-center"><%= token.risk_volatility %></td>
-  <tr>
-    <td colspan="2" class="text-center bold">Maturity</td>
-    <td colspan="1" class="text-center bold">Centralization</td>
-    <td colspan="1" class="text-center bold">Trust</td>
-    <td colspan="1" class="text-center bold">Diversified Average</td>
-    <td colspan="1" class="text-center bold">Market Cap</td>
-    <td colspan="1" class="text-center bold">Liquidity</td>
-    <td colspan="1" class="text-center bold">Volatility</td>
-    <td colspan="1" class="text-center bold">Diversified Average</td>
-    <td colspan="1" rowspan="2" class="text-center bold gray"><%= overall_score(token) %></td>
-  </tr>
-  <tr>
-    <td colspan="2" class="text-center bold gray"><%= num_to_grade(risk_grade(token).to_f) %></td>
-    <td colspan="1" class="text-center bold gray"><%= num_to_grade(holder_grade(token).to_f) %></td>
-    <td colspan="1" class="text-center bold gray"><%= num_to_grade(permissions_grade(token).to_f) %></td>
-    <td colspan="1" class="text-center bold gray"><%= counterparty_grade(token) %></td>
-    <td colspan="1" class="text-center bold gray"><%= num_to_grade(marketcap_grade(token).to_f) %></td>
-    <td colspan="1" class="text-center bold gray"><%= num_to_grade(volume_grade(token).to_f) %></td>
-    <td colspan="1" class="text-center bold gray"><%= num_to_grade(volatility_grade(token).to_f) %></td>
-    <td colspan="1" class="text-center bold gray"><%= num_to_grade((marketcap_grade(token).to_f + volume_grade(token).to_f + volatility_grade(token).to_f)/3) %></td>
-</table>
-<br />
-<div class="clearfix"></div>
+  <div class="clearfix"></div>
 
-<ul class="list-unstyled">
-  <li class="token_name"><strong>Rubric:</strong></li>
-</ul>
+  <ul class="list-unstyled">
+    <li class="token_name"><strong>Rubric:</strong></li>
+  </ul>
 
-<table class="rubric">
-  <tr class="top">
-    <th colspan="2" rowspan="2" class="left gray"></th>
-    <th colspan="1" class="text-center left right">Days</th>
-    <th colspan="1" class="text-center right">Transactions</th>
-    <th colspan="1" class="text-center right">Holders</th>
-    <th colspan="1" class="text-center right">Permission</th>
-    <th colspan="1" class="text-center right">Market Cap</th>
-    <th colspan="1" class="text-center right">Average Volume</th>
-    <th colspan="1" class="text-center right">Normalized Volatility</th>
-  </tr>
-  <tr class="top">
-    <td colspan="1" class="text-center">></td>
-    <td colspan="1" class="text-center right">></td>
-    <td colspan="2" class="text-start right"><small>If permissions + holders > 3 down for some control, 4 for centralized</small></td>
-    <td colspan="1" class="text-center right">></td>
-    <td colspan="1" class="text-center right"><small>1M &amp; 3M></small></td>
-    <td colspan="1" class="text-center right"><small>1M, 3M, &amp; 6M < with 1 outlier < then next</small></td>
-  </tr>
-  <tr class="top">
-    <td colspan="2" class="left right a">A+</td>
-    <td colspan="1" class="text-center">730</td>
-    <td colspan="1" class="text-center right">500000000</td>
-    <td colspan="1" class="text-end">100000000</td>
-    <td colspan="1" class="text-start right">ETH</td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(14900000000) %></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(20000000000) %></td>
-    <td colspan="1" class="text-end right">0.005</td>
-  </tr>
-  <tr>
-    <td colspan="2" class="left right a">A</td>
-    <td colspan="1" class="text-center">730</td>
-    <td colspan="1" class="text-center right">100000000</td>
-    <td colspan="1" class="text-end">1000000</td>
-    <td colspan="1" class="text-start right">Centralized but regulated</td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(10000000000) %></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(10000000000) %></td>
-    <td colspan="1" class="text-end right">0.015</td>
-  </tr>
-  <tr>
-    <td colspan="2" class="left right a">A-</td>
-    <td colspan="1" class="text-center">730</td>
-    <td colspan="1" class="text-center right">10000000</td>
-    <td colspan="1" class="text-end">500000</td>
-    <td colspan="1" class="text-start right"></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(500000000) %></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(2500000000) %></td>
-    <td colspan="1" class="text-end right">0.025</td>
-  </tr>
-  <tr class="top">
-    <td colspan="2" class="left right b">B+</td>
-    <td colspan="1" class="text-center">365</td>
-    <td colspan="1" class="text-center right">1000000</td>
-    <td colspan="1" class="text-end">100000</td>
-    <td colspan="1" class="text-start right">Permissionless</td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(500000000) %></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(700000000) %></td>
-    <td colspan="1" class="text-end right">0.038</td>
-  </tr>
-  <tr>
-    <td colspan="2" class="left right b">B</td>
-    <td colspan="1" class="text-center">365</td>
-    <td colspan="1" class="text-center right">350000</td>
-    <td colspan="1" class="text-end">50000</td>
-    <td colspan="1" class="text-start right"></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(250000000) %></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(500000000) %></td>
-    <td colspan="1" class="text-end right">0.051</td>
-  </tr>
-  <tr>
-    <td colspan="2" class="left right b">B-</td>
-    <td colspan="1" class="text-center"></td>
-    <td colspan="1" class="text-center right"></td>
-    <td colspan="1" class="text-end">25000</td>
-    <td colspan="1" class="text-start right">Centralized real time PoF</td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(100000000) %></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(100000000) %></td>
-    <td colspan="1" class="text-end right">0.064</td>
-  </tr>
-  <tr class="top">
-    <td colspan="2" class="left right c">C+</td>
-    <td colspan="1" class="text-center">365</td>
-    <td colspan="1" class="text-center right">100000</td>
-    <td colspan="1" class="text-end">10000</td>
-    <td colspan="1" class="text-start right"></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(50000000) %></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(20000000) %></td>
-    <td colspan="1" class="text-end right">0.079</td>
-  </tr>
-  <tr>
-    <td colspan="2" class="left right c">C</td>
-    <td colspan="1" class="text-center"></td>
-    <td colspan="1" class="text-center right"></td>
-    <td colspan="1" class="text-end"></td>
-    <td colspan="1" class="text-start right">Some controlling functions</td>
-    <td colspan="1" class="text-end right"></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(5000000) %></td>
-    <td colspan="1" class="text-end right">0.094</td>
-  </tr>
-  <tr>
-    <td colspan="2" class="left right c">C-</td>
-    <td colspan="1" class="text-center"></td>
-    <td colspan="1" class="text-center right">100000</td>
-    <td colspan="1" class="text-end">2500</td>
-    <td colspan="1" class="text-start right"></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(30000000) %></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(1000000) %></td>
-    <td colspan="1" class="text-end right">0.109</td>
-  </tr>
-  <tr>
-    <td colspan="2" class="left right c">C-</td>
-    <td colspan="1" class="text-center">365</td>
-    <td colspan="1" class="text-center right">25000</td>
-    <td colspan="1" class="text-end"></td>
-    <td colspan="1" class="text-start right">Some control over minting</td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(15000000) %></td>
-    <td colspan="1" class="text-end right"></td>
-    <td colspan="1" class="text-end right"></td>
-  </tr>
-  <tr class="top">
-    <td colspan="2" class="left right d">D+</td>
-    <td colspan="1" class="text-center"></td>
-    <td colspan="1" class="text-center right">25000</td>
-    <td colspan="1" class="text-end"></td>
-    <td colspan="1" class="text-start right">Centralized with audit</td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(10000000) %></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(500000) %></td>
-    <td colspan="1" class="text-end right">0.124</td>
-  </tr>
-  <tr>
-    <td colspan="2" class="left right d">D</td>
-    <td colspan="1" class="text-center">365</td>
-    <td colspan="1" class="text-center right"></td>
-    <td colspan="1" class="text-end"></td>
-    <td colspan="1" class="text-start right">Centralized</td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(5000000) %></td>
-    <td colspan="1" class="text-end right"><%= number_to_currency(250000) %></td>
-    <td colspan="1" class="text-end right">0.139</td>
-  </tr>
-  <tr class="bottom">
-    <td colspan="2" class="left right d">D-</td>
-    <td colspan="1" class="text-center"></td>
-    <td colspan="1" class="text-center right"></td>
-    <td colspan="1" class="text-end"></td>
-    <td colspan="1" class="text-start right">Opaque</td>
-    <td colspan="1" class="text-end right"></td>
-    <td colspan="1" class="text-end right"></td>
-    <td colspan="1" class="text-end right"></td>
-  </tr>
-</table>
-<br />
-
-<ul class="list-unstyled">
-  <li class="token_name"><strong>Global Threshold</strong></li>
+  <table class="rubric">
+    <tr class="top">
+      <th colspan="2" rowspan="2" class="left gray"></th>
+      <th colspan="1" class="text-center left right">Days</th>
+      <th colspan="1" class="text-center right">Transactions</th>
+      <th colspan="1" class="text-center right">Holders</th>
+      <th colspan="1" class="text-center right">Permission</th>
+      <th colspan="1" class="text-center right">Market Cap</th>
+      <th colspan="1" class="text-center right">Average Volume</th>
+      <th colspan="1" class="text-center right">Normalized Volatility</th>
+    </tr>
+    <tr class="top">
+      <td colspan="1" class="text-center">></td>
+      <td colspan="1" class="text-center right">></td>
+      <td colspan="2" class="text-start right"><small>If permissions + holders > 3 down for some control, 4 for centralized</small></td>
+      <td colspan="1" class="text-center right">></td>
+      <td colspan="1" class="text-center right"><small>1M &amp; 3M></small></td>
+      <td colspan="1" class="text-center right"><small>1M, 3M, &amp; 6M < with 1 outlier < then next</small></td>
+    </tr>
+    <tr class="top">
+      <td colspan="2" class="left right a">A+</td>
+      <td colspan="1" class="text-center">730</td>
+      <td colspan="1" class="text-center right">500000000</td>
+      <td colspan="1" class="text-end">100000000</td>
+      <td colspan="1" class="text-start right">ETH</td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(14900000000) %></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(20000000000) %></td>
+      <td colspan="1" class="text-end right">0.005</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="left right a">A</td>
+      <td colspan="1" class="text-center">730</td>
+      <td colspan="1" class="text-center right">100000000</td>
+      <td colspan="1" class="text-end">1000000</td>
+      <td colspan="1" class="text-start right">Centralized but regulated</td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(10000000000) %></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(10000000000) %></td>
+      <td colspan="1" class="text-end right">0.015</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="left right a">A-</td>
+      <td colspan="1" class="text-center">730</td>
+      <td colspan="1" class="text-center right">10000000</td>
+      <td colspan="1" class="text-end">500000</td>
+      <td colspan="1" class="text-start right"></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(500000000) %></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(2500000000) %></td>
+      <td colspan="1" class="text-end right">0.025</td>
+    </tr>
+    <tr class="top">
+      <td colspan="2" class="left right b">B+</td>
+      <td colspan="1" class="text-center">365</td>
+      <td colspan="1" class="text-center right">1000000</td>
+      <td colspan="1" class="text-end">100000</td>
+      <td colspan="1" class="text-start right">Permissionless</td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(500000000) %></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(700000000) %></td>
+      <td colspan="1" class="text-end right">0.038</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="left right b">B</td>
+      <td colspan="1" class="text-center">365</td>
+      <td colspan="1" class="text-center right">350000</td>
+      <td colspan="1" class="text-end">50000</td>
+      <td colspan="1" class="text-start right"></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(250000000) %></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(500000000) %></td>
+      <td colspan="1" class="text-end right">0.051</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="left right b">B-</td>
+      <td colspan="1" class="text-center"></td>
+      <td colspan="1" class="text-center right"></td>
+      <td colspan="1" class="text-end">25000</td>
+      <td colspan="1" class="text-start right">Centralized real time PoF</td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(100000000) %></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(100000000) %></td>
+      <td colspan="1" class="text-end right">0.064</td>
+    </tr>
+    <tr class="top">
+      <td colspan="2" class="left right c">C+</td>
+      <td colspan="1" class="text-center">365</td>
+      <td colspan="1" class="text-center right">100000</td>
+      <td colspan="1" class="text-end">10000</td>
+      <td colspan="1" class="text-start right"></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(50000000) %></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(20000000) %></td>
+      <td colspan="1" class="text-end right">0.079</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="left right c">C</td>
+      <td colspan="1" class="text-center"></td>
+      <td colspan="1" class="text-center right"></td>
+      <td colspan="1" class="text-end"></td>
+      <td colspan="1" class="text-start right">Some controlling functions</td>
+      <td colspan="1" class="text-end right"></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(5000000) %></td>
+      <td colspan="1" class="text-end right">0.094</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="left right c">C-</td>
+      <td colspan="1" class="text-center"></td>
+      <td colspan="1" class="text-center right">100000</td>
+      <td colspan="1" class="text-end">2500</td>
+      <td colspan="1" class="text-start right"></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(30000000) %></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(1000000) %></td>
+      <td colspan="1" class="text-end right">0.109</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="left right c">C-</td>
+      <td colspan="1" class="text-center">365</td>
+      <td colspan="1" class="text-center right">25000</td>
+      <td colspan="1" class="text-end"></td>
+      <td colspan="1" class="text-start right">Some control over minting</td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(15000000) %></td>
+      <td colspan="1" class="text-end right"></td>
+      <td colspan="1" class="text-end right"></td>
+    </tr>
+    <tr class="top">
+      <td colspan="2" class="left right d">D+</td>
+      <td colspan="1" class="text-center"></td>
+      <td colspan="1" class="text-center right">25000</td>
+      <td colspan="1" class="text-end"></td>
+      <td colspan="1" class="text-start right">Centralized with audit</td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(10000000) %></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(500000) %></td>
+      <td colspan="1" class="text-end right">0.124</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="left right d">D</td>
+      <td colspan="1" class="text-center">365</td>
+      <td colspan="1" class="text-center right"></td>
+      <td colspan="1" class="text-end"></td>
+      <td colspan="1" class="text-start right">Centralized</td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(5000000) %></td>
+      <td colspan="1" class="text-end right"><%= number_to_currency(250000) %></td>
+      <td colspan="1" class="text-end right">0.139</td>
+    </tr>
+    <tr class="bottom">
+      <td colspan="2" class="left right d">D-</td>
+      <td colspan="1" class="text-center"></td>
+      <td colspan="1" class="text-center right"></td>
+      <td colspan="1" class="text-end"></td>
+      <td colspan="1" class="text-start right">Opaque</td>
+      <td colspan="1" class="text-end right"></td>
+      <td colspan="1" class="text-end right"></td>
+      <td colspan="1" class="text-end right"></td>
+    </tr>
+  </table>
   <br />
-  <li><strong>Cs</strong> no more than 33% of MAI (ideally 20%)</li>
-</ul>
+
+  <ul class="list-unstyled">
+    <li class="token_name"><strong>Global Threshold</strong></li>
+    <br />
+    <li><strong>Cs</strong> no more than 33% of MAI (ideally 20%)</li>
+  </ul>
 </div>
