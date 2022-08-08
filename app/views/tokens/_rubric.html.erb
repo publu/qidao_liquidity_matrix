@@ -1,5 +1,5 @@
 <div class="clearfix"></div>
-<div class="info">
+<div class="info table-responsive">
   <ul class="list-unstyled">
     <li class="token_name"><strong>Token Name:</strong> <%= token.symbol %> (<%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "plain_link", style: "color: #{token.network.color}" %>)</li>
     <br />
@@ -8,7 +8,7 @@
     <li><strong>Blockchain explorer:</strong> <%= link_to token.network.blockchain_explorer + token.contract_address, token.network.blockchain_explorer + token.contract_address, title: "Blockchain Explorer", target: "_blank" %></li>
     <li><strong>Last updated:</strong> <%= token.updated_at.strftime("%d %B, %Y") %></li>
   </ul>
-  <table class="table-bordered rubric">
+  <table class="table table-bordered rubric">
     <tr class="table-header">
       <th colspan="2" class="text-center bold">Smart Contract Risk</th>
       <th colspan="3" class="text-center bold">Counterparty Risk</th>
@@ -60,7 +60,7 @@
     <li class="token_name"><strong>Rubric:</strong></li>
   </ul>
 
-  <table class="rubric">
+  <table class="table rubric">
     <tr class="top">
       <th colspan="2" rowspan="2" class="left gray"></th>
       <th colspan="1" class="text-center left right">Days</th>
