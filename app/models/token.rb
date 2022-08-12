@@ -26,6 +26,10 @@ class Token < ApplicationRecord
 	   [ "#{symbol}-#{network_name}" ]
 	end
 
+  def should_generate_new_friendly_id?
+    slug.blank? && network_id_changed?
+  end
+
   def self.to_csv
     CSV.generate do |csv|
       csv << column_names

@@ -1,6 +1,6 @@
 class MintersController < ApplicationController
   before_action :set_minter, only: %i[ show edit update destroy ]
-  before_action :authenticate_admin, only: %i[ import create new edit update destroy ]
+  before_action :authenticate_admin, only: %i[ import create new show index edit update destroy ]
 
   def import
     file = params[:file]

@@ -57,7 +57,11 @@
         <% end %>
       </td>
       <td itemprop="provider" class="text-center">
-        <%= link_to token.minter.name, token.minter.link, title: "Go to " + token.minter.name, class: "plain_link" %>
+        <% if token.minter.name == "Pending Vote" %>
+          <span class="text-danger"><%= token.minter.name %></span>
+        <% else %>
+          <%= link_to token.minter.name, token.minter.link, title: "Go to " + token.minter.name, class: "plain_link" %>
+        <% end %>
       </td>
       <td itemprop="aggregateRating" class="text-center">
         <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name do %>

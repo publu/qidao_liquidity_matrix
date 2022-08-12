@@ -43,18 +43,18 @@
       <div class="input-group input-group-sm">
         <%= form.label :network, "Chain", class: "input-group-text" %>
         <% if token.network_id? %>
-          <%= form.select :network_id, options_from_collection_for_select(@networks, "id", "name", token.network_id), class: "form-select" %>
+          <%= form.select :network_id, options_from_collection_for_select(@networks, "id", "name", token.network_id), class: "form-select", include_blank: "Select one..." %>
         <% else %>
-          <%= form.select :network_id, options_from_collection_for_select(@networks, "id", "name"), class: "form-select" %>
+          <%= form.select :network_id, options_from_collection_for_select(@networks, "id", "name"), class: "form-select", include_blank: "Select one" %>
         <% end %>
       </div>
       <br />
       <div class="input-group input-group-sm">
         <%= form.label :minter, "MAI Platform", class: "input-group-text" %>
         <% if token.minter_id? %>
-          <%= form.select :minter_id, options_from_collection_for_select(@minters, "id", "name", token.minter_id), class: "form-select" %>
+          <%= form.select :minter_id, options_from_collection_for_select(@minters, "id", "name", token.minter_id), class: "form-select", include_blank: "Select one..." %>
         <% else %>
-          <%= form.select :minter_id, options_from_collection_for_select(@minters, "id", "name"), class: "form-select" %>
+          <%= form.select :minter_id, options_from_collection_for_select(@minters, "id", "name"), class: "form-select", include_blank: "Select one" %>
         <% end %>
       </div>
       <br />
