@@ -2,32 +2,32 @@
   <table class="table table-striped align-middle">
     <tr class="table-header">
       <th itemprop="about" class="red">
-        <%= sort_link(column: "symbol", label: "Token") %>
+        <%= sort_link(column: "symbol", label: t('list_token')) %>
         <%= sort_indicator if params[:column] == "symbol" %>
       </th>
       <th class="red">
-        Chain
+        <%= t('list_chain') %>
       </th>
       <th class="red text-end">
-        <%= sort_link(column: "liquidity", label: "Total Onchain Liquidity") %>
+        <%= sort_link(column: "liquidity", label: t('list_liquidity')) %>
         <%= sort_indicator if params[:column] == "liquidity" %>
       </th>
       <th class="red text-end td-15">
-        <%= sort_link(column: "trade_slippage", label: "Largest trade for stable with < 10% slippage") %>
+        <%= sort_link(column: "trade_slippage", label: t('list_slippage')) %>
         <%= sort_indicator if params[:column] == "trade_slippage" %>
       </th>
       <th class="red text-end">
-        <%= sort_link(column: "volume", label: "1M Average Daily Volume") %>
+        <%= sort_link(column: "volume", label: t('list_volume')) %>
         <%= sort_indicator if params[:column] == "volume" %>
       </th>
       <th class="red text-end td-15">
-        <%= sort_link(column: "centralized", label: "Does one wallet own more than 20% of tokens in onchain LPs?") %>
+        <%= sort_link(column: "centralized", label: t('list_centralization')) %>
         <%= sort_indicator if params[:column] == "centralized" %>
       </th>
-      <th class="red text-center">Availability</th>
-      <th class="red text-center"><%= link_to "Risk Grading", tokens_path, title: "Risk Grading" %></th>
+      <th class="red text-center"><%= t('list_available') %></th>
+      <th class="red text-center"><%= link_to t('list_grade'), tokens_path, title: "Risk Grading" %></th>
       <% if user_signed_in? && current_user.admin? %>
-        <th class="red text-center">Actions</th>
+        <th class="red text-center"><%= t('actions') %></th>
       <% end %>
     </tr>
     <% @tokens.each do |token| %>
@@ -51,14 +51,14 @@
       </td>
       <td class="text-center">
         <% if token.centralized? %>
-          <span class="text-danger">Yes</span>
+          <span class="text-danger"><%= t('list_yes') %></span>
         <% else %>
-          No
+          <%= t('list_no') %>
         <% end %>
       </td>
       <td itemprop="provider" class="text-center">
         <% if token.minter.name == "Not Released" %>
-          <span class="text-danger"><%= token.minter.name %></span>
+          <span class="text-danger"><%= t('list_released') %></span>
         <% else %>
           <%= link_to token.minter.name, token.minter.link, title: "Go to " + token.minter.name, class: "plain_link" %>
         <% end %>

@@ -19,12 +19,11 @@ QiDao Liquidity Matrix | Chain Information
 <div itemscope itemtype="https://schema.org/Table" id="networks" class="table-responsive">
   <table class="table table-striped table-hover">
     <tr class="table-header">
-      <th itemprop="about" class="red">Chain</th>
-      <th class="red">Blockchain explorer</th>
-      <th class="red text-end">Relevant Onchain Liquidity</th>
-      <th class="red text-end">1M Average Trading Volume</th>
-      <th class="red text-center">Collateral Count</th>
-      <th class="red text-end">Last updated</th>
+      <th itemprop="about" class="red"><%= t('list_chain') %></th>
+      <th class="red"><%= t('list_explorer') %></th>
+      <th class="red text-end"><%= t('list_liquidity') %></th>
+      <th class="red text-end"><%= t('list_volume') %></th>
+      <th class="red text-center"><%= t('list_count') %></th>
       <% if user_signed_in? && current_user.admin? %>
         <th class="red text-center">Actions</th>
       <% end %>
@@ -38,7 +37,6 @@ QiDao Liquidity Matrix | Chain Information
         <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:liquidity)) %></td>
         <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:volume)) %></td>
         <td class="text-center"><%= link_to network.tokens.count, network, title: "View chain information for " + network.name %></td>
-        <td class="text-end"><%= network.updated_at.strftime("%d %B, %Y") %></td>
         <% if user_signed_in? && current_user.admin? %>
           <td>
             <ul class="list-unstyled list-group list-group-horizontal">

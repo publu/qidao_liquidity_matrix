@@ -10,33 +10,33 @@
 <div class="info">
   <div class="row">
     <div class="col text-center info-box">
-      <h4>Available onchain liquidity</h4>
+      <h4><%= t('dash_liquidity') %></h4>
       <span class="large-text">
         <%= number_to_currency(Token.all.sum(:liquidity)) %>
       </span>
     </div>
     <div class="col text-center info-box">
-      <h4>Total Chains</h4>
+      <h4><%= t('dash_chains') %></h4>
       <span class="large-text"><%= Network.all.count %></span>
     </div>
     <div class="col text-center info-box">
-      <h4>Total Collaterals</h4>
+      <h4><%= t('dash_tokens') %></h4>
       <span class="large-text"><%= Token.all.count %></span>
     </div>
     <div class="col text-center info-box">
-      <h4>Vault Platforms</h4>
+      <h4><%= t('dash_platforms') %></h4>
       <span class="large-text"><%= Minter.where.not(link: "").count %></span>
     </div>
   </div>
   <hr />
   <div class="row">
     <div class="col">
-      <h3>Tokens by liquidity</h3>
+      <h3><%= t('dash_token_liq') %></h3>
       <%= pie_chart @chart_liquidity,
             donut: "true", prefix: "$", thousands: ",", legend: "right", download: "true" %>
     </div>
     <div class="col">
-      <h3>Tokens by volume</h3>
+      <h3><%= t('dash_token_vol') %></h3>
       <%= pie_chart @chart_volume,
             donut: "true", prefix: "$", thousands: ",", legend: "right", download: "true" %>
     </div>
@@ -44,7 +44,7 @@
   <hr />
   <div class="row">
     <div class="col info-box">
-      <h4>Top 10 By Liquidity</h4>
+      <h4><%= t('dash_liq_topten') %></h4>
       <ol>
         <% @byliquidity.each do |token| %>
           <li>
@@ -55,7 +55,7 @@
       </ol>
     </div>
     <div class="col info-box">
-      <h4>Top 10 By Volatility</h4>
+      <h4><%= t('dash_vol_topten') %></h4>
       <ol>
         <% @byvolatility.each do |token| %>
           <li>
@@ -66,7 +66,7 @@
       </ol>
     </div>
     <div class="col info-box">
-      <h4>Top 10 By Overall Score</h4>
+      <h4><%= t('dash_score_topten') %></h4>
       <ol>
         <% @byscore.each do |token| %>
           <li>
