@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://riskmanagement.qidao.community</loc>
+    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
+  </url>
+  <% @tokens.each do |token| %>
+    <url>
+      <loc>https://riskmanagement.qidao.community/tokens/<%= token.slug %></loc>
+      <lastmod><%= token.updated_at.strftime("%Y-%m-%d") %></lastmod>
+    </url>
+  <% end %>
+  <url>
+    <loc>https://riskmanagement.qidao.community/networks</loc>
+    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
+  </url>
+  <% @networks.each do |network| %>
+    <url>
+      <loc>https://riskmanagement.qidao.community/networks/<%= network.slug %></loc>
+      <lastmod><%= network.updated_at.strftime("%Y-%m-%d") %></lastmod>
+    </url>
+  <% end %>
+</urlset>

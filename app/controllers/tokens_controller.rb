@@ -15,6 +15,11 @@ class TokensController < ApplicationController
     redirect_to tokens_path, notice: 'Tokens imported!'
   end
 
+  def sitemap
+    @tokens = Token.all.order_by_grade.order(liquidity: :desc)
+    @networks = Network.all.order(slug: :asc)
+  end
+
   # GET /tokens or /tokens.json
   def index
       if params[:column] && params[:direction]
