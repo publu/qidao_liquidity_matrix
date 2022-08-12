@@ -25,7 +25,7 @@
     </div>
     <div class="col text-center info-box">
       <h4>Vault Platforms</h4>
-      <span class="large-text"><%= Minter.all.count %></span>
+      <span class="large-text"><%= Minter.where.not(link: "").count %></span>
     </div>
   </div>
   <hr />
