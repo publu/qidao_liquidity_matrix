@@ -270,3 +270,10 @@ a.plain_link:hover {
   height: 90px;
   margin: -25px -20px 0 -20px;
 }
+
+.new {
+  font-size: 8pt;
+  color: #F16E6A;
+  border: 1px solid #F16E6A;
+  padding: 2px;
+}
