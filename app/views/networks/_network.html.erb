@@ -34,6 +34,9 @@
         <strong>
           <%= link_to token.symbol, token, title: "View rubric for " + token.symbol + " on " + token.network.name, class: "plain_link" %>
         </strong>
+        <% if token.created_at > (Date.today - 5.days) %>
+          <span class="new"><%= t('list_new') %></span>
+        <% end %>
       </td>
       <td itemprop="genre" style="color: <%= token.network.color %>">
         <%= token.network.name %>

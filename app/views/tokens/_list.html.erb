@@ -35,9 +35,9 @@
       <td itemprop="name">
         <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name, class: "plain_link" do %>
           <strong><%= token.symbol %></strong>
-          <% if token.created_at > (Date.today - 5.days) %>
-            <span class="new">NEW</span>
-          <% end %>
+        <% end %>
+        <% if token.created_at > (Date.today - 5.days) %>
+          <span class="new"><%= t('list_new') %></span>
         <% end %>
       </td>
       <td itemprop="genre" style="color: <%= token.network.color %>">

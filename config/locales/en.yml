@@ -35,6 +35,7 @@ en:
   menu_chains: "Chains"
   menu_dashboard: "Dashboard"
   list_token: "Token"
+  list_new: "NEW"
   list_chain: "Chain"
   list_liquidity: "Total Onchain Liquidity"
   list_slippage: "Largest trade for stables with < 10% slippage"
