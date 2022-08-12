@@ -57,7 +57,7 @@
         <% end %>
       </td>
       <td itemprop="provider" class="text-center">
-        <% if token.minter.name == "Pending Vote" %>
+        <% if token.minter.name == "Not Released" %>
           <span class="text-danger"><%= token.minter.name %></span>
         <% else %>
           <%= link_to token.minter.name, token.minter.link, title: "Go to " + token.minter.name, class: "plain_link" %>
