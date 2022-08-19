@@ -29,7 +29,7 @@ QiDao Liquidity Matrix | Chain Information
       <% end %>
     </tr>
     <% @networks.each do |network| %>
-    <% if network.tokens.size > 0 %>
+      <% if network.tokens.size > 0 %>
         <tr>
           <td itemprop="name">
             <span style="color: <%= network.color %> !important"><%= link_to network.name, network, title: "View chain information for " + network.name, class: "plain_link" %></span>
