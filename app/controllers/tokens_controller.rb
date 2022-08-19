@@ -3,8 +3,8 @@ require 'csv'
 class TokensController < ApplicationController
   before_action :set_token, only: %i[ show edit update destroy ]
   before_action :set_networks, :set_minters
-  before_action :authenticate_admin, only: %i[ import create new edit update destroy ]
-  before_action :update_scores, only: %i[ import update ]
+  before_action :authenticate_admin, only: %i[ create new edit update destroy ]
+  before_action :update_scores, only: %i[ update ]
 
   def import
     file = params[:file]
