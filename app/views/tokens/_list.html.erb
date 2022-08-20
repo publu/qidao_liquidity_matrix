@@ -61,8 +61,10 @@
         <% end %>
       </td>
       <td class="text-end">
-        <% if token.mai_debt? %>
-          <%= number_to_currency(token.mai_debt / (10**18)) %>
+        <% if token.vault_address? %>
+          <%= mai(token.mai_debt) %>
+        <% else %>
+          $0
         <% end %>
       </td>
       <td itemprop="provider" class="text-center">

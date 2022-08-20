@@ -22,6 +22,10 @@ module TokensHelper
       tag.span(class: "sort sort-#{params[:direction]}")
     end
 
+    def mai(number)
+      number_to_currency(number / (10**18))
+    end
+
     def risk_grade(token)
       risk_average = ((token.contract_days.to_f + token.contract_transactions.to_f)/2)
       if risk_average >= 500000000

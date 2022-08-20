@@ -26,6 +26,7 @@ gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+gem "json"
 
 # Export data to Excel spreadsheet
 gem 'caxlsx'

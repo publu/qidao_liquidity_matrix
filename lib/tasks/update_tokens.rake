@@ -16,10 +16,19 @@ namespace :update_tokens do
       end
     end
   end
-
   task grade: :environment do
     Token.all.each do |token|
       token.update(grade: TokensHelper.overall_score(token))
+    end
+  end
+  task debt: :environment do
+    Token.where.not(vault_address: '').each do |token|
+      url = 'https://api.mai.finance/v2/vaultDebts'
+      uri = URI(url)
+      response = Net::HTTP.get(uri)
+      vaults = JSON.parse(response)
+      vault = vaults.select {|v| v["address"] == token.vault_address }
+      token.update(mai_debt: vault.first["totalDebt"].to_f)
     end
   end
 end
