@@ -22,13 +22,13 @@ namespace :update_tokens do
     end
   end
   task debt: :environment do
-    Token.where.not(vault_address: '').where(mint_id: 1).each do |token|
+    Token.where.not(vault_address: '').where(minter_id: 1).each do |token|
       url = 'https://api.mai.finance/v2/vaultDebts'
       uri = URI(url)
       response = Net::HTTP.get(uri)
       vaults = JSON.parse(response)
       vault = vaults.select {|v| v["address"] == token.vault_address }
-      token.update(mai_debt: vault.first["totalDebt"])
+      token.update(mai_debt: vault.first["totalDebt"].to_s)
     end
   end
 end
