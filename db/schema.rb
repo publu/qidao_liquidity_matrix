@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_20_132419) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_20_135954) do
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -66,6 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_20_132419) do
     t.decimal "risk_volatility", precision: 10, scale: 4
     t.string "slug"
     t.integer "minter_id"
+    t.float "mai_debt"
     t.index ["minter_id"], name: "index_tokens_on_minter_id"
     t.index ["network_id"], name: "index_tokens_on_network_id"
     t.index ["slug"], name: "index_tokens_on_slug", unique: true

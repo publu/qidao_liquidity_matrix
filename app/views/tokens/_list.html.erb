@@ -24,6 +24,7 @@
         <%= sort_link(column: "centralized", label: t('list_centralization')) %>
         <%= sort_indicator if params[:column] == "centralized" %>
       </th>
+      <th class="red text-end">Total Debt</th>
       <th class="red text-center"><%= t('list_available') %></th>
       <th class="red text-center"><%= link_to t('list_grade'), tokens_path, title: "Risk Grading" %></th>
       <% if user_signed_in? && current_user.admin? %>
@@ -57,6 +58,11 @@
           <span class="text-danger"><%= t('list_yes') %></span>
         <% else %>
           <%= t('list_no') %>
+        <% end %>
+      </td>
+      <td class="text-end">
+        <% if token.mai_debt? %>
+          <%= number_to_currency(token.mai_debt / (10**18)) %>
         <% end %>
       </td>
       <td itemprop="provider" class="text-center">

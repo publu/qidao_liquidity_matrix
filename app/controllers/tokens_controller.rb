@@ -107,7 +107,7 @@ class TokensController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def token_params
-      params.require(:token).permit(:asset, :symbol, :contract_address, :coingecko, :coinmarketcap, :rubric, :network_id, :minter_id, :liquidity, :trade_slippage, :volume, :centralized, :grade, :contract_days, :contract_transactions, :holders, :permissions, :risk_marketcap, :risk_volume, :risk_volatility)
+      params.require(:token).permit(:asset, :symbol, :contract_address, :coingecko, :coinmarketcap, :rubric, :network_id, :minter_id, :mai_debt, :liquidity, :trade_slippage, :volume, :centralized, :grade, :contract_days, :contract_transactions, :holders, :permissions, :risk_marketcap, :risk_volume, :risk_volatility)
     end
 
     def set_networks
