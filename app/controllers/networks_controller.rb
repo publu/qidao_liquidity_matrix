@@ -94,7 +94,7 @@ class NetworksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def network_params
-      params.require(:network).permit(:name, :color, :blockchain_explorer)
+      params.require(:network).permit(:name, :chain_id, :color, :blockchain_explorer)
     end
 
     # Check if user is admin before accessing CRUD actions

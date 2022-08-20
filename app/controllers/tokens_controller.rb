@@ -39,11 +39,17 @@ class TokensController < ApplicationController
         end
         format.html
         format.js
+        format.json
       end
   end
 
   # GET /tokens/1 or /tokens/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.js
+      format.json
+    end
   end
 
   # GET /tokens/new
