@@ -100,8 +100,8 @@
           <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:liquidity)) %></strong></td>
           <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:trade_slippage) / network.tokens.count) %></strong></td>
           <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:volume)) %></strong></td>
-          <td class="text-center"><strong><%= network.tokens.where(centralized: true).count %></strong></td>
           <td class="text-end"><strong><%= mai(network.tokens.sum(:mai_debt)) %></strong></td>
+          <td class="text-center"><strong><%= network.tokens.where(centralized: true).count %></strong></td>
           <td class="text-center">-</td>
           <td class="text-center">
             <% sum = 0 %>
