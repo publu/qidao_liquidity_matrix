@@ -39,7 +39,7 @@ QiDao Liquidity Matrix | Chain Information
           <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:liquidity)) %></td>
           <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:volume)) %></td>
           <td class="text-end">
-            <strong><%= mai(network.tokens.sum(:mai_debt)) %></strong>
+            <%= mai(network.tokens.sum(:mai_debt)) %>
           </td>
           <td class="text-center"><%= link_to network.tokens.count, network, title: "View chain information for " + network.name %></td>
           <% if user_signed_in? && current_user.admin? %>
