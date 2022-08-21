@@ -27,29 +27,33 @@
       <h4><%= t('dash_platforms') %></h4>
       <span class="large-text"><%= Minter.where.not(link: "").count %></span>
     </div>
+    <div class="col text-center info-box">
+      <h4><%= t('list_debt') %></h4>
+      <span class="large-text"><%= mai(Token.sum(:mai_debt)) %></span>
+    </div>
   </div>
   <hr />
   <div class="row">
     <div class="col">
       <h3><%= t('dash_token_liq') %></h3>
       <%= pie_chart @chart_liquidity,
-            donut: "true", prefix: "$", thousands: ",", legend: "right", download: "true" %>
+            donut: "true", prefix: "$", thousands: ",", legend: "right" %>
     </div>
     <div class="col">
       <h3><%= t('dash_token_vol') %></h3>
       <%= pie_chart @chart_volume,
-            donut: "true", prefix: "$", thousands: ",", legend: "right", download: "true" %>
+            donut: "true", prefix: "$", thousands: ",", legend: "right" %>
     </div>
   </div>
   <hr />
   <div class="row">
     <div class="col info-box">
-      <h4><%= t('dash_liq_topten') %></h4>
+      <h4><%= t('dash_score_topten') %></h4>
       <ol>
-        <% @byliquidity.each do |token| %>
+        <% @byscore.each do |token| %>
           <li>
-            <%= token.symbol %>  (<%= token.network.name %>):
-            <span class="float-end"><%= number_to_currency(token.liquidity) %></span>
+            <strong><%= token.symbol %></strong> (<span style="color: <%= token.network.color %>"><%= token.network.name %></span>) -
+            <%= token.grade %>
           </li>
         <% end %>
       </ol>
@@ -59,19 +63,19 @@
       <ol>
         <% @byvolatility.each do |token| %>
           <li>
-            <%= token.symbol %>  (<%= token.network.name %>):
-            <span class="float-end"><%= token.risk_volatility %></span>
+            <strong><%= token.symbol %></strong>  (<span style="color: <%= token.network.color %>"><%= token.network.name %></span>) -
+            <%= token.risk_volatility %>
           </li>
         <% end %>
       </ol>
     </div>
     <div class="col info-box">
-      <h4><%= t('dash_score_topten') %></h4>
+      <h4><%= t('dash_liq_topten') %></h4>
       <ol>
-        <% @byscore.each do |token| %>
+        <% @byliquidity.each do |token| %>
           <li>
-            <%= token.symbol %> (<%= token.network.name %>):
-            <span class="float-end"><%= token.grade %></span>
+            <strong><%= token.symbol %></strong>  (<span style="color: <%= token.network.color %>"><%= token.network.name %></span>) -
+            <%= number_to_currency(token.liquidity) %>
           </li>
         <% end %>
       </ol>

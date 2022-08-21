@@ -18,11 +18,11 @@ body {
 }
 
 #chart-1 {
-  height: 325px !important;
+  height: 350px !important;
 }
 
 #chart-2 {
-  height: 325px !important;
+  height: 350px !important;
 }
 
 .container {
@@ -250,11 +250,11 @@ a.plain_link:hover {
 }
 
 .info-box h4 {
-  font-size: 14pt;
+  font-size: 12pt;
 }
 
 .large-text {
-  font-size: 18pt;
+  font-size: 16pt;
   font-weight: bold;
 }
 
