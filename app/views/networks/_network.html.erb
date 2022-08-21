@@ -18,7 +18,10 @@
         <%= sort_network_link(column: "volume", label: t('list_volume')) %>
         <%= sort_indicator if params[:column] == "volume" %>
       </th>
-      <th class="red text-end"><%= t('list_debt') %></th>
+      <th class="red text-end">
+        <%= sort_network_link(column: "mai_debt", label: t('list_debt')) %>
+        <%= sort_indicator if params["column"] == "mai_debt" %>
+      </th>
       <th class="red text-end td-10">
         <%= sort_network_link(column: "centralized", label: t('list_centralization')) %>
         <%= sort_indicator if params[:column] == "centralized" %>
@@ -122,7 +125,7 @@
       </tr>
     <% end %>
   </table>
-  <% if @token_count > 15 %>
+  <% if network.tokens.count > 15 %>
     <div class="footer"><%== pagy_bootstrap_nav(@pagy) %></div>
   <% end %>
 </div>

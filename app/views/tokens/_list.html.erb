@@ -20,7 +20,10 @@
         <%= sort_link(column: "volume", label: t('list_volume')) %>
         <%= sort_indicator if params[:column] == "volume" %>
       </th>
-      <th class="red text-end"><%= t('list_debt') %></th>
+      <th class="red text-end">
+        <%= sort_link(column: "mai_debt", label: t('list_debt')) %>
+        <%= sort_indicator if params[:column] == "mai_debt" %>
+      </th>
       <th class="red text-end td-10">
         <%= sort_link(column: "centralized", label: t('list_centralization')) %>
         <%= sort_indicator if params[:column] == "centralized" %>
@@ -55,9 +58,9 @@
       </td>
       <td class="text-end">
         <% if token.mai_debt? %>
-          <%= mai(token.mai_debt) %>
+          <%= mai(token.mai_debt) %> (<%= (token.liquidity / (token.mai_debt / 10**18)).round(2) %>)
         <% else %>
-          $0
+          n/a
         <% end %>
       </td>
       <td class="text-center">
