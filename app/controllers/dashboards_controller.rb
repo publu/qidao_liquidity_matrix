@@ -1,4 +1,4 @@
-require 'JSON'
+require 'json'
 class DashboardsController < ApplicationController
 
   def index
