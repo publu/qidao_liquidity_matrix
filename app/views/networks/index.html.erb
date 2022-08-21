@@ -21,6 +21,7 @@ QiDao Liquidity Matrix | Chain Information
     <tr class="table-header">
       <th itemprop="about" class="red"><%= t('list_chain') %></th>
       <th class="red td-10"><%= t('list_explorer') %></th>
+      <th class="red">RPCs</th>
       <th class="red text-end"><%= t('list_liquidity') %></th>
       <th class="red text-end"><%= t('list_volume') %></th>
       <th class="red text-end"><%= t('list_debt') %></th>
@@ -35,7 +36,8 @@ QiDao Liquidity Matrix | Chain Information
           <td itemprop="name">
             <span style="color: <%= network.color %> !important"><%= link_to network.name, network, title: "View chain information for " + network.name, class: "plain_link" %></span>
           </td>
-          <td itemprop="url"><%= link_to bc_link(network.blockchain_explorer), bc_link(network.blockchain_explorer), title: "View blockchain explorer", target: "_blank" %></td>
+          <td itemprop="url"><%= link_to bc_link(network.blockchain_explorer), bc_link(network.blockchain_explorer), title: "View blockchain explorer", target: "_blank", class: "plain_link" %></td>
+          <td class="text-start"><%= link_to network.name + " RPCs", "https://chainlist.org/chain/" + network.chain_id, title: "Chainlist", target: "_blank", class: "plain_link" %></td>
           <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:liquidity)) %></td>
           <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:volume)) %></td>
           <td class="text-end">
