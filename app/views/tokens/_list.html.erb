@@ -58,7 +58,7 @@
       </td>
       <td class="text-end">
         <% if token.mai_debt? %>
-          <%= mai(token.mai_debt) %> (<%= (token.liquidity / (token.mai_debt / 10**18)).round(2) %>)
+          <%= mai(token.mai_debt) %>
         <% else %>
           n/a
         <% end %>
