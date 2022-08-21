@@ -25,7 +25,7 @@ QiDao Risk Matrix | Platform Information
         <td>
           <span><%= link_to minter.name, minter, title: "View platform information for " + minter.name, class: "plain_link" %></span>
         </td>
-        <td><%= link_to bc_link(minter.link), bc_link(minter.link), title: "View website", target: "_blank" %></td>
+        <td><%= link_to bc_link(minter.link), bc_link(minter.link), title: "View website", target: "_blank", rel: "noopener noreferrer" %></td>
         <td class="text-end"><%= number_to_currency(Token.where(minter_id: minter.id).sum(:liquidity)) %></td>
         <td class="text-end"><%= number_to_currency(Token.where(minter_id: minter.id).sum(:volume)) %></td>
         <td class="text-center"><%= link_to minter.tokens.count, minter, title: "View chain information for " + minter.name %></td>
