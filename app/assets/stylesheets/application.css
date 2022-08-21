@@ -110,6 +110,10 @@ th.right {
   border-right: thin solid black;
 }
 
+.td-10 {
+  width: 10%;
+}
+
 .td-15 {
   width: 15%;
 }

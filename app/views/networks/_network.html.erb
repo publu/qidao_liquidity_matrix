@@ -10,7 +10,7 @@
         <%= sort_network_link(column: "liquidity", label: t('list_liquidity')) %>
         <%= sort_indicator if params[:column] == "liquidity" %>
       </th>
-      <th width="15%" class="red text-end">
+      <th class="red text-end td-15">
         <%= sort_network_link(column: "trade_slippage", label: t('list_slippage')) %>
         <%= sort_indicator if params[:column] == "trade_slippage" %>
       </th>
@@ -18,11 +18,11 @@
         <%= sort_network_link(column: "volume", label: t('list_volume')) %>
         <%= sort_indicator if params[:column] == "volume" %>
       </th>
-      <th width="15%" class="red text-end">
+      <th class="red text-end"><%= t('list_debt') %></th>
+      <th class="red text-end td-10">
         <%= sort_network_link(column: "centralized", label: t('list_centralization')) %>
         <%= sort_indicator if params[:column] == "centralized" %>
       </th>
-      <th class="red text-end">Total Debt</th>
       <th class="red text-center"><%= t('list_available') %></th>
       <th class="red text-center"><%= link_to t('list_grade'), network_path, title: "Risk Grading" %></th>
       <% if user_signed_in? && current_user.admin? %>
@@ -51,16 +51,18 @@
       <td class="text-end">
         <%= number_to_currency(token.volume) %>
       </td>
+      <td class="text-end">
+        <% if token.mai_debt? %>
+          <%= mai(token.mai_debt) %>
+        <% else %>
+          $0
+        <% end %>
+      </td>
       <td class="text-center">
         <% if token.centralized? %>
           <span class="text-danger"><%= t('list_yes') %></span>
         <% else %>
           <%= t('list_no') %>
-        <% end %>
-      </td>
-      <td class="text-end">
-        <% if token.mai_debt? %>
-          <%= number_to_currency(token.mai_debt / (10**18)) %>
         <% end %>
       </td>
       <td class="text-center">
@@ -99,7 +101,7 @@
           <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:trade_slippage) / network.tokens.count) %></strong></td>
           <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:volume)) %></strong></td>
           <td class="text-center"><strong><%= network.tokens.where(centralized: true).count %></strong></td>
-          <td class="text-end"><strong><%= number_to_currency((network.tokens.sum(:mai_debt)/10**18)) %></strong></td>
+          <td class="text-end"><strong><%= mai(network.tokens.sum(:mai_debt)) %></strong></td>
           <td class="text-center">-</td>
           <td class="text-center">
             <% sum = 0 %>
