@@ -1,27 +1,27 @@
 Rails.application.routes.draw do
+  scope "(:locale)", locale: /en|es|fr/ do
+    root "tokens#index"
 
-  root "tokens#index"
+    resources :networks do
+      collection do
+        post :import
+      end
+    end
+
+    resources :tokens do
+      collection do
+        post :import
+      end
+    end
+
+    resources :minters do
+      collection do
+        post :import
+      end
+    end
+  end
 
   devise_for :users
-
-  resources :networks do
-    collection do
-      post :import
-    end
-  end
-
-  resources :tokens do
-    collection do
-      post :import
-    end
-  end
-
-  resources :minters do
-    collection do
-      post :import
-    end
-  end
-
   get "dashboard" => "dashboards#index"
   get '/sitemap', to: 'tokens#sitemap'
 

@@ -4,6 +4,7 @@ es:
   menu_tokens: "Monedas"
   menu_chains: "Cadenas"
   menu_dashboard: "Tablero"
+  menu_lang: "Lenguaje"
   list_token: "Moneda"
   list_new: "Nuevo"
   list_chain: "Cadena"
