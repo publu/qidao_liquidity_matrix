@@ -1,6 +1,6 @@
 # QiDao Risk Matrix
 
-A matrix of collaterals used on the QiDao protocol along with their liquidity information and risk grading.
+A matrix of collaterals used on the QiDao protocol along with their liquidity information and risk grading. Available in English, Spanish, and French.
 
 ![QiDao Risk Matrix](https://github.com/spicy-muaddib/qidao_liquidity_matrix/blob/main/qidao_liquidity_matrix.png?raw=true)
 
