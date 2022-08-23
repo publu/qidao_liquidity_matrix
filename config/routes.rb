@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|es|fr/ do
     root "tokens#index"
 
-    resources :networks do
+    resources :networks, path: "chains" do
       collection do
         post :import
       end
@@ -20,11 +20,12 @@ Rails.application.routes.draw do
       end
     end
 
-    get "dashboard" => "dashboards#index"
+    get "/dashboard", to: "dashboards#index"
     devise_for :users, controllers: { registrations: "registrations" }
-    get '/sitemap', to: 'tokens#sitemap'
+    get "/sitemap", to: "tokens#sitemap"
 
     match "/404", to: "errors#not_found", via: :all
     match "/500", to: "errors#internal_server_error", via: :all
   end
+
 end

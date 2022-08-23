@@ -33,7 +33,7 @@
             <%= t('menu_lang') %>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark">
-            <li><%= link_to "English", url_for(locale: nil), title: "English", class: "dropdown-item" %></li>
+            <li><%= link_to "English", url_for(locale: :en), title: "English", class: "dropdown-item" %></li>
             <li><%= link_to "Español", url_for(locale: :es), title: "Español", class: "dropdown-item" %></li>
             <li><%= link_to "Française", url_for(locale: :fr), title: "Française", class: "dropdown-item" %></li>
           </ul>
