@@ -63,3 +63,4 @@ es:
   dash_liq_topten: "10 Mejores Por Liquidez"
   dash_vol_topten: "10 Mejores Por Volatilidad"
   dash_score_topten: "10 Mejores Por Clasificación De Riesgo"
+  dash_message: "** Esta página no incluye datos de garantías de bóvedas no publicadas."

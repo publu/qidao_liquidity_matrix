@@ -62,3 +62,4 @@ fr:
   dash_liq_topten: "Top 10 par Liquidité"
   dash_vol_topten: "Top 10 par Volatilité"
   dash_score_topten: "Top 10 par Score de Risque"
+  dash_message: "** Cette page n'inclut pas les données des garanties de coffres-forts non publiées."

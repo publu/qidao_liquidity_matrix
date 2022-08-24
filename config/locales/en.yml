@@ -62,3 +62,4 @@ en:
   dash_liq_topten: "Top 10 By Liquidity"
   dash_vol_topten: "Top 10 By Volatility"
   dash_score_topten: "Top 10 By Risk Grading"
+  dash_message: "** This page does not include data from unreleased vault collaterals."
