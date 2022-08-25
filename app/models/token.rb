@@ -1,7 +1,7 @@
 class Token < ApplicationRecord
   validates :network_id, presence: true
   validates :minter_id, presence: true
-  belongs_to :network, counter_cache: true
+  belongs_to :network, counter_cache: true # Network.find_each { |n| Network.reset_counters(n.id, :tokens) }
   belongs_to :minter
 
   extend FriendlyId

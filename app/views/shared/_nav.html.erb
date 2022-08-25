@@ -3,7 +3,7 @@
     <div class="d-none d-xl-block">
         <%= link_to root_url, title: "Go home", class: "navbar-brand float-start" do %>
         <h1 class="navbar-name">
-          <%= image_tag "https://mai-universe.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F8e4f1353-986d-4bd2-bf9f-3af9ca66502c%2FGroup_1_16.svg?table=block&id=e55bc607-6d87-4f5c-a151-25019e233d7c&spaceId=ee0afcd0-179b-4a92-ad82-aa60c4dc6568&userId=&cache=v2", class: "logo", alt: "QiDao" %>
+          <%= svg_tag "qidao", class: "logo" %>
           <%= t('menu_title') %>
         </h1>
         <% end %>
@@ -28,16 +28,18 @@
         <li class="nav-item">
           <%= link_to dashboard_path, title: "Dashboard", class: "nav-link" do %><% t('menu_dashboard') %><% end %>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <%= t('menu_lang') %>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark">
-            <li><%= link_to "English", url_for(locale: :en), title: "English", class: "dropdown-item" %></li>
-            <li><%= link_to "Español", url_for(locale: :es), title: "Español", class: "dropdown-item" %></li>
-            <li><%= link_to "Française", url_for(locale: :fr), title: "Française", class: "dropdown-item" %></li>
-          </ul>
-        </li>
+        <% unless user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= t('menu_lang') %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><%= link_to "English", url_for(locale: :en), title: "English", class: "dropdown-item" %></li>
+              <li><%= link_to "Español", url_for(locale: :es), title: "Español", class: "dropdown-item" %></li>
+              <li><%= link_to "Française", url_for(locale: :fr), title: "Française", class: "dropdown-item" %></li>
+            </ul>
+          </li>
+        <% end %>
         <% if user_signed_in? %>
           <% if current_user.admin? %>
             <li class="nav-item dropdown">
@@ -47,12 +49,16 @@
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li><%= link_to "Add new token", new_token_path, title: "Add new token", class: "dropdown-item" %></li>
                 <li><%= link_to "Add new chain", new_network_path, title: "Add new chain", class: "dropdown-item" %></li>
+                <li><hr class="dropdown-divider-dark" /></li>
+                <li>
+                  <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
+                </li>
+                <li>
+                  <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+                </li>
               </ul>
             </li>
           <% end %>
-          <li class="nav-item">
-            <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
-          </li>
         <% else %>
           <li class="nav-item">
             <%= link_to "https://github.com/spicy-muaddib/qidao_liquidity_matrix", target: "_blank", title: "Github", class: "nav-link" do %>Github<% end %>

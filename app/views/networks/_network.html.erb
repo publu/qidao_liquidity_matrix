@@ -83,12 +83,12 @@
           <ul class="list-unstyled list-group list-group-horizontal">
             <li class="actions">
               <%= link_to edit_token_path(token), title: "Edit this token" do %>
-                <i class="gg-pen"></i>
+                <%= svg_tag "edit" %>
               <% end %>
             </li>
             <li class="actions">
               <%= link_to token, method: :delete, title: "Delete this token" do %>
-                <i class="gg-trash"></i>
+                <%= svg_tag "trash" %>
               <% end %>
             </li>
           </ul>

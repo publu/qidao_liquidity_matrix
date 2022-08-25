@@ -48,12 +48,12 @@ QiDao Risk Matrix | Chain Information<% end %>
               <ul class="list-unstyled list-group list-group-horizontal">
                 <li class="actions">
                   <%= link_to edit_network_path(network), title: "Edit this chain" do %>
-                    <i class="gg-pen"></i>
+                    <%= svg_tag "edit" %>
                   <% end %>
                 </li>
                 <li class="actions">
                   <%= link_to network, method: :delete, title: "Delete this chain" do %>
-                    <i class="gg-trash"></i>
+                    <%= svg_tag "trash" %>
                   <% end %>
                 </li>
               </ul>
