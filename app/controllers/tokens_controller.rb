@@ -24,18 +24,18 @@ class TokensController < ApplicationController
   # GET /tokens or /tokens.json
   def index
       if params[:column] && params[:direction]
-        @pagy, @tokens = pagy(Token.all.order(Arel.sql("#{params[:column]} #{params[:direction]}")))
+        @pagy, @tokens = pagy(Token.includes(:network, :minter).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
       else
-        @pagy, @tokens = pagy(Token.all.order_by_grade.order(liquidity: :desc))
+        @pagy, @tokens = pagy(Token.includes(:network, :minter).order_by_grade.order(liquidity: :desc))
       end
-      @token_count = Token.all.size
+      @token_count = Network.all.sum(:tokens_count)
       respond_to do |format|
         format.xlsx do
-          @tokens = Token.all.order_by_grade.order(liquidity: :desc)
+          @tokens = Token.includes(:network, :minter).order_by_grade.order(liquidity: :desc)
           response.headers['Content-Disposition'] = "attachment; filename=qidao_liquidity_matrix.xlsx"
         end
         format.csv do
-          @tokens = Token.all.order(network_id: :asc)
+          @tokens = Token.includes(:network).order(network_id: :asc)
           send_data @tokens.to_csv
         end
         format.html

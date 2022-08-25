@@ -42,7 +42,7 @@ QiDao Risk Matrix | Chain Information<% end %>
           <td class="text-end">
             <%= mai(network.tokens.sum(:mai_debt)) %>
           </td>
-          <td class="text-center"><%= link_to network.tokens.count, network, title: "View chain information for " + network.name %></td>
+          <td class="text-center"><%= link_to network.tokens_count, network, title: "View chain information for " + network.name %></td>
           <% if user_signed_in? && current_user.admin? %>
             <td class="text-end">
               <ul class="list-unstyled list-group list-group-horizontal">

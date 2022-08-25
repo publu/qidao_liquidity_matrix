@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_20_224950) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_25_024301) do
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -39,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_20_224950) do
     t.string "blockchain_explorer"
     t.string "slug"
     t.string "chain_id"
+    t.integer "tokens_count", default: 0, null: false
     t.index ["slug"], name: "index_networks_on_slug", unique: true
   end
 

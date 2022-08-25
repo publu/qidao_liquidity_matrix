@@ -96,12 +96,12 @@
       <% end %>
     </tr>
     <% end %>
-    <% if network.tokens.count > 0 %>
+    <% if network.tokens_count > 0 %>
       <tr>
         <td><strong><%= t('list_totals') %></strong></td>
-          <td><strong><%= network.tokens.count %></strong></td>
+          <td><strong><%= network.tokens_count %></strong></td>
           <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:liquidity)) %></strong></td>
-          <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:trade_slippage) / network.tokens.count) %></strong></td>
+          <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:trade_slippage) / network.tokens_count) %></strong></td>
           <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:volume)) %></strong></td>
           <td class="text-end"><strong><%= mai(network.tokens.sum(:mai_debt)) %></strong></td>
           <td class="text-center"><strong><%= network.tokens.where(centralized: true).count %></strong></td>
@@ -113,7 +113,7 @@
                 <% sum += product %>
                 <% product %>
             <% end %>
-            <strong><%= num_to_grade(sum / network.tokens.count) %></strong>
+            <strong><%= num_to_grade(sum / network.tokens_count) %></strong>
         </td>
         <% if user_signed_in? && current_user.admin? %>
           <td class="text-center">-</td>
@@ -125,7 +125,7 @@
       </tr>
     <% end %>
   </table>
-  <% if network.tokens.count > 15 %>
+  <% if network.tokens_count > 15 %>
     <div class="footer"><%== pagy_bootstrap_nav(@pagy) %></div>
   <% end %>
 </div>
