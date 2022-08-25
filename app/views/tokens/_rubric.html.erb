@@ -1,5 +1,23 @@
 <div class="clearfix"></div>
 <div class="info table-responsive">
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <div class="float-end">
+        <ul class="list-unstyled list-group list-group-horizontal">
+          <li class="actions">
+            <%= link_to edit_token_path(token), title: "Edit this token" do %>
+              <%= svg_tag "edit" %>
+            <% end %>
+          </li>
+          <li class="actions">
+            <%= link_to token, method: :delete, title: "Delete this token" do %>
+              <%= svg_tag "trash" %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>
   <ul class="list-unstyled">
     <li class="token_name"><strong><%= t('rubric_name') %>:</strong> <%= token.symbol %> (<%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "plain_link", style: "color: #{token.network.color}" %>)</li>
     <br />
