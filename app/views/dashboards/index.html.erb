@@ -20,25 +20,25 @@
 
 <div class="info">
   <div class="row">
-    <div class="col text-center info-box">
+    <div class="col-lg-3 col-md-12 col-sm-12 text-center info-box">
       <h4><%= t('dash_liquidity') %></h4>
       <span class="large-text">
         <%= number_to_currency(Token.all.sum(:liquidity)) %>
       </span>
     </div>
-    <div class="col text-center info-box">
+    <div class="col-lg-2 col-md-4 col-sm-12 text-center info-box">
       <h4><%= t('dash_chains') %></h4>
       <span class="large-text"><%= Network.all.count %></span>
     </div>
-    <div class="col text-center info-box">
+    <div class="col-lg-2 col-md-4 col-sm-12 text-center info-box">
       <h4><%= t('dash_tokens') %></h4>
       <span class="large-text"><%= Token.all.count %></span>
     </div>
-    <div class="col text-center info-box">
+    <div class="col-lg-2 col-md-4 col-sm-12  text-center info-box">
       <h4><%= t('dash_platforms') %></h4>
       <span class="large-text"><%= Minter.where.not(link: "").count %></span>
     </div>
-    <div class="col text-center info-box">
+    <div class="col-lg-3 col-md-12 col-sm-12  text-center info-box">
       <h4><%= t('list_debt') %></h4>
       <span class="large-text"><%= mai(Token.sum(:mai_debt)) %></span>
     </div>
@@ -58,35 +58,58 @@
   </div>
   <hr />
   <div class="row">
-    <div class="col info-box">
+    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
       <h4><%= t('dash_score_topten') %></h4>
       <ol>
         <% @byscore.each do |token| %>
           <li>
-            <strong><%= token.symbol %></strong> (<span style="color: <%= token.network.color %>"><%= token.network.name %></span>) -
-            <%= token.grade %>
+            <strong><%= token.symbol %></strong> (<span style="color: <%= token.network.color %>"><%= token.network.name %></span>)
+            <div class="float-end">
+              <%= link_to token.grade, token, title: token.symbol + " on (" + token.network.name + ")", class: "plain_link" %>
+            </div>
           </li>
         <% end %>
       </ol>
     </div>
-    <div class="col info-box">
-      <h4><%= t('dash_vol_topten') %></h4>
-      <ol>
-        <% @byvolatility.each do |token| %>
-          <li>
-            <strong><%= token.symbol %></strong>  (<span style="color: <%= token.network.color %>"><%= token.network.name %></span>) -
-            <%= token.risk_volatility %>
-          </li>
-        <% end %>
-      </ol>
-    </div>
-    <div class="col info-box">
+    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
       <h4><%= t('dash_liq_topten') %></h4>
       <ol>
         <% @byliquidity.each do |token| %>
           <li>
-            <strong><%= token.symbol %></strong>  (<span style="color: <%= token.network.color %>"><%= token.network.name %></span>) -
-            <%= number_to_currency(token.liquidity) %>
+            <strong><%= token.symbol %></strong>  (<span style="color: <%= token.network.color %>"><%= token.network.name %></span>)
+            <div class="float-end">
+              <%= number_to_currency(token.liquidity) %>
+            </div>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
+      <h4><%= t('dash_debt_topten') %></h4>
+      <ol>
+        <% @bydebt.each do |token| %>
+          <li>
+            <strong><%= token.symbol %></strong>  (<span style="color: <%= token.network.color %>"><%= token.network.name %></span>)
+            <div class="float-end">
+              <% if token.mai_debt? %>
+                <%= mai(token.mai_debt) %>
+              <% else %>
+                $0.00
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
+      <h4><%= t('dash_vol_topten') %></h4>
+      <ol>
+        <% @byvolatility.each do |token| %>
+          <li>
+            <strong><%= token.symbol %></strong>  (<span style="color: <%= token.network.color %>"><%= token.network.name %></span>)
+            <div class="float-end">
+              <%= token.risk_volatility %>
+            </div>
           </li>
         <% end %>
       </ol>

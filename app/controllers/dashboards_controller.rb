@@ -7,6 +7,7 @@ class DashboardsController < ApplicationController
     @byliquidity = Token.includes(:network).where.not(minter_id: 4).order(liquidity: :desc).limit(10)
     @byvolatility = Token.includes(:network).where.not(minter_id: 4).order(risk_volatility: :asc).limit(10)
     @byscore = Token.includes(:network).where.not(minter_id: 4).order_by_grade.order(liquidity: :desc).limit(10)
+    @bydebt = Token.includes(:network).where.not(minter_id: 4).order(mai_debt: :desc).limit(10)
   end
 
 end

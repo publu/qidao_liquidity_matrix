@@ -18,11 +18,11 @@ body {
 }
 
 #chart-1 {
-  height: 350px !important;
+  height: 100% !important;
 }
 
 #chart-2 {
-  height: 350px !important;
+  height: 90% !important;
 }
 
 .logo {
