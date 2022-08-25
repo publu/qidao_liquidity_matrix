@@ -79,16 +79,16 @@
         <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name do %><strong><%= token.grade %><% end %>
       </td>
       <% if user_signed_in? && current_user.admin? %>
-        <td>
+        <td class="text-end">
           <ul class="list-unstyled list-group list-group-horizontal">
-            <li>
+            <li class="actions">
               <%= link_to edit_token_path(token), title: "Edit this token" do %>
-                <ion-icon name="create-outline"></ion-icon>
+                <i class="gg-pen"></i>
               <% end %>
             </li>
-            <li>
+            <li class="actions">
               <%= link_to token, method: :delete, title: "Delete this token" do %>
-                <ion-icon name="trash-outline"></ion-icon>
+                <i class="gg-trash"></i>
               <% end %>
             </li>
           </ul>

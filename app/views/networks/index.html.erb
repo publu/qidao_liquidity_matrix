@@ -13,7 +13,7 @@ QiDao Risk Matrix | Chain Information<% end %>
     <meta name=“twitter:description” content=“Chains supported by QiDao protocol lending vaults.”>
     <meta name=“twitter:creator” content=“@geekvine”>
     <meta name=“twitter:image” content=“https://i.imgur.com/IJNSl9P.png”><% end %>
-    
+
 <div class="clearfix"></div>
 <div itemscope itemtype="https://schema.org/Table" id="networks" class="table-responsive">
   <table class="table table-striped table-hover">
@@ -44,16 +44,16 @@ QiDao Risk Matrix | Chain Information<% end %>
           </td>
           <td class="text-center"><%= link_to network.tokens.count, network, title: "View chain information for " + network.name %></td>
           <% if user_signed_in? && current_user.admin? %>
-            <td>
+            <td class="text-end">
               <ul class="list-unstyled list-group list-group-horizontal">
-                <li>
+                <li class="actions">
                   <%= link_to edit_network_path(network), title: "Edit this chain" do %>
-                    <ion-icon name="create-outline"></ion-icon>
+                    <i class="gg-pen"></i>
                   <% end %>
                 </li>
-                <li>
+                <li class="actions">
                   <%= link_to network, method: :delete, title: "Delete this chain" do %>
-                    <ion-icon name="trash-outline"></ion-icon>
+                    <i class="gg-trash"></i>
                   <% end %>
                 </li>
               </ul>
