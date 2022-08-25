@@ -1,20 +1,18 @@
 <% content_for :title do %>
-QiDao Risk Matrix | Accepted MAI collaterals
-<% end %>
+QiDao Risk Matrix | Accepted MAI collaterals<% end %>
 <% content_for :description do %>
 <meta name="description" content="QiDao Risk Matrix, providing risk assessments considering market, counter-party and smart contract risks for collaterals backing the MAI stablecoin.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://riskmanagement.qidao.community">
-<meta property="og:title" content="QiDao Risk Matrix | Accepted MAI collaterals">
-<meta property="og:description" content="QiDao Risk Matrix, providing risk assessments considering market, counter-party and smart contract risks for collaterals backing the MAI stablecoin.">
-<meta property=“og:image” content=“https://i.imgur.com/IJNSl9P.png”>
-<meta name=“twitter:card” content=“summary”>
-<meta name="twitter:site" content="@qidaoprotocol">
-<meta name=“twitter:title” content=“QiDao Risk Matrix | Accepted MAI collateral“>
-<meta name=“twitter:description” content=“QiDao Risk Matrix, providing risk assessments considering market, counter-party and smart contract risks for collaterals backing the MAI stablecoin.”>
-<meta name=“twitter:creator” content=“@geekvine”>
-<meta name=“twitter:image” content=“https://i.imgur.com/IJNSl9P.png”>
-<% end %>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://riskmanagement.qidao.community">
+    <meta property="og:title" content="QiDao Risk Matrix | Accepted MAI collaterals">
+    <meta property="og:description" content="QiDao Risk Matrix, providing risk assessments considering market, counter-party and smart contract risks for collaterals backing the MAI stablecoin.">
+    <meta property=“og:image” content=“https://i.imgur.com/IJNSl9P.png”>
+    <meta name=“twitter:card” content=“summary”>
+    <meta name="twitter:site" content="@qidaoprotocol">
+    <meta name=“twitter:title” content=“QiDao Risk Matrix | Accepted MAI collateral“>
+    <meta name=“twitter:description” content=“QiDao Risk Matrix, providing risk assessments considering market, counter-party and smart contract risks for collaterals backing the MAI stablecoin.”>
+    <meta name=“twitter:creator” content=“@geekvine”>
+    <meta name=“twitter:image” content=“https://i.imgur.com/IJNSl9P.png”><% end %>
 <div class="clearfix"></div>
 <%= render partial: "list", locals: { tokens: @tokens } %>
 <% if user_signed_in? && current_user.admin? %>
