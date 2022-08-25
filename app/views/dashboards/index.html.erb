@@ -23,24 +23,24 @@
     <div class="col-lg-3 col-md-12 col-sm-12 text-center info-box">
       <h4><%= t('dash_liquidity') %></h4>
       <span class="large-text">
-        <%= number_to_currency(Token.all.sum(:liquidity)) %>
+        <%= number_to_currency(@liquidity) %>
       </span>
     </div>
     <div class="col-lg-2 col-md-4 col-sm-12 text-center info-box">
       <h4><%= t('dash_chains') %></h4>
-      <span class="large-text"><%= Network.all.count %></span>
+      <span class="large-text"><%= @networks.count %></span>
     </div>
     <div class="col-lg-2 col-md-4 col-sm-12 text-center info-box">
       <h4><%= t('dash_tokens') %></h4>
-      <span class="large-text"><%= Token.all.count %></span>
+      <span class="large-text"><%= @tokens.count %></span>
     </div>
     <div class="col-lg-2 col-md-4 col-sm-12  text-center info-box">
       <h4><%= t('dash_platforms') %></h4>
-      <span class="large-text"><%= Minter.where.not(link: "").count %></span>
+      <span class="large-text"><%= @minters.count %></span>
     </div>
     <div class="col-lg-3 col-md-12 col-sm-12  text-center info-box">
       <h4><%= t('list_debt') %></h4>
-      <span class="large-text"><%= mai(Token.sum(:mai_debt)) %></span>
+      <span class="large-text"><%= mai(@mai_debt) %></span>
     </div>
   </div>
   <hr />
