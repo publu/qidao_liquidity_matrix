@@ -8,5 +8,5 @@ QiDao Risk Matrix | Editing <%= @minter.name %>
 <br />
 
 <div class="text-center">
-  <%= link_to "Destroy this chain", @minter, method: :delete, class: "btn btn-outline-danger" %>
+  <%= link_to "Destroy this chain", @minter, data: { "turbo-method": :delete }, class: "btn btn-outline-danger" %>
 </div>

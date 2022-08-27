@@ -10,7 +10,7 @@
             <% end %>
           </li>
           <li class="actions">
-            <%= link_to token, method: :delete, title: "Delete this token" do %>
+            <%= link_to token, data: { "turbo-method": :delete }, title: "Delete this token" do %>
               <%= svg_tag "trash" %>
             <% end %>
           </li>
