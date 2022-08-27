@@ -52,7 +52,7 @@ QiDao Risk Matrix | Chain Information<% end %>
                   <% end %>
                 </li>
                 <li class="actions">
-                  <%= link_to network, data: { "turbo-method": :delete }, title: "Delete this chain" do %>
+                  <%= link_to network_path(network), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, title: "Delete this chain" do %>
                     <%= svg_tag "trash" %>
                   <% end %>
                 </li>

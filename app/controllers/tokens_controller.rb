@@ -93,11 +93,7 @@ class TokensController < ApplicationController
   # DELETE /tokens/1 or /tokens/1.json
   def destroy
     @token.destroy
-
-    respond_to do |format|
-      format.html { redirect_to tokens_url, notice: "Token was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to root_path, status: :see_other
   end
 
   private
