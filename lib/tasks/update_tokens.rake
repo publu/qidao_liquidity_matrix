@@ -1,7 +1,134 @@
+require 'open-uri'
+require 'nokogiri'
 require 'task_helpers/tokens_helper'
 
 namespace :update_tokens do
-  desc 'Update tokens with latest Coingecko data'
+  desc 'Update tokens with latest data'
+  task holders: :environment do
+    Token.order(id: :asc).each do |token|
+      url = token.network.blockchain_explorer + token.contract_address.downcase
+      if token.network.chain_id == "1"
+        document = URI.open(url)
+        content = document.read
+        parsed_content = Nokogiri::HTML(content)
+        parsed_content.css('#ContentPlaceHolder1_tr_tokenHolders').css('.row').each do |row|
+          holders = row.css('.mr-3').first.inner_text
+          h = holders.gsub(/\b\s\([^)]*\W/, '').to_s
+          token.update(holders: h.gsub(/\W/, ''))
+          puts "Updating holders for " + token.symbol + " (" + token.network.name + ")"
+          sleep 0.25
+        end
+      elsif token.network.chain_id == "10"
+        document = URI.open(url)
+        content = document.read
+        parsed_content = Nokogiri::HTML(content)
+        parsed_content.css('#ContentPlaceHolder1_tr_tokenHolders').css('.row').each do |row|
+          holders = row.css('.mr-3').first.inner_text
+          h = holders.gsub(/\b\s\([^)]*\W/, '').to_s
+          token.update(holders: h.gsub(/\W/, ''))
+          puts "Updating holders for " + token.symbol + " (" + token.network.name + ")"
+          sleep 0.25
+        end
+      elsif token.network.chain_id == "56"
+        document = URI.open(url)
+        content = document.read
+        parsed_content = Nokogiri::HTML(content)
+        parsed_content.css('#ContentPlaceHolder1_tr_tokenHolders').css('.row').each do |row|
+          holders = row.css('.mr-3').first.inner_text
+          h = holders.gsub(/[^0-9]/, '').to_s
+          token.update(holders: h.gsub(/\W/, ''))
+          puts "Updating holders for " + token.symbol + " (" + token.network.name + ")"
+          sleep 0.25
+        end
+      elsif token.network.chain_id == "100"
+        puts "Skipping " + token.symbol + "(" + token.network.name +  ")"
+        sleep 0.25
+      elsif token.network.chain_id == "137"
+        document = URI.open(url)
+        content = document.read
+        parsed_content = Nokogiri::HTML(content)
+        parsed_content.css('#ContentPlaceHolder1_tr_tokenHolders').css('.row').each do |row|
+          holders = row.css('.mr-3').first.inner_text
+          h = holders.gsub(/[^0-9]/, '').to_s
+          token.update(holders: h.gsub(/\W/, ''))
+          puts "Updating holders for " + token.symbol + " (" + token.network.name + ")"
+          sleep 0.25
+        end
+      elsif token.network.chain_id == "250"
+        document = URI.open(url)
+        content = document.read
+        parsed_content = Nokogiri::HTML(content)
+        parsed_content.css('#ContentPlaceHolder1_tr_tokenHolders').css('.row').each do |row|
+          holders = row.css('.col-md-8').first.inner_text
+          h = holders.gsub(/[^0-9]/, '').to_s
+          token.update(holders: h.gsub(/\W/, ''))
+          puts "Updating holders for " + token.symbol + " (" + token.network.name + ")"
+          sleep 0.25
+        end
+      elsif token.network.chain_id == "1088"
+        puts "Skipping " + token.symbol + "(" + token.network.name +  ")"
+        sleep 0.25
+      elsif token.network.chain_id == "1284"
+        document = URI.open(url)
+        content = document.read
+        parsed_content = Nokogiri::HTML(content)
+        parsed_content.css('#ContentPlaceHolder1_tr_tokenHolders').css('.row').each do |row|
+          holders = row.css('.mr-3').first.inner_text
+          h = holders.gsub(/[^0-9]/, '').to_s
+          token.update(holders: h.gsub(/\W/, ''))
+          puts "Updating holders for " + token.symbol + " (" + token.network.name + ")"
+          sleep 0.25
+        end
+      elsif token.network.chain_id == "1285"
+        document = URI.open(url)
+        content = document.read
+        parsed_content = Nokogiri::HTML(content)
+        parsed_content.css('#ContentPlaceHolder1_tr_tokenHolders').css('.row').each do |row|
+          holders = row.css('.mr-3').first.inner_text
+          h = holders.gsub(/[^0-9]/, '').to_s
+          token.update(holders: h.gsub(/\W/, ''))
+          puts "Updating holders for " + token.symbol + " (" + token.network.name + ")"
+          sleep 0.25
+        end
+      elsif token.network.chain_id == "2222"
+        puts "Skipping " + token.symbol + "(" + token.network.name +  ")"
+        sleep 0.25
+      elsif token.network.chain_id == "8217"
+        puts "Skipping " + token.symbol + "(" + token.network.name +  ")"
+        sleep 0.25
+      elsif token.network.chain_id == "42161"
+        document = URI.open(url)
+        content = document.read
+        parsed_content = Nokogiri::HTML(content)
+        parsed_content.css('#ContentPlaceHolder1_tr_tokenHolders').css('.row').each do |row|
+          holders = row.css('.mr-3').first.inner_text
+          h = holders.gsub(/[^0-9]/, '').to_s
+          token.update(holders: h.gsub(/\W/, ''))
+          puts "Updating holders for " + token.symbol + " (" + token.network.name + ")"
+          sleep 0.25
+        end
+      elsif token.network.chain_id == "43114"
+        document = URI.open(url)
+        content = document.read
+        parsed_content = Nokogiri::HTML(content)
+        parsed_content.css('#ContentPlaceHolder1_tr_tokenHolders').css('.row').each do |row|
+          holders = row.css('.mr-3').first.inner_text
+          h = holders.gsub(/[^0-9]/, '').to_s
+          token.update(holders: h.gsub(/\W/, ''))
+          puts "Updating holders for " + token.symbol + " (" + token.network.name + ")"
+          sleep 0.25
+        end
+      elsif token.network.chain_id == "1666600000"
+        puts "Skipping " + token.symbol + "(" + token.network.name +  ")"
+        sleep 0.25
+      else
+        puts "Skipping " + token.symbol + "(" + token.network.name +  ")"
+        sleep 0.25
+      end
+    end
+    puts "Token holders update completed."
+  end
+
   task marketcap: :environment do
     Token.all.each do |token|
       CoingeckoRuby::Client.new.markets(token.asset, vs_currency: 'usd').each do |datum|
@@ -12,6 +139,7 @@ namespace :update_tokens do
     end
     puts "Marketcap update completed."
   end
+  
   task volume: :environment do
     Token.all.each do |token|
       CoingeckoRuby::Client.new.markets(token.asset, vs_currency: 'usd').each do |datum|

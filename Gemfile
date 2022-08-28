@@ -47,6 +47,10 @@ gem 'chartkick'
 # Coingecko library
 gem 'coingecko_ruby'
 
+# Web scraping
+gem 'open-uri'
+gem 'nokogiri'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
