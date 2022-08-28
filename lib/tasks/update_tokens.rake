@@ -32,6 +32,20 @@ namespace :update_tokens do
     puts "Risk grading update completed."
   end
 
+  task debt: :environment do
+    Token.where.not(vault_address: '').where(minter_id: 1).each do |token|
+      url = 'https://api.mai.finance/v2/vaultDebts'
+      uri = URI(url)
+      response = Net::HTTP.get(uri)
+      vaults = JSON.parse(response)
+      vault = vaults.select {|v| v["address"].downcase == token.vault_address.downcase }
+      token.update(mai_debt: vault.first["totalDebt"].to_s)
+      puts "Debt for " + token.symbol + " (" + token.network.name + ") has been updated."
+      sleep 0.25
+    end
+    puts "MAI debt update completed."
+  end
+
   task debts: :environment do
     Token.where.not(vault_address: '').where(minter_id: 1).each do |token|
       url = 'https://api.mai.finance/v2/vaultIncentives'
@@ -40,7 +54,7 @@ namespace :update_tokens do
       vaults = JSON.parse(response)
       vaults.each do |vault|
         vault.second.each do |v|
-          if v["vaultAddress"] == token.vault_address
+          if v["vaultAddress"].downcase == token.vault_address.downcase
             token.update(mai_debt: v["totalQualifyingDebt"])
             puts "Debt for " + token.symbol + " (" + token.network.name + ") has been updated."
             sleep 0.25

@@ -11,5 +11,8 @@ Pagy::DEFAULT[:overflow] = :last_page
 # Remove the page=1 parameter from the link on first page
 require 'pagy/extras/trim'
 
+# Add support for pagy_url_for
+require 'pagy/extras/support'
+
 # Add Bootstrap support to pagination
 require 'pagy/extras/bootstrap'
