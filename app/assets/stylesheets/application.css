@@ -13,8 +13,82 @@
  *= require_tree .
  *= require_self
  */
+
+:root {
+  --darkColor: white;
+  --darkBackground: #2d3436;
+  --darkPageBackground: #2d343680;
+  --lightColor: #2d3436;
+  --lightBackground: white;
+}
+
 body {
   font-size: 9.5pt;
+}
+
+body.light {
+  color: var(--lightColor) !important;
+  background-color: var(--lightBackground);
+  font-size: 9.5pt;
+}
+
+body.light a.plain_link {
+  text-decoration: none;
+  color: inherit;
+}
+
+body.light a.plain_link:hover {
+  text-decoration: underline;
+  color: inherit;
+  font-style: italic;
+}
+
+body.light .pagination {
+  font-size: 9pt;
+  background-color: var(--lightBackground);
+  margin: 0 auto;
+}
+
+body.light .pagination a {
+  font-size: 9pt;
+  color: var(--lightColor);
+}
+
+body.dark {
+  color: var(--darkColor) !important;
+  background-color: var(--darkBackground);
+  font-size: 9.5pt;
+}
+
+body.dark a.plain_link {
+  text-decoration: none;
+  color: var(--darkColor);
+}
+
+body.dark a.plain_link:hover {
+  text-decoration: underline;
+  color: var(--darkColor);
+  font-style: italic;
+}
+
+body.dark table {
+  color: var(--darkColor);
+}
+
+body.dark .pagination {
+  font-size: 9pt;
+  background-color: var(--darkBackground) !important;
+  margin: 0 auto;
+}
+
+body.dark .pagination a {
+  font-size: 9pt;
+  color: var(--darkColor);
+  background-color: var(--darkPageBackground);
+}
+
+body.dark .pagination .active {
+  background-color: #0984e3;
 }
 
 #chart-1 {

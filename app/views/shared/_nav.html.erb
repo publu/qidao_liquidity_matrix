@@ -40,6 +40,25 @@
             </ul>
           </li>
         <% end %>
+        <% if cookies[:theme] == "light" %>
+          <li class="nav-item">
+            <%= link_to root_path(theme: "dark"), title: "Dark Mode", class: "nav-link" do %>
+              Dark Mode
+            <% end %>
+          </li>
+        <% elsif cookies[:theme] == "dark" %>
+          <li class="nav-item">
+            <%= link_to root_path(theme: "light"), title: "Light Mode", class: "nav-link" do %>
+              Light Mode
+            <% end %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to root_path(theme: "dark"), title: "Dark Mode", class: "nav-link" do %>
+              Dark Mode
+            <% end %>
+          </li>
+        <% end %>
         <% if user_signed_in? %>
           <% if current_user.admin? %>
             <li class="nav-item dropdown">

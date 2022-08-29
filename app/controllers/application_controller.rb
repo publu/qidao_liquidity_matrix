@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
 
   before_action :set_locale
+  before_action :set_theme
 
   private
 
@@ -18,6 +19,15 @@ class ApplicationController < ActionController::Base
     I18n.available_locales.map(&:to_s).include?(parsed_locale) ?
     parsed_locale.to_sym :
     nil
+  end
+
+  def set_theme
+    if params[:theme].present?
+      theme = params[:theme].to_sym
+      # session[:theme] = theme
+      cookies[:theme] = theme
+      redirect_to(request.referer || root_path)
+    end
   end
 
 end

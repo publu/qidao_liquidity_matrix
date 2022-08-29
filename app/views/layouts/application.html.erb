@@ -14,7 +14,7 @@
     <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
 
-  <body>
+  <body class="<%= cookies[:theme] %>">
     <main class="container">
       <%= render partial: "shared/nav" %>
       <%= yield %>
