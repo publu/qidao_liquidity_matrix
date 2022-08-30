@@ -4,6 +4,16 @@ require 'task_helpers/tokens_helper'
 
 namespace :update_tokens do
   desc 'Update tokens with latest data'
+
+  task days: :environment do
+    Token.all.each do |token|
+      puts "Updating contract days for " + token.symbol + " (" + token.network.name + ")"
+      token.update(contract_days: (token.contract_days + 1))
+      puts "Completed."
+    end
+    puts "Contract days update completed."
+  end
+
   task holders: :environment do
     Token.order(id: :asc).each do |token|
       url = token.network.blockchain_explorer + token.contract_address.downcase
@@ -130,32 +140,47 @@ namespace :update_tokens do
   end
 
   task marketcap: :environment do
-    Token.all.each do |token|
+    Token.all.order(network_id: :asc).each do |token|
+      if token.network.name == "Optimism"
       CoingeckoRuby::Client.new.markets(token.asset, vs_currency: 'usd').each do |datum|
-        token.update(risk_marketcap: datum['market_cap'].to_f)
-        puts "Marketcap for " + token.symbol + " (" + token.network.name + ") has been updated."
-        sleep 0.25
+        puts "Updating marketcap for " + token.symbol + " (" + token.network.name + ")."
+        if datum['market_cap'] > 0
+          token.update(risk_marketcap: datum['market_cap'].to_f)
+          puts "Completed."
+          sleep 5
+        else
+          puts "Skipping " + token.symbol + " (" + token.network.name + ")."
+          sleep 1
+        end
+      end
       end
     end
     puts "Marketcap update completed."
   end
 
   task volume: :environment do
-    Token.all.each do |token|
+    Token.all.order(network_id: :asc).each do |token|
       CoingeckoRuby::Client.new.markets(token.asset, vs_currency: 'usd').each do |datum|
-        token.update(risk_volume: datum['total_volume'].to_f)
-        puts "Volume for " + token.symbol + " (" + token.network.name + ") has been updated."
-        sleep 0.25
+        puts "Updating volume for " + token.symbol + " (" + token.network.name + ")."
+        if datum['total_volume'] > 0
+          token.update(risk_volume: datum['total_volume'].to_f)
+          puts "Completed."
+          sleep 5
+        else
+          puts "Skipping " + token.symbol + " (" + token.network.name + ")."
+          sleep 1
+        end
       end
     end
     puts "Volume update completed."
   end
 
   task grade: :environment do
-    Token.all.each do |token|
+    Token.all.order(network_id: :asc).each do |token|
+      puts "Updating risk grading for " + token.symbol + " (" + token.network.name + ")."
       token.update(grade: TokensHelper.overall_score(token))
-      puts "Risk grading for " + token.symbol + " (" + token.network.name + ") has been updated."
-      sleep 0.25
+      puts "Completed."
+      sleep 1
     end
     puts "Risk grading update completed."
   end
@@ -173,7 +198,7 @@ namespace :update_tokens do
       else
         puts "Skipping " + token.symbol + " (" + token.network.name + ")."
       end
-      sleep 0.25
+      sleep 1
     end
     puts "MAI debt update completed."
   end
@@ -189,7 +214,8 @@ namespace :update_tokens do
           if v["vaultAddress"] == token.vault_address
             puts "Updating debt for " + token.symbol + " (" + token.network.name + ")."
             token.update(mai_debt: v["totalQualifyingDebt"])
-            sleep 0.25
+            puts "Completed."
+            sleep 1
           end
         end
       end
