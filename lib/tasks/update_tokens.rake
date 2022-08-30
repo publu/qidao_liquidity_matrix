@@ -166,9 +166,13 @@ namespace :update_tokens do
       uri = URI(url)
       response = Net::HTTP.get(uri)
       vaults = JSON.parse(response)
-      vault = vaults.select {|v| v["address"].downcase == token.vault_address.downcase }
-      token.update(mai_debt: vault.first["totalDebt"].to_s)
-      puts "Debt for " + token.symbol + " (" + token.network.name + ") has been updated."
+      vault = vaults.select {|v| v["address"] == token.vault_address }
+      if vault.first.present?
+        puts "Updating debt for " + token.symbol + " (" + token.network.name + ")."
+        token.update(mai_debt: vault.first["totalDebt"].to_s)
+      else
+        puts "Skipping " + token.symbol + " (" + token.network.name + ")."
+      end
       sleep 0.25
     end
     puts "MAI debt update completed."
@@ -182,9 +186,9 @@ namespace :update_tokens do
       vaults = JSON.parse(response)
       vaults.each do |vault|
         vault.second.each do |v|
-          if v["vaultAddress"].downcase == token.vault_address.downcase
+          if v["vaultAddress"] == token.vault_address
+            puts "Updating debt for " + token.symbol + " (" + token.network.name + ")."
             token.update(mai_debt: v["totalQualifyingDebt"])
-            puts "Debt for " + token.symbol + " (" + token.network.name + ") has been updated."
             sleep 0.25
           end
         end
