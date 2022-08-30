@@ -166,7 +166,7 @@ namespace :update_tokens do
       uri = URI(url)
       response = Net::HTTP.get(uri)
       vaults = JSON.parse(response)
-      vault = vaults.select {|v| v["address"].downcase! == token.vault_address.downcase! }
+      vault = vaults.select {|v| v["address"].downcase == token.vault_address.downcase }
       if vault.first.present?
         puts "Updating debt for " + token.symbol + " (" + token.network.name + ")."
         token.update(mai_debt: vault.first["totalDebt"].to_s)
