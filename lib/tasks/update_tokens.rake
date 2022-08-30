@@ -6,7 +6,7 @@ namespace :update_tokens do
   desc 'Update tokens with latest data'
   task holders: :environment do
     Token.order(id: :asc).each do |token|
-      url = token.network.blockchain_explorer + token.contract_address.downcase
+      url = token.network.blockchain_explorer + token.contract_address.downcase!
       if token.network.chain_id == "1"
         document = URI.open(url)
         content = document.read
@@ -139,7 +139,7 @@ namespace :update_tokens do
     end
     puts "Marketcap update completed."
   end
-  
+
   task volume: :environment do
     Token.all.each do |token|
       CoingeckoRuby::Client.new.markets(token.asset, vs_currency: 'usd').each do |datum|
@@ -166,7 +166,7 @@ namespace :update_tokens do
       uri = URI(url)
       response = Net::HTTP.get(uri)
       vaults = JSON.parse(response)
-      vault = vaults.select {|v| v["address"].downcase == token.vault_address.downcase }
+      vault = vaults.select {|v| v["address"].downcase! == token.vault_address.downcase! }
       token.update(mai_debt: vault.first["totalDebt"].to_s)
       puts "Debt for " + token.symbol + " (" + token.network.name + ") has been updated."
       sleep 0.25
@@ -182,7 +182,7 @@ namespace :update_tokens do
       vaults = JSON.parse(response)
       vaults.each do |vault|
         vault.second.each do |v|
-          if v["vaultAddress"].downcase == token.vault_address.downcase
+          if v["vaultAddress"].downcase! == token.vault_address.downcase!
             token.update(mai_debt: v["totalQualifyingDebt"])
             puts "Debt for " + token.symbol + " (" + token.network.name + ") has been updated."
             sleep 0.25
