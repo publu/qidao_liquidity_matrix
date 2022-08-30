@@ -201,7 +201,7 @@ namespace :update_tokens do
     puts "MAI debt update completed."
   end
 
-  task debts: :environment do
+  task incentives: :environment do
     Token.where.not(vault_address: '').where(minter_id: 1).each do |token|
       url = 'https://api.mai.finance/v2/vaultIncentives'
       uri = URI(url)
