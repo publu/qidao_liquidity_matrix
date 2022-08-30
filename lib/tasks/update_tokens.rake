@@ -141,7 +141,6 @@ namespace :update_tokens do
 
   task marketcap: :environment do
     Token.all.order(network_id: :asc).each do |token|
-      if token.network.name == "Optimism"
       CoingeckoRuby::Client.new.markets(token.asset, vs_currency: 'usd').each do |datum|
         puts "Updating marketcap for " + token.symbol + " (" + token.network.name + ")."
         if datum['market_cap'] > 0
@@ -152,7 +151,6 @@ namespace :update_tokens do
           puts "Skipping " + token.symbol + " (" + token.network.name + ")."
           sleep 1
         end
-      end
       end
     end
     puts "Marketcap update completed."
