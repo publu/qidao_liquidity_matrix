@@ -33,7 +33,7 @@ QiDao Risk Matrix | Chain Information<% end %>
       <% if network.tokens.size > 0 %>
         <tr>
           <td itemprop="name">
-            <span style="color: <%= network.color %> !important"><%= link_to network.name, network, title: "View chain information for " + network.name, class: "plain_link" %></span>
+            <span style="color: <%= network.color %> !important"><%= link_to network.name, network, title: "View chain information for " + network.name, class: "network_link" %></span>
           </td>
           <td itemprop="url"><%= link_to bc_link(network.blockchain_explorer), bc_link(network.blockchain_explorer), title: "View blockchain explorer", target: "_blank", rel: "noopener noreferrer", class: "plain_link" %></td>
           <td class="text-start"><%= link_to network.name + " RPCs", "https://chainlist.org/chain/#{network.chain_id}", title: "Chainlist", target: "_blank", rel: "noopener noreferrer", class: "plain_link" %></td>
@@ -48,12 +48,20 @@ QiDao Risk Matrix | Chain Information<% end %>
               <ul class="list-unstyled list-group list-group-horizontal">
                 <li class="actions">
                   <%= link_to edit_network_path(network), title: "Edit this chain" do %>
-                    <%= svg_tag "edit" %>
+                    <% if cookies[:theme] == "dark" %>
+                      <%= svg_tag "edit-dark" %>
+                    <% else %>
+                      <%= svg_tag "edit" %>
+                    <% end %>
                   <% end %>
                 </li>
                 <li class="actions">
                   <%= link_to network_path(network), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, title: "Delete this chain" do %>
-                    <%= svg_tag "trash" %>
+                    <% if cookies[:theme] == "dark" %>
+                      <%= svg_tag "trash-dark" %>
+                    <% else %>
+                      <%= svg_tag "trash" %>
+                    <% end %>
                   <% end %>
                 </li>
               </ul>

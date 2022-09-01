@@ -15,50 +15,61 @@
       <ul class="navbar-nav navbar-links">
         <% if current_page?(root_url) %>
           <li class="nav-item">
-            <%= link_to tokens_path(format: :xlsx), title: "Export data to spreadsheet", class: "nav-link" do %><%= t('menu_export') %><% end %>
+            <%= link_to tokens_path(format: :xlsx), title: "Export data to spreadsheet", class: "nav-link" do %>
+              <%= t('menu_export') %>
+            <% end %>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to root_url, title: "Tokens", class: "nav-link" do %><%= t('menu_tokens') %><% end %>
+            <%= link_to root_url, title: "Tokens", class: "nav-link" do %>
+              <%= t('menu_tokens') %>
+            <% end %>
           </li>
         <% end %>
         <li class="nav-item">
-          <%= link_to networks_path, title: "Chains", class: "nav-link" do %><%= t('menu_chains') %><% end %>
+          <%= link_to networks_path, title: "Chains", class: "nav-link" do %>
+            <%= t('menu_chains') %>
+          <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to dashboard_path, title: "Dashboard", class: "nav-link" do %><% t('menu_dashboard') %><% end %>
+          <%= link_to dashboard_path, title: "Dashboard", class: "nav-link" do %>
+            <%= t('menu_dashboard') %>
+          <% end %>
         </li>
-        <% unless user_signed_in? %>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= t('menu_lang') %>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark">
-              <li><%= link_to "English", url_for(locale: :en), title: "English", class: "dropdown-item" %></li>
-              <li><%= link_to "Español", url_for(locale: :es), title: "Español", class: "dropdown-item" %></li>
-              <li><%= link_to "Française", url_for(locale: :fr), title: "Française", class: "dropdown-item" %></li>
-            </ul>
-          </li>
-        <% end %>
         <% if cookies[:theme] == "light" %>
           <li class="nav-item">
             <%= link_to root_path(theme: "dark"), title: "Dark Mode", class: "nav-link" do %>
-              Dark Mode
+              <%= svg_tag "moon" %> Go Dark
             <% end %>
           </li>
         <% elsif cookies[:theme] == "dark" %>
           <li class="nav-item">
             <%= link_to root_path(theme: "light"), title: "Light Mode", class: "nav-link" do %>
-              Light Mode
+              <%= svg_tag "sun" %> Go Light
             <% end %>
           </li>
         <% else %>
           <li class="nav-item">
             <%= link_to root_path(theme: "dark"), title: "Dark Mode", class: "nav-link" do %>
-              Dark Mode
+              <%= svg_tag "moon" %> Go Dark
             <% end %>
           </li>
         <% end %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= svg_tag "flag" %>
+            <% if params[:locale].present? %>
+              <%= params[:locale].capitalize %>
+            <% else %>
+              En
+            <% end %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><%= link_to "English", url_for(locale: :en), title: "English", class: "dropdown-item" %></li>
+            <li><%= link_to "Español", url_for(locale: :es), title: "Español", class: "dropdown-item" %></li>
+            <li><%= link_to "Française", url_for(locale: :fr), title: "Française", class: "dropdown-item" %></li>
+          </ul>
+        </li>
         <% if user_signed_in? %>
           <% if current_user.admin? %>
             <li class="nav-item dropdown">
@@ -78,10 +89,6 @@
               </ul>
             </li>
           <% end %>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "https://github.com/spicy-muaddib/qidao_liquidity_matrix", target: "_blank", title: "Github", class: "nav-link" do %>Github<% end %>
-          </li>
         <% end %>
       </ul>
     </div>

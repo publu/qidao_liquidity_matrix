@@ -1,6 +1,6 @@
 en:
   menu_title: "QiDao Risk Matrix"
-  menu_export: "Export Data"
+  menu_export: "Export"
   menu_tokens: "Tokens"
   menu_chains: "Chains"
   menu_dashboard: "Dashboard"

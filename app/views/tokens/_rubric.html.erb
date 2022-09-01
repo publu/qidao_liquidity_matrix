@@ -6,12 +6,20 @@
         <ul class="list-unstyled list-group list-group-horizontal">
           <li class="actions">
             <%= link_to edit_token_path(token), title: "Edit this token" do %>
-              <%= svg_tag "edit" %>
+              <% if cookies[:theme] == "dark" %>
+                <%= svg_tag "edit-dark" %>
+              <% else %>
+                <%= svg_tag "edit" %>
+              <% end %>
             <% end %>
           </li>
           <li class="actions">
             <%= link_to token_path(token), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, title: "Delete this token" do %>
-              <%= svg_tag "trash" %>
+              <% if cookies[:theme] == "dark" %>
+                <%= svg_tag "trash-dark" %>
+              <% else %>
+                <%= svg_tag "trash" %>
+              <% end %>
             <% end %>
           </li>
         </ul>
@@ -19,7 +27,10 @@
     <% end %>
   <% end %>
   <ul class="list-unstyled">
-    <li class="token_name"><strong><%= t('rubric_name') %>:</strong> <%= token.symbol %> (<%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "plain_link", style: "color: #{token.network.color}" %>)</li>
+    <li class="token_name">
+      <strong><%= t('rubric_name') %>:</strong>
+      <%= token.symbol %>
+      (<%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "plain_link", style: "color: #{token.network.color}" %>)</li>
     <br />
     <li><strong>Coingecko:</strong> <%= link_to token.coingecko, token.coingecko, title: "Coingecko", target: "_blank", rel: "noopener noreferrer" %></li>
     <li><strong>Coinmarketcap:</strong> <%= link_to token.coinmarketcap, token.coinmarketcap, title: "CoinMarketCap", target: "_blank", rel: "noopener noreferrer" %></li>

@@ -83,12 +83,20 @@
           <ul class="list-unstyled list-group list-group-horizontal">
             <li class="actions">
               <%= link_to edit_token_path(token), title: "Edit this token" do %>
-                <%= svg_tag "edit" %>
+                <% if cookies[:theme] == "dark" %>
+                  <%= svg_tag "edit-dark" %>
+                <% else %>
+                  <%= svg_tag "edit" %>
+                <% end %>
               <% end %>
             </li>
             <li class="actions">
               <%= link_to token_path(token), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, title: "Delete this token" do %>
-                <%= svg_tag "trash" %>
+                <% if cookies[:theme] == "dark" %>
+                  <%= svg_tag "trash-dark" %>
+                <% else %>
+                  <%= svg_tag "trash" %>
+                <% end %>
               <% end %>
             </li>
           </ul>

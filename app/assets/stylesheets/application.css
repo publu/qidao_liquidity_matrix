@@ -22,6 +22,10 @@
   --lightBackground: white;
 }
 
+.network_link {
+  color: inherit;
+}
+
 body {
   font-size: 9.5pt;
 }
