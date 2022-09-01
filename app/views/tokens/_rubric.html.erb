@@ -28,13 +28,12 @@
   <% end %>
   <ul class="list-unstyled">
     <li class="token_name">
-      <strong><%= t('rubric_name') %>:</strong>
       <%= token.symbol %>
       (<%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "plain_link", style: "color: #{token.network.color}" %>)</li>
     <br />
     <li><strong>Coingecko:</strong> <%= link_to token.coingecko, token.coingecko, title: "Coingecko", target: "_blank", rel: "noopener noreferrer" %></li>
     <li><strong>Coinmarketcap:</strong> <%= link_to token.coinmarketcap, token.coinmarketcap, title: "CoinMarketCap", target: "_blank", rel: "noopener noreferrer" %></li>
-    <li><strong><%= t('list_explorer') %>:</strong> <%= link_to token.network.blockchain_explorer + token.contract_address, token.network.blockchain_explorer + token.contract_address, title: "Blockchain Explorer", target: "_blank", rel: "noopener noreferrer" %></li>
+    <li><strong><%= t('list_contract') %>:</strong> <%= link_to token.network.blockchain_explorer + token.contract_address, token.network.blockchain_explorer + token.contract_address, title: "Blockchain Explorer", target: "_blank", rel: "noopener noreferrer" %></li>
     <li><strong><%= t('rubric_updated') %>:</strong> <%= token.updated_at.strftime("%d %B, %Y") %></li>
   </ul>
   <table class="table table-bordered rubric">
@@ -84,6 +83,12 @@
   </table>
   <br />
   <div class="clearfix"></div>
+
+  <ul class="list-unstyled">
+    <li><strong><%= t('list_liquidity') %>:</strong> <%= number_to_currency(token.liquidity) %></li>
+    <li><strong><%= t('list_volume') %>:</strong> <%= number_to_currency(token.volume) %></li>
+    <li><strong><%= t('list_slippage') %>:</strong> <%= number_to_currency(token.trade_slippage) %></li>
+  </ul>
 
   <ul class="list-unstyled">
     <li class="token_name"><strong><%= t('rubric_rubric') %></strong></li>
