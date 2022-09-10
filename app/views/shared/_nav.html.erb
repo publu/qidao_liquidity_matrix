@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <div class="d-none d-xl-block">
-        <%= link_to root_url, title: "Go home", class: "navbar-brand float-start" do %>
+    <%= svg_tag "qidao", class: "logo" %>
+    <div class="d-none d-sm-block">
+        <%= link_to root_url, title: "Go home", class: "float-start" do %>
         <h1 class="navbar-name">
-          <%= svg_tag "qidao", class: "logo" %>
           <%= t('menu_title') %>
         </h1>
         <% end %>
@@ -39,37 +39,34 @@
         <% if cookies[:theme] == "light" %>
           <li class="nav-item">
             <%= link_to root_path(theme: "dark"), title: "Dark Mode", class: "nav-link" do %>
-              <%= svg_tag "moon" %> Go Dark
+              Dark Mode
             <% end %>
           </li>
         <% elsif cookies[:theme] == "dark" %>
           <li class="nav-item">
             <%= link_to root_path(theme: "light"), title: "Light Mode", class: "nav-link" do %>
-              <%= svg_tag "sun" %> Go Light
+              Light Mode
             <% end %>
           </li>
         <% else %>
           <li class="nav-item">
             <%= link_to root_path(theme: "dark"), title: "Dark Mode", class: "nav-link" do %>
-              <%= svg_tag "moon" %> Go Dark
+              Dark Mode
             <% end %>
           </li>
         <% end %>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <%= svg_tag "flag" %>
-            <% if params[:locale].present? %>
-              <%= params[:locale].capitalize %>
-            <% else %>
-              En
-            <% end %>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark">
-            <li><%= link_to "English", url_for(locale: :en), title: "English", class: "dropdown-item" %></li>
-            <li><%= link_to "Español", url_for(locale: :es), title: "Español", class: "dropdown-item" %></li>
-            <li><%= link_to "Française", url_for(locale: :fr), title: "Française", class: "dropdown-item" %></li>
-          </ul>
-        </li>
+        <% unless user_signed_in? && current_user.admin? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= locale.capitalize %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li class="nav-item"><%= link_to url_for(locale: :en), title: "English", class: "dropdown-item" do %>&#8226; English<% end %></li>
+              <li class="nav-item"><%= link_to url_for(locale: :es), title: "Español", class: "dropdown-item" do %>&#8226; Español<% end %></li>
+              <li class="nav-item"><%= link_to url_for(locale: :fr), title: "Française", class: "dropdown-item" do %>&#8226; Française<% end %></li>
+            </ul>
+          </li>
+        <% end %>
         <% if user_signed_in? %>
           <% if current_user.admin? %>
             <li class="nav-item dropdown">
