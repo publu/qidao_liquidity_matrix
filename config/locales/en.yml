@@ -22,6 +22,7 @@ en:
   list_released: "Not Released"
   list_totals: "Totals"
   list_contract: "Contract"
+  list_cdr: "Minimum Suggested Collateral To Debt Ratio"
   rubric_name: "Token"
   rubric_smartcont: "Smart Contract Risk"
   rubric_counter: "Counterparty Risk"

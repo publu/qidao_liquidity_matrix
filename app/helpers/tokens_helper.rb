@@ -26,6 +26,10 @@ module TokensHelper
       number_to_currency(number / (10**18))
     end
 
+    def round_up(number, increment)
+    increment * ((number + increment/2.0).to_i / increment)
+  end
+
     def risk_grade(token)
       risk_average = ((token.contract_days.to_f + token.contract_transactions.to_f)/2)
       if risk_average >= 500000000

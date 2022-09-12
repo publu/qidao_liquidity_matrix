@@ -22,6 +22,7 @@ fr:
   list_released: "Non disponible"
   list_totals: "Totaux"
   list_contract: "Contrat"
+  list_cdr: "Ratio garantie minimale suggérée/dette"
   rubric_name: "Token"
   rubric_smartcont: "Risques liés au Smart Contract"
   rubric_counter: "Risques de Contrepartie"

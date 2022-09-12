@@ -22,6 +22,7 @@ es:
   list_released: "No Publicado"
   list_totals: "Totales"
   list_contract: "Contrato"
+  list_cdr: "Colateral mínimo sugerido a la relación de la deuda"
   rubric_name: "Moneda"
   rubric_smartcont: "Riesgo De Contrato"
   rubric_counter: "Riesgo De Contraparte"
