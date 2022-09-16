@@ -36,57 +36,74 @@
             <%= t('menu_dashboard') %>
           <% end %>
         </li>
-        <% if cookies[:theme] == "light" %>
-          <li class="nav-item">
-            <%= link_to root_path(theme: "dark"), title: "Dark Mode", class: "nav-link" do %>
-              Dark Mode
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= t("menu_settings") %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <% if cookies[:theme] == "light" %>
+              <li class="nav-item">
+                <%= link_to root_path(theme: "dark"), title: "Dark Mode", class: "dropdown-item" do %>
+                  Dark Mode
+                <% end %>
+              </li>
+            <% elsif cookies[:theme] == "dark" %>
+              <li class="nav-item">
+                <%= link_to root_path(theme: "light"), title: "Light Mode", class: "dropdown-item" do %>
+                  Light Mode
+                <% end %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to root_path(theme: "dark"), title: "Dark Mode", class: "dropdown-item" do %>
+                  Dark Mode
+                <% end %>
+              </li>
             <% end %>
-          </li>
-        <% elsif cookies[:theme] == "dark" %>
-          <li class="nav-item">
-            <%= link_to root_path(theme: "light"), title: "Light Mode", class: "nav-link" do %>
-              Light Mode
-            <% end %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to root_path(theme: "dark"), title: "Dark Mode", class: "nav-link" do %>
-              Dark Mode
-            <% end %>
-          </li>
-        <% end %>
-        <% unless user_signed_in? && current_user.admin? %>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= locale.capitalize %>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark">
+            <li class="dropdown-item disabled"><%= t("menu_lang") %></li>
+            <ul class="list-unstyled">
               <li class="nav-item"><%= link_to url_for(locale: :en), title: "English", class: "dropdown-item" do %>&#8226; English<% end %></li>
               <li class="nav-item"><%= link_to url_for(locale: :es), title: "Español", class: "dropdown-item" do %>&#8226; Español<% end %></li>
               <li class="nav-item"><%= link_to url_for(locale: :fr), title: "Française", class: "dropdown-item" do %>&#8226; Française<% end %></li>
             </ul>
-          </li>
-        <% end %>
-        <% if user_signed_in? %>
-          <% if current_user.admin? %>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Admin
-              </a>
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><%= link_to "Add new token", new_token_path, title: "Add new token", class: "dropdown-item" %></li>
-                <li><%= link_to "Add new chain", new_network_path, title: "Add new chain", class: "dropdown-item" %></li>
-                <li><hr class="dropdown-divider-dark" /></li>
-                <li>
-                  <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
-                </li>
-                <li>
-                  <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
-                </li>
-              </ul>
-            </li>
+            <% if user_signed_in? %>
+              <% if current_user.admin? %>
+                <li class="dropdown-item disabled">Admin</li>
+                <ul class="list-unstyled">
+                  <li class="nav-item"><%= link_to new_token_path, title: "Add new token", class: "dropdown-item" do %>&#8226; Add new token<% end %></li>
+                  <li class="nav-item"><%= link_to new_network_path, title: "Add new chain", class: "dropdown-item" do %>&#8226; Add new chain<% end %></li>
+                </ul>
+                <li class="dropdown-item disabled">Account</li>
+                <ul class="list-unstyled">
+                  <li class="nav-item">
+                    <%= link_to edit_user_registration_path, class: "dropdown-item" do %>&#8226; Edit profile<% end %>
+                  </li>
+                  <li class="list-unstyled">
+                    <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" do %>&#8226; Sign out<% end %>
+                  </li>
+                </ul>
+              <% end %>
+            <% end %>
+          </ul>
+        </li>
+        <li>
+          <% url = 'https://api.diadata.org/v1/assetQuotation/Polygon/0x580A84C73811E1839F75d86d75d88cCa0c241fF4' %>
+          <% uri = URI(url) %>
+          <% response = Net::HTTP.get(uri) %>
+          <% prices = JSON.parse(response) %>
+          <%= link_to "https://docs.mai.finance/functions/smart-contract-addresses#qi-addresses", title: "Qi", target: "_blank", class: "nav-link" do %>
+            <%= svg_tag "qidao" %> $<%= (prices["Price"].to_f).round(3) %>
           <% end %>
-        <% end %>
+        </li>
+        <li>
+          <% url = 'https://api.diadata.org/v1/assetQuotation/Polygon/0xa3Fa99A148fA48D14Ed51d610c367C61876997F1' %>
+          <% uri = URI(url) %>
+          <% response = Net::HTTP.get(uri) %>
+          <% prices = JSON.parse(response) %>
+          <%= link_to "https://docs.mai.finance/functions/smart-contract-addresses#mai-mimatic-addresses", title: "Mai", target: "_blank", class: "nav-link" do %>
+            <%= svg_tag "mai" %>  $<%= (prices["Price"].to_f).round(3) %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>

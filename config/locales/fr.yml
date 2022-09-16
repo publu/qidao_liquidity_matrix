@@ -4,6 +4,7 @@ fr:
   menu_tokens: "Tokens"
   menu_chains: "Chaînes"
   menu_dashboard: "Tableau de bord"
+  menu_settings: "Choix"
   menu_lang: "Langue"
   list_token: "Token"
   list_new: "NOUVEAU"
