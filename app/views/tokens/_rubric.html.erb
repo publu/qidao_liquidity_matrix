@@ -85,33 +85,32 @@
   <div class="clearfix"></div>
 
   <ul class="list-unstyled">
-    <% if user_signed_in? && current_user.admin? %>
-      <li>
-        <strong><%= t('list_cdr') %>:</strong>
-        <% if grade_to_number(token.grade).to_f.between?(94, 100) %>
-          <%= round_up(((205 - grade_to_number(token.grade).to_f) * (1 + token.risk_volatility + (token.trade_slippage / token.liquidity))), 5) %>%
-        <% elsif grade_to_number(token.grade).to_f.between?(90, 93) %>
-          <%= round_up(((210 - grade_to_number(token.grade).to_f) * (1 + token.risk_volatility + (token.trade_slippage / token.liquidity))), 5) %>%
-        <% elsif grade_to_number(token.grade).to_f.between?(84, 89) %>
-          <%= round_up(((215 - grade_to_number(token.grade).to_f) * (1 + token.risk_volatility + (token.trade_slippage / token.liquidity))), 5) %>%
-        <% elsif grade_to_number(token.grade).to_f.between?(80, 83) %>
-          <%= round_up(((220 - grade_to_number(token.grade).to_f) * (1 + token.risk_volatility + (token.trade_slippage / token.liquidity))), 5) %>%
-        <% elsif grade_to_number(token.grade).to_f.between?(77, 79) %>
-          <%= round_up(((225 - grade_to_number(token.grade).to_f) * (1 + token.risk_volatility + (token.trade_slippage / token.liquidity))), 5) %>%
-        <% elsif grade_to_number(token.grade).to_f.between?(74, 76) %>
-          <%= round_up(((230 - grade_to_number(token.grade).to_f) * (1 + token.risk_volatility + (token.trade_slippage / token.liquidity))), 5) %>%
-        <% elsif grade_to_number(token.grade).to_f.between?(70, 73) %>
-          <%= round_up(((235 - grade_to_number(token.grade).to_f) * (1 + token.risk_volatility + (token.trade_slippage / token.liquidity))), 5) %>%
-        <% else %>
-          Not recommended as collateral
-        <% end %>
-      </li>
-      <br />
-    <% end %>
+    <li>
+      <strong><%= t('list_cdr') %>:</strong>
+      <% if grade_to_number(token.grade).to_f.between?(94, 100) %>
+        <%= round_up(((200 - grade_to_number(token.grade).to_f) * (1 + token.risk_volatility + (token.trade_slippage / token.liquidity))), 5) %>%
+      <% elsif grade_to_number(token.grade).to_f.between?(90, 93) %>
+        <%= round_up(((205 - grade_to_number(token.grade).to_f) * (1 + token.risk_volatility + (token.trade_slippage / token.liquidity))), 5) %>%
+      <% elsif grade_to_number(token.grade).to_f.between?(84, 89) %>
+        <%= round_up(((210 - grade_to_number(token.grade).to_f) * (1 + token.risk_volatility + (token.trade_slippage / token.liquidity))), 5) %>%
+      <% elsif grade_to_number(token.grade).to_f.between?(80, 83) %>
+        <%= round_up(((215 - grade_to_number(token.grade).to_f) * (1 + token.risk_volatility + (token.trade_slippage / token.liquidity))), 5) %>%
+      <% elsif grade_to_number(token.grade).to_f.between?(77, 79) %>
+        <%= round_up(((220 - grade_to_number(token.grade).to_f) * (1 + token.risk_volatility + (token.trade_slippage / token.liquidity))), 5) %>%
+      <% elsif grade_to_number(token.grade).to_f.between?(74, 76) %>
+        <%= round_up(((225 - grade_to_number(token.grade).to_f) * (1 + token.risk_volatility + (token.trade_slippage / token.liquidity))), 5) %>%
+      <% elsif grade_to_number(token.grade).to_f.between?(70, 73) %>
+        <%= round_up(((230 - grade_to_number(token.grade).to_f) * (1 + token.risk_volatility + (token.trade_slippage / token.liquidity))), 5) %>%
+      <% else %>
+        Not recommended as collateral
+      <% end %>
+      <%= svg_tag "asterisk" %>
+    </li>
     <li><strong><%= t('list_liquidity') %>:</strong> <%= number_to_currency(token.liquidity) %></li>
     <li><strong><%= t('list_volume') %>:</strong> <%= number_to_currency(token.volume) %></li>
     <li><strong><%= t('list_slippage') %>:</strong> <%= number_to_currency(token.trade_slippage) %></li>
   </ul>
+  <p><i><%= svg_tag "asterisk" %> <%= t('list_cdr_note') %>.</i></p>
 
   <ul class="list-unstyled">
     <li class="token_name"><strong><%= t('rubric_rubric') %></strong></li>

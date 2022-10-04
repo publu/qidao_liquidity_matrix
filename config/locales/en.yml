@@ -24,6 +24,7 @@ en:
   list_totals: "Totals"
   list_contract: "Contract"
   list_cdr: "Minimum Suggested Collateral To Debt Ratio"
+  list_cdr_note: "This number is an automated recommendation based on volatility, trade slippage, and liquidity, and may change as those values change. Higher collateral to debt suggestions may be mitigated by more infrequent ceiling raises and debt caps. This number is only a suggestion and may not reflect the actual percentage used in MAI vaults"
   rubric_name: "Token"
   rubric_smartcont: "Smart Contract Risk"
   rubric_counter: "Counterparty Risk"

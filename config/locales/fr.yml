@@ -24,6 +24,7 @@ fr:
   list_totals: "Totaux"
   list_contract: "Contrat"
   list_cdr: "Ratio garantie minimale suggérée/dette"
+  list_cdr_note: "Ce nombre est une recommandation automatisée basée sur la volatilité, le glissement des échanges et la liquidité, et peut changer à mesure que ces valeurs changent. Des garanties plus élevées aux suggestions de dette peuvent être atténuées par des augmentations de plafond et des plafonds de dette moins fréquents. Ce nombre n'est qu'une suggestion et peut ne pas refléter le pourcentage réel utilisé dans les coffres MAI"
   rubric_name: "Token"
   rubric_smartcont: "Risques liés au Smart Contract"
   rubric_counter: "Risques de Contrepartie"
