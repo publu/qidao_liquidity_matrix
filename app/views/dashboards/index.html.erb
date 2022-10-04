@@ -58,12 +58,12 @@
   </div>
   <hr />
   <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
+    <div class="col-lg-3 col-md-5 col-sm-12 info-box">
       <h4><%= t('dash_score_topten') %></h4>
       <ol>
         <% @byscore.each do |token| %>
           <li>
-            <strong><%= token.symbol %></strong> (<span style="color: <%= token.network.color %>"><%= token.network.name %></span>)
+            <strong><span style="color: <%= token.network.color %>"><%= token.symbol %></span></strong>
             <div class="float-end">
               <%= link_to token.grade, token, title: token.symbol + " on (" + token.network.name + ")", class: "plain_link" %>
             </div>
@@ -71,44 +71,44 @@
         <% end %>
       </ol>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
+    <div class="col-lg-3 col-md-7 col-sm-12 info-box">
       <h4><%= t('dash_liq_topten') %></h4>
       <ol>
         <% @byliquidity.each do |token| %>
           <li>
-            <strong><%= token.symbol %></strong>  (<span style="color: <%= token.network.color %>"><%= token.network.name %></span>)
+            <strong><span style="color: <%= token.network.color %>"><%= token.symbol %></span></strong>
             <div class="float-end">
-              <%= number_to_currency(token.liquidity) %>
+              <%= link_to number_to_currency(token.liquidity), token, title: token.symbol + " on (" + token.network.name + ")", class: "plain_link" %>
             </div>
           </li>
         <% end %>
       </ol>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
-      <h4><%= t('dash_debt_topten') %></h4>
-      <ol>
-        <% @bydebt.each do |token| %>
-          <li>
-            <strong><%= token.symbol %></strong>  (<span style="color: <%= token.network.color %>"><%= token.network.name %></span>)
-            <div class="float-end">
-              <% if token.mai_debt? %>
-                <%= mai(token.mai_debt) %>
-              <% else %>
-                $0.00
-              <% end %>
-            </div>
-          </li>
-        <% end %>
-      </ol>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
+    <div class="col-lg-3 col-md-5 col-sm-12 info-box">
       <h4><%= t('dash_vol_topten') %></h4>
       <ol>
         <% @byvolatility.each do |token| %>
           <li>
-            <strong><%= token.symbol %></strong>  (<span style="color: <%= token.network.color %>"><%= token.network.name %></span>)
+            <strong><span style="color: <%= token.network.color %>"><%= token.symbol %></span></strong>
             <div class="float-end">
-              <%= token.risk_volatility %>
+              <%= link_to token.risk_volatility, token, title: token.symbol + " on (" + token.network.name + ")", class: "plain_link" %>
+            </div>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="col-lg-3 col-md-7 col-sm-12 info-box">
+      <h4><%= t('dash_debt_topten') %></h4>
+      <ol>
+        <% @bydebt.each do |token| %>
+          <li>
+            <strong><span style="color: <%= token.network.color %>"><%= token.symbol %></span></strong>
+            <div class="float-end">
+              <% if token.mai_debt? %>
+                <%= link_to mai(token.mai_debt), token, title: token.symbol + " on (" + token.network.name + ")", class: "plain_link" %>
+              <% else %>
+                <%= link_to "$0.00", token, title: token.symbol + " on (" + token.network.name + ")", class: "plain_link" %>
+              <% end %>
             </div>
           </li>
         <% end %>
