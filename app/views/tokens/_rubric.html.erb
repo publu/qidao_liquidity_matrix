@@ -104,173 +104,180 @@
       <% else %>
         Not recommended as collateral
       <% end %>
-      <%= svg_tag "asterisk" %>
+      **
     </li>
     <li><strong><%= t('list_liquidity') %>:</strong> <%= number_to_currency(token.liquidity) %></li>
     <li><strong><%= t('list_volume') %>:</strong> <%= number_to_currency(token.volume) %></li>
     <li><strong><%= t('list_slippage') %>:</strong> <%= number_to_currency(token.trade_slippage) %></li>
   </ul>
-  <p><i><%= svg_tag "asterisk" %> <%= t('list_cdr_note') %>.</i></p>
+  <p><i>** <%= t('list_cdr_note') %>.</i></p>
 
-  <ul class="list-unstyled">
-    <li class="token_name"><strong><%= t('rubric_rubric') %></strong></li>
-  </ul>
+  <p>
+    <a data-bs-toggle="collapse" href="#collapseRubric" role="button" aria-expanded="false" aria-controls="collapseRubric">
+      <strong><%= t('rubric_link') %></strong>
+    </a>
+  </p>
+  <div class="collapse" id="collapseRubric">
+    <ul class="list-unstyled">
+      <li class="token_name"><strong><%= t('rubric_rubric') %></strong></li>
+    </ul>
 
-  <table class="rubric">
-    <tr class="top">
-      <th colspan="2" rowspan="2" class="left right"></th>
-      <th colspan="1" class="text-center left right"><%= t('rubric_days') %></th>
-      <th colspan="1" class="text-center right"><%= t('rubric_trx') %></th>
-      <th colspan="1" class="text-center right"><%= t('rubric_holders') %></th>
-      <th colspan="1" class="text-center right"><%= t('rubric_perms') %></th>
-      <th colspan="1" class="text-center right"><%= t('rubric_mcap') %></th>
-      <th colspan="1" class="text-center right"><%= t('rubric_vol') %></th>
-      <th colspan="1" class="text-center right"><%= t('rubric_volatility') %></th>
-    </tr>
-    <tr class="top">
-      <td colspan="1" class="text-center">></td>
-      <td colspan="1" class="text-center right">></td>
-      <td colspan="2" class="text-start right"><small><%= t('rubric_perms_message') %></small></td>
-      <td colspan="1" class="text-center right">></td>
-      <td colspan="1" class="text-center right"><small>1M &amp; 3M></small></td>
-      <td colspan="1" class="text-center right"><small><%= t('rubric_volatility_message') %></small></td>
-    </tr>
-    <tr class="top">
-      <td colspan="2" class="left right a">A+</td>
-      <td colspan="1" class="text-center">730</td>
-      <td colspan="1" class="text-center right">500000000</td>
-      <td colspan="1" class="text-end">100000000</td>
-      <td colspan="1" class="text-start right">ETH</td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(14900000000) %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(20000000000) %></td>
-      <td colspan="1" class="text-end right">0.005</td>
-    </tr>
-    <tr>
-      <td colspan="2" class="left right a">A</td>
-      <td colspan="1" class="text-center">730</td>
-      <td colspan="1" class="text-center right">100000000</td>
-      <td colspan="1" class="text-end">1000000</td>
-      <td colspan="1" class="text-start right"><%= t('perm_centreg') %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(10000000000) %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(10000000000) %></td>
-      <td colspan="1" class="text-end right">0.015</td>
-    </tr>
-    <tr>
-      <td colspan="2" class="left right a">A-</td>
-      <td colspan="1" class="text-center">730</td>
-      <td colspan="1" class="text-center right">10000000</td>
-      <td colspan="1" class="text-end">500000</td>
-      <td colspan="1" class="text-start right"></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(500000000) %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(2500000000) %></td>
-      <td colspan="1" class="text-end right">0.025</td>
-    </tr>
-    <tr class="top">
-      <td colspan="2" class="left right b">B+</td>
-      <td colspan="1" class="text-center">365</td>
-      <td colspan="1" class="text-center right">1000000</td>
-      <td colspan="1" class="text-end">100000</td>
-      <td colspan="1" class="text-start right"><%= t('perm_permissionless') %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(500000000) %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(700000000) %></td>
-      <td colspan="1" class="text-end right">0.038</td>
-    </tr>
-    <tr>
-      <td colspan="2" class="left right b">B</td>
-      <td colspan="1" class="text-center">365</td>
-      <td colspan="1" class="text-center right">350000</td>
-      <td colspan="1" class="text-end">50000</td>
-      <td colspan="1" class="text-start right"></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(250000000) %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(500000000) %></td>
-      <td colspan="1" class="text-end right">0.051</td>
-    </tr>
-    <tr>
-      <td colspan="2" class="left right b">B-</td>
-      <td colspan="1" class="text-center"></td>
-      <td colspan="1" class="text-center right"></td>
-      <td colspan="1" class="text-end">25000</td>
-      <td colspan="1" class="text-start right"><%= t('perm_pof') %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(100000000) %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(100000000) %></td>
-      <td colspan="1" class="text-end right">0.064</td>
-    </tr>
-    <tr class="top">
-      <td colspan="2" class="left right c">C+</td>
-      <td colspan="1" class="text-center">365</td>
-      <td colspan="1" class="text-center right">100000</td>
-      <td colspan="1" class="text-end">10000</td>
-      <td colspan="1" class="text-start right"></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(50000000) %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(20000000) %></td>
-      <td colspan="1" class="text-end right">0.079</td>
-    </tr>
-    <tr>
-      <td colspan="2" class="left right c">C</td>
-      <td colspan="1" class="text-center"></td>
-      <td colspan="1" class="text-center right"></td>
-      <td colspan="1" class="text-end"></td>
-      <td colspan="1" class="text-start right"><%= t('perm_somecontrol') %></td>
-      <td colspan="1" class="text-end right"></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(5000000) %></td>
-      <td colspan="1" class="text-end right">0.094</td>
-    </tr>
-    <tr>
-      <td colspan="2" class="left right c">C-</td>
-      <td colspan="1" class="text-center"></td>
-      <td colspan="1" class="text-center right">100000</td>
-      <td colspan="1" class="text-end">2500</td>
-      <td colspan="1" class="text-start right"></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(30000000) %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(1000000) %></td>
-      <td colspan="1" class="text-end right">0.109</td>
-    </tr>
-    <tr>
-      <td colspan="2" class="left right c">C-</td>
-      <td colspan="1" class="text-center">365</td>
-      <td colspan="1" class="text-center right">25000</td>
-      <td colspan="1" class="text-end"></td>
-      <td colspan="1" class="text-start right"><%= t('perm_mintcontrol') %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(15000000) %></td>
-      <td colspan="1" class="text-end right"></td>
-      <td colspan="1" class="text-end right"></td>
-    </tr>
-    <tr class="top">
-      <td colspan="2" class="left right d">D+</td>
-      <td colspan="1" class="text-center"></td>
-      <td colspan="1" class="text-center right">25000</td>
-      <td colspan="1" class="text-end"></td>
-      <td colspan="1" class="text-start right"><%= t('perm_centaudit') %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(10000000) %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(500000) %></td>
-      <td colspan="1" class="text-end right">0.124</td>
-    </tr>
-    <tr>
-      <td colspan="2" class="left right d">D</td>
-      <td colspan="1" class="text-center">365</td>
-      <td colspan="1" class="text-center right"></td>
-      <td colspan="1" class="text-end"></td>
-      <td colspan="1" class="text-start right"><%= t('perm_cent') %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(5000000) %></td>
-      <td colspan="1" class="text-end right"><%= number_to_currency(250000) %></td>
-      <td colspan="1" class="text-end right">0.139</td>
-    </tr>
-    <tr class="bottom">
-      <td colspan="2" class="left right d">D-</td>
-      <td colspan="1" class="text-center"></td>
-      <td colspan="1" class="text-center right"></td>
-      <td colspan="1" class="text-end"></td>
-      <td colspan="1" class="text-start right"><%= t('perm_opaque') %></td>
-      <td colspan="1" class="text-end right"></td>
-      <td colspan="1" class="text-end right"></td>
-      <td colspan="1" class="text-end right"></td>
-    </tr>
-  </table>
-  <br />
-
-  <ul class="list-unstyled">
-    <li class="token_name"><strong><%= t('rubric_threshold') %></strong></li>
+    <table class="rubric">
+      <tr class="top">
+        <th colspan="2" rowspan="2" class="left right"></th>
+        <th colspan="1" class="text-center left right"><%= t('rubric_days') %></th>
+        <th colspan="1" class="text-center right"><%= t('rubric_trx') %></th>
+        <th colspan="1" class="text-center right"><%= t('rubric_holders') %></th>
+        <th colspan="1" class="text-center right"><%= t('rubric_perms') %></th>
+        <th colspan="1" class="text-center right"><%= t('rubric_mcap') %></th>
+        <th colspan="1" class="text-center right"><%= t('rubric_vol') %></th>
+        <th colspan="1" class="text-center right"><%= t('rubric_volatility') %></th>
+      </tr>
+      <tr class="top">
+        <td colspan="1" class="text-center">></td>
+        <td colspan="1" class="text-center right">></td>
+        <td colspan="2" class="text-start right"><small><%= t('rubric_perms_message') %></small></td>
+        <td colspan="1" class="text-center right">></td>
+        <td colspan="1" class="text-center right"><small>1M &amp; 3M></small></td>
+        <td colspan="1" class="text-center right"><small><%= t('rubric_volatility_message') %></small></td>
+      </tr>
+      <tr class="top">
+        <td colspan="2" class="left right a">A+</td>
+        <td colspan="1" class="text-center">730</td>
+        <td colspan="1" class="text-center right">500000000</td>
+        <td colspan="1" class="text-end">100000000</td>
+        <td colspan="1" class="text-start right">ETH</td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(14900000000) %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(20000000000) %></td>
+        <td colspan="1" class="text-end right">0.005</td>
+      </tr>
+      <tr>
+        <td colspan="2" class="left right a">A</td>
+        <td colspan="1" class="text-center">730</td>
+        <td colspan="1" class="text-center right">100000000</td>
+        <td colspan="1" class="text-end">1000000</td>
+        <td colspan="1" class="text-start right"><%= t('perm_centreg') %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(10000000000) %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(10000000000) %></td>
+        <td colspan="1" class="text-end right">0.015</td>
+      </tr>
+      <tr>
+        <td colspan="2" class="left right a">A-</td>
+        <td colspan="1" class="text-center">730</td>
+        <td colspan="1" class="text-center right">10000000</td>
+        <td colspan="1" class="text-end">500000</td>
+        <td colspan="1" class="text-start right"></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(500000000) %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(2500000000) %></td>
+        <td colspan="1" class="text-end right">0.025</td>
+      </tr>
+      <tr class="top">
+        <td colspan="2" class="left right b">B+</td>
+        <td colspan="1" class="text-center">365</td>
+        <td colspan="1" class="text-center right">1000000</td>
+        <td colspan="1" class="text-end">100000</td>
+        <td colspan="1" class="text-start right"><%= t('perm_permissionless') %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(500000000) %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(700000000) %></td>
+        <td colspan="1" class="text-end right">0.038</td>
+      </tr>
+      <tr>
+        <td colspan="2" class="left right b">B</td>
+        <td colspan="1" class="text-center">365</td>
+        <td colspan="1" class="text-center right">350000</td>
+        <td colspan="1" class="text-end">50000</td>
+        <td colspan="1" class="text-start right"></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(250000000) %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(500000000) %></td>
+        <td colspan="1" class="text-end right">0.051</td>
+      </tr>
+      <tr>
+        <td colspan="2" class="left right b">B-</td>
+        <td colspan="1" class="text-center"></td>
+        <td colspan="1" class="text-center right"></td>
+        <td colspan="1" class="text-end">25000</td>
+        <td colspan="1" class="text-start right"><%= t('perm_pof') %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(100000000) %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(100000000) %></td>
+        <td colspan="1" class="text-end right">0.064</td>
+      </tr>
+      <tr class="top">
+        <td colspan="2" class="left right c">C+</td>
+        <td colspan="1" class="text-center">365</td>
+        <td colspan="1" class="text-center right">100000</td>
+        <td colspan="1" class="text-end">10000</td>
+        <td colspan="1" class="text-start right"></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(50000000) %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(20000000) %></td>
+        <td colspan="1" class="text-end right">0.079</td>
+      </tr>
+      <tr>
+        <td colspan="2" class="left right c">C</td>
+        <td colspan="1" class="text-center"></td>
+        <td colspan="1" class="text-center right"></td>
+        <td colspan="1" class="text-end"></td>
+        <td colspan="1" class="text-start right"><%= t('perm_somecontrol') %></td>
+        <td colspan="1" class="text-end right"></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(5000000) %></td>
+        <td colspan="1" class="text-end right">0.094</td>
+      </tr>
+      <tr>
+        <td colspan="2" class="left right c">C-</td>
+        <td colspan="1" class="text-center"></td>
+        <td colspan="1" class="text-center right">100000</td>
+        <td colspan="1" class="text-end">2500</td>
+        <td colspan="1" class="text-start right"></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(30000000) %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(1000000) %></td>
+        <td colspan="1" class="text-end right">0.109</td>
+      </tr>
+      <tr>
+        <td colspan="2" class="left right c">C-</td>
+        <td colspan="1" class="text-center">365</td>
+        <td colspan="1" class="text-center right">25000</td>
+        <td colspan="1" class="text-end"></td>
+        <td colspan="1" class="text-start right"><%= t('perm_mintcontrol') %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(15000000) %></td>
+        <td colspan="1" class="text-end right"></td>
+        <td colspan="1" class="text-end right"></td>
+      </tr>
+      <tr class="top">
+        <td colspan="2" class="left right d">D+</td>
+        <td colspan="1" class="text-center"></td>
+        <td colspan="1" class="text-center right">25000</td>
+        <td colspan="1" class="text-end"></td>
+        <td colspan="1" class="text-start right"><%= t('perm_centaudit') %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(10000000) %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(500000) %></td>
+        <td colspan="1" class="text-end right">0.124</td>
+      </tr>
+      <tr>
+        <td colspan="2" class="left right d">D</td>
+        <td colspan="1" class="text-center">365</td>
+        <td colspan="1" class="text-center right"></td>
+        <td colspan="1" class="text-end"></td>
+        <td colspan="1" class="text-start right"><%= t('perm_cent') %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(5000000) %></td>
+        <td colspan="1" class="text-end right"><%= number_to_currency(250000) %></td>
+        <td colspan="1" class="text-end right">0.139</td>
+      </tr>
+      <tr class="bottom">
+        <td colspan="2" class="left right d">D-</td>
+        <td colspan="1" class="text-center"></td>
+        <td colspan="1" class="text-center right"></td>
+        <td colspan="1" class="text-end"></td>
+        <td colspan="1" class="text-start right"><%= t('perm_opaque') %></td>
+        <td colspan="1" class="text-end right"></td>
+        <td colspan="1" class="text-end right"></td>
+        <td colspan="1" class="text-end right"></td>
+      </tr>
+    </table>
     <br />
-    <li><strong>Cs</strong> <%= t('rubric_threshold_message') %></li>
-  </ul>
+
+    <ul class="list-unstyled">
+      <li class="token_name"><strong><%= t('rubric_threshold') %></strong></li>
+      <br />
+      <li><strong>Cs</strong> <%= t('rubric_threshold_message') %></li>
+    </ul>
+  </div>
 </div>
