@@ -65,6 +65,7 @@
               <li class="nav-item"><%= link_to url_for(locale: :en), title: "English", class: "dropdown-item" do %>&#8226; English<% end %></li>
               <li class="nav-item"><%= link_to url_for(locale: :es), title: "Español", class: "dropdown-item" do %>&#8226; Español<% end %></li>
               <li class="nav-item"><%= link_to url_for(locale: :fr), title: "Française", class: "dropdown-item" do %>&#8226; Française<% end %></li>
+              <li class="nav-item"><%= link_to url_for(locale: :pt), title: "Português", class: "dropdown-item" do %>&#8226; Português<% end %></li>
             </ul>
             <% if user_signed_in? %>
               <% if current_user.admin? %>
