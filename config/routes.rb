@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  scope "(:locale)", locale: /en|es|fr|pt/ do
+  scope "(:locale)", locale: /en|de|es|fr|pt/ do
     root "tokens#index"
 
     resources :networks, path: "chains" do
