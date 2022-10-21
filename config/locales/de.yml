@@ -12,7 +12,7 @@ de:
   list_liquidity: "Gesamte Netwerk-Liquidität"
   list_slippage: "Grösster Tausch für Stables mit < 10% Slippage"
   list_volume: "1M durchschnittliches Tagesvolumen"
-  list_debt: "Gesamte MAI Schulden"
+  list_debt: "Schuldenprozentsatz"
   list_centralization: "Besitzt ein Wallet > 20% der Tokens in LPs?"
   list_available: "Verfügbarkeit"
   list_yes: "Ja"

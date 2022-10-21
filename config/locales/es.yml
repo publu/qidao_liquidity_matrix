@@ -12,7 +12,7 @@ es:
   list_liquidity: "Liquidez Total En La Cadena"
   list_slippage: "Comercio más grande para stables con < 10% de deslizamiento"
   list_volume: "Volumen Promedio Diario 1M"
-  list_debt: "Deuda Total De MAI"
+  list_debt: "Porcentaje De Deuda"
   list_centralization: "¿Una billetera posee > 20% de monedas en LP?"
   list_available: "Disponibilidad"
   list_yes: "Si"

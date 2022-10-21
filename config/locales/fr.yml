@@ -12,7 +12,7 @@ fr:
   list_liquidity: "Liquidité totale sur la chaîne"
   list_slippage: "Montant d'échange maximal contre des monnaies stables avec un slippage < 10%"
   list_volume: "Volume Moyen Quotidien de 1M"
-  list_debt: "Dette totale en MAI"
+  list_debt: "Pourcentage de la Dette"
   list_centralization: "Est-ce qu'un portefeuille détient > 20% des tokens en LPs?"
   list_available: "Disponibilité"
   list_yes: "Oui"

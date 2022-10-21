@@ -28,6 +28,7 @@ class TokensController < ApplicationController
       else
         @pagy, @tokens = pagy(Token.includes(:network, :minter).order_by_grade.order(liquidity: :desc))
       end
+      @debt_sum = Token.all.sum(:mai_debt)
       @token_count = Network.all.sum(:tokens_count)
       respond_to do |format|
         format.xlsx do

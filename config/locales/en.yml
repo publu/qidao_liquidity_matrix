@@ -12,7 +12,7 @@ en:
   list_liquidity: "Total Onchain Liquidity"
   list_slippage: "Largest trade for stables with < 10% slippage"
   list_volume: "1M Average Daily Volume"
-  list_debt: "Total MAI Debt"
+  list_debt: "Debt Percentage"
   list_centralization: "Does one wallet own > 20% of tokens in LPs?"
   list_available: "Availability"
   list_yes: "Yes"

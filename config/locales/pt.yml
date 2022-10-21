@@ -12,7 +12,7 @@ pt:
   list_liquidity: "Liquidez Total na Rede"
   list_slippage: "Maior troca por moedas estáveis com < 10% de deslize"
   list_volume: "Volume Diário Médio em 1M"
-  list_debt: "Débito Total em MAI"
+  list_debt: "Porcentagem da Dívida"
   list_centralization: "Uma carteira possui > 20% das moedas em LPs?"
   list_available: "Disponibilidade"
   list_yes: "Sim"

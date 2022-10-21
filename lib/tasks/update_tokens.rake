@@ -245,7 +245,7 @@ namespace :update_tokens do
       response = Net::HTTP.get(uri)
       vaults = JSON.parse(response)
       vaults.each do |vault|
-        vault.second.each do |v|
+        vault.each do |v|
           if v["vaultAddress"] == token.vault_address
             puts "Updating debt for " + token.symbol + " (" + token.network.name + ")."
             token.update(mai_debt: v["totalQualifyingDebt"])

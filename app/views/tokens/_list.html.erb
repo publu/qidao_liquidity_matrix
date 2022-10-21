@@ -9,6 +9,10 @@
         <%= t('list_chain') %>
       </th>
       <th class="red text-end">
+        <%= sort_link(column: "risk_marketcap", label: t('rubric_mcap')) %>
+        <%= sort_indicator if params[:column] == "risk_marketcap" %>
+      </th>
+      <th class="red text-end">
         <%= sort_link(column: "liquidity", label: t('list_liquidity')) %>
         <%= sort_indicator if params[:column] == "liquidity" %>
       </th>
@@ -23,10 +27,6 @@
       <th class="red text-end">
         <%= sort_link(column: "mai_debt", label: t('list_debt')) %>
         <%= sort_indicator if params[:column] == "mai_debt" %>
-      </th>
-      <th class="red text-end td-10">
-        <%= sort_link(column: "centralized", label: t('list_centralization')) %>
-        <%= sort_indicator if params[:column] == "centralized" %>
       </th>
       <th class="red text-center"><%= t('list_available') %></th>
       <th class="red text-center"><%= link_to t('list_grade'), tokens_path, title: "Risk Grading" %></th>
@@ -48,6 +48,9 @@
         <%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "network_link" %>
       </td>
       <td class="text-end">
+        <%= number_to_currency(token.risk_marketcap) %>
+      </td>
+      <td class="text-end">
         <%= number_to_currency(token.liquidity) %>
       </td>
       <td class="text-end">
@@ -58,16 +61,9 @@
       </td>
       <td class="text-end">
         <% if token.mai_debt? %>
-          <%= mai(token.mai_debt) %>
+          <%= ((token.mai_debt.to_f / @debt_sum.to_f) * 100).round(4) %>%
         <% else %>
-          n/a
-        <% end %>
-      </td>
-      <td class="text-center">
-        <% if token.centralized? %>
-          <span class="text-danger"><%= t('list_yes') %></span>
-        <% else %>
-          <%= t('list_no') %>
+          0%
         <% end %>
       </td>
       <td itemprop="provider" class="text-center">
