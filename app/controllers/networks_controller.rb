@@ -34,6 +34,7 @@ class NetworksController < ApplicationController
       @pagy, @tokens = pagy(Token.includes(:network, :minter).where(network_id: @network.id).order_by_grade.order(liquidity: :desc))
       @token_count = Token.where(network_id: @network.id).size
     end
+    @debt_sum = Token.all.sum(:mai_debt)
     respond_to do |format|
       format.html
       format.js
