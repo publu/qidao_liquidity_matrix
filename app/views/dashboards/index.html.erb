@@ -20,7 +20,20 @@
 
 <div class="info">
   <div class="row">
-    <div class="col-lg-3 col-md-12 col-sm-12 text-center info-box">
+    <div class="col-lg-3 col-md-6 col-sm-12 text-center info-box">
+      <h4>MAI Price</h4>
+      <span class="large-text">
+        <% url = 'https://api.diadata.org/v1/assetQuotation/Polygon/0xa3Fa99A148fA48D14Ed51d610c367C61876997F1' %>
+        <% uri = URI(url) %>
+        <% response = Net::HTTP.get(uri) %>
+        <% prices = JSON.parse(response) %>
+        <%= link_to "https://docs.mai.finance/functions/smart-contract-addresses#mai-mimatic-addresses", title: "Mai", target: "_blank", class: "nav-link" do %>
+          $<%= (prices["Price"].to_f).round(3) %>
+          (<%= (((prices["Price"] / prices["PriceYesterday"]) * 100) - 100).round(2) %>%)
+        <% end %>
+      </span>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 text-center info-box">
       <h4><%= t('dash_liquidity') %></h4>
       <span class="large-text">
         <%= number_to_currency(@liquidity) %>
@@ -37,10 +50,6 @@
     <div class="col-lg-2 col-md-4 col-sm-12  text-center info-box">
       <h4><%= t('dash_platforms') %></h4>
       <span class="large-text"><%= @minters.count %></span>
-    </div>
-    <div class="col-lg-3 col-md-12 col-sm-12  text-center info-box">
-      <h4><%= t('list_debt') %></h4>
-      <span class="large-text"><%= mai(@mai_debt) %></span>
     </div>
   </div>
   <hr />

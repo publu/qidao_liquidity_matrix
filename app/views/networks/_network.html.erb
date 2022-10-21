@@ -56,9 +56,9 @@
       </td>
       <td class="text-end">
         <% if token.mai_debt? %>
-          <%= mai(token.mai_debt) %>
+          <%= ((token.mai_debt.to_f / @debt_sum.to_f) * 100).round(4) %>%
         <% else %>
-          n/a
+          0%
         <% end %>
       </td>
       <td class="text-center">
@@ -111,7 +111,7 @@
           <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:liquidity)) %></strong></td>
           <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:trade_slippage) / network.tokens_count) %></strong></td>
           <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:volume)) %></strong></td>
-          <td class="text-end"><strong><%= mai(network.tokens.sum(:mai_debt)) %></strong></td>
+          <td class="text-end"><strong><%= (((network.tokens.sum(:mai_debt).to_f) / (@debt_sum.to_f)) * 100).round(4) %>%</strong></td>
           <td class="text-center"><strong><%= network.tokens.where(centralized: true).count %></strong></td>
           <td class="text-center">-</td>
           <td class="text-center">
