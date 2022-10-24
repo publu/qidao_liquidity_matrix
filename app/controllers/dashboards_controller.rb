@@ -7,11 +7,12 @@ class DashboardsController < ApplicationController
     @tokens = Token.all
     @minters = Minter.where.not(link: "")
     @mai_debt = Token.sum(:mai_debt)
+    @chart_debt = Network.joins(:tokens).group(:name).sum(:mai_debt)
     @chart_liquidity = Token.where.not(minter_id: 4).group(:symbol).sum(:liquidity)
     @byliquidity = Token.includes(:network).where.not(minter_id: 4).order(liquidity: :desc).limit(25)
-    @byvolatility = Token.includes(:network).where.not(minter_id: 4).order(risk_volatility: :asc).limit(10)
-    @byscore = Token.includes(:network).where.not(minter_id: 4).order_by_grade.order(liquidity: :desc).limit(10)
-    @bydebt = Token.includes(:network).where(minter_id: 1).order(mai_debt: :desc).limit(10)
+    @byvolatility = Token.includes(:network).where.not(minter_id: 4).order(risk_volatility: :asc).limit(25)
+    @byscore = Token.includes(:network).where.not(minter_id: 4).order_by_grade.order(liquidity: :desc).limit(25)
+    @bydebt = Token.includes(:network).where(minter_id: 1).order(mai_debt: :desc).limit(20)
   end
 
 end
