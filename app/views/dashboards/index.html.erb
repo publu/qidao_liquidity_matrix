@@ -20,72 +20,63 @@
 
 <div class="info">
   <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-12 text-center info-box">
-      <h4>MAI Price</h4>
-      <span class="large-text">
-        <% url = 'https://api.diadata.org/v1/assetQuotation/Polygon/0xa3Fa99A148fA48D14Ed51d610c367C61876997F1' %>
-        <% uri = URI(url) %>
-        <% response = Net::HTTP.get(uri) %>
-        <% prices = JSON.parse(response) %>
-        <%= link_to "https://docs.mai.finance/functions/smart-contract-addresses#mai-mimatic-addresses", title: "Mai", target: "_blank", class: "nav-link" do %>
-          $<%= (prices["Price"].to_f).round(3) %>
-          (<%= (((prices["Price"] / prices["PriceYesterday"]) * 100) - 100).round(2) %>%)
-        <% end %>
-      </span>
+    <div class="col-lg-3 col-md-4 col-sm-12 text-center align-items-end">
+      <div class="info-box">
+        <h4>MAI Price</h4>
+        <span class="large-text">
+          <% url = 'https://api.diadata.org/v1/assetQuotation/Polygon/0xa3Fa99A148fA48D14Ed51d610c367C61876997F1' %>
+          <% uri = URI(url) %>
+          <% response = Net::HTTP.get(uri) %>
+          <% prices = JSON.parse(response) %>
+          <%= link_to "https://docs.mai.finance/functions/smart-contract-addresses#mai-mimatic-addresses", title: "Mai", target: "_blank", class: "nav-link" do %>
+            $<%= (prices["Price"].to_f).round(3) %>
+            (<%= (((prices["Price"] / prices["PriceYesterday"]) * 100) - 100).round(2) %>%)
+          <% end %>
+        </span>
+      </div>
+      <br />
+      <div class="info-box">
+        <h4><%= t('dash_liquidity') %></h4>
+        <span class="medium-text">
+          <%= number_to_currency(@liquidity) %>
+        </span>
+      </div>
+      <br />
+      <div class="info-box">
+        <h4><%= t('dash_chains') %></h4>
+        <span class="large-text"><%= @networks.count %></span>
+      </div>
+      <br />
+      <div class="info-box">
+        <h4><%= t('dash_tokens') %></h4>
+        <span class="large-text"><%= @tokens.count %></span>
+      </div>
+      <br />
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-12 text-center info-box">
-      <h4><%= t('dash_liquidity') %></h4>
-      <span class="large-text">
-        <%= number_to_currency(@liquidity) %>
-      </span>
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-12 text-center info-box">
-      <h4><%= t('dash_chains') %></h4>
-      <span class="large-text"><%= @networks.count %></span>
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-12 text-center info-box">
-      <h4><%= t('dash_tokens') %></h4>
-      <span class="large-text"><%= @tokens.count %></span>
-    </div>
-    <div class="col-lg-2 col-md-4 col-sm-12  text-center info-box">
-      <h4><%= t('dash_platforms') %></h4>
-      <span class="large-text"><%= @minters.count %></span>
+    <div class="col-lg-9 col-md-8 col-sm-12">
+      <h3><%= t('mai_volume') %></h3>
+      <% url = 'https://api.coingecko.com/api/v3/coins/mimatic/market_chart?vs_currency=usd&days=30&interval=daily' %>
+      <% uri = URI(url) %>
+      <% response = Net::HTTP.get(uri) %>
+      <% mai = JSON.parse(response) %>
+      <% mai_volume = mai['total_volumes'] %>
+      <%= area_chart mai_volume, prefix: "$", thousands: "," %>
     </div>
   </div>
   <hr />
-  <div class="row">
-    <div class="col">
+  <div class="row justify-content-evenly">
+    <div class="col-lg-7 col-md-12 col-sm-12">
       <h3><%= t('dash_token_liq') %></h3>
       <%= pie_chart @chart_liquidity,
             donut: "true", prefix: "$", thousands: ",", legend: "right" %>
+            <br />
     </div>
-    <div class="col">
-      <h3><%= t('dash_token_vol') %></h3>
-      <%= pie_chart @chart_volume,
-            donut: "true", prefix: "$", thousands: ",", legend: "right" %>
-    </div>
-  </div>
-  <hr />
-  <div class="row">
-    <div class="col-lg-3 col-md-5 col-sm-12 info-box">
-      <h4><%= t('dash_score_topten') %></h4>
-      <ol>
-        <% @byscore.each do |token| %>
-          <li>
-            <strong><span style="color: <%= token.network.color %>"><%= token.symbol %></span></strong>
-            <div class="float-end">
-              <%= link_to token.grade, token, title: token.symbol + " on (" + token.network.name + ")", class: "plain_link" %>
-            </div>
-          </li>
-        <% end %>
-      </ol>
-    </div>
-    <div class="col-lg-3 col-md-7 col-sm-12 info-box">
+    <div class="col-lg-4 col-md-12 col-sm-12">
       <h4><%= t('dash_liq_topten') %></h4>
       <ol>
         <% @byliquidity.each do |token| %>
           <li>
-            <strong><span style="color: <%= token.network.color %>"><%= token.symbol %></span></strong>
+            <strong><%= token.symbol %> <span style="color: <%= token.network.color %>">(<%= token.network.name %>)</span></strong>
             <div class="float-end">
               <%= link_to number_to_currency(token.liquidity), token, title: token.symbol + " on (" + token.network.name + ")", class: "plain_link" %>
             </div>
@@ -93,12 +84,28 @@
         <% end %>
       </ol>
     </div>
-    <div class="col-lg-3 col-md-5 col-sm-12 info-box">
-      <h4><%= t('dash_vol_topten') %></h4>
+  </div>
+  <hr />
+  <div class="row justify-content-evenly">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <h4 class="medium-text"><%= t('dash_score_topten') %></h4>
+      <ol>
+        <% @byscore.each do |token| %>
+          <li>
+            <strong><%= token.symbol %> <span style="color: <%= token.network.color %>">(<%= token.network.name %>)</span></strong>
+            <div class="float-end">
+              <%= link_to token.grade, token, title: token.symbol + " on (" + token.network.name + ")", class: "plain_link" %>
+            </div>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <h4 class="medium-text"><%= t('dash_vol_topten') %></h4>
       <ol>
         <% @byvolatility.each do |token| %>
           <li>
-            <strong><span style="color: <%= token.network.color %>"><%= token.symbol %></span></strong>
+            <strong><%= token.symbol %> <span style="color: <%= token.network.color %>">(<%= token.network.name %>)</span></strong>
             <div class="float-end">
               <%= link_to token.risk_volatility, token, title: token.symbol + " on (" + token.network.name + ")", class: "plain_link" %>
             </div>
@@ -106,12 +113,12 @@
         <% end %>
       </ol>
     </div>
-    <div class="col-lg-3 col-md-7 col-sm-12 info-box">
-      <h4><%= t('dash_debt_topten') %></h4>
+    <div class="col-lg-4 col-md-12 col-sm-12">
+      <h4 class="medium-text"><%= t('dash_debt_topten') %></h4>
       <ol>
         <% @bydebt.each do |token| %>
           <li>
-            <strong><span style="color: <%= token.network.color %>"><%= token.symbol %></span></strong>
+            <strong><%= token.symbol %> <span style="color: <%= token.network.color %>">(<%= token.network.name %>)</span></strong>
             <div class="float-end">
               <% if token.mai_debt? %>
                 <%= link_to mai(token.mai_debt), token, title: token.symbol + " on (" + token.network.name + ")", class: "plain_link" %>
