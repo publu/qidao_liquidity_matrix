@@ -36,13 +36,6 @@
       </div>
       <br />
       <div class="info-box">
-        <h4><%= t('dash_liquidity') %></h4>
-        <span class="medium-text">
-          <%= number_to_currency(@liquidity) %>
-        </span>
-      </div>
-      <br />
-      <div class="info-box">
         <h4><%= t('dash_chains') %></h4>
         <span class="large-text"><%= @networks.count %></span>
       </div>
@@ -54,13 +47,13 @@
       <br />
     </div>
     <div class="col-lg-9 col-md-8 col-sm-12">
-      <h3 class="medium-text text-center"><%= t('mai_volume') %></h3>
+      <h3 class="medium-text text-center"><%= t('mai_price') %></h3>
       <% url = 'https://api.coingecko.com/api/v3/coins/mimatic/market_chart?vs_currency=usd&days=30&interval=daily' %>
       <% uri = URI(url) %>
       <% response = Net::HTTP.get(uri) %>
       <% mai = JSON.parse(response) %>
-      <% mai_volume = mai['total_volumes'] %>
-      <%= area_chart mai_volume, prefix: "$", thousands: "," %>
+      <% mai_volume = mai['prices'] %>
+      <%= line_chart mai_volume, prefix: "$", thousands: ",", min: 0.98, max: 1.02 %>
     </div>
   </div>
   <hr />
@@ -79,7 +72,7 @@
       </ol>
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12">
-      <h4 class="medium-text text-center">Backing By Chain</h4>
+      <h4 class="medium-text text-center"><%= t('dash_backing') %></h4>
       <%= pie_chart @chart_debt,
             donut: "true", prefix: "$", thousands: ",", legend: "right" %>
     </div>
@@ -95,6 +88,18 @@
           </li>
         <% end %>
       </ol>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <h3 class="medium-text text-center"><%= t('mai_volume') %></h3>
+      <% url = 'https://api.coingecko.com/api/v3/coins/mimatic/market_chart?vs_currency=usd&days=30&interval=daily' %>
+      <% uri = URI(url) %>
+      <% response = Net::HTTP.get(uri) %>
+      <% mai = JSON.parse(response) %>
+      <% mai_volume = mai['total_volumes'] %>
+      <%= area_chart mai_volume, prefix: "$", thousands: "," %>
     </div>
   </div>
   <hr />

@@ -26,6 +26,14 @@
   color: inherit;
 }
 
+#chart-1 {
+  height: 260px !important;
+}
+
+#chart-2, #chart-3, #chart-4 {
+  height: 500px !important;
+}
+
 body {
   font-size: 9.5pt;
 }
