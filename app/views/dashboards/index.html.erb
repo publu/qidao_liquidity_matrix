@@ -2,16 +2,16 @@
   QiDao Risk Matrix | Charts
 <% end %>
 <% content_for :description do %>
-  <meta name="description" content="Dashboard for QiDao protocol collaterals including liquidity, volume, and top 10 collaterals by category." />
+  <meta name="description" content="Dashboard for QiDao protocol collaterals including liquidity, volume, and top 25 collaterals by category." />
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://riskmanagement.qidao.community">
   <meta property="og:title" content="QiDao Risk Matrix | Chain Information">
-  <meta property="og:description" content="Dashboard for QiDao protocol collaterals including liquidity, volume, and top 10 collaterals by category.">
+  <meta property="og:description" content="Dashboard for QiDao protocol collaterals including liquidity, volume, and top 25 collaterals by category.">
   <meta property=“og:image” content="https://i.imgur.com/IJNSl9P.png">
   <meta name=“twitter:card” content=“summary”>
   <meta name="twitter:site" content="@qidaoprotocol">
   <meta name=“twitter:title” content=“QiDao Risk Matrix | Charts“>
-  <meta name=“twitter:description” content=“Dashboard for QiDao protocol collaterals including liquidity, volume, and top 10 collaterals by category.”>
+  <meta name=“twitter:description” content=“Dashboard for QiDao protocol collaterals including liquidity, volume, and top 25 collaterals by category.”>
   <meta name=“twitter:creator” content=“@geekvine”>
   <meta name=“twitter:image” content=“https://i.imgur.com/IJNSl9P.png”>
 <% end %>
@@ -22,7 +22,7 @@
   <div class="row">
     <div class="col-lg-3 col-md-4 col-sm-12 text-center align-items-end">
       <div class="info-box">
-        <h4>MAI Price</h4>
+        <h4><%= svg_tag "mai" %> MAI Price</h4>
         <span class="large-text">
           <% url = 'https://api.diadata.org/v1/assetQuotation/Polygon/0xa3Fa99A148fA48D14Ed51d610c367C61876997F1' %>
           <% uri = URI(url) %>
@@ -47,19 +47,19 @@
       <br />
     </div>
     <div class="col-lg-9 col-md-8 col-sm-12">
-      <h3 class="medium-text text-center"><%= t('mai_price') %></h3>
+      <h4 class="large-text text-center"><%= t('mai_price') %></h4>
       <% url = 'https://api.coingecko.com/api/v3/coins/mimatic/market_chart?vs_currency=usd&days=30&interval=daily' %>
       <% uri = URI(url) %>
       <% response = Net::HTTP.get(uri) %>
       <% mai = JSON.parse(response) %>
       <% mai_volume = mai['prices'] %>
-      <%= line_chart mai_volume, prefix: "$", thousands: ",", min: 0.98, max: 1.02 %>
+      <%= line_chart mai_volume, prefix: "$", thousands: ",", min: 0.98, max: 1.02, discrete: true, points: false, library: { scales: { x: { ticks: { display: false } } } } %>
     </div>
   </div>
   <hr />
   <div class="row justify-content-evenly">
     <div class="col-lg-3 col-md-12 col-sm-12">
-      <h4 class="medium-text text-center"><%= t('dash_score_topten') %></h4>
+      <h4 class="medium-text text-center"><%= svg_tag "asterisk" %> <%= t('dash_score_topten') %></h4>
       <ol>
         <% @byscore.each do |token| %>
           <li>
@@ -74,10 +74,10 @@
     <div class="col-lg-6 col-md-12 col-sm-12">
       <h4 class="medium-text text-center"><%= t('dash_backing') %></h4>
       <%= pie_chart @chart_debt,
-            donut: "true", prefix: "$", thousands: ",", legend: "right" %>
+            donut: "true", prefix: "$", thousands: ",", legend: "bottom" %>
     </div>
     <div class="col-lg-3 col-md-12 col-sm-12">
-      <h4 class="medium-text text-center"><%= t('dash_vol_topten') %></h4>
+      <h4 class="medium-text text-center"><%= svg_tag "asterisk" %> <%= t('dash_vol_topten') %></h4>
       <ol>
         <% @byvolatility.each do |token| %>
           <li>
@@ -93,13 +93,13 @@
   <hr />
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12">
-      <h3 class="medium-text text-center"><%= t('mai_volume') %></h3>
+      <h4 class="large-text text-center"><%= t('mai_volume') %></h4>
       <% url = 'https://api.coingecko.com/api/v3/coins/mimatic/market_chart?vs_currency=usd&days=30&interval=daily' %>
       <% uri = URI(url) %>
       <% response = Net::HTTP.get(uri) %>
       <% mai = JSON.parse(response) %>
       <% mai_volume = mai['total_volumes'] %>
-      <%= area_chart mai_volume, prefix: "$", thousands: "," %>
+      <%= area_chart mai_volume, prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#f16e6a" }, library: { scales: { x: { ticks: { display: false } } } } %>
     </div>
   </div>
   <hr />
@@ -107,11 +107,11 @@
     <div class="col-lg-7 col-md-12 col-sm-12">
       <h4 class="medium-text text-center"><%= t('dash_token_liq') %></h4>
       <%= pie_chart @chart_liquidity,
-            donut: "true", prefix: "$", thousands: ",", legend: "right" %>
+            donut: "true", prefix: "$", thousands: ",", legend: "bottom" %>
             <br />
     </div>
     <div class="col-lg-4 col-md-12 col-sm-12">
-      <h4 class="medium-text text-center"><%= t('dash_liq_topten') %></h4>
+      <h4 class="medium-text text-center"><%= svg_tag "asterisk" %> <%= t('dash_liq_topten') %></h4>
       <ol>
         <% @byliquidity.each do |token| %>
           <li>

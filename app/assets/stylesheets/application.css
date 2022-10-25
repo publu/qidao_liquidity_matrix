@@ -17,9 +17,9 @@
 :root {
   --darkColor: white;
   --darkBackground: #2d3436;
-  --darkPageBackground: #2d343680;
+  --darkPageBackground: #15171d;
   --lightColor: #2d3436;
-  --lightBackground: white;
+  --lightBackground: #f5f6fa;
 }
 
 .network_link {
@@ -27,15 +27,23 @@
 }
 
 #chart-1 {
-  height: 260px !important;
+  height: 250px !important;
 }
 
-#chart-2, #chart-3, #chart-4 {
-  height: 500px !important;
+#chart-3 {
+  height: 300px !important;
+}
+
+#chart-2, #chart-4 {
+  height: 475px !important;
 }
 
 body {
   font-size: 9.5pt;
+}
+
+a {
+  color: #00a8ff;
 }
 
 body.light {
@@ -63,7 +71,7 @@ body.light .pagination {
 
 body.light .pagination a {
   font-size: 9pt;
-  color: var(--lightColor);
+  color: inherit;
 }
 
 body.dark {
@@ -74,7 +82,7 @@ body.dark {
 
 body.dark a.plain_link {
   text-decoration: none;
-  color: var(--darkColor);
+  color: inherit;
 }
 
 body.dark a.plain_link:hover {
@@ -95,12 +103,12 @@ body.dark .pagination {
 
 body.dark .pagination a {
   font-size: 9pt;
-  color: var(--darkColor);
+  color: inherit;
   background-color: var(--darkPageBackground);
 }
 
 body.dark .pagination .active {
-  background-color: #0984e3;
+  background-color: #00a8ff;
 }
 
 .logo {
@@ -112,7 +120,7 @@ body.dark .pagination .active {
 }
 
 .container {
-  width: 85%;
+  width: 100%;
 }
 
 .navbar-links {

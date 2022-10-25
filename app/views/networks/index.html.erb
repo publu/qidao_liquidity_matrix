@@ -72,11 +72,3 @@ QiDao Risk Matrix | Chain Information<% end %>
     <% end %>
   </table>
 </div>
-<%if user_signed_in? && current_user.admin? %>
-  <div class="float-lg-end d-none d-lg-block">
-    <%= form_with url: import_networks_path, method: :post do |form| %>
-      <%= form.file_field :file, class: "form-control-sm", accept: ".csv" %>
-      <%= form.button "Import" %>
-    <% end %>
-  </div>
-<% end %>

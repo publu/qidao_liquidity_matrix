@@ -28,7 +28,10 @@
         <%= sort_link(column: "mai_debt", label: t('list_debt')) %>
         <%= sort_indicator if params[:column] == "mai_debt" %>
       </th>
-      <th class="red text-center"><%= t('list_available') %></th>
+      <th class="red text-center">
+        <%= sort_link(column: "minter_id", label: t('list_available')) %>
+        <%= sort_indicator if params[:column] == "minter_id" %>
+      </th>
       <th class="red text-center"><%= link_to t('list_grade'), tokens_path, title: "Risk Grading" %></th>
       <% if user_signed_in? && current_user.admin? %>
         <th class="red text-center"><%= t('actions') %></th>
@@ -70,7 +73,7 @@
         <% if token.minter.name == "Not Released" %>
           <span class="text-danger"><%= t('list_released') %></span>
         <% else %>
-          <%= link_to token.minter.name, token.minter.link, title: "Go to " + token.minter.name, class: "plain_link" %>
+          <%= link_to token.minter.name, token.minter.link, title: "Go to " + token.minter.name, target: "_blank", class: "plain_link" %>
         <% end %>
       </td>
       <td itemprop="aggregateRating" class="text-center">

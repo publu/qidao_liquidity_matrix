@@ -2,6 +2,4 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "chartkick"
-import Highcharts from "highcharts"
-
-window.Highcharts = Highcharts
+import "Chart.bundle"
