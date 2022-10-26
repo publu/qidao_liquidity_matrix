@@ -52,8 +52,8 @@
       <% uri = URI(url) %>
       <% response = Net::HTTP.get(uri) %>
       <% mai = JSON.parse(response) %>
-      <% mai_volume = mai['prices'] %>
-      <%= line_chart mai_volume, prefix: "$", thousands: ",", min: 0.98, max: 1.02, discrete: true, points: false, library: { scales: { x: { ticks: { display: false } } } } %>
+      <% mai_price = mai['prices'] %>
+      <%= line_chart mai_price, prefix: "$", thousands: ",", min: 0.98, max: 1.02, discrete: true, points: false, dataset: { borderWidth: 10, borderColor: "#f16e6a", tension: 0.1 }, library: { scales: { x: { ticks: { display: false } } } } %>
     </div>
   </div>
   <hr />
@@ -75,7 +75,7 @@
       <h4 class="medium-text text-center"><%= t('dash_backing') %></h4>
       <%= pie_chart @chart_debt,
             donut: "true", prefix: "$", thousands: ",", legend: "bottom",
-            colors: ["#FFC312", "#F79F1F", "#ff9f43", "#EE5A24", "#EA2027", "#C4E538", "#A3CB38", "#1dd1a1", "#10ac84", "#009432", "#006266", "#12CBC4", "#1289A7", "#48dbfb", "#0abde3", "#54a0ff", "#2e86de", "#0652DD", "#1B1464", "#FDA7DF", "#ff9ff3", "#D980FA", "#9980FA", "#f368e0", "#5758BB", "#ff6b6b", "#ee5253", "#ED4C67", "#B53471", "#833471", "#6F1E51" ] %>
+            colors: ["#4b6584", "#596275", "#a55eea", "#4b7bec", "#45aaf2", "#26de81", "#20bf6b", "#2bcbba", "#ffd32a", "#ffa801", "#e15f41", "#ff5e57", "#ef5777", "#c44569", "#f53b57"] %>
     </div>
     <div class="col-lg-3 col-md-12 col-sm-12">
       <h4 class="medium-text text-center"><%= svg_tag "asterisk" %> <%= t('dash_vol_topten') %></h4>
@@ -100,7 +100,7 @@
       <% response = Net::HTTP.get(uri) %>
       <% mai = JSON.parse(response) %>
       <% mai_volume = mai['total_volumes'] %>
-      <%= area_chart mai_volume, prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#f16e6a" }, library: { scales: { x: { ticks: { display: false } } } } %>
+      <%= area_chart mai_volume, prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#00a8ff" }, library: { scales: { x: { ticks: { display: false } } } } %>
     </div>
   </div>
   <hr />
