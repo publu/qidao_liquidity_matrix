@@ -53,7 +53,11 @@
       <% response = Net::HTTP.get(uri) %>
       <% mai = JSON.parse(response) %>
       <% mai_price = mai['prices'] %>
-      <%= line_chart mai_price, prefix: "$", thousands: ",", min: 0.98, max: 1.02, discrete: true, points: false, dataset: { borderWidth: 10, borderColor: "#f16e6a", tension: 0.1 }, library: { scales: { x: { ticks: { display: false } } } } %>
+      <% if cookies[:theme] == "dark" %>
+        <%= line_chart mai_price, prefix: "$", thousands: ",", min: 0.98, max: 1.02, discrete: true, points: false, dataset: { borderWidth: 10, borderColor: "#f16e6a", tension: 0.1 }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
+      <% else %>
+        <%= line_chart mai_price, prefix: "$", thousands: ",", min: 0.98, max: 1.02, discrete: true, points: false, dataset: { borderWidth: 10, borderColor: "#f16e6a", tension: 0.1 }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
+      <% end %>
     </div>
   </div>
   <hr />
@@ -100,7 +104,11 @@
       <% response = Net::HTTP.get(uri) %>
       <% mai = JSON.parse(response) %>
       <% mai_volume = mai['total_volumes'] %>
-      <%= area_chart mai_volume, prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#00a8ff" }, library: { scales: { x: { ticks: { display: false } } } } %>
+      <% if cookies[:theme] == "dark" %>
+        <%= area_chart mai_volume, prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#00a8ff" }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
+      <% else %>
+        <%= area_chart mai_volume, prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#00a8ff" }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
+      <% end %>
     </div>
   </div>
   <hr />
@@ -126,5 +134,4 @@
       </ol>
     </div>
   </div>
-  <p><strong><%= t('dash_message') %></strong></p>
 </div>

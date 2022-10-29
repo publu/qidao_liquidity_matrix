@@ -108,7 +108,6 @@
     </li>
     <br />
     <li><strong><%= t('list_liquidity') %>:</strong> <%= number_to_currency(token.liquidity) %></li>
-    <li><strong><%= t('list_volume') %>:</strong> <%= number_to_currency(token.volume) %></li>
     <li><strong><%= t('list_slippage') %>:</strong> <%= number_to_currency(token.trade_slippage) %></li>
     <li><strong><%= t('list_centralization') %>:</strong>
       <% if token.centralized? %>
@@ -119,7 +118,6 @@
     </li>
   </ul>
   <p><i>** <%= t('list_cdr_note') %>.</i></p>
-
   <p>
     <a data-bs-toggle="collapse" href="#collapseRubric" role="button" aria-expanded="false" aria-controls="collapseRubric">
       <strong><%= t('rubric_link') %></strong>
