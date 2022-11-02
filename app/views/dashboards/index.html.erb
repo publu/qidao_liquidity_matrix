@@ -77,11 +77,19 @@
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12">
       <h4 class="medium-text text-center"><%= t('dash_backing') %></h4>
-      <%= pie_chart @chart_debt,
-            adapter: "google",
-            donut: "true", prefix: "$", thousands: ",", legend: false,
-            library: { "backgroundColor": "#2d3436" },
-            colors: ["#4b6584", "#596275", "#a55eea", "#4b7bec", "#45aaf2", "#26de81", "#20bf6b", "#2bcbba", "#ffd32a", "#ffa801", "#e15f41", "#ff5e57", "#ef5777", "#c44569", "#f53b57"] %>
+      <% if cookies[:theme] == "dark" %>
+        <%= pie_chart @chart_debt,
+              adapter: "google",
+              donut: "true", prefix: "$", thousands: ",", legend: false,
+              library: { "backgroundColor": "#2d3436" },
+              colors: ["#4b6584", "#596275", "#a55eea", "#4b7bec", "#45aaf2", "#26de81", "#20bf6b", "#2bcbba", "#ffd32a", "#ffa801", "#e15f41", "#ff5e57", "#ef5777", "#c44569", "#f53b57"] %>
+      <% else %>
+        <%= pie_chart @chart_debt,
+              adapter: "google",
+              donut: "true", prefix: "$", thousands: ",", legend: false,
+              library: { "backgroundColor": "#f5f6fa" },
+              colors: ["#4b6584", "#596275", "#a55eea", "#4b7bec", "#45aaf2", "#26de81", "#20bf6b", "#2bcbba", "#ffd32a", "#ffa801", "#e15f41", "#ff5e57", "#ef5777", "#c44569", "#f53b57"] %>
+      <% end %>
     </div>
     <div class="col-lg-3 col-md-12 col-sm-12">
       <h4 class="medium-text text-center"><%= svg_tag "asterisk" %> <%= t('dash_vol_topten') %></h4>
