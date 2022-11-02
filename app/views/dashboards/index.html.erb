@@ -54,9 +54,9 @@
       <% mai = JSON.parse(response) %>
       <% mai_price = mai['prices'] %>
       <% if cookies[:theme] == "dark" %>
-        <%= line_chart mai_price, prefix: "$", thousands: ",", min: 0.98, max: 1.02, discrete: true, points: false, dataset: { borderWidth: 10, borderColor: "#f16e6a", tension: 0.1 }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
+        <%= line_chart mai_price, prefix: "$", thousands: ",", min: 0.95, max: 1.05, discrete: true, points: false, dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.25 }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
       <% else %>
-        <%= line_chart mai_price, prefix: "$", thousands: ",", min: 0.98, max: 1.02, discrete: true, points: false, dataset: { borderWidth: 10, borderColor: "#f16e6a", tension: 0.1 }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
+        <%= line_chart mai_price, prefix: "$", thousands: ",", min: 0.95, max: 1.05, discrete: true, points: false, dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.25 }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
       <% end %>
     </div>
   </div>

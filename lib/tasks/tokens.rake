@@ -2,7 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'task_helpers/tokens_helper'
 
-namespace :update_tokens do
+namespace :tokens do
   desc 'Update tokens with latest data'
 
   task days: :environment do

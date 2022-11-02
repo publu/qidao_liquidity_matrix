@@ -34,6 +34,9 @@
     <li><strong>Coingecko:</strong> <%= link_to token.coingecko, token.coingecko, title: "Coingecko", target: "_blank", rel: "noopener noreferrer" %></li>
     <li><strong>Coinmarketcap:</strong> <%= link_to token.coinmarketcap, token.coinmarketcap, title: "CoinMarketCap", target: "_blank", rel: "noopener noreferrer" %></li>
     <li><strong><%= t('list_contract') %>:</strong> <%= link_to token.network.blockchain_explorer + token.contract_address, token.network.blockchain_explorer + token.contract_address, title: "Blockchain Explorer", target: "_blank", rel: "noopener noreferrer" %></li>
+    <% if token.vault_address? %>
+      <li><strong><%= t('list_vault_contract') %>:</strong> <%= link_to token.network.blockchain_explorer + token.vault_address, token.network.blockchain_explorer + token.vault_address, title: "Vault Contract", target: "_blank", rel: "noopener noreferrer" %></li>
+    <% end %>
     <li><strong><%= t('rubric_updated') %>:</strong> <%= token.updated_at.strftime("%d %B, %Y") %></li>
   </ul>
   <table class="table table-bordered rubric">
