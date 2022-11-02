@@ -108,10 +108,10 @@
       <tr>
         <td><strong><%= t('list_totals') %></strong></td>
           <td><strong><%= network.tokens_count %></strong></td>
-          <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:liquidity)) %></strong></td>
-          <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:trade_slippage) / network.tokens_count) %></strong></td>
-          <td class="text-end"><strong><%= number_to_currency(network.tokens.sum(:volume)) %></strong></td>
-          <td class="text-end"><strong><%= (((network.tokens.sum(:mai_debt).to_f) / (@debt_sum.to_f)) * 100).round(4) %>%</strong></td>
+          <td class="text-end"><strong><%= number_to_currency(network.liquidity) %></strong></td>
+          <td class="text-end"><strong>-</td>
+          <td class="text-end"><strong><%= number_to_currency(network.volume) %></strong></td>
+          <td class="text-end"><strong><%= network.debtpercent %>%</strong></td>
           <td class="text-center"><strong><%= network.tokens.where(centralized: true).count %></strong></td>
           <td class="text-center">-</td>
           <td class="text-center">

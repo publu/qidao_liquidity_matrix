@@ -30,11 +30,15 @@
   height: 250px !important;
 }
 
+#chart-2 {
+  height: 500px !important;
+}
+
 #chart-3 {
   height: 300px !important;
 }
 
-#chart-2, #chart-4 {
+#chart-4 {
   height: 475px !important;
 }
 

@@ -8,7 +8,7 @@ namespace :chains do
   task liquidity: :environment do
     Network.all.each do |network|
       puts "Updating liquidity for " + network.name
-      network.update(liquidity: (token.contract_days + 1))
+      network.update(liquidity: (network.tokens.sum(:liquidity)))
       puts "Completed."
     end
     puts "Liquidity update completed."
@@ -17,7 +17,7 @@ namespace :chains do
   task volume: :environment do
     Network.all.each do |network|
       puts "Updating volume for " + network.name
-      network.update(volume: (token.contract_days + 1))
+      network.update(volume: (network.tokens.sum(:volume)))
       puts "Completed."
     end
     puts "Volume update completed."
@@ -26,7 +26,7 @@ namespace :chains do
   task debtamount: :environment do
     Network.all.each do |network|
       puts "Updating debt for " + network.name
-      network.update(debtamount: (token.contract_days + 1))
+      network.update(debtamount: (network.tokens.sum(:mai_debt)))
       puts "Completed."
     end
     puts "Debt amount update completed."
@@ -35,7 +35,7 @@ namespace :chains do
   task debtpercent: :environment do
     Network.all.each do |network|
       puts "Updating debt percentage for " + network.name
-      network.update(debtpercent: (token.contract_days + 1))
+      network.update(debtpercent: ((((network.tokens.sum(:mai_debt).to_f) / (Token.all.sum(:mai_debt).to_f)) * 100).round(4)))
       puts "Completed."
     end
     puts "Debt percentage update completed."

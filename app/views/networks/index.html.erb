@@ -37,10 +37,10 @@ QiDao Risk Matrix | Chain Information<% end %>
           </td>
           <td itemprop="url"><%= link_to bc_link(network.blockchain_explorer), bc_link(network.blockchain_explorer), title: "View blockchain explorer", target: "_blank", rel: "noopener noreferrer", class: "plain_link" %></td>
           <td class="text-start"><%= link_to network.name + " RPCs", "https://chainlist.org/chain/#{network.chain_id}", title: "Chainlist", target: "_blank", rel: "noopener noreferrer", class: "plain_link" %></td>
-          <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:liquidity)) %></td>
-          <td class="text-end"><%= number_to_currency(Token.where(network_id: network.id).sum(:volume)) %></td>
+          <td class="text-end"><%= number_to_currency(network.liquidity) %></td>
+          <td class="text-end"><%= number_to_currency(network.volume) %></td>
           <td class="text-end">
-            <%= ((network.tokens.sum(:mai_debt).to_f / @debt_sum.to_f) * 100).round(4) %>%
+            <%= network.debtpercent %>%
           </td>
           <td class="text-center"><%= link_to network.tokens_count, network, title: "View chain information for " + network.name %></td>
           <% if user_signed_in? && current_user.admin? %>
