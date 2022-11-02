@@ -68,7 +68,7 @@ pt:
   dash_platforms: "Plataformas MAI"
   dash_token_liq: "Garantias por Liquidez"
   dash_backing: "Apoio Por Cadeia"
-  dash_liq_topten: "Top 20 por Liquidez"
+  dash_liq_topten: "Top 25 por Liquidez"
   dash_vol_topten: "Top 20 por Volume"
   dash_score_topten: "Top 20 por Classificação de Risco"
   dash_message: "** Esta página não inclui dados de garantias de cofre não liberadas."

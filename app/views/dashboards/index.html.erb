@@ -125,10 +125,19 @@
   <div class="row justify-content-end">
     <div class="col-lg-7 col-md-12 col-sm-12">
       <h4 class="medium-text text-center"><%= t('dash_token_liq') %></h4>
-      <%= pie_chart @chart_liquidity,
-            donut: "true", prefix: "$", thousands: ",", legend: "left",
-            colors: ["#FFC312", "#F79F1F", "#ff9f43", "#EE5A24", "#EA2027", "#C4E538", "#A3CB38", "#1dd1a1", "#10ac84", "#009432", "#006266", "#12CBC4", "#1289A7", "#48dbfb", "#0abde3", "#54a0ff", "#2e86de", "#0652DD", "#1B1464", "#FDA7DF", "#ff9ff3", "#D980FA", "#9980FA", "#f368e0", "#5758BB", "#ff6b6b", "#ee5253", "#ED4C67", "#B53471", "#833471", "#6F1E51"  ] %>
-            <br />
+      <% if cookies[:theme] == "dark" %>
+        <%= pie_chart @chart_liquidity,
+              adapter: "google",
+              donut: "true", prefix: "$", thousands: ",", legend: false,
+              library: { "backgroundColor": "#2d3436" },
+              colors: ["#FFC312", "#F79F1F", "#ff9f43", "#EE5A24", "#EA2027", "#C4E538", "#A3CB38", "#1dd1a1", "#10ac84", "#009432", "#006266", "#12CBC4", "#1289A7", "#48dbfb", "#0abde3", "#54a0ff", "#2e86de", "#0652DD", "#1B1464", "#FDA7DF", "#ff9ff3", "#D980FA", "#9980FA", "#f368e0", "#5758BB", "#ff6b6b", "#ee5253", "#ED4C67", "#B53471", "#833471", "#6F1E51"  ] %>
+      <% else %>
+        <%= pie_chart @chart_liquidity,
+              adapter: "google",
+              donut: "true", prefix: "$", thousands: ",", legend: false,
+              library: { "backgroundColor": "#f5f6fa" },
+              colors: ["#FFC312", "#F79F1F", "#ff9f43", "#EE5A24", "#EA2027", "#C4E538", "#A3CB38", "#1dd1a1", "#10ac84", "#009432", "#006266", "#12CBC4", "#1289A7", "#48dbfb", "#0abde3", "#54a0ff", "#2e86de", "#0652DD", "#1B1464", "#FDA7DF", "#ff9ff3", "#D980FA", "#9980FA", "#f368e0", "#5758BB", "#ff6b6b", "#ee5253", "#ED4C67", "#B53471", "#833471", "#6F1E51"  ] %>
+     <% end %>
     </div>
     <div class="col-lg-4 col-md-12 col-sm-12">
       <h4 class="medium-text text-center"><%= svg_tag "asterisk" %> <%= t('dash_liq_topten') %></h4>
