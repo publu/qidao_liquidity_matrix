@@ -23,6 +23,7 @@ QiDao Risk Matrix | Chain Information<% end %>
       <th class="red">RPCs</th>
       <th class="red text-end"><%= t('list_liquidity') %></th>
       <th class="red text-end"><%= t('list_volume') %></th>
+      <th class="red text-end"><%= t('list_chain_debt') %></th>
       <th class="red text-end"><%= t('list_debt') %></th>
       <th class="red text-center"><%= t('list_count') %></th>
       <% if user_signed_in? && current_user.admin? %>
@@ -39,6 +40,7 @@ QiDao Risk Matrix | Chain Information<% end %>
           <td class="text-start"><%= link_to network.name + " RPCs", "https://chainlist.org/chain/#{network.chain_id}", title: "Chainlist", target: "_blank", rel: "noopener noreferrer", class: "plain_link" %></td>
           <td class="text-end"><%= number_to_currency(network.liquidity) %></td>
           <td class="text-end"><%= number_to_currency(network.volume) %></td>
+          <td class="text-end"><%= number_to_currency(network.debtamount) %></td>
           <td class="text-end">
             <%= network.debtpercent %>%
           </td>

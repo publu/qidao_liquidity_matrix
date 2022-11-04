@@ -19,6 +19,10 @@
         <%= sort_indicator if params[:column] == "volume" %>
       </th>
       <th class="red text-end">
+        <%= sort_network_link(column: "mai_deb", label: t('list_chain_debt')) %>
+        <%= sort_indicator if params["column"] == "mai_debt" %>
+      </th>
+      <th class="red text-end">
         <%= sort_network_link(column: "mai_debt", label: t('list_debt')) %>
         <%= sort_indicator if params["column"] == "mai_debt" %>
       </th>
@@ -55,11 +59,10 @@
         <%= number_to_currency(token.volume) %>
       </td>
       <td class="text-end">
-        <% if token.mai_debt? %>
-          <%= ((token.mai_debt.to_f / @debt_sum.to_f) * 100).round(4) %>%
-        <% else %>
-          0%
-        <% end %>
+        <%= number_to_currency(token.mai_debt) %>
+      </td>
+      <td class="text-end">
+        <%= ((token.mai_debt.to_i / @debt_sum) * 100).round(4) %>%
       </td>
       <td class="text-center">
         <% if token.centralized? %>
@@ -103,34 +106,6 @@
         </td>
       <% end %>
     </tr>
-    <% end %>
-    <% if network.tokens_count > 0 %>
-      <tr>
-        <td><strong><%= t('list_totals') %></strong></td>
-          <td><strong><%= network.tokens_count %></strong></td>
-          <td class="text-end"><strong><%= number_to_currency(network.liquidity) %></strong></td>
-          <td class="text-end"><strong>-</td>
-          <td class="text-end"><strong><%= number_to_currency(network.volume) %></strong></td>
-          <td class="text-end"><strong><%= network.debtpercent %>%</strong></td>
-          <td class="text-center"><strong><%= network.tokens.where(centralized: true).count %></strong></td>
-          <td class="text-center">-</td>
-          <td class="text-center">
-            <% sum = 0 %>
-            <% @tokens.each do |t| %>
-                <% product = (grade_to_number(t.grade)).to_i %>
-                <% sum += product %>
-                <% product %>
-            <% end %>
-            <strong><%= num_to_grade(sum / network.tokens_count) %></strong>
-        </td>
-        <% if user_signed_in? && current_user.admin? %>
-          <td class="text-center">-</td>
-        <% end %>
-      </tr>
-    <% else %>
-      <tr>
-        <td colspan="8">Nothing to see here yet! Tokens will be added soon.</td>
-      </tr>
     <% end %>
   </table>
   <% if network.tokens_count > 15 %>

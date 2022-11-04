@@ -229,7 +229,11 @@ namespace :tokens do
       vault = vaults.select {|v| v["address"].downcase == token.vault_address.downcase }
       if vault.first.present?
         puts "Updating debt for " + token.symbol + " (" + token.network.name + ")."
-        token.update(mai_debt: vault.first["totalDebt"].to_s)
+        # token.update(mai_debt: vault.first["totalDebt"].to_s)
+        token.update(mai_debt: (((vault.first["totalDebt"]).to_d) / 10**18).round(2))
+        puts (((vault.first["totalDebt"]).to_f) / 10**18).round(2)
+        puts "Debt: " + (((vault.first["totalDebt"]).to_f) / 10**18).round(2).to_s + " MAI"
+        puts "Completed."
       else
         puts "Skipping " + token.symbol + " (" + token.network.name + ")."
       end

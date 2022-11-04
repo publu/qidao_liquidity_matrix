@@ -63,11 +63,7 @@
         <%= number_to_currency(token.volume) %>
       </td>
       <td class="text-end">
-        <% if token.mai_debt? %>
-          <%= ((token.mai_debt.to_f / @debt_sum.to_f) * 100).round(4) %>%
-        <% else %>
-          0%
-        <% end %>
+        <%= ((token.mai_debt.to_i / @debt_sum) * 100).round(4) %>%
       </td>
       <td itemprop="provider" class="text-center">
         <% if token.minter.name == "Not Released" %>
