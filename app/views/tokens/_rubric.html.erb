@@ -110,9 +110,19 @@
       **
     </li>
     <br />
+    <li>
+      <% unless token.minter_id == 4 %>
+        <% if token.mai_debt.to_i > 0 %>
+          <strong><%= t('list_debt') %>:</strong> <%= ((token.mai_debt / @debt_sum) * 100).round(4) %>%
+        <% else %>
+          <strong><%= t('list_debt') %>:</strong> 0.00%
+        <% end %>
+      <% end %>
+    </li>
     <li><strong><%= t('list_liquidity') %>:</strong> <%= number_to_currency(token.liquidity) %></li>
     <li><strong><%= t('list_slippage') %>:</strong> <%= number_to_currency(token.trade_slippage) %></li>
-    <li><strong><%= t('list_centralization') %>:</strong>
+    <li>
+      <strong><%= t('list_centralization') %>:</strong>
       <% if token.centralized? %>
         <span class="text-danger"><%= t('list_yes') %></span>
       <% else %>
