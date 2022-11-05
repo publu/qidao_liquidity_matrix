@@ -9,6 +9,8 @@ en:
   menu_lang: "Language"
   mai_price: "Daily MAI Price"
   mai_volume: "Daily MAI Volume"
+  mai_question: "What is MAI?"
+  mai_description: "MAI is a CDP (collateralized debt position), a USD-pegged stablecoin backed by collateral, and available on many chains. Using the Mai Finance app, users can mint MAI by depositing an accepted collateral asset into a vault. When the loan is repaid to retrieve the collateral, the paid back MAI is burned. Mai Finance offers 0% interest on all loans with a 0.5% repayment fee. Visit the Mai Finance documentation for more details."
   list_token: "Token"
   list_new: "NEW"
   list_chain: "Chain"

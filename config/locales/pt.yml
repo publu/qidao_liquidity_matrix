@@ -9,6 +9,8 @@ pt:
   menu_lang: "Idiomas"
   mai_price: "Preço de MAI Diário"
   mai_volume: "Volume de MAI Diário"
+  mai_question: "O que é MAI?"
+  mai_description: "MAI é um CDP (posição de dívida colateralizada), uma stablecoin atrelada ao USD lastreada por garantias e disponível em muitas cadeias. Usando o aplicativo Mai Finance, os usuários podem cunhar MAI depositando um ativo colateral aceito em um cofre. Quando o empréstimo é reembolsado para recuperar a garantia, o MAI pago é queimado. Mai Finance oferece 0% de juros em todos os empréstimos com uma taxa de reembolso de 0,5%. Visite a documentação do Mai Finance para obter mais detalhes."
   list_token: "Moeda"
   list_new: "NOVO"
   list_chain: "Rede"

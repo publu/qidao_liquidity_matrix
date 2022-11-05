@@ -9,6 +9,8 @@ es:
   menu_lang: "Lenguaje"
   mai_price: "Precio Diario De MAI"
   mai_volume: "Volumen Diario De MAI"
+  mai_question: "¿Qué es MAI?"
+  mai_description: "MAI es un CDP (posición de deuda garantizada), una moneda estable vinculada al USD respaldada por garantía y disponible en muchas cadenas. Usando la aplicación Mai Finance, los usuarios pueden acuñar MAI depositando un activo colateral aceptado en una bóveda. Cuando se reembolsa el préstamo para recuperar la garantía, se quema el MAI reembolsado. Mai Finance ofrece 0% de interés en todos los préstamos con una tarifa de reembolso del 0,5%. Visite la documentación de Mai Finance para obtener más detalles."
   list_token: "Moneda"
   list_new: "Nuevo"
   list_chain: "Cadena"
