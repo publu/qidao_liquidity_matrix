@@ -6,7 +6,7 @@ class DashboardsController < ApplicationController
     @networks = Network.all
     @tokens = Token.all
     @minters = Minter.where.not(link: "")
-    @chain_debt = Network.group(:name).sum(:debtamount)
+    @chain_debt = Network.group(:name).order(:debtamount).sum(:debtamount)
     @collateral_debt = Token.where.not(minter_id: 4).group(:symbol).order(:mai_debt).sum(:mai_debt)
     @backing_type = Token.where.not(minter_id: 4).group(:token_type).order(:mai_debt).sum(:mai_debt)
     @grade_debt = Token.where.not(minter_id: 4).group(:grade).order(:grade).sum(:mai_debt)
