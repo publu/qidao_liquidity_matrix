@@ -73,7 +73,7 @@ en:
   dash_backing: "MAI Backing By Chain"
   dash_backing_token: "MAI Backing By Collateral"
   dash_backing_type: "MAI Backing By Type"
-  dash_backing_liq: "MAI Backing By Liquidity"
+  dash_backing_liq: "MAI Backing By Risk Grading"
   dash_liq_topten: "Top 20 By Liquidity"
   dash_vol_topten: "Top 20 By Volatility"
   dash_score_topten: "Top 20 By Risk Grading"

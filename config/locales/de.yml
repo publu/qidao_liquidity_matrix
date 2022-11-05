@@ -72,6 +72,8 @@ de:
   dash_token_liq: "Sicherheiten nach Liquidität"
   dash_backing: "MAI-Besicherung durch Netzwerke"
   dash_backing_token: "MAI-Besicherung durch Sicherheiten"
+  dash_backing_type: "MAI-Besicherung durch Art"
+  dash_backing_liq: "MAI-Besicherung durch Risikoeinstufung"
   dash_liq_topten: "Top 20 nach Liquidität"
   dash_vol_topten: "Top 20 nach Volatilität"
   dash_score_topten: "Top 20 nach Risikoeinstufung"

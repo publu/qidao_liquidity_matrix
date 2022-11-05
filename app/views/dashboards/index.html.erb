@@ -119,13 +119,13 @@
     <div class="col-lg-6 col-md-12 col-sm-12">
       <h4 class="medium-text text-center"><%= t('dash_backing_liq') %></h4>
       <% if cookies[:theme] == "dark" %>
-        <%= pie_chart @liquidity_debt,
+        <%= pie_chart @grade_debt,
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
               library: { "backgroundColor": "#2d3436", "chartArea": { "width": "70%" } },
               colors: ["#20bf6b", "#4b7bec", "#fa8231", "#eb3b5a"] %>
       <% else %>
-        <%= pie_chart @liquidity_debt,
+        <%= pie_chart @grade_debt,
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
               library: { "backgroundColor": "white", "chartArea": { "width": "70%" } },
