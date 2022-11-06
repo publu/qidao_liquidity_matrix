@@ -42,9 +42,9 @@
         <strong>
           <%= link_to token.symbol, token, title: "View rubric for " + token.symbol + " on " + token.network.name, class: "plain_link" %>
         </strong>
-        <% if token.created_at > (Date.today - 5.days) %>
+        <!-- <% if token.created_at > (Date.today - 5.days) %>
           <span class="new"><%= t('list_new') %></span>
-        <% end %>
+        <% end %> -->
       </td>
       <td itemprop="genre" style="color: <%= token.network.color %>">
         <%= token.network.name %>
@@ -109,6 +109,6 @@
     <% end %>
   </table>
   <% if network.tokens_count > 15 %>
-    <div class="footer"><%== pagy_bootstrap_nav(@pagy) %></div>
+    <div class="position-absolute start-50 translate-middle-x"><%== pagy_bootstrap_nav(@pagy) %></div>
   <% end %>
 </div>

@@ -231,8 +231,6 @@ namespace :tokens do
         puts "Updating debt for " + token.symbol + " (" + token.network.name + ")."
         # token.update(mai_debt: vault.first["totalDebt"].to_s)
         token.update(mai_debt: (((vault.first["totalDebt"]).to_d) / 10**18).round(2))
-        puts (((vault.first["totalDebt"]).to_f) / 10**18).round(2)
-        puts "Debt: " + (((vault.first["totalDebt"]).to_f) / 10**18).round(2).to_s + " MAI"
         puts "Completed."
       else
         puts "Skipping " + token.symbol + " (" + token.network.name + ")."
@@ -248,14 +246,12 @@ namespace :tokens do
       uri = URI(url)
       response = Net::HTTP.get(uri)
       vaults = JSON.parse(response)
-      vaults.each do |vault|
+      vaults["incentives"].each do |vault|
         vault.each do |v|
-          if v["vaultAddress"] == token.vault_address
-            puts "Updating debt for " + token.symbol + " (" + token.network.name + ")."
-            token.update(mai_debt: v["totalQualifyingDebt"])
-            puts "Completed."
-            sleep 1
-          end
+          puts "Updating debt for " + token.symbol + " (" + token.network.name + ")."
+          token.update(mai_debt: (v["totalQualifyingDebt"]).to_d)
+          puts "Completed."
+          sleep 1
         end
       end
     end
