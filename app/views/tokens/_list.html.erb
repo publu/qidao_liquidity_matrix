@@ -28,7 +28,7 @@
         <%= sort_link(column: "mai_debt", label: t('list_debt')) %>
         <%= sort_indicator if params[:column] == "mai_debt" %>
       </th>
-      <th class="red text-center">
+      <th class="red text-center td-10">
         <%= sort_link(column: "minter_id", label: t('list_available')) %>
         <%= sort_indicator if params[:column] == "minter_id" %>
       </th>
@@ -38,7 +38,7 @@
       <% end %>
     </tr>
     <% @tokens.each do |token| %>
-    <tr>
+    <tr class="align-middle">
       <td itemprop="name">
         <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name, class: "plain_link" do %>
           <strong><%= token.symbol %></strong>

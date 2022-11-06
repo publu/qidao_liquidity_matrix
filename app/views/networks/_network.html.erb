@@ -19,7 +19,7 @@
         <%= sort_indicator if params[:column] == "volume" %>
       </th>
       <th class="red text-end">
-        <%= sort_network_link(column: "mai_deb", label: t('list_chain_debt')) %>
+        <%= sort_network_link(column: "mai_debt", label: t('list_chain_debt')) %>
         <%= sort_indicator if params["column"] == "mai_debt" %>
       </th>
       <th class="red text-end">
@@ -30,14 +30,14 @@
         <%= sort_network_link(column: "centralized", label: t('list_centralization')) %>
         <%= sort_indicator if params[:column] == "centralized" %>
       </th>
-      <th class="red text-center"><%= t('list_available') %></th>
+      <th class="red text-center td-10"><%= t('list_available') %></th>
       <th class="red text-center"><%= link_to t('list_grade'), network_path, title: "Risk Grading" %></th>
       <% if user_signed_in? && current_user.admin? %>
         <th class="red text-center"><%= t('list_actions') %></th>
       <% end %>
     </tr>
     <% @tokens.each do |token| %>
-    <tr>
+    <tr class="align-middle">
       <td itemprop="name">
         <strong>
           <%= link_to token.symbol, token, title: "View rubric for " + token.symbol + " on " + token.network.name, class: "plain_link" %>
