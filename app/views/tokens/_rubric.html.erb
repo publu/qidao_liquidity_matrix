@@ -130,9 +130,6 @@
       <% end %>
     </li>
   </ul>
-  <h4 class="token_name">Historical Volatility</h4>
-  <%= line_chart token.prices.group(:price_date).pluck(:price_date, :volatility), xmin: (Time.now - 89.days) %>
-  <br />
   <p><i>** <%= t('list_cdr_note') %>.</i></p>
   <p>
     <a data-bs-toggle="collapse" href="#collapseRubric" role="button" aria-expanded="false" aria-controls="collapseRubric">
