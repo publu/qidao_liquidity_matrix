@@ -151,12 +151,6 @@
   </div>
   <br />
   <div class="row justify-content-end">
-    <%= line_chart @tokens.map { |t|
-      {name: t.symbol, data: t.prices.group(:price_date).pluck(:price_date, :volatility) }
-    }, xmin: (Time.now - 88.days), id: "volatility", height: "500px" %>
-  </div>
-  <br />
-  <div class="row justify-content-end">
     <div class="col-lg-4 col-md-12 col-sm-12">
       <h4 class="medium-text text-center"><%= svg_tag "asterisk" %> <%= t('dash_score_topten') %></h4>
       <ol>
