@@ -210,6 +210,16 @@ namespace :tokens do
     puts "Volume update completed."
   end
 
+  task volatility: :environment do
+    Token.all.order(network_id: :asc).each do |token|
+      puts "Updating volatility for " + token.symbol + " (" + token.network.name + ")."
+      token.update(risk_volatility: token.prices.standard_deviation)
+      puts "Completed."
+      sleep 1
+    end
+    puts "Volatility updates completed."
+  end
+
   task grade: :environment do
     Token.all.order(network_id: :asc).each do |token|
       puts "Updating risk grading for " + token.symbol + " (" + token.network.name + ")."
@@ -246,7 +256,7 @@ namespace :tokens do
       uri = URI(url)
       response = Net::HTTP.get(uri)
       vaults = JSON.parse(response)["incentives"]
-      vault = vaults[token.network.chain_id].select { |v| v["vaultAddress"].downcase == (token.vault_address).downcase }
+      vault = vaults[token.network.chain_id].select { |v| v["vaultAddress"].downcase == token.vault_address.downcase }
       if vault.first.present?
         puts token.symbol + " (" + token.network.name + "): " + (vault.first["totalQualifyingDebt"].to_d / 10**18).to_s + " MAI"
         token.update(mai_debt: (((vault.first["totalQualifyingDebt"]).to_d) / 10**18).round(2))
@@ -255,14 +265,6 @@ namespace :tokens do
         puts "Skipping " + token.symbol + " (" + token.network.name + ")."
       end
       sleep 1
-      # vaults["incentives"].each do |vault|
-      #  vault.each do |v|
-      #    puts "Updating debt for " + token.symbol + " (" + token.network.name + ")."
-      #    token.update(mai_debt: (v["totalQualifyingDebt"]).to_d)
-      #    puts "Completed."
-      #    sleep 1
-      #  end
-      #end
     end
     puts "MAI debt update completed."
   end

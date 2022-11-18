@@ -32,6 +32,9 @@ gem "json"
 gem 'caxlsx'
 gem 'caxlsx_rails'
 
+# Ruby stats gem
+gem 'ruby-statistics'
+
 # Add table pagination
 gem 'pagy', '~> 5.10' # omit patch digit
 

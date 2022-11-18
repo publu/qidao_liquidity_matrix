@@ -1,7 +1,7 @@
 class Network < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :chain_id, presence: true, uniqueness: true
-  has_many :tokens, strict_loading: true
+  has_many :tokens, strict_loading: true, dependent: :destroy
   extend FriendlyId
   friendly_id :name, use: :slugged
 

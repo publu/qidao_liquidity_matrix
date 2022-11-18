@@ -1,5 +1,6 @@
 require 'csv'
 require 'json'
+require 'statistics'
 
 class TokensController < ApplicationController
   before_action :set_token, only: %i[ show edit update destroy ]

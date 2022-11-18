@@ -30,7 +30,7 @@
           <% prices = JSON.parse(response) %>
           <%= link_to "https://docs.mai.finance/functions/smart-contract-addresses#mai-mimatic-addresses", title: "Mai", target: "_blank", class: "nav-link" do %>
             $<%= (prices["Price"].to_f).round(3) %>
-            (<%= (((prices["Price"] / prices["PriceYesterday"]) * 100) - 100).round(2) %>%)
+            (<%= (((prices["Price"] / prices["PriceYesterday"]) * 100) - 100).round(3) %>%)
           <% end %>
         </span>
       </div>
@@ -148,6 +148,12 @@
         <%= area_chart mai_volume, prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#00a8ff" }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
       <% end %>
     </div>
+  </div>
+  <br />
+  <div class="row justify-content-end">
+    <%= line_chart @tokens.map { |t|
+      {name: t.symbol, data: t.prices.group(:price_date).pluck(:price_date, :volatility) }
+    }, xmin: (Time.now - 88.days), id: "volatility", height: "500px" %>
   </div>
   <br />
   <div class="row justify-content-end">

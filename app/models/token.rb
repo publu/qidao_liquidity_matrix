@@ -3,6 +3,7 @@ class Token < ApplicationRecord
   validates :minter_id, presence: true
   belongs_to :network, counter_cache: true # Network.find_each { |n| Network.reset_counters(n.id, :tokens) }
   belongs_to :minter
+  has_many :prices, dependent: :destroy
 
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
