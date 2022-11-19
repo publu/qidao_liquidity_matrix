@@ -33,6 +33,7 @@ de:
   list_vault_contract: "Tresorvertrag"
   list_cdr: "Empfohlenes Mindestverhältnis zwischen Pfand und Schulden"
   list_cdr_note: "Diese Nummer ist eine automatisch-generierte Empfehlung basierend auf Volatilität, Handelsabweichungen sowie Liquidität, die sich ändern kann, wenn sich diese Werte ändern. Höhere Empfehlungen für das Mindestverhältnis zwischen Pfand und Schulden können durch unregelmässige Erhöherung der Obergrenzen gemildert werden. Diese Nummer ist nur ein Vorschlag. Daher könnte es sein, dass sie den tatsächlichen Prozentsatz nicht unbedingt widerspiegelt, der in den MAI-Vaults verwendet wird."
+  list_volatility: "Historische Volatilität"
   rubric_link: "Klicken Sie hier, um die Rubrik Methodologie anzuschauen"
   rubric_name: "Token"
   rubric_smartcont: "Smart-Kontrakt Risiko"

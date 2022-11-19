@@ -33,6 +33,7 @@ es:
   list_vault_contract: "Contrato de Bóveda"
   list_cdr: "Colateral mínimo sugerido a la relación de la deuda"
   list_cdr_note: "Este número es una recomendación automática basada en la volatilidad, el deslizamiento comercial y la liquidez, y puede cambiar a medida que cambian estos valores. Las sugerencias de garantías más altas para la deuda pueden mitigarse con aumentos de techo y topes de deuda más infrecuentes. Este número es solo una sugerencia y es posible que no refleje el porcentaje real utilizado en las bóvedas de MAI"
+  list_volatility: "Volatilidad Histórica"
   rubric_link: "Haga clic para ver la metodología de la rúbrica"
   rubric_name: "Moneda"
   rubric_smartcont: "Riesgo De Contrato"

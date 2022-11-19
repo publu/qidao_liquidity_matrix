@@ -131,7 +131,7 @@
     </li>
   </ul>
   <% if token.prices.any? %>
-    <h4 class="token_name">Historical Volatility</h4>
+    <h4 class="token_name"><%= t('list_volatility') %></h4>
     <%= line_chart token.prices.pluck(:price_date, :volatility), xmin: (Time.now - 89.days) %>
     <br />
   <% end %>

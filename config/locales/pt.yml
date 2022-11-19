@@ -33,6 +33,7 @@ pt:
   list_vault_contract: "Contrato de Cofre"
   list_cdr: "Garantia Mínima Sugerida para Índice de Dívida"
   list_cdr_note: "Esse número é uma recomendação automatizada com base na volatilidade, deslize da negociação e liquidez e pode mudar é medida que esses valores mudam. Sugestões de garantias mais altas para débitos podem ser mitigadas por aumentos de teto e limites de débito mais infrequentes. Este número é apenas uma sugestão e pode não refletir a porcentagem real usada nos cofres de MAI"
+  list_volatility: "Volatilidade Histórica"
   rubric_link: "Clique Para Ver a Metodologia de Rubrica"
   rubric_name: "Moeda"
   rubric_smartcont: "Risco do Contrato Inteligente"
