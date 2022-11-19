@@ -56,6 +56,7 @@ namespace :prices do
             sleep 0.5
           end
         end
+        token.update(risk_volatility: Price.where(token_id: token.id).order(price_date: :desc).first.volatility)
       end
       puts "Closing price update completed."
     end
