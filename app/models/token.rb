@@ -11,6 +11,10 @@ class Token < ApplicationRecord
   GRADES_ORDERED = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-"]
   scope :order_by_grade, -> { order(Arel.sql(order_by_case)) }
 
+  scope :order_by_debt, -> { order(mai_debt: :desc) }
+  scope :order_by_liquidity, -> { order(liquidity: :desc) }
+  scope :order_by_volatility, -> { order(risk_volatility: :asc) }
+
   def self.order_by_case
     ret = "CASE"
     GRADES_ORDERED.each_with_index do |p, i|

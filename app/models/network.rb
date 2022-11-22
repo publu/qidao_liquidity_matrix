@@ -8,6 +8,8 @@ class Network < ApplicationRecord
   GRADES_ORDERED = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-"]
   scope :order_by_grade, -> { order(Arel.sql(order_by_case)) }
 
+  scope :order_by_percent, -> { order(debt_percent: :desc) }
+
   def self.order_by_case
     ret = "CASE"
     GRADES_ORDERED.each_with_index do |p, i|
