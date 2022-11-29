@@ -6,7 +6,7 @@ require 'statistics'
 namespace :prices do
   desc 'Update prices with latest data'
 
-  task closing: :environment do
+  task all: :environment do
     @days = [90,
              89,88,87,86,85,84,83,82,81,80,
              79,78,77,76,75,74,73,72,71,70,
@@ -23,15 +23,15 @@ namespace :prices do
           puts "Skipping " + token.symbol + " (" + token.network.name + "). Prices for " + (Time.now - d.days).strftime("%b %d, %Y") + " already in database."
         else
           puts "Adding closing price for " + token.symbol + " (" + token.network.name + ") for " + (Time.now - d.days).beginning_of_day.to_s
-          url = "https://coins.llama.fi/prices/historical/" + (Time.now.to_i - d.days).to_s + "/" + token.network.gecko_id + ":" + token.contract_address
-          uri = URI(url)
-          response = Net::HTTP.get(uri)
-          closing = JSON.parse(response)
-          url2 = "https://coins.llama.fi/prices/historical/" + (Time.now.to_i - (d + 1).days).to_s + "/" + token.network.gecko_id + ":" + token.contract_address
-          uri2 = URI(url2)
-          response2 = Net::HTTP.get(uri2)
-          closing2 = JSON.parse(response2)
           if d == 90
+            url = "https://coins.llama.fi/prices/historical/" + ((Time.now - (d.days)).end_of_day.to_i).to_s + "/" + token.network.gecko_id + ":" + token.contract_address
+            uri = URI(url)
+            response = Net::HTTP.get(uri)
+            closing = JSON.parse(response)
+            url2 = "https://coins.llama.fi/prices/historical/" + ((Time.now - ((d + 1).days)).end_of_day.to_i).to_s + "/" + token.network.gecko_id + ":" + token.contract_address
+            uri2 = URI(url2)
+            response2 = Net::HTTP.get(uri2)
+            closing2 = JSON.parse(response2)
             Price.create(
               asset: token.asset,
               token_id: token.id,
@@ -39,14 +39,19 @@ namespace :prices do
               price_date: (Time.now - d.days).end_of_day,
               natural_log: Math.log((closing2["coins"]["#{token.network.gecko_id}:#{token.contract_address}"]["price"]).to_d/(closing["coins"]["#{token.network.gecko_id}:#{token.contract_address}"]["price"]).to_d),
               volatility: "0.00 ")
-              sleep 0.5
+              sleep 3
           else
+            url = "https://coins.llama.fi/prices/historical/" + ((Time.now - (d.days)).end_of_day.to_i).to_s + "/" + token.network.gecko_id + ":" + token.contract_address
+            uri = URI(url)
+            response = Net::HTTP.get(uri)
+            closing = JSON.parse(response)
             Price.create(
               asset: token.asset,
               token_id: token.id,
               closing_price: closing["coins"]["#{token.network.gecko_id}:#{token.contract_address}"]["price"].to_d,
               price_date: (Time.now - d.days).end_of_day,
-              natural_log: Math.log((closing2["coins"]["#{token.network.gecko_id}:#{token.contract_address}"]["price"]).to_d/(closing["coins"]["#{token.network.gecko_id}:#{token.contract_address}"]["price"]).to_d))
+              natural_log: Math.log(Price.where(token_id: token.id).order(price_date: :desc).last.closing_price.to_d/(closing["coins"]["#{token.network.gecko_id}:#{token.contract_address}"]["price"]).to_d))
+            sleep 1
             token.prices.last.update(
               volatility: (Price.where(token_id: token.id).order(price_date: :desc).pluck(:natural_log).each {|p| p }).standard_deviation)
             sleep 0.5
