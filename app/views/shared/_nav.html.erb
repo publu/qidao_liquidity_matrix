@@ -61,6 +61,24 @@
             </div>
           <% end %>
         </li>
+        <li>
+          <% qi_url = 'https://coins.llama.fi/prices/current/polygon:0x580a84c73811e1839f75d86d75d88cca0c241ff4' %>
+          <% qi_uri = URI(qi_url) %>
+          <% qi_response = Net::HTTP.get(qi_uri) %>
+          <% qi_price = JSON.parse(qi_response) %>
+          <%= link_to "https://docs.mai.finance/functions/smart-contract-addresses#qi-addresses", title: "Qi", target: "_blank", class: "nav-link" do %>
+            <%= svg_tag "qidao" %> $<%= qi_price["coins"]["polygon:0x580a84c73811e1839f75d86d75d88cca0c241ff4"]["price"].round(3) %>
+          <% end %>
+        </li>
+        <li>
+          <% mai_url = 'https://coins.llama.fi/prices/current/polygon:0xa3fa99a148fa48d14ed51d610c367c61876997f1' %>
+          <% mai_uri = URI(mai_url) %>
+          <% mai_response = Net::HTTP.get(mai_uri) %>
+          <% mai_price = JSON.parse(mai_response) %>
+          <%= link_to "https://docs.mai.finance/functions/smart-contract-addresses#mai-mimatic-addresses", title: "Mai", target: "_blank", class: "nav-link" do %>
+            <%= svg_tag "mai" %> $<%= mai_price["coins"]["polygon:0xa3fa99a148fa48d14ed51d610c367c61876997f1"]["price"].round(3) %>
+          <% end %>
+        </li>
         <li class="nav-item dropstart">
           <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="d-none d-md-none d-lg-block">
