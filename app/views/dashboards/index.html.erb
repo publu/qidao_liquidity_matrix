@@ -24,13 +24,17 @@
       <div class="info-box">
         <h4><%= svg_tag "mai" %> MAI Price</h4>
         <span class="large-text">
-          <% url = 'https://api.diadata.org/v1/assetQuotation/Polygon/0xa3Fa99A148fA48D14Ed51d610c367C61876997F1' %>
-          <% uri = URI(url) %>
-          <% response = Net::HTTP.get(uri) %>
-          <% prices = JSON.parse(response) %>
+          <% mai_url = 'https://coins.llama.fi/prices/current/polygon:0xa3fa99a148fa48d14ed51d610c367c61876997f1' %>
+          <% maidiff_url = 'https://coins.llama.fi/prices/historical/' + ((Time.now - 1.day).end_of_day.to_i).to_s + '/polygon:0xa3fa99a148fa48d14ed51d610c367c61876997f1' %>
+          <% mai_uri = URI(mai_url) %>
+          <% maidiff_uri = URI(maidiff_url) %>
+          <% mai_response = Net::HTTP.get(mai_uri) %>
+          <% maidiff_response = Net::HTTP.get(maidiff_uri) %>
+          <% mai_price = JSON.parse(mai_response) %>
+          <% maidiff_price = JSON.parse(maidiff_response) %>
           <%= link_to "https://docs.mai.finance/functions/smart-contract-addresses#mai-mimatic-addresses", title: "Mai", target: "_blank", class: "nav-link" do %>
-            $<%= (prices["Price"].to_f).round(3) %>
-            (<%= (((prices["Price"] / prices["PriceYesterday"]) * 100) - 100).round(3) %>%)
+            $<%= mai_price["coins"]["polygon:0xa3fa99a148fa48d14ed51d610c367c61876997f1"]["price"].round(5) %>
+            (<%= (((mai_price["coins"]["polygon:0xa3fa99a148fa48d14ed51d610c367c61876997f1"]["price"] / maidiff_price["coins"]["polygon:0xa3fa99a148fa48d14ed51d610c367c61876997f1"]["price"]) * 100) - 100).round(3) %>%)
           <% end %>
         </span>
       </div>
@@ -55,11 +59,11 @@
       <% uri = URI(url) %>
       <% response = Net::HTTP.get(uri) %>
       <% mai = JSON.parse(response) %>
-      <% mai_price = mai['prices'] %>
+      <% mai_prices = mai['prices'] %>
       <% if cookies[:theme] == "dark" %>
-        <%= line_chart mai_price, prefix: "$", thousands: ",", min: 0.95, max: 1.05, discrete: true, points: false, dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.25 }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
+        <%= line_chart mai_prices, prefix: "$", thousands: ",", min: 0.95, max: 1.05, discrete: true, points: false, dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.25 }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
       <% else %>
-        <%= line_chart mai_price, prefix: "$", thousands: ",", min: 0.95, max: 1.05, discrete: true, points: false, dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.25 }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
+        <%= line_chart mai_prices, prefix: "$", thousands: ",", min: 0.95, max: 1.05, discrete: true, points: false, dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.25 }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
       <% end %>
     </div>
   </div>
