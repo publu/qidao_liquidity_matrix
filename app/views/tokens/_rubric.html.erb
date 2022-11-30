@@ -29,13 +29,13 @@
   <ul class="list-unstyled">
     <li class="token_name">
       <%= token.symbol %>
-      (<%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "plain_link", style: "color: #{token.network.color}" %>)</li>
+      <%= link_to token.network, title: "View chain information for " + token.network.name, class: "plain_link" do %>(<%= token.network.name %>)<% end %></li>
     <br />
-    <li><strong>Coingecko:</strong> <%= link_to token.coingecko, token.coingecko, title: "Coingecko", target: "_blank", rel: "noopener noreferrer" %></li>
-    <li><strong>Coinmarketcap:</strong> <%= link_to token.coinmarketcap, token.coinmarketcap, title: "CoinMarketCap", target: "_blank", rel: "noopener noreferrer" %></li>
-    <li><strong><%= t('list_contract') %>:</strong> <%= link_to token.network.blockchain_explorer + token.contract_address, token.network.blockchain_explorer + token.contract_address, title: "Blockchain Explorer", target: "_blank", rel: "noopener noreferrer" %></li>
+    <li><strong>Coingecko:</strong> <%= link_to token.coingecko, token.coingecko, title: "Coingecko", target: "_blank", rel: "noopener noreferrer", class: "plain_link" %></li>
+    <li><strong>Coinmarketcap:</strong> <%= link_to token.coinmarketcap, token.coinmarketcap, title: "CoinMarketCap", target: "_blank", rel: "noopener noreferrer", class: "plain_link" %></li>
+    <li><strong><%= t('list_contract') %>:</strong> <%= link_to token.network.blockchain_explorer + token.contract_address, token.network.blockchain_explorer + token.contract_address, title: "Blockchain Explorer", target: "_blank", rel: "noopener noreferrer", class: "plain_link" %></li>
     <% if token.vault_address? %>
-      <li><strong><%= t('list_vault_contract') %>:</strong> <%= link_to token.network.blockchain_explorer + token.vault_address, token.network.blockchain_explorer + token.vault_address, title: "Vault Contract", target: "_blank", rel: "noopener noreferrer" %></li>
+      <li><strong><%= t('list_vault_contract') %>:</strong> <%= link_to token.network.blockchain_explorer + token.vault_address, token.network.blockchain_explorer + token.vault_address, title: "Vault Contract", target: "_blank", rel: "noopener noreferrer", class: "plain_link" %></li>
     <% end %>
     <li><strong><%= t('rubric_updated') %>:</strong> <%= token.updated_at.strftime("%d %B, %Y") %></li>
   </ul>
@@ -109,7 +109,6 @@
       <% end %>
       **
     </li>
-    <br />
     <li>
       <% unless token.minter_id == 4 %>
         <% if token.mai_debt.to_i > 0 %>
@@ -131,11 +130,67 @@
     </li>
   </ul>
 
-
+  <% if token.prices.any? %>
+    <% if cookies[:theme] == "dark" %>
+      <br />
+      <h4 class="token_name"><%= t('list_volatility') %></h4>
+      <% if token.asset == "ethereum" %>
+        <%= line_chart [
+          {name: token.symbol, data: token.prices.pluck(:price_date, :volatility)},
+          {name: "WBTC", data: Token.where(symbol: "WBTC").first.prices.pluck(:price_date, :volatility)}
+        ],
+        xmin: (Time.now - 89.days), colors: ["#0652DD", "#f0932b"], dataset: { borderWidth: 5, tension: 0.25 }, library: { scales: { x: { ticks: { color: "white" } }, y: { ticks: { color: "white" } } } } %>
+      <% elsif token.asset == "bitcoin" %>
+        <%= line_chart [
+          {name: token.symbol, data: token.prices.pluck(:price_date, :volatility)},
+          {name: "WETH", data: Token.where(symbol: "WETH").first.prices.pluck(:price_date, :volatility)},
+        ],
+        xmin: (Time.now - 89.days), colors: ["#f0932b", "#0652DD"], dataset: { borderWidth: 5, tension: 0.25 }, library: { scales: { x: { ticks: { color: "white" } }, y: { ticks: { color: "white" } } } } %>
+      <% else %>
+        <%= line_chart [
+          {name: token.symbol, data: token.prices.pluck(:price_date, :volatility)},
+          {name: "WETH", data: Token.where(symbol: "WETH").first.prices.pluck(:price_date, :volatility)},
+          {name: "WBTC", data: Token.where(symbol: "WBTC").first.prices.pluck(:price_date, :volatility)}
+        ],
+        xmin: (Time.now - 89.days), colors: ["#833471", "#0652DD", "#f0932b"], dataset: { borderWidth: 5, tension: 0.25 }, library: { scales: { x: { ticks: { color: "white" } }, y: { ticks: { color: "white" } } } } %>
+      <% end %>
+      <br />
+      <h4 class="token_name">Historical Pricing</h4>
+      <%= line_chart token.prices.pluck(:price_date, :closing_price), xmin: (Time.now - 89.days), prefix: "$", thousands: ",", decimal: ".", round: 4, dataset: { borderWidth: 5, borderColor: "#833471", tension: 0.25 }, library: { scales: { x: { ticks: { color: "white" } }, y: { ticks: { color: "white" } } } } %>
+      <br />
+    <% else %>
+      <br />
+      <h4 class="token_name"><%= t('list_volatility') %></h4>
+      <% if token.asset == "ethereum" %>
+        <%= line_chart [
+          {name: token.symbol, data: token.prices.pluck(:price_date, :volatility)},
+          {name: "WBTC", data: Token.where(symbol: "WBTC").first.prices.pluck(:price_date, :volatility)}
+        ],
+        xmin: (Time.now - 89.days), colors: ["#0652DD", "#f0932b"], dataset: { borderWidth: 5, tension: 0.25 } %>
+      <% elsif token.asset == "bitcoin" %>
+        <%= line_chart [
+          {name: token.symbol, data: token.prices.pluck(:price_date, :volatility)},
+          {name: "WETH", data: Token.where(symbol: "WETH").first.prices.pluck(:price_date, :volatility)},
+        ],
+        xmin: (Time.now - 89.days), colors: ["#f0932b", "#0652DD"], dataset: { borderWidth: 5, tension: 0.25 } %>
+      <% else %>
+        <%= line_chart [
+          {name: token.symbol, data: token.prices.pluck(:price_date, :volatility)},
+          {name: "WETH", data: Token.where(symbol: "WETH").first.prices.pluck(:price_date, :volatility)},
+          {name: "WBTC", data: Token.where(symbol: "WBTC").first.prices.pluck(:price_date, :volatility)}
+        ],
+        xmin: (Time.now - 89.days), colors: ["#833471", "#0652DD", "#f0932b"], dataset: { borderWidth: 5, tension: 0.25 } %>
+      <% end %>
+      <br />
+      <h4 class="token_name">Historical Pricing</h4>
+      <%= line_chart token.prices.pluck(:price_date, :closing_price), xmin: (Time.now - 89.days), prefix: "$", thousands: ",", decimal: ".", round: 4, dataset: { borderWidth: 5, borderColor: "#833471", tension: 0.25 } %>
+      <br />
+    <% end %>
+  <% end %>
 
   <p><i>** <%= t('list_cdr_note') %>.</i></p>
   <p>
-    <a data-bs-toggle="collapse" href="#collapseRubric" role="button" aria-expanded="false" aria-controls="collapseRubric">
+    <a data-bs-toggle="collapse" href="#collapseRubric" role="button" aria-expanded="false" aria-controls="collapseRubric" class="plain_link">
       <strong><%= t('rubric_link') %></strong>
     </a>
   </p>

@@ -36,8 +36,11 @@
       </div>
       <br />
       <div class="info-box">
-        <h4><%= t('dash_chains') %></h4>
-        <span class="large-text"><%= @networks.count %></span>
+        <h4><%= t('dash_tvl') %></h4>
+        <% tvl_url = 'https://api.llama.fi/tvl/qidao' %>
+        <% tvl_uri = URI(tvl_url) %>
+        <% tvl_response = Net::HTTP.get(tvl_uri) %>
+        <span class="large-text"><%= number_to_currency(tvl_response).to_s %></span>
       </div>
       <br />
       <div class="info-box">
@@ -62,7 +65,7 @@
   </div>
   <div class="row">
     <h4 class="large-text"><%= t('mai_question') %></h4>
-    <p><%= t('mai_description') %></p>
+    <p><%= t('mai_description', chaincount: @networks.count) %></p>
   </div>
   <br />
   <div class="row justify-content-evenly">
@@ -91,13 +94,13 @@
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
               library: { "backgroundColor": "#2d3436", "chartArea": { "width": "70%" }, "legend": { "textStyle": { "color": "white" } } },
-              colors: ["#20bf6b", "#4b7bec", "#fa8231", "#eb3b5a"] %>
+              colors: ["#686de0", "#4834d4"] %>
       <% else %>
         <%= pie_chart @backing_type,
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
               library: { "backgroundColor": "#f5f6fa", "chartArea": { "width": "70%" } },
-              colors: ["#20bf6b", "#4b7bec", "#fa8231", "#eb3b5a"] %>
+              colors: ["#686de0", "#4834d4"] %>
       <% end %>
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12">
@@ -123,13 +126,13 @@
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
               library: { "backgroundColor": "#2d3436", "chartArea": { "width": "70%" }, "legend": { "textStyle": { "color": "white" } } },
-              colors: ["#6ab04c", "#badc58", "#4834d4", "#686de0", "#be2edd", "#e056fd", "#22a6b3", "#7ed6df", "#30336b", "#130f40"] %>
+              colors: ["#26de81", "#20bf6b", "#2bcbba", "#ffd32a", "#ffa801", "#e15f41", "#ff5e57", "#ef5777", "#c44569", "#f53b57"] %>
       <% else %>
         <%= pie_chart @grade_debt,
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
               library: { "backgroundColor": "#f5f6fa", "chartArea": { "width": "70%" } },
-              colors: ["#6ab04c", "#badc58", "#4834d4", "#686de0", "#be2edd", "#e056fd", "#22a6b3", "#7ed6df", "#30336b", "#130f40"] %>
+              colors: ["#26de81", "#20bf6b", "#2bcbba", "#ffd32a", "#ffa801", "#e15f41", "#ff5e57", "#ef5777", "#c44569", "#f53b57"] %>
       <% end %>
     </div>
   </div>
@@ -143,9 +146,9 @@
       <% mai = JSON.parse(response) %>
       <% mai_volume = mai['total_volumes'] %>
       <% if cookies[:theme] == "dark" %>
-        <%= area_chart mai_volume, prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#00a8ff" }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
+        <%= column_chart mai_volume, prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#686de0" }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
       <% else %>
-        <%= area_chart mai_volume, prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#00a8ff" }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
+        <%= column_chart mai_volume, prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#686de0" }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
       <% end %>
     </div>
   </div>
