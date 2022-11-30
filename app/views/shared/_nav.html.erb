@@ -61,24 +61,6 @@
             </div>
           <% end %>
         </li>
-        <li>
-          <% url = 'https://api.diadata.org/v1/assetQuotation/Polygon/0x580A84C73811E1839F75d86d75d88cCa0c241fF4' %>
-          <% uri = URI(url) %>
-          <% response = Net::HTTP.get(uri) %>
-          <% prices = JSON.parse(response) %>
-          <%= link_to "https://docs.mai.finance/functions/smart-contract-addresses#qi-addresses", title: "Qi", target: "_blank", class: "nav-link" do %>
-            <%= svg_tag "qidao" %> $<%= (prices["Price"].to_f).round(3) %>
-          <% end %>
-        </li>
-        <li>
-          <% url = 'https://api.diadata.org/v1/assetQuotation/Polygon/0xa3Fa99A148fA48D14Ed51d610c367C61876997F1' %>
-          <% uri = URI(url) %>
-          <% response = Net::HTTP.get(uri) %>
-          <% prices = JSON.parse(response) %>
-          <%= link_to "https://docs.mai.finance/functions/smart-contract-addresses#mai-mimatic-addresses", title: "Mai", target: "_blank", class: "nav-link" do %>
-            <%= svg_tag "mai" %>  $<%= (prices["Price"].to_f).round(3) %>
-          <% end %>
-        </li>
         <li class="nav-item dropstart">
           <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="d-none d-md-none d-lg-block">
