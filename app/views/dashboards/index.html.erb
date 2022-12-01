@@ -61,9 +61,9 @@
       <% mai = JSON.parse(response) %>
       <% mai_prices = mai['prices'] %>
       <% if cookies[:theme] == "dark" %>
-        <%= line_chart mai_prices, prefix: "$", thousands: ",", min: 0.95, max: 1.05, discrete: true, points: false, dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.25 }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
+        <%= line_chart mai_prices, id: "mai_prices", prefix: "$", thousands: ",", min: 0.95, max: 1.05, discrete: true, points: false, dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.25 }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
       <% else %>
-        <%= line_chart mai_prices, prefix: "$", thousands: ",", min: 0.95, max: 1.05, discrete: true, points: false, dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.25 }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
+        <%= line_chart mai_prices, id: "mai_prices", prefix: "$", thousands: ",", min: 0.95, max: 1.05, discrete: true, points: false, dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.25 }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
       <% end %>
     </div>
   </div>
@@ -76,6 +76,7 @@
       <h4 class="medium-text text-center"><%= t('dash_backing') %></h4>
       <% if cookies[:theme] == "dark" %>
         <%= pie_chart @chain_debt,
+              id: "chain_debt",
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",",
               legend: "left",
@@ -83,6 +84,7 @@
               colors: ["#4b6584", "#596275", "#a55eea", "#4b7bec", "#45aaf2", "#26de81", "#20bf6b", "#2bcbba", "#ffd32a", "#ffa801", "#e15f41", "#ff5e57", "#ef5777", "#c44569", "#f53b57"] %>
       <% else %>
         <%= pie_chart @chain_debt,
+              id: "chain_debt",
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",",
               legend: "left",
@@ -94,12 +96,14 @@
       <h4 class="medium-text text-center"><%= t('dash_backing_type') %></h4>
       <% if cookies[:theme] == "dark" %>
         <%= pie_chart @backing_type,
+              id: "backing_type",
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
               library: { "backgroundColor": "#2d3436", "chartArea": { "width": "70%" }, "legend": { "textStyle": { "color": "white" } } },
               colors: ["#686de0", "#4834d4"] %>
       <% else %>
         <%= pie_chart @backing_type,
+              id: "backing_type",
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
               library: { "backgroundColor": "#f5f6fa", "chartArea": { "width": "70%" } },
@@ -110,12 +114,14 @@
       <h4 class="medium-text text-center"><%= t('dash_backing_token') %></h4>
       <% if cookies[:theme] == "dark" %>
         <%= pie_chart @collateral_debt,
+              id: "collateral_debt",
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "left",
               library: { "backgroundColor": "#2d3436", "chartArea": { "width": "70%" }, "legend": { "textStyle": { "color": "white" } } },
               colors: ["#FFC312", "#F79F1F", "#ff9f43", "#EE5A24", "#EA2027", "#C4E538", "#A3CB38", "#1dd1a1", "#10ac84", "#009432", "#006266", "#12CBC4", "#1289A7", "#48dbfb", "#0abde3", "#54a0ff", "#2e86de", "#0652DD", "#1B1464", "#FDA7DF", "#ff9ff3", "#D980FA", "#9980FA", "#f368e0", "#5758BB", "#ff6b6b", "#ee5253", "#ED4C67", "#B53471", "#833471", "#6F1E51"] %>
       <% else %>
         <%= pie_chart @collateral_debt,
+              id: "collateral_debt",
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "left",
               library: { "backgroundColor": "#f5f6fa", "chartArea": { "width": "70%" } },
@@ -126,6 +132,7 @@
       <h4 class="medium-text text-center"><%= t('dash_backing_liq') %></h4>
       <% if cookies[:theme] == "dark" %>
         <%= pie_chart @grade_debt,
+              id: "grade_debt",
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
               library: { "backgroundColor": "#2d3436", "chartArea": { "width": "70%" }, "legend": { "textStyle": { "color": "white" } } },
@@ -133,6 +140,7 @@
       <% else %>
         <%= pie_chart @grade_debt,
               adapter: "google",
+              id: "grade_debt",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
               library: { "backgroundColor": "#f5f6fa", "chartArea": { "width": "70%" } },
               colors: ["#26de81", "#20bf6b", "#2bcbba", "#ffd32a", "#ffa801", "#e15f41", "#ff5e57", "#ef5777", "#c44569", "#f53b57"] %>
@@ -149,9 +157,9 @@
       <% mai = JSON.parse(response) %>
       <% mai_volume = mai['total_volumes'] %>
       <% if cookies[:theme] == "dark" %>
-        <%= column_chart mai_volume, prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#686de0" }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
+        <%= column_chart mai_volume, id: "mai_volume", prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#686de0" }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
       <% else %>
-        <%= column_chart mai_volume, prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#686de0" }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
+        <%= column_chart mai_volume, id: "mai_volume", prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#686de0" }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
       <% end %>
     </div>
   </div>

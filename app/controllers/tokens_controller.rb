@@ -49,6 +49,8 @@ class TokensController < ApplicationController
   # GET /tokens/1 or /tokens/1.json
   def show
     @debt_sum = Token.all.sum(:mai_debt)
+    @ethereum = Token.where(symbol: "WETH")
+    @bitcoin = Token.where(symbol: "WBTC")
     respond_to do |format|
       format.html
       format.js

@@ -137,26 +137,41 @@
       <% if token.asset == "ethereum" %>
         <%= line_chart [
           {name: token.symbol, data: token.prices.pluck(:price_date, :volatility)},
-          {name: "WBTC", data: Token.where(symbol: "WBTC").first.prices.pluck(:price_date, :volatility)}
+          {name: "WBTC", data: @bitcoin.first.prices.pluck(:price_date, :volatility)}
         ],
-        xmin: (Time.now - 89.days), colors: ["#0652DD", "#f0932b"], dataset: { borderWidth: 5, tension: 0.25 }, library: { scales: { x: { ticks: { color: "white" } }, y: { ticks: { color: "white" } } } } %>
+        id: "vol_chart",
+        legend: "bottom",
+        xmin: (Time.now - 89.days),
+        colors: ["#0652DD", "#f0932b"],
+        dataset: { borderWidth: 3, tension: 0.25 },
+        library: { scales: { x: { ticks: { color: "white" } }, y: { ticks: { color: "white" } } } } %>
       <% elsif token.asset == "bitcoin" %>
         <%= line_chart [
           {name: token.symbol, data: token.prices.pluck(:price_date, :volatility)},
-          {name: "WETH", data: Token.where(symbol: "WETH").first.prices.pluck(:price_date, :volatility)},
+          {name: "WETH", data: @ethereum.first.prices.pluck(:price_date, :volatility)},
         ],
-        xmin: (Time.now - 89.days), colors: ["#f0932b", "#0652DD"], dataset: { borderWidth: 5, tension: 0.25 }, library: { scales: { x: { ticks: { color: "white" } }, y: { ticks: { color: "white" } } } } %>
+        id: "vol_chart",
+        legend: "bottom",
+        xmin: (Time.now - 89.days),
+        colors: ["#f0932b", "#0652DD"],
+        dataset: { borderWidth: 3, tension: 0.25 },
+        library: { scales: { x: { ticks: { color: "white" } }, y: { ticks: { color: "white" } } } } %>
       <% else %>
         <%= line_chart [
           {name: token.symbol, data: token.prices.pluck(:price_date, :volatility)},
-          {name: "WETH", data: Token.where(symbol: "WETH").first.prices.pluck(:price_date, :volatility)},
-          {name: "WBTC", data: Token.where(symbol: "WBTC").first.prices.pluck(:price_date, :volatility)}
+          {name: "WETH", data: @ethereum.first.prices.pluck(:price_date, :volatility)},
+          {name: "WBTC", data: @bitcoin.first.prices.pluck(:price_date, :volatility)}
         ],
-        xmin: (Time.now - 89.days), colors: ["#833471", "#0652DD", "#f0932b"], dataset: { borderWidth: 5, tension: 0.25 }, library: { scales: { x: { ticks: { color: "white" } }, y: { ticks: { color: "white" } } } } %>
+        id: "vol_chart",
+        legend: "bottom",
+        xmin: (Time.now - 89.days),
+        colors: ["#833471", "#0652DD", "#f0932b"],
+        dataset: { borderWidth: 3, tension: 0.25 },
+        library: { scales: { x: { ticks: { color: "white" } }, y: { ticks: { color: "white" } } } } %>
       <% end %>
       <br />
       <h4 class="token_name">Historical Pricing</h4>
-      <%= line_chart token.prices.pluck(:price_date, :closing_price), xmin: (Time.now - 89.days), prefix: "$", thousands: ",", decimal: ".", round: 4, dataset: { borderWidth: 5, borderColor: "#833471", tension: 0.25 }, library: { scales: { x: { ticks: { color: "white" } }, y: { ticks: { color: "white" } } } } %>
+      <%= line_chart token.prices.pluck(:price_date, :closing_price), id: "hist_chart", xmin: (Time.now - 89.days), prefix: "$", thousands: ",", decimal: ".", round: 4, dataset: { borderWidth: 3, borderColor: "#833471", tension: 0.25 }, library: { scales: { x: { ticks: { color: "white" } }, y: { ticks: { color: "white" } } } } %>
       <br />
     <% else %>
       <br />
@@ -164,26 +179,26 @@
       <% if token.asset == "ethereum" %>
         <%= line_chart [
           {name: token.symbol, data: token.prices.pluck(:price_date, :volatility)},
-          {name: "WBTC", data: Token.where(symbol: "WBTC").first.prices.pluck(:price_date, :volatility)}
+          {name: "WBTC", data: @bitcoin.first.prices.pluck(:price_date, :volatility)}
         ],
-        xmin: (Time.now - 89.days), colors: ["#0652DD", "#f0932b"], dataset: { borderWidth: 5, tension: 0.25 } %>
+        id: "vol_chart", legend: "bottom", xmin: (Time.now - 89.days), colors: ["#0652DD", "#f0932b"], dataset: { borderWidth: 3, tension: 0.25 } %>
       <% elsif token.asset == "bitcoin" %>
         <%= line_chart [
           {name: token.symbol, data: token.prices.pluck(:price_date, :volatility)},
-          {name: "WETH", data: Token.where(symbol: "WETH").first.prices.pluck(:price_date, :volatility)},
+          {name: "WETH", data: @ethereum.first.prices.pluck(:price_date, :volatility)},
         ],
-        xmin: (Time.now - 89.days), colors: ["#f0932b", "#0652DD"], dataset: { borderWidth: 5, tension: 0.25 } %>
+        id: "vol_chart", legend: "bottom", xmin: (Time.now - 89.days), colors: ["#f0932b", "#0652DD"], dataset: { borderWidth: 3, tension: 0.25 } %>
       <% else %>
         <%= line_chart [
           {name: token.symbol, data: token.prices.pluck(:price_date, :volatility)},
-          {name: "WETH", data: Token.where(symbol: "WETH").first.prices.pluck(:price_date, :volatility)},
-          {name: "WBTC", data: Token.where(symbol: "WBTC").first.prices.pluck(:price_date, :volatility)}
+          {name: "WETH", data: @ethereum.first.prices.pluck(:price_date, :volatility)},
+          {name: "WBTC", data: @bitcoin.first.prices.pluck(:price_date, :volatility)}
         ],
-        xmin: (Time.now - 89.days), colors: ["#833471", "#0652DD", "#f0932b"], dataset: { borderWidth: 5, tension: 0.25 } %>
+        id: "vol_chart", legend: "bottom", xmin: (Time.now - 89.days), colors: ["#833471", "#0652DD", "#f0932b"], dataset: { borderWidth: 3, tension: 0.25 } %>
       <% end %>
       <br />
       <h4 class="token_name">Historical Pricing</h4>
-      <%= line_chart token.prices.pluck(:price_date, :closing_price), xmin: (Time.now - 89.days), prefix: "$", thousands: ",", decimal: ".", round: 4, dataset: { borderWidth: 5, borderColor: "#833471", tension: 0.25 } %>
+      <%= line_chart token.prices.pluck(:price_date, :closing_price), id: "hist_chart", xmin: (Time.now - 89.days), prefix: "$", thousands: ",", decimal: ".", round: 4, dataset: { borderWidth: 3, borderColor: "#833471", tension: 0.25 } %>
       <br />
     <% end %>
   <% end %>

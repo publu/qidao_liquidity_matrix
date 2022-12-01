@@ -26,16 +26,20 @@
   color: inherit;
 }
 
-#chart-1 {
+#mai_prices {
   height: 235px !important;
 }
 
-#chart-2, #chart-3, #chart-4, #chart-5 {
+#chain_debt, #backing_type, #collateral_debt, #grade_debt {
   height: 325px !important;
 }
 
-#chart-6 {
-  height: 235px !important;
+#mai_volume {
+  height: 265px !important;
+}
+
+#vol_chart, #hist_chart {
+  height: 250px !important;
 }
 
 body {
