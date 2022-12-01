@@ -63,4 +63,33 @@ namespace :prices do
     end
   end
 
+  task pastweek: :environment do
+    @days = [7,6,5,4,3,2,1]
+    @days.each do |d|
+      Token.all.each do |token|
+        if Price.where(token_id: token.id, price_date: (Time.now - d.day).end_of_day).exists?
+          puts "Skipping " + token.symbol + " (" + token.network.name + "). Prices for " + (Time.now - d.days).strftime("%b %d, %Y") + " already in database."
+        else
+          puts "Adding closing price for " + token.symbol + " (" + token.network.name + ") for " + (Time.now - d.days).beginning_of_day.to_s
+            url = "https://coins.llama.fi/prices/historical/" + ((Time.now - (d.days)).end_of_day.to_i).to_s + "/" + token.network.gecko_id + ":" + token.contract_address
+            uri = URI(url)
+            response = Net::HTTP.get(uri)
+            closing = JSON.parse(response)
+            Price.create(
+              asset: token.asset,
+              token_id: token.id,
+              closing_price: closing["coins"]["#{token.network.gecko_id}:#{token.contract_address}"]["price"].to_d,
+              price_date: (Time.now - d.days).end_of_day,
+              natural_log: Math.log(Price.where(token_id: token.id).order(price_date: :desc).last.closing_price.to_d/(closing["coins"]["#{token.network.gecko_id}:#{token.contract_address}"]["price"]).to_d))
+            sleep 1
+            token.prices.last.update(
+              volatility: (Price.where(token_id: token.id).order(price_date: :desc).pluck(:natural_log).each {|p| p }).standard_deviation)
+            sleep 0.5
+        end
+        token.update(risk_volatility: Price.where(token_id: token.id).order(price_date: :desc).first.volatility)
+      end
+      puts "Closing price update completed."
+    end
+  end
+
 end
