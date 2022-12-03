@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_17_223452) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_02_015537) do
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -59,6 +59,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_223452) do
     t.datetime "updated_at", null: false
     t.decimal "natural_log"
     t.index ["token_id"], name: "index_prices_on_token_id"
+  end
+
+  create_table "stableprices", force: :cascade do |t|
+    t.string "asset"
+    t.decimal "closing_price"
+    t.decimal "volatility"
+    t.datetime "price_date"
+    t.integer "stable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "natural_log"
+    t.index ["stable_id"], name: "index_stableprices_on_stable_id"
+  end
+
+  create_table "stables", force: :cascade do |t|
+    t.string "symbol"
+    t.string "asset"
+    t.string "gecko_id"
+    t.string "contract_address"
+    t.decimal "risk_volatility", precision: 10, scale: 4
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tokens", force: :cascade do |t|
@@ -110,6 +132,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_223452) do
   end
 
   add_foreign_key "prices", "tokens"
+  add_foreign_key "stableprices", "stables"
   add_foreign_key "tokens", "minters"
   add_foreign_key "tokens", "networks"
 end

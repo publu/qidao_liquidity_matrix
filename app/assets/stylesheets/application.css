@@ -34,7 +34,7 @@
   height: 325px !important;
 }
 
-#mai_volume {
+#mai_volume, #stable_price_chart, #stable_vol_chart {
   height: 265px !important;
 }
 
