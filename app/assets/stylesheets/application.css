@@ -34,12 +34,16 @@
   height: 325px !important;
 }
 
-#mai_volume, #stable_price_chart, #stable_vol_chart {
+#mai_volume, #stable_price_chart {
   height: 265px !important;
 }
 
 #vol_chart, #hist_chart {
   height: 250px !important;
+}
+
+#stable_vol_chart {
+  height: 300px !important;
 }
 
 body {

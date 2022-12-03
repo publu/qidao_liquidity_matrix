@@ -11,6 +11,7 @@ de:
   mai_volume: "Tägliches MAI Volumen"
   mai_question: "Was ist MAI?"
   mai_description: "MAI ist ein CDP (Collateralized Debt Position), ein an den USD gebundener Stablecoin, der durch Sicherheiten abgesichert und in %{chaincount} Ketten verfügbar ist. Mit der Mai Finance-App können Benutzer MAI prägen, indem sie eine akzeptierte Sicherheit in einem Tresor hinterlegen. Wenn das Darlehen zurückgezahlt wird, um die Sicherheiten abzurufen, wird das zurückgezahlte MAI verbrannt. Mai Finance bietet 0 % Zinsen auf alle Kredite mit einer Rückzahlungsgebühr von 0,5 %. Weitere Informationen finden Sie in der Mai Finance-Dokumentation."
+  mai_comparison: "Normalisierte Volatilität für MAI im Vergleich zu ähnlichen Ställen"
   list_token: "Token"
   list_new: "NEU"
   list_chain: "Netzwerk"

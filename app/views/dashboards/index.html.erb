@@ -171,11 +171,10 @@
   </div>
   <br />
 
-  <% if user_signed_in? && current_user.admin? %>
     <% if cookies[:theme] == "dark" %>
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
-          <h4 class="large-text">Normalized Volatility For MAI Vs Similar Stables</h4>
+          <h4 class="large-text"><%= t('mai_comparison') %></h4>
           <%= line_chart [
             {name: "MAI", data: @mai_volatility},
             {name: "alUSD", data: @alusd_volatility},
@@ -184,7 +183,7 @@
             {name: "sUSD", data: @susd_volatility}
           ],
           id: "stable_vol_chart",
-          legend: "right",
+          legend: "bottom",
           min: 0,
           xmin: (Time.now - 90.days),
           points: false,
@@ -194,10 +193,11 @@
         </div>
       </div>
       <br />
+      <hr />
     <% else %>
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
-          <h4 class="large-text text-center">Normalized For Volatility MAI Vs Similar Stables</h4>
+          <h4 class="large-text text-center"><%= t('mai_comparison') %></h4>
           <%= line_chart [
             {name: "MAI", data: @mai_volatility},
             {name: "alUSD", data: @alusd_volatility},
@@ -206,7 +206,7 @@
             {name: "sUSD", data: @susd_volatility}
           ],
           id: "stable_vol_chart",
-          legend: "right",
+          legend: "bottom",
           min: 0,
           xmin: (Time.now - 90.days),
           points: false,
@@ -215,8 +215,8 @@
         </div>
       </div>
       <br />
+      <hr />
     <% end %>
-  <% end %>
 
   <div class="row justify-content-end">
     <div class="col-lg-4 col-md-12 col-sm-12">
