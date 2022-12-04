@@ -25,9 +25,9 @@ class TokensController < ApplicationController
   # GET /tokens or /tokens.json
   def index
       if params[:column] && params[:direction]
-        @pagy, @tokens = pagy(Token.includes(:network, :minter).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
+        @tokens = (Token.includes(:network, :minter).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
       else
-        @pagy, @tokens = pagy(Token.includes(:network, :minter).order_by_grade.order(liquidity: :desc))
+        @tokens = (Token.includes(:network, :minter).order_by_grade.order(liquidity: :desc))
       end
       @debt_sum = Token.all.sum(:mai_debt)
       @token_count = Network.all.sum(:tokens_count)

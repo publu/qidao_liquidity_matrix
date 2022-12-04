@@ -32,7 +32,7 @@ class Token < ApplicationRecord
 	end
 
   def should_generate_new_friendly_id?
-    slug.blank? && network_id_changed?
+    slug.blank? && symbol_changed? && network_id_changed?
   end
 
   def self.to_csv

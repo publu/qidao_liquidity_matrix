@@ -164,7 +164,7 @@ h2.nav-float {
 
 th.red {
   color: white !important;
-  background-color: #F16E6A;
+  background-color: #e63946;
 }
 
 th {
@@ -254,12 +254,10 @@ th.right {
 }
 
 .network_img {
-  width: 24px;
   border-radius: 12px;
 }
 
 .network_img_sm {
-  width: 16px;
   border-radius: 8px;
   margin-top: -5px;
 }

@@ -28,9 +28,9 @@
   <% end %>
   <ul class="list-unstyled">
     <li class="token_name">
-      <%= token.symbol %> on <%= token.network.name %> 
+      <%= token.symbol %> on <%= token.network.name %>
       <%= link_to token.network, title: "View chain information for " + token.network.name, class: "plain_link" do %>
-        <%= image_tag token.network.image, class: "network_img_sm" if token.network.image? %>
+        <%= image_tag token.network.image, class: "network_img_sm", width: "16px", height: "16px" %>
       <% end %>
     </li>
     <br />

@@ -29,9 +29,9 @@ class NetworksController < ApplicationController
   # GET /networks/1 or /networks/1.json
   def show
     if params[:column] && params[:direction]
-      @pagy, @tokens = pagy(Token.includes(:network, :minter).where(network_id: @network.id).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
+      @tokens = (Token.includes(:network, :minter).where(network_id: @network.id).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
     else
-      @pagy, @tokens = pagy(Token.includes(:network, :minter).where(network_id: @network.id).order_by_grade.order(liquidity: :desc))
+      @tokens = (Token.includes(:network, :minter).where(network_id: @network.id).order_by_grade.order(liquidity: :desc))
       @token_count = Token.where(network_id: @network.id).size
     end
     @debt_sum = Token.all.sum(:mai_debt)

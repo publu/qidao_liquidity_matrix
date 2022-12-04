@@ -27,9 +27,9 @@ class MintersController < ApplicationController
   # GET /minters/1 or /minters/1.json
   def show
     if params[:column] && params[:direction]
-      @pagy, @tokens = pagy(Token.where(minter_id: @minter.id).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
+      @tokens = (Token.where(minter_id: @minter.id).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
     else
-      @pagy, @tokens = pagy(Token.where(minter_id: @minter.id).order_by_grade.order(liquidity: :desc))
+      @tokens = (Token.where(minter_id: @minter.id).order_by_grade.order(liquidity: :desc))
       @token_count = Token.where(minter_id: @minter.id).size
     end
     respond_to do |format|

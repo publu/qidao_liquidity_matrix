@@ -42,19 +42,10 @@
         <strong>
           <%= link_to token.symbol, token, title: "View rubric for " + token.symbol + " on " + token.network.name, class: "plain_link" %>
         </strong>
-        <!-- <% if token.created_at > (Date.today - 5.days) %>
-          <span class="new"><%= t('list_new') %></span>
-        <% end %> -->
       </td>
-      <% if token.network.image? %>
-        <td itemprop="genre">
-          <%= image_tag token.network.image, class: "network_img" %>
-        </td>
-      <% else %>
-        <td itemprop="genre" style="color: <%= token.network.color %>">
-          <%= token.network.name %>
-        </td>
-      <% end %>
+      <td itemprop="genre">
+        <%= image_tag token.network.image, class: "network_img", width: "24px", height: "24px", alt: token.network.name %>
+      </td>
       <td class="text-end">
         <%= number_to_currency(token.liquidity) %>
       </td>
@@ -114,7 +105,4 @@
     </tr>
     <% end %>
   </table>
-  <% if network.tokens_count > 15 %>
-    <div class="position-absolute start-50 translate-middle-x"><%== pagy_bootstrap_nav(@pagy) %></div>
-  <% end %>
 </div>
