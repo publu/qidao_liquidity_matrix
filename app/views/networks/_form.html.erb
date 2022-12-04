@@ -39,6 +39,11 @@
     </div>
     <br />
     <div class="input-group input-group-sm">
+      <%= form.label :image, class: "input-group-text" %>
+      <%= form.text_field :image, class: "form-control"   %>
+    </div>
+    <br />
+    <div class="input-group input-group-sm">
       <%= form.submit "Submit", class: "btn btn-primary" %>
     </div>
   <% end %>

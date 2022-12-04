@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_02_015537) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_04_011633) do
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_02_015537) do
     t.float "debtamount", default: 0.0
     t.decimal "debtpercent", default: "0.0"
     t.string "gecko_id"
+    t.string "image"
     t.index ["slug"], name: "index_networks_on_slug", unique: true
   end
 

@@ -49,7 +49,19 @@
         <% end %> -->
       </td>
       <td itemprop="genre" style="color: <%= token.network.color %>">
-        <strong><%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "network_link" %></strong>
+        <% if token.network.image? %>
+          <strong>
+            <%= link_to token.network, title: "View chain information for " + token.network.name, class: "network_link" do %>
+              <%= image_tag token.network.image, class: "network_img" %>
+            <% end %>
+          </strong>
+        <% else %>
+          <strong>
+            <%= link_to token.network, title: "View chain information for " + token.network.name, class: "network_link" do %>
+              <%= token.network.name %>
+            <% end %>
+          </strong>
+        <% end %>
       </td>
       <td class="text-end">
         <%= number_to_currency(token.risk_marketcap) %>

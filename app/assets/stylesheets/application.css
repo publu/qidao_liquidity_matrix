@@ -253,6 +253,11 @@ th.right {
   font-weight: bold;
 }
 
+.network_img {
+  width: 24px;
+  border-radius: 12px;
+}
+
 a {
   text-decoration: none;
 }

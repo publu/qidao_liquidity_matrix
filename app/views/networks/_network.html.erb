@@ -46,9 +46,15 @@
           <span class="new"><%= t('list_new') %></span>
         <% end %> -->
       </td>
-      <td itemprop="genre" style="color: <%= token.network.color %>">
-        <%= token.network.name %>
-      </td>
+      <% if token.network.image? %>
+        <td itemprop="genre">
+          <%= image_tag token.network.image, class: "network_img" %>
+        </td>
+      <% else %>
+        <td itemprop="genre" style="color: <%= token.network.color %>">
+          <%= token.network.name %>
+        </td>
+      <% end %>
       <td class="text-end">
         <%= number_to_currency(token.liquidity) %>
       </td>
