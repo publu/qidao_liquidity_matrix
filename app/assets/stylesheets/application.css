@@ -258,6 +258,12 @@ th.right {
   border-radius: 12px;
 }
 
+.network_img_sm {
+  width: 16px;
+  border-radius: 8px;
+  margin-top: -5px;
+}
+
 a {
   text-decoration: none;
 }

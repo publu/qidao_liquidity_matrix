@@ -54,14 +54,15 @@
       <% if cookies[:theme] == "dark" %>
         <%= line_chart @mai_prices,
         id: "mai_prices",
-        xmin: (Time.now - 90.days),
-        prefix: "$", thousands: ",", min: 0.95, max: 1.05, discrete: true, points: false,
+        xmin: (Time.now - 30.days),
+        prefix: "$", thousands: ",",
+        min: 0.95, max: 1.05, discrete: true, points: false,
         dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.25 },
         library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
       <% else %>
         <%= line_chart @mai_prices,
         id: "mai_prices",
-        xmin: (Time.now - 90.days),
+        xmin: (Time.now - 30.days),
         prefix: "$", thousands: ",", min: 0.95, max: 1.05, discrete: true, points: false,
         dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.25 },
         library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>

@@ -28,8 +28,11 @@
   <% end %>
   <ul class="list-unstyled">
     <li class="token_name">
-      <%= token.symbol %>
-      <%= link_to token.network, title: "View chain information for " + token.network.name, class: "plain_link" do %>(<%= token.network.name %>)<% end %></li>
+      <%= token.symbol %> on <%= token.network.name %> 
+      <%= link_to token.network, title: "View chain information for " + token.network.name, class: "plain_link" do %>
+        <%= image_tag token.network.image, class: "network_img_sm" if token.network.image? %>
+      <% end %>
+    </li>
     <br />
     <li><strong>Coingecko:</strong> <%= link_to token.coingecko, token.coingecko, title: "Coingecko", target: "_blank", rel: "noopener noreferrer", class: "plain_link" %></li>
     <li><strong>Coinmarketcap:</strong> <%= link_to token.coinmarketcap, token.coinmarketcap, title: "CoinMarketCap", target: "_blank", rel: "noopener noreferrer", class: "plain_link" %></li>
