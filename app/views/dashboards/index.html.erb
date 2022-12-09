@@ -44,8 +44,8 @@
       </div>
       <br />
       <div class="info-box">
-        <h4><%= t('dash_tokens') %></h4>
-        <span class="large-text"><%= @tokens.count %></span>
+        <h4><%= t('dash_collateralization') %></h4>
+        <span class="large-text"><%= '%.4f' % (tvl_response.to_d / @tokens_sum.to_d * 100) %>%</span>
       </div>
       <br />
     </div>
@@ -72,7 +72,7 @@
 
   <div class="row">
     <h4 class="large-text"><%= t('mai_question') %></h4>
-    <p><%= t('mai_description', chaincount: @networks.count) %></p>
+    <p><%= t('mai_description', chaincount: @networks.count, collateralcount: @tokens.count) %></p>
   </div>
 
   <div class="row justify-content-evenly">
@@ -155,22 +155,20 @@
   <br />
 
   <div class="row">
-    <br />
-    <div class="col-lg-12 col-md-12 col-sm-12">
-      <h4 class="large-text"><%= t('mai_volume') %></h4>
-      <% url = 'https://api.coingecko.com/api/v3/coins/mimatic/market_chart?vs_currency=usd&days=30&interval=daily' %>
-      <% uri = URI(url) %>
-      <% response = Net::HTTP.get(uri) %>
-      <% mai = JSON.parse(response) %>
-      <% mai_volume = mai['total_volumes'] %>
-      <% if cookies[:theme] == "dark" %>
-        <%= column_chart mai_volume, id: "mai_volume", prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#686de0" }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
-      <% else %>
-        <%= column_chart mai_volume, id: "mai_volume", prefix: "$", thousands: ",", legend: false, discrete: true, points: false, dataset: { backgroundColor: "#686de0" }, library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
-      <% end %>
-    </div>
-  </div>
   <br />
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <h4 class="large-text"><%= t('mai_volume') %></h4>
+    <% mai = JSON.parse(Net::HTTP.get(URI('https://api.coingecko.com/api/v3/coins/mimatic/market_chart?vs_currency=usd&days=30&interval=daily'))) %>
+    <% mai_volume = mai['total_volumes'] %>
+    <%= column_chart mai_volume,
+      id: "mai_volume", prefix: "$",
+      thousands: ",",
+      legend: false, discrete: true, points: false,
+      dataset: { backgroundColor: cookies[:theme] == "dark" ? "#686de0" : "#2d3436" },
+      library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: cookies[:theme] == "dark" ? "white" : "#2d3436" } } } } %>
+  </div>
+</div>
+<br />
 
     <% if cookies[:theme] == "dark" %>
       <div class="row">

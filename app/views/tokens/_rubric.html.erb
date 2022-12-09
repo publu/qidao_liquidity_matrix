@@ -115,7 +115,7 @@
     <li>
       <% unless token.minter_id == 4 %>
         <% if token.mai_debt.to_i > 0 %>
-          <strong><%= t('list_debt') %>:</strong> <%= ((token.mai_debt / @debt_sum) * 100).round(4) %>%
+          <strong><%= t('list_debt') %>:</strong> <%= ((token.mai_debt / @debt_sum) * 100).round(4) %>% (<%= number_to_currency(token.mai_debt) %>)
         <% else %>
           <strong><%= t('list_debt') %>:</strong> 0.00%
         <% end %>

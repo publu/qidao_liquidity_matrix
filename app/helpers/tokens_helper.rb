@@ -1,17 +1,7 @@
 module TokensHelper
 
     def sort_link(column:, label:)
-      if column == "symbol"
-        link_to(label, tokens_path(column: column, direction: next_direction), title: "Sort tokens")
-      elsif column != "symbol"
-        if column == params[:column]
-          link_to(label, tokens_path(column: column, direction: next_direction), title: "Sort tokens")
-        else
-          link_to(label, tokens_path(column: column, direction: 'desc'), title: "Sort tokens")
-        end
-      else
-        link_to(label, tokens_path(column: column, direction: 'desc'), title: "Sort tokens")
-      end
+      link_to(label, tokens_path(column: column, direction: next_direction), title: "Sort tokens")
     end
 
     def next_direction

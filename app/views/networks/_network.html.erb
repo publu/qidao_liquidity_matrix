@@ -59,7 +59,7 @@
         <%= number_to_currency(token.mai_debt) %>
       </td>
       <td class="text-end">
-        <%= ((token.mai_debt.to_i / @debt_sum) * 100).round(4) %>%
+        <%= '%.4f' % (token.mai_debt.to_i / @debt_sum * 100) %>%
       </td>
       <td class="text-center">
         <% if token.centralized? %>
