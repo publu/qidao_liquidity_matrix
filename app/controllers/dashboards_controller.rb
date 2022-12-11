@@ -1,4 +1,5 @@
 require 'json'
+
 class DashboardsController < ApplicationController
 
   def index
@@ -26,4 +27,12 @@ class DashboardsController < ApplicationController
     @byvolatility = Token.includes(:network).where.not(minter_id: 4).order(risk_volatility: :asc).limit(10)
     @byscore = Token.includes(:network).where.not(minter_id: 4).order_by_grade.order(liquidity: :desc).limit(10)
   end
+
+  def stables
+    @stables = Stableprice.joins(:stable)
+    respond_to do |format|
+      format.json
+    end
+  end
+
 end

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     end
 
     get "/dashboard", to: "dashboards#index"
+    get "/stableData", to: "dashboards#stables"
     devise_for :users, controllers: { registrations: "registrations" }
     get "/sitemap", to: "tokens#sitemap"
 
