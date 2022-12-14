@@ -21,6 +21,7 @@ en:
   list_volume: "1M Daily Volume"
   list_chain_debt: "Total Debt"
   list_debt: "Debt %"
+  list_type: "Token Type"
   list_centralization: "Does one wallet own > 20% of tokens in LPs?"
   list_available: "Availability"
   list_yes: "Yes"

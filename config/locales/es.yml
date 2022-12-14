@@ -21,6 +21,7 @@ es:
   list_volume: "Volumen Diario 1M"
   list_chain_debt: "Deuda Total"
   list_debt: "% de Deuda"
+  list_type: "Tipo de Mondena"
   list_centralization: "¿Una billetera posee > 20% de monedas en LP?"
   list_available: "Disponibilidad"
   list_yes: "Si"

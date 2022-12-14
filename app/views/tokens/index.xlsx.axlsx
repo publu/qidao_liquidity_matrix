@@ -7,15 +7,15 @@ wb.styles do |style|
   center = style.add_style(alignment: { horizontal: :center })
   right = style.add_style(alignment: { horizontal: :right })
 
-  wb.add_worksheet(name: "Liquidity Matrix") do |sheet|
+  wb.add_worksheet(name: "Risk Matrix") do |sheet|
     # Add a title row
-    sheet.add_row ["QiDao Liquidity Matrix"], style: project_heading
+    sheet.add_row ["QiDao Risk Matrix"], style: project_heading
     # Add the date this was downloaded
     sheet.add_row ["Downloaded on " + Time.now.strftime("%d %b, %Y")]
     # Add a blank row
     sheet.add_row []
     # Create the header row
-    sheet.add_row ["Asset", "Chain", "Total Onchain Liquidity", "Largest trade for stable with < 10% slippage", "1M Average Daily Volume", "Does one wallet own more than 20% of tokens in onchain LPs?", "Risk Grading"], style: heading, height: 50
+    sheet.add_row ["Asset", "Chain", "Onchain Liquidity", "Largest trade for stables < 10% slippage", "1M Average Daily Volume", "Does one wallet own more than 20% of tokens in onchain LPs?", "Risk Grading"], style: heading, height: 50
     # Create entries for each item
     @tokens.each do |token|
       if token.centralized?

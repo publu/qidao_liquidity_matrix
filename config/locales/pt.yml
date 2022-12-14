@@ -21,6 +21,7 @@ pt:
   list_volume: "Volume Diário 1M"
   list_chain_debt: "Dívida Total"
   list_debt: "% da Dívida"
+  list_type: "Tipo de Moeda"
   list_centralization: "Uma carteira possui > 20% das moedas em LPs?"
   list_available: "Disponibilidade"
   list_yes: "Sim"

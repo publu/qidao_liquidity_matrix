@@ -21,6 +21,7 @@ fr:
   list_volume: "Volume Quotidien 1M"
   list_chain_debt: "Dette total"
   list_debt: "% de la Dette"
+  list_type: "Type de Token"
   list_centralization: "Est-ce qu'un portefeuille détient > 20% des tokens en LPs?"
   list_available: "Disponibilité"
   list_yes: "Oui"

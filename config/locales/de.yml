@@ -21,6 +21,7 @@ de:
   list_volume: "1M Tagesvolumen"
   list_chain_debt: "Gesamtschulden"
   list_debt: "Schulden %"
+  list_type: "Token-Typ"
   list_centralization: "Besitzt ein Wallet > 20% der Tokens in LPs?"
   list_available: "Verfügbarkeit"
   list_yes: "Ja"

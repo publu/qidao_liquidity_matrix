@@ -5,18 +5,18 @@
           <%= sort_link(column: "symbol", label: t('list_token')) %>
           <%= sort_indicator if params[:column] == "symbol" %>
         </th>
-        <th class="red">
+        <th class="red td-5">
           <%= t('list_chain') %>
         </th>
-        <th class="red text-end">
+        <th class="red text-end td-15">
           <%= sort_link(column: "risk_marketcap", label: t('rubric_mcap')) %>
           <%= sort_indicator if params[:column] == "risk_marketcap" %>
         </th>
-        <th class="red text-end">
+        <th class="red text-end td-10">
           <%= sort_link(column: "liquidity", label: t('list_liquidity')) %>
           <%= sort_indicator if params[:column] == "liquidity" %>
         </th>
-        <th class="red text-end td-10">
+        <th class="red text-end td-11">
           <%= sort_link(column: "trade_slippage", label: t('list_slippage')) %>
           <%= sort_indicator if params[:column] == "trade_slippage" %>
         </th>
@@ -25,12 +25,12 @@
           <%= sort_indicator if params[:column] == "volume" %>
         </th>
         <th class="red text-end">
-          <%= sort_link(column: "mai_debt", label: t('list_chain_debt')) %>
-          <%= sort_indicator if params[:column] == "mai_debt" %>
-        </th>
-        <th class="red text-end">
           <%= sort_link(column: "mai_debt", label: t('list_debt')) %>
           <%= sort_indicator if params[:column] == "mai_debt" %>
+        </th>
+        <th class="red text-center">
+          <%= sort_link(column: "token_type", label: t('list_type')) %>
+          <%= sort_indicator if params[:column] == "token_type" %>
         </th>
         <th class="red text-center td-10">
           <%= sort_link(column: "minter_id", label: t('list_available')) %>
@@ -70,10 +70,10 @@
           <%= number_to_currency(token.volume) %>
         </td>
         <td class="text-end">
-          <%= number_to_currency(token.mai_debt) %>
-        </td>
-        <td class="text-end">
           <%= '%.4f' % (token.mai_debt.to_i / @debt_sum * 100) %>%
+        </td>
+        <td class="text-center">
+          <%= token.token_type %>
         </td>
         <td itemprop="provider" class="text-center">
           <% if token.minter.name == "Not Released" %>
