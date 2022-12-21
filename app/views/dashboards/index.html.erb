@@ -219,7 +219,14 @@
 
   <div class="row justify-content-end">
     <div class="col-lg-4 col-md-12 col-sm-12">
-      <h4 class="medium-text text-center"><%= svg_tag "asterisk" %> <%= t('dash_score_topten') %></h4>
+      <h4 class="medium-text text-center">
+        <%= t('dash_score_topten') %>
+        <% if cookies[:theme] == "dark" %>
+          <%= link_to "https://docs.aave.com/risk/asset-risk/methodology", title: "Aave risk methodology", target: "_blank" do %><%= svg_tag "exclamation_light" %><% end %>
+        <% else %>
+          <%= link_to "https://docs.aave.com/risk/asset-risk/methodology", title: "Aave risk methodology", target: "_blank" do %><%= svg_tag "exclamation_dark" %><% end %>
+        <% end %>
+      </h4>
       <ol>
         <% @byscore.each do |token| %>
           <li>
@@ -232,7 +239,7 @@
       </ol>
     </div>
     <div class="col-lg-4 col-md-12 col-sm-12">
-      <h4 class="medium-text text-center"><%= svg_tag "asterisk" %> <%= t('dash_vol_topten') %></h4>
+      <h4 class="medium-text text-center"><%= t('dash_vol_topten') %></h4>
       <ol>
         <% @byvolatility.each do |token| %>
           <li>
@@ -245,7 +252,7 @@
       </ol>
     </div>
     <div class="col-lg-4 col-md-12 col-sm-12">
-      <h4 class="medium-text text-center"><%= svg_tag "asterisk" %> <%= t('dash_liq_topten') %></h4>
+      <h4 class="medium-text text-center"><%= t('dash_liq_topten') %></h4>
       <ol>
         <% @byliquidity.each do |token| %>
           <li>
