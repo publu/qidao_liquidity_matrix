@@ -36,7 +36,9 @@
           <%= sort_link(column: "minter_id", label: t('list_available')) %>
           <%= sort_indicator if params[:column] == "minter_id" %>
         </th>
-        <th class="red text-center"><%= link_to t('list_grade'), tokens_path, title: "Risk Grading" %></th>
+        <th class="red text-center">
+          <%= link_to t('list_grade'), tokens_path, title: "Based on Aave's risk metholody" %>
+        </th>
         <% if user_signed_in? && current_user.admin? %>
           <th class="red text-center"><%= t('actions') %></th>
         <% end %>
