@@ -40,12 +40,13 @@
         <% tvl_url = 'https://api.llama.fi/tvl/qidao' %>
         <% tvl_uri = URI(tvl_url) %>
         <% tvl_response = Net::HTTP.get(tvl_uri) %>
-        <span class="large-text"><%= number_to_currency(tvl_response).to_s %></span>
+        <% tvl = JSON.parse(tvl_response)['lastHourlyRecord'] %>
+        <span class="large-text"><%= number_to_currency(tvl['tvlPrev1Hour']) %></span>
       </div>
       <br />
       <div class="info-box">
         <h4><%= t('dash_collateralization') %></h4>
-        <span class="large-text"><%= '%.4f' % (tvl_response.to_d / @tokens_sum.to_d * 100) %>%</span>
+        <span class="large-text"><%= '%.4f' % (tvl['tvlPrev1Hour'].to_d / @tokens_sum.to_d * 100) %>%</span>
       </div>
       <br />
     </div>
