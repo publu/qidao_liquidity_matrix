@@ -170,6 +170,8 @@ module TokensHelper
         "94"
       elsif token.risk_volatility >= 0.005
         "97"
+      elsif token.risk_volatility >= 0.000
+        "100"
       else
         "60"
       end
