@@ -181,7 +181,7 @@ namespace :tokens do
       CoingeckoRuby::Client.new.markets(token.asset, vs_currency: 'usd').each do |datum|
         puts "Updating marketcap for " + token.symbol + " (" + token.network.name + ")."
         if datum['market_cap'] > 0
-          token.update(risk_marketcap: datum['market_cap'].to_f)
+          token.update(risk_marketcap: datum['market_cap'].to_i)
           puts "Completed."
           sleep 5
         else
@@ -198,7 +198,7 @@ namespace :tokens do
       CoingeckoRuby::Client.new.markets(token.asset, vs_currency: 'usd').each do |datum|
         puts "Updating volume for " + token.symbol + " (" + token.network.name + ")."
         if datum['total_volume'] > 0
-          token.update(risk_volume: datum['total_volume'].to_f)
+          token.update(risk_volume: datum['total_volume'].to_i)
           puts "Completed."
           sleep 5
         else
