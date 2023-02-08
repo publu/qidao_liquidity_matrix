@@ -281,6 +281,22 @@ a.plain_link:hover {
   font-style: italic;
 }
 
+.valign {
+  vertical-align: middle;
+}
+
+.price-up {
+  color: green;
+  font-size: small;
+  vertical-align: middle;
+}
+
+.price-down {
+  color: red;
+  font-size: small;
+  vertical-align: middle;
+}
+
 .btn-header {
   border: 1px solid #ccc;
   border-radius: 10px 10px 0 0;
