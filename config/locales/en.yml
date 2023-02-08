@@ -26,7 +26,7 @@ en:
   list_yes: "Yes"
   list_no: "No"
   list_grade: "Risk Grading"
-  list_count: "Collateral Count"
+  list_count: "Collaterals"
   list_actions: "Actions"
   list_released: "Not Released"
   list_totals: "Totals"

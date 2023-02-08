@@ -27,7 +27,7 @@ fr:
   list_yes: "Oui"
   list_no: "Non"
   list_grade: "Score de Risque"
-  list_count: "Nombre de jeton de Collatéralisation"
+  list_count: "Collatéraux"
   list_actions: "Actions"
   list_released: "Non disponible"
   list_totals: "Totaux"

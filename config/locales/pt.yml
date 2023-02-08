@@ -27,7 +27,7 @@ pt:
   list_yes: "Sim"
   list_no: "Não"
   list_grade: "Classificação de Risco"
-  list_count: "Número de Garantias"
+  list_count: "Garantias"
   list_actions: "Ações"
   list_released: "Não Lançado"
   list_totals: "Totais"
