@@ -13,27 +13,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav navbar-links">
-        <% if current_page?(root_url) %>
-          <li class="nav-item">
-            <%= link_to tokens_path(format: :xlsx), title: "Export data to spreadsheet", class: "nav-link" do %>
-              <%= t('menu_export') %>
-            <% end %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to root_url, title: "Tokens", class: "nav-link" do %>
-              <%= t('menu_tokens') %>
-            <% end %>
-          </li>
-        <% end %>
-        <li class="nav-item">
-          <%= link_to networks_path, title: "Chains", class: "nav-link" do %>
-            <%= t('menu_chains') %>
-          <% end %>
-        </li>
         <li class="nav-item">
           <%= link_to dashboard_path, title: "Dashboard", class: "nav-link" do %>
             <%= t('menu_dashboard') %>
+          <% end %>
+        </li>
+
+          <li class="nav-item">
+            <%= link_to tokens_path, title: "Vaults", class: "nav-link" do %>
+              <%= t('menu_tokens') %>
+            <% end %>
+          </li>
+        <li class="nav-item">
+          <%= link_to networks_path, title: "Chains", class: "nav-link" do %>
+            <%= t('menu_chains') %>
           <% end %>
         </li>
         <li class="nav-item">

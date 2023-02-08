@@ -24,15 +24,15 @@ class TokensController < ApplicationController
 
   def index
       if params[:column] && params[:direction]
-        @tokens = (Token.includes(:network, :minter).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
+        @tokens = (Token.includes(:network).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
       else
-        @tokens = (Token.includes(:network, :minter).order_by_grade.order(liquidity: :desc))
+        @tokens = (Token.includes(:network).order_by_grade.order(liquidity: :desc))
       end
       @debt_sum = Token.all.sum(:mai_debt)
       @token_count = Network.all.sum(:tokens_count)
       respond_to do |format|
         format.xlsx do
-          @tokens = Token.includes(:network, :minter).order_by_grade.order(liquidity: :desc)
+          @tokens = Token.includes(:network).order_by_grade.order(liquidity: :desc)
           response.headers['Content-Disposition'] = "attachment; filename=qidao_liquidity_matrix.xlsx"
         end
         format.csv do

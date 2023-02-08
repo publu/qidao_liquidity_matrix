@@ -32,10 +32,6 @@
           <%= sort_link(column: "token_type", label: t('list_type')) %>
           <%= sort_indicator if params[:column] == "token_type" %>
         </th>
-        <th class="red text-center td-10">
-          <%= sort_link(column: "minter_id", label: t('list_available')) %>
-          <%= sort_indicator if params[:column] == "minter_id" %>
-        </th>
         <th class="red text-center">
           <%= link_to t('list_grade'), tokens_path, title: "Based on Aave's risk metholody" %>
         </th>
@@ -76,13 +72,6 @@
         </td>
         <td class="text-center">
           <%= token.token_type %>
-        </td>
-        <td itemprop="provider" class="text-center">
-          <% if token.minter.name == "Not Released" %>
-            <span class="text-danger"><%= t('list_released') %></span>
-          <% else %>
-            <%= link_to token.minter.name, token.minter.link, title: "Go to " + token.minter.name, target: "_blank", class: "plain_link" %>
-          <% end %>
         </td>
         <td itemprop="aggregateRating" class="text-center">
           <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name do %>

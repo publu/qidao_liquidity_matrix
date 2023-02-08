@@ -58,21 +58,21 @@
       <br />
     </div>
     <div class="col-lg-9 col-md-8 col-sm-12">
-      <h4 class="large-text text-center"><%= t('mai_price') %></h4>
+      <h4 class="large-text text-center"><%= t('mai_price') %> (30d)</h4>
       <% if cookies[:theme] == "dark" %>
         <%= line_chart @mai_prices,
         id: "mai_prices",
         xmin: (Time.now - 30.days),
         prefix: "$", thousands: ",",
         min: 0.95, max: 1.05, discrete: true, points: false,
-        dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.25 },
+        dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.75 },
         library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
       <% else %>
         <%= line_chart @mai_prices,
         id: "mai_prices",
         xmin: (Time.now - 30.days),
         prefix: "$", thousands: ",", min: 0.95, max: 1.05, discrete: true, points: false,
-        dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.25 },
+        dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.75 },
         library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
       <% end %>
     </div>
@@ -113,14 +113,14 @@
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
               library: { "backgroundColor": "#2d3436", "chartArea": { "width": "70%" }, "legend": { "textStyle": { "color": "white" } } },
-              colors: ["#686de0", "#4834d4"] %>
+              colors: ["#686de0", "#4834d4", "#30336b"] %>
       <% else %>
         <%= pie_chart @backing_type,
               id: "backing_type",
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
               library: { "backgroundColor": "#f5f6fa", "chartArea": { "width": "70%" } },
-              colors: ["#686de0", "#4834d4"] %>
+              colors: ["#686de0", "#4834d4", "#30336b"] %>
       <% end %>
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12">
@@ -165,14 +165,14 @@
   <div class="row">
   <br />
   <div class="col-lg-12 col-md-12 col-sm-12">
-    <h4 class="large-text"><%= t('mai_volume') %></h4>
+    <h4 class="large-text"><%= t('mai_volume') %> (30d)</h4>
     <% mai = JSON.parse(Net::HTTP.get(URI('https://api.coingecko.com/api/v3/coins/mimatic/market_chart?vs_currency=usd&days=30&interval=daily'))) %>
     <% mai_volume = mai['total_volumes'] %>
-    <%= column_chart mai_volume,
+    <%= area_chart mai_volume,
       id: "mai_volume", prefix: "$",
       thousands: ",",
       legend: false, discrete: true, points: false,
-      dataset: { backgroundColor: cookies[:theme] == "dark" ? "#686de0" : "#0984e3" },
+      dataset: { backgroundColor: "#f16e6a" },
       library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: cookies[:theme] == "dark" ? "white" : "#2d3436" } } } } %>
   </div>
 </div>
@@ -181,7 +181,7 @@
     <% if cookies[:theme] == "dark" %>
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
-          <h4 class="large-text"><%= t('mai_comparison') %></h4>
+          <h4 class="large-text"><%= t('mai_comparison') %> (90d)</h4>
           <%= line_chart [
             {name: "MAI", data: @mai_volatility},
             {name: "alUSD", data: @alusd_volatility},
@@ -195,7 +195,8 @@
           xmin: (Time.now - 90.days),
           points: false,
           colors: ["#f16e6a", "#ffbe76", "#74b9ff", "#6c5ce7", "#00b894"],
-          dataset: { borderWidth: 3, tension: 0.25 },
+          dataset: { borderWidth: 3, tension: 0.75 },
+          precision: 6,
           library: { scales: { x: { ticks: { color: "white" } }, y: { ticks: { color: "white" } } } } %>
         </div>
       </div>
@@ -204,7 +205,7 @@
     <% else %>
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
-          <h4 class="large-text text-center"><%= t('mai_comparison') %></h4>
+          <h4 class="large-text text-center"><%= t('mai_comparison') %> (90d)</h4>
           <%= line_chart [
             {name: "MAI", data: @mai_volatility},
             {name: "alUSD", data: @alusd_volatility},
@@ -218,59 +219,12 @@
           xmin: (Time.now - 90.days),
           points: false,
           colors: ["#f16e6a", "#ffbe76", "#74b9ff", "#6c5ce7", "#00b894"],
-          dataset: { borderWidth: 3, tension: 0.25 } %>
+          dataset: { borderWidth: 3, tension: 0.75 },
+          precision: 6 %>
         </div>
       </div>
       <br />
       <hr />
     <% end %>
 
-  <div class="row justify-content-end">
-    <div class="col-lg-4 col-md-12 col-sm-12">
-      <h4 class="medium-text text-center">
-        <%= t('dash_score_topten') %>
-        <% if cookies[:theme] == "dark" %>
-          <%= link_to "https://docs.aave.com/risk/asset-risk/methodology", title: "Aave risk methodology", target: "_blank" do %><%= svg_tag "exclamation_light" %><% end %>
-        <% else %>
-          <%= link_to "https://docs.aave.com/risk/asset-risk/methodology", title: "Aave risk methodology", target: "_blank" do %><%= svg_tag "exclamation_dark" %><% end %>
-        <% end %>
-      </h4>
-      <ol>
-        <% @byscore.each do |token| %>
-          <li>
-            <strong><%= token.symbol %> <span style="color: <%= token.network.color %>">(<%= token.network.name %>)</span></strong>
-            <div class="float-end">
-              <%= link_to token.grade, token, title: token.symbol + " on (" + token.network.name + ")", class: "plain_link" %>
-            </div>
-          </li>
-        <% end %>
-      </ol>
-    </div>
-    <div class="col-lg-4 col-md-12 col-sm-12">
-      <h4 class="medium-text text-center"><%= t('dash_vol_topten') %></h4>
-      <ol>
-        <% @byvolatility.each do |token| %>
-          <li>
-            <strong><%= token.symbol %> <span style="color: <%= token.network.color %>">(<%= token.network.name %>)</span></strong>
-            <div class="float-end">
-              <%= link_to token.risk_volatility, token, title: token.symbol + " on (" + token.network.name + ")", class: "plain_link" %>
-            </div>
-          </li>
-        <% end %>
-      </ol>
-    </div>
-    <div class="col-lg-4 col-md-12 col-sm-12">
-      <h4 class="medium-text text-center"><%= t('dash_liq_topten') %></h4>
-      <ol>
-        <% @byliquidity.each do |token| %>
-          <li>
-            <strong><%= token.symbol %> <span style="color: <%= token.network.color %>">(<%= token.network.name %>)</span></strong>
-            <div class="float-end">
-              <%= link_to number_to_currency(token.liquidity), token, title: token.symbol + " on (" + token.network.name + ")", class: "plain_link" %>
-            </div>
-          </li>
-        <% end %>
-      </ol>
-    </div>
-  </div>
 </div>

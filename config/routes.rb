@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   scope "(:locale)", locale: /en|de|es|fr|pt/ do
-    root "tokens#index"
+    root "dashboards#index"
 
     resources :networks, path: "chains" do
       collection do
@@ -20,12 +20,12 @@ Rails.application.routes.draw do
       end
     end
 
-    get "/dashboard", to: "dashboards#index"
     get "/stableData", to: "dashboards#stables"
     devise_for :users, controllers: { registrations: "registrations" }
     get "/sitemap", to: "tokens#sitemap"
 
     # Handle errors
+    get "/dashboard", to: redirect("/"), status: 302
     get "/networks/:slug", to: redirect("/chains/%{slug}"), status: 302
     get "/networks", to: redirect("/chains"), status: 302
     match "/404", to: "errors#not_found", via: :all
