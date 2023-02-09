@@ -73,14 +73,14 @@
         xmin: (Time.now - 30.days),
         prefix: "$", thousands: ",",
         min: 0.95, max: 1.05, discrete: true, points: false,
-        dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.75 },
+        dataset: { borderWidth: 3, borderColor: "#f16e6a", tension: 0.25 },
         library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "white" } } } } %>
       <% else %>
         <%= line_chart @mai_prices,
         id: "mai_prices",
         xmin: (Time.now - 30.days),
         prefix: "$", thousands: ",", min: 0.95, max: 1.05, discrete: true, points: false,
-        dataset: { borderWidth: 5, borderColor: "#f16e6a", tension: 0.75 },
+        dataset: { borderWidth: 3, borderColor: "#f16e6a", tension: 0.25 },
         library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: "#2d3436" } } } } %>
       <% end %>
     </div>
@@ -173,19 +173,20 @@
 
   <div class="row">
   <br />
-  <div class="col-lg-12 col-md-12 col-sm-12">
-    <h4 class="large-text"><%= t('mai_volume') %> (30d)</h4>
-    <% mai = JSON.parse(Net::HTTP.get(URI('https://api.coingecko.com/api/v3/coins/mimatic/market_chart?vs_currency=usd&days=30&interval=daily'))) %>
-    <% mai_volume = mai['total_volumes'] %>
-    <%= area_chart mai_volume,
-      id: "mai_volume", prefix: "$",
-      thousands: ",",
-      legend: false, discrete: true, points: false,
-      dataset: { backgroundColor: "#4834d4" },
-      library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: cookies[:theme] == "dark" ? "white" : "#2d3436" } } } } %>
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <h4 class="large-text"><%= t('mai_volume') %> (30d)</h4>
+      <% mai = JSON.parse(Net::HTTP.get(URI('https://api.coingecko.com/api/v3/coins/mimatic/market_chart?vs_currency=usd&days=30&interval=daily'))) %>
+      <% mai_volume = mai['total_volumes'] %>
+      <% mai_volume_data = mai_volume.map { |v| [Time.at(v[0]/1000).strftime("%b %d, %Y"), v[1].round(2)] } %>
+      <%= line_chart mai_volume_data,
+        id: "mai_volume", prefix: "$",
+        thousands: ",",
+        legend: false, discrete: true, points: false,
+        dataset: { backgroundColor: "#4834d4", borderWidth: 3, tension: 0.25 },
+        library: { scales: { x: { ticks: { display: false } }, y: { ticks: { color: cookies[:theme] == "dark" ? "white" : "#2d3436" } } } } %>
+    </div>
   </div>
-</div>
-<br />
+  <br />
 
     <% if cookies[:theme] == "dark" %>
       <div class="row">
@@ -204,7 +205,7 @@
           xmin: (Time.now - 90.days),
           points: false,
           colors: ["#f16e6a", "#ffbe76", "#74b9ff", "#6c5ce7", "#00b894"],
-          dataset: { borderWidth: 3, tension: 0.75 },
+          dataset: { borderWidth: 3, tension: 0.25 },
           precision: 6,
           library: { scales: { x: { ticks: { color: "white" } }, y: { ticks: { color: "white" } } } } %>
         </div>
@@ -228,7 +229,7 @@
           xmin: (Time.now - 90.days),
           points: false,
           colors: ["#f16e6a", "#ffbe76", "#74b9ff", "#6c5ce7", "#00b894"],
-          dataset: { borderWidth: 3, tension: 0.75 },
+          dataset: { borderWidth: 3, tension: 0.25 },
           precision: 6 %>
         </div>
       </div>
