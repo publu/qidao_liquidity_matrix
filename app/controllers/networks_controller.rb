@@ -27,9 +27,9 @@ class NetworksController < ApplicationController
 
   def show
     if params[:column] && params[:direction]
-      @tokens = (Token.includes(:network, :minter).where(network_id: @network.id).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
+      @tokens = (Token.includes(:network).where(network_id: @network.id).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
     else
-      @tokens = (Token.includes(:network, :minter).where(network_id: @network.id).order_by_grade.order(liquidity: :desc))
+      @tokens = (Token.includes(:network).where(network_id: @network.id).order_by_grade.order(liquidity: :desc))
       @token_count = Token.where(network_id: @network.id).size
     end
     @debt_sum = Token.all.sum(:mai_debt)

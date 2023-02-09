@@ -1,8 +1,5 @@
 fr:
-  menu_title: "Matrice de Risque QiDao"
-  menu_export: "Exporter"
-  menu_tokens: "Coffres"
-  menu_chains: "Chaînes"
+  menu_tokens: "Évaluations"
   menu_dashboard: "Panorama"
   menu_updates: "Nouvelles"
   menu_settings: "Choix"

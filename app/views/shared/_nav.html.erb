@@ -4,7 +4,7 @@
     <div class="d-none d-sm-block">
         <%= link_to root_url, title: "Go home", class: "float-start" do %>
         <h1 class="navbar-name">
-          <%= t('menu_title') %>
+          Mai Watch
         </h1>
         <% end %>
     </div>
@@ -18,15 +18,9 @@
             <%= t('menu_dashboard') %>
           <% end %>
         </li>
-
-          <li class="nav-item">
-            <%= link_to tokens_path, title: "Vaults", class: "nav-link" do %>
-              <%= t('menu_tokens') %>
-            <% end %>
-          </li>
         <li class="nav-item">
-          <%= link_to networks_path, title: "Chains", class: "nav-link" do %>
-            <%= t('menu_chains') %>
+          <%= link_to tokens_path, title: "Assessments", class: "nav-link" do %>
+            <%= t('menu_tokens') %>
           <% end %>
         </li>
         <li class="nav-item">
@@ -113,8 +107,8 @@
               <% if current_user.admin? %>
                 <li class="dropdown-item disabled">Admin</li>
                 <ul class="list-unstyled">
-                  <li class="nav-item"><%= link_to new_token_path, title: "Add new token", class: "dropdown-item" do %>&#8226; Add new token<% end %></li>
-                  <li class="nav-item"><%= link_to new_network_path, title: "Add new chain", class: "dropdown-item" do %>&#8226; Add new chain<% end %></li>
+                  <li class="nav-item"><%= link_to new_token_path, title: "Add new assessment", class: "dropdown-item" do %>&#8226; New Assessment<% end %></li>
+                  <li class="nav-item"><%= link_to new_network_path, title: "Add new chain", class: "dropdown-item" do %>&#8226; New Chain<% end %></li>
                 </ul>
                 <li class="dropdown-item disabled">Account</li>
                 <ul class="list-unstyled">

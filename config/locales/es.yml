@@ -1,8 +1,5 @@
 es:
-  menu_title: "Matricula De Riesgo De QiDao"
-  menu_export: "Exportar"
-  menu_tokens: "Bóvedas"
-  menu_chains: "Redes"
+  menu_tokens: "Evaluaciones"
   menu_dashboard: "Tablero"
   menu_updates: "Noticias"
   menu_settings: "Opciones"

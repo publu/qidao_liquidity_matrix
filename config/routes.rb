@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :tokens do
+    resources :tokens, path: "assessments" do
       collection do
         post :import
       end
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
     # Handle errors
     get "/dashboard", to: redirect("/"), status: 302
+    get "/tokens/:slug", to: redirect("/assessments/%{slug}"), status: 302
     get "/networks/:slug", to: redirect("/chains/%{slug}"), status: 302
     get "/networks", to: redirect("/chains"), status: 302
     match "/404", to: "errors#not_found", via: :all

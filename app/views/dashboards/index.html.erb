@@ -1,16 +1,16 @@
 <% content_for :title do %>
-  QiDao Risk Matrix | Overview
+  Mai Watch | Overview
 <% end %>
 <% content_for :description do %>
   <meta name="description" content="Dashboard for QiDao protocol collaterals including liquidity, volume, and top 25 collaterals by category." />
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mai.watch">
-  <meta property="og:title" content="QiDao Risk Matrix | Overview">
+  <meta property="og:title" content="Mai Watch | Overview">
   <meta property="og:description" content="Risk overview for QiDao protocol collaterals.">
   <meta property=“og:image” content="https://i.imgur.com/IJNSl9P.png">
   <meta name=“twitter:card” content=“summary”>
   <meta name="twitter:site" content="@qidaoprotocol">
-  <meta name=“twitter:title” content=“QiDao Risk Matrix | Overview“>
+  <meta name=“twitter:title” content=“Mai Watch | Overview“>
   <meta name=“twitter:description” content=“Risk overview for QiDao protocol collaterals.”>
   <meta name=“twitter:creator” content=“@qidaorisk”>
   <meta name=“twitter:image” content=“https://i.imgur.com/IJNSl9P.png”>
@@ -93,77 +93,78 @@
 
   <div class="row justify-content-evenly">
     <div class="col-lg-6 col-md-12 col-sm-12">
-      <h4 class="medium-text text-center"><%= t('dash_backing') %></h4>
+      <h4 class="large-text"><%= t('dash_backing') %></h4>
       <% if cookies[:theme] == "dark" %>
         <%= pie_chart @chain_debt,
               id: "chain_debt",
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",",
-              legend: "left",
-              library: { "backgroundColor": "#2d3436", "chartArea": { "width": "70%" }, "legend": { "textStyle": { "color": "white" } }},
+              legend: "right",
+              library: { "backgroundColor": "#2d3436", "chartArea": { "width": "90%" }, "legend": { "textStyle": { "color": "white" } }},
               colors: ["#4b6584", "#596275", "#a55eea", "#4b7bec", "#45aaf2", "#26de81", "#20bf6b", "#2bcbba", "#ffd32a", "#ffa801", "#e15f41", "#ff5e57", "#ef5777", "#c44569", "#f53b57"] %>
       <% else %>
         <%= pie_chart @chain_debt,
               id: "chain_debt",
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",",
-              legend: "left",
-              library: { "backgroundColor": "#f5f6fa", "chartArea": { "width": "70%" } },
+              legend: "right",
+              library: { "backgroundColor": "#f5f6fa", "chartArea": { "width": "90%" } },
               colors: ["#4b6584", "#596275", "#a55eea", "#4b7bec", "#45aaf2", "#26de81", "#20bf6b", "#2bcbba", "#ffd32a", "#ffa801", "#e15f41", "#ff5e57", "#ef5777", "#c44569", "#f53b57"] %>
       <% end %>
     </div>
 
     <div class="col-lg-6 col-md-12 col-sm-12">
-      <h4 class="medium-text text-center"><%= t('dash_backing_type') %></h4>
+      <h4 class="large-text"><%= t('dash_backing_type') %></h4>
       <% if cookies[:theme] == "dark" %>
         <%= pie_chart @backing_type,
               id: "backing_type",
               adapter: "google",
-              donut: "true", prefix: "$", thousands: ",", legend: "right",
-              library: { "backgroundColor": "#2d3436", "chartArea": { "width": "70%" }, "legend": { "textStyle": { "color": "white" } } },
+              donut: "false", prefix: "$", thousands: ",", legend: "right",
+              library: { "backgroundColor": "#2d3436", "chartArea": { "width": "90%" }, "legend": { "textStyle": { "color": "white" } } },
               colors: ["#686de0", "#4834d4", "#30336b"] %>
       <% else %>
         <%= pie_chart @backing_type,
               id: "backing_type",
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
-              library: { "backgroundColor": "#f5f6fa", "chartArea": { "width": "70%" } },
+              library: { "backgroundColor": "#f5f6fa", "chartArea": { "width": "90%" } },
               colors: ["#686de0", "#4834d4", "#30336b"] %>
       <% end %>
     </div>
+    <p>&nbsp;</p>
     <div class="col-lg-6 col-md-12 col-sm-12">
-      <h4 class="medium-text text-center"><%= t('dash_backing_token') %></h4>
+      <h4 class="large-text"><%= t('dash_backing_token') %></h4>
       <% if cookies[:theme] == "dark" %>
         <%= pie_chart @collateral_debt,
               id: "collateral_debt",
               adapter: "google",
-              donut: "true", prefix: "$", thousands: ",", legend: "left",
-              library: { "backgroundColor": "#2d3436", "chartArea": { "width": "70%" }, "legend": { "textStyle": { "color": "white" } } },
+              donut: "true", prefix: "$", thousands: ",", legend: "right",
+              library: { "backgroundColor": "#2d3436", "chartArea": { "width": "90%" }, "legend": { "textStyle": { "color": "white" } } },
               colors: ["#FFC312", "#F79F1F", "#ff9f43", "#EE5A24", "#EA2027", "#C4E538", "#A3CB38", "#1dd1a1", "#10ac84", "#009432", "#006266", "#12CBC4", "#1289A7", "#48dbfb", "#0abde3", "#54a0ff", "#2e86de", "#0652DD", "#1B1464", "#FDA7DF", "#ff9ff3", "#D980FA", "#9980FA", "#f368e0", "#5758BB", "#ff6b6b", "#ee5253", "#ED4C67", "#B53471", "#833471", "#6F1E51"] %>
       <% else %>
         <%= pie_chart @collateral_debt,
               id: "collateral_debt",
               adapter: "google",
-              donut: "true", prefix: "$", thousands: ",", legend: "left",
-              library: { "backgroundColor": "#f5f6fa", "chartArea": { "width": "70%" } },
+              donut: "true", prefix: "$", thousands: ",", legend: "right",
+              library: { "backgroundColor": "#f5f6fa", "chartArea": { "width": "90%" } },
               colors: ["#FFC312", "#F79F1F", "#ff9f43", "#EE5A24", "#EA2027", "#C4E538", "#A3CB38", "#1dd1a1", "#10ac84", "#009432", "#006266", "#12CBC4", "#1289A7", "#48dbfb", "#0abde3", "#54a0ff", "#2e86de", "#0652DD", "#1B1464", "#FDA7DF", "#ff9ff3", "#D980FA", "#9980FA", "#f368e0", "#5758BB", "#ff6b6b", "#ee5253", "#ED4C67", "#B53471", "#833471", "#6F1E51"] %>
       <% end %>
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12">
-      <h4 class="medium-text text-center"><%= t('dash_backing_liq') %></h4>
+      <h4 class="large-text"><%= t('dash_backing_liq') %></h4>
       <% if cookies[:theme] == "dark" %>
         <%= pie_chart @grade_debt,
               id: "grade_debt",
               adapter: "google",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
-              library: { "backgroundColor": "#2d3436", "chartArea": { "width": "70%" }, "legend": { "textStyle": { "color": "white" } } },
+              library: { "backgroundColor": "#2d3436", "chartArea": { "width": "90%" }, "legend": { "textStyle": { "color": "white" } } },
               colors: ["#26de81", "#20bf6b", "#2bcbba", "#ffd32a", "#ffa801", "#e15f41", "#ff5e57", "#ef5777", "#c44569", "#f53b57"] %>
       <% else %>
         <%= pie_chart @grade_debt,
               adapter: "google",
               id: "grade_debt",
               donut: "true", prefix: "$", thousands: ",", legend: "right",
-              library: { "backgroundColor": "#f5f6fa", "chartArea": { "width": "70%" } },
+              library: { "backgroundColor": "#f5f6fa", "chartArea": { "width": "90%" } },
               colors: ["#26de81", "#20bf6b", "#2bcbba", "#ffd32a", "#ffa801", "#e15f41", "#ff5e57", "#ef5777", "#c44569", "#f53b57"] %>
       <% end %>
     </div>
@@ -213,7 +214,7 @@
     <% else %>
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
-          <h4 class="large-text text-center"><%= t('mai_comparison') %> (90d)</h4>
+          <h4 class="large-text"><%= t('mai_comparison') %> (90d)</h4>
           <%= line_chart [
             {name: "MAI", data: @mai_volatility},
             {name: "alUSD", data: @alusd_volatility},

@@ -1,8 +1,5 @@
 pt:
-  menu_title: "Matriz de Risco de QiDao"
-  menu_export: "Exportar"
-  menu_tokens: "Cofres"
-  menu_chains: "Redes"
+  menu_tokens: "Avaliações"
   menu_dashboard: "Painel"
   menu_updates: "Notícias"
   menu_settings: "Configurações"

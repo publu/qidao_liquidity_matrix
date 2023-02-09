@@ -281,6 +281,10 @@ a.plain_link:hover {
   font-style: italic;
 }
 
+.underline {
+  font-decoration: underline !important;
+}
+
 .valign {
   vertical-align: middle;
 }

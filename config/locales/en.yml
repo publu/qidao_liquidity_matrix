@@ -1,7 +1,5 @@
 en:
-  menu_title: "QiDao Risk Matrix"
-  menu_tokens: "Vaults"
-  menu_chains: "Chains"
+  menu_tokens: "Assessments"
   menu_dashboard: "Overview"
   menu_updates: "Updates"
   menu_settings: "Settings"

@@ -1,8 +1,5 @@
 de:
-  menu_title: "QiDao Risiko Tabelle"
-  menu_export: "Exportieren"
-  menu_tokens: "Tresore"
-  menu_chains: "Netzwerke"
+  menu_tokens: "Einschätzungen"
   menu_dashboard: "Überblick"
   menu_updates: "Nachrichten"
   menu_settings: "Einstellungen"
