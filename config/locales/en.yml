@@ -9,6 +9,7 @@ en:
   mai_comparison: "Normalized Volatility For MAI Vs Similar Stables"
   mai_question: "What is MAI?"
   mai_description: "MAI is a CDP (collateralized debt position), a USD-pegged stablecoin backed by collateral, and available on %{chaincount} chains and across %{collateralcount} collaterals. Using the Mai Finance app, users can mint MAI by depositing an accepted collateral asset into a vault. When the loan is repaid to retrieve the collateral, the paid back MAI is burned. Mai Finance offers 0% interest on all loans with a 0.5% repayment fee. Visit the Mai Finance documentation for more details."
+  mai_volatility_desc: "Normalized volatility is a statistical measure used to quantify the amount of risk associated with a particular investment. For our risk assessments, It represents the standard deviation of prices over a given period of time. Normalizing the volatility provides an accurate representation of risk inherent in an asset when compared to other assets."
   list_token: "Token"
   list_new: "NEW"
   list_chain: "Chain"

@@ -9,6 +9,7 @@ fr:
   mai_question: "Qu'est-ce que l'MAI?"
   mai_description: "MAI est un CDP (position de dette garantie), un stablecoin indexé sur l'USD soutenu par une garantie et disponible sur de %{chaincount} chaînes et sur %{collateralscount} collatéraux. À l'aide de l'application Mai Finance, les utilisateurs peuvent frapper MAI en déposant un actif collatéral accepté dans un coffre-fort. Lorsque le prêt est remboursé pour récupérer la garantie, le MAI remboursé est brûlé. Mai Finance offre 0 % d'intérêt sur tous les prêts avec des frais de remboursement de 0,5 %. Consultez la documentation de Mai Finance pour plus de détails."
   mai_comparison: "Volatilité normalisée pour MAI par rapport à des écuries similaires"
+  mai_volatility_desc: "La volatilité normalisée est une mesure statistique utilisée pour quantifier le montant de risque associé à un investissement particulier. Pour nos évaluations des risques, elle représente l'écart type des prix au cours d'une période donnée. La normalisation de la volatilité fournit une représentation précise du risque inhérent à un actif lorsqu'il est comparé à d'autres actifs."
   list_token: "Token"
   list_new: "NOUVEAU"
   list_chain: "Chaîne"

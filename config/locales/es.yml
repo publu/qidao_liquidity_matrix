@@ -9,6 +9,7 @@ es:
   mai_comparison: "Volatilidad Normalizada Para MAI Frente A Estables Similares"
   mai_question: "¿Qué es MAI?"
   mai_description: "MAI es un CDP (posición de deuda garantizada), una moneda estable vinculada al USD respaldada por garantía y disponible en %{chaincount} redes y en %{collateralcount} garantías. Usando la aplicación Mai Finance, los usuarios pueden acuñar MAI depositando un activo colateral aceptado en una bóveda. Cuando se reembolsa el préstamo para recuperar la garantía, se quema el MAI reembolsado. Mai Finance ofrece 0% de interés en todos los préstamos con una tarifa de reembolso del 0,5%. Visite la documentación de Mai Finance para obtener más detalles."
+  mai_volatility_desc: "La volatilidad normalizada es una medida estadística utilizada para cuantificar la cantidad de riesgo asociada con una inversión en particular. Para nuestras evaluaciones de riesgo, representa la desviación estándar de los precios durante un período de tiempo determinado. La normalización de la volatilidad proporciona una representación precisa del riesgo inherente en un activo cuando se compara con otros activos."
   list_token: "Moneda"
   list_new: "Nuevo"
   list_chain: "Red"
