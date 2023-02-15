@@ -1,17 +1,17 @@
 <% content_for :title do %>
-QiDao Risk Matrix | Chain Information<% end %>
+Mai Watch | Chains<% end %>
 <% content_for :description do %>
 <meta name="description" content="Chains supported by QiDao protocol lending vaults.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://riskmanagement.qidao.community">
-    <meta property="og:title" content="QiDao Risk Matrix | Chain Information">
+    <meta property="og:url" content="https://mai.watch">
+    <meta property="og:title" content="Mai Watch | Chains">
     <meta property="og:description" content="Chains supported by QiDao protocol lending vaults.">
     <meta property=“og:image” content="https://i.imgur.com/IJNSl9P.png">
     <meta name=“twitter:card” content=“summary”>
     <meta name="twitter:site" content="@qidaoprotocol">
-    <meta name=“twitter:title” content=“QiDao Risk Matrix | Chain Information“>
+    <meta name=“twitter:title” content=“Mai Watch | Chains“>
     <meta name=“twitter:description” content=“Chains supported by QiDao protocol lending vaults.”>
-    <meta name=“twitter:creator” content=“@geekvine”>
+    <meta name=“twitter:creator” content=“@qidaorisk”>
     <meta name=“twitter:image” content=“https://i.imgur.com/IJNSl9P.png”><% end %>
 
 <div class="clearfix"></div>
@@ -19,8 +19,8 @@ QiDao Risk Matrix | Chain Information<% end %>
   <table class="table">
     <tr class="table-header">
       <th itemprop="about" class="red"><%= t('list_chain') %></th>
-      <th class="red td-10"><%= t('list_explorer') %></th>
-      <th class="red">RPCs</th>
+      <th class="red"><%= t('list_explorer') %></th>
+      <th class="red td-10">RPCs</th>
       <th class="red text-end"><%= t('list_liquidity') %></th>
       <th class="red text-end"><%= t('list_volume') %></th>
       <th class="red text-end"><%= t('list_chain_debt') %></th>
@@ -34,10 +34,12 @@ QiDao Risk Matrix | Chain Information<% end %>
       <% if network.tokens.size > 0 %>
         <tr>
           <td itemprop="name">
-            <span style="color: <%= network.color %> !important"><strong><%= link_to network.name, network, title: "View chain information for " + network.name, class: "network_link" %></strong></span>
+            <%= link_to network, title: "View chain information for " + network.name, class: "network_link" do %>
+              <%= image_tag network.image, class: "network_img", width: "24px", height: "24px", alt: network.name %>
+            <% end %>
           </td>
           <td itemprop="url"><%= link_to bc_link(network.blockchain_explorer), bc_link(network.blockchain_explorer), title: "View blockchain explorer", target: "_blank", rel: "noopener noreferrer", class: "plain_link" %></td>
-          <td class="text-start"><%= link_to network.name + " RPCs", "https://chainlist.org/chain/#{network.chain_id}", title: "Chainlist", target: "_blank", rel: "noopener noreferrer", class: "plain_link" %></td>
+          <td class="text-start"><%= link_to "View on Chainlist", "https://chainlist.org/chain/#{network.chain_id}", title: "Chainlist", target: "_blank", rel: "noopener noreferrer", class: "plain_link" %></td>
           <td class="text-end"><%= number_to_currency(network.liquidity) %></td>
           <td class="text-end"><%= number_to_currency(network.volume) %></td>
           <td class="text-end"><%= number_to_currency(network.debtamount) %></td>

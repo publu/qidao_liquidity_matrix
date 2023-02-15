@@ -66,9 +66,9 @@
       <div class="input-group input-group-sm">
         <%= form.label :token_type, "Token Type", class: "input-group-text" %>
         <% if token.token_type? %>
-          <%= form.select :token_type, [['Stable','Stable'],['Volatile','Volatile']], selected: token.token_type, class: "form-select", include_blank: "Select one..." %>
+          <%= form.select :token_type, [['Stable','Stable'],['Volatile','Volatile'],['Interest Bearing','Interest Bearing']], selected: token.token_type, class: "form-select", include_blank: "Select one..." %>
         <% else %>
-          <%= form.select :token_type, [['Stable','Stable'],['Volatile','Volatile']], selected: "Volatile", class: "form-select", include_blank: "Select one..." %>
+          <%= form.select :token_type, [['Stable','Stable'],['Volatile','Volatile'],['Interest Bearing','Interest Bearing']], selected: "Volatile", class: "form-select", include_blank: "Select one..." %>
         <% end %>
       </div>
       <br />

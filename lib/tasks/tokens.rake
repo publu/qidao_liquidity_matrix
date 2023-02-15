@@ -180,8 +180,8 @@ namespace :tokens do
     Token.all.order(network_id: :asc).each do |token|
       CoingeckoRuby::Client.new.markets(token.asset, vs_currency: 'usd').each do |datum|
         puts "Updating marketcap for " + token.symbol + " (" + token.network.name + ")."
-        if datum['market_cap'] > 0
-          token.update(risk_marketcap: datum['market_cap'].to_f)
+        if datum['market_cap'].to_i > 0
+          token.update(risk_marketcap: datum['market_cap'].to_i)
           puts "Completed."
           sleep 5
         else
@@ -197,8 +197,8 @@ namespace :tokens do
     Token.all.order(network_id: :asc).each do |token|
       CoingeckoRuby::Client.new.markets(token.asset, vs_currency: 'usd').each do |datum|
         puts "Updating volume for " + token.symbol + " (" + token.network.name + ")."
-        if datum['total_volume'] > 0
-          token.update(risk_volume: datum['total_volume'].to_f)
+        if datum['total_volume'].to_i > 0
+          token.update(risk_volume: datum['total_volume'].to_i)
           puts "Completed."
           sleep 5
         else
@@ -208,6 +208,16 @@ namespace :tokens do
       end
     end
     puts "Volume update completed."
+  end
+
+  task volatility: :environment do
+    Token.all.order(network_id: :asc).each do |token|
+      puts "Updating volatility for " + token.symbol + " (" + token.network.name + ")."
+      token.update(risk_volatility: token.prices.standard_deviation)
+      puts "Completed."
+      sleep 1
+    end
+    puts "Volatility updates completed."
   end
 
   task grade: :environment do
@@ -246,7 +256,7 @@ namespace :tokens do
       uri = URI(url)
       response = Net::HTTP.get(uri)
       vaults = JSON.parse(response)["incentives"]
-      vault = vaults[token.network.chain_id].select { |v| v["vaultAddress"].downcase == (token.vault_address).downcase }
+      vault = vaults[token.network.chain_id].select { |v| v["vaultAddress"].downcase == token.vault_address.downcase }
       if vault.first.present?
         puts token.symbol + " (" + token.network.name + "): " + (vault.first["totalQualifyingDebt"].to_d / 10**18).to_s + " MAI"
         token.update(mai_debt: (((vault.first["totalQualifyingDebt"]).to_d) / 10**18).round(2))
@@ -255,14 +265,6 @@ namespace :tokens do
         puts "Skipping " + token.symbol + " (" + token.network.name + ")."
       end
       sleep 1
-      # vaults["incentives"].each do |vault|
-      #  vault.each do |v|
-      #    puts "Updating debt for " + token.symbol + " (" + token.network.name + ")."
-      #    token.update(mai_debt: (v["totalQualifyingDebt"]).to_d)
-      #    puts "Completed."
-      #    sleep 1
-      #  end
-      #end
     end
     puts "MAI debt update completed."
   end

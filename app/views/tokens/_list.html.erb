@@ -1,110 +1,108 @@
 <div itemscope itemtype="https://schema.org/Table" id="tokens" class="table-responsive">
   <table class="table align-middle">
-    <tr class="table-header">
-      <th itemprop="about" class="red">
-        <%= sort_link(column: "symbol", label: t('list_token')) %>
-        <%= sort_indicator if params[:column] == "symbol" %>
-      </th>
-      <th class="red">
-        <%= t('list_chain') %>
-      </th>
-      <th class="red text-end">
-        <%= sort_link(column: "risk_marketcap", label: t('rubric_mcap')) %>
-        <%= sort_indicator if params[:column] == "risk_marketcap" %>
-      </th>
-      <th class="red text-end">
-        <%= sort_link(column: "liquidity", label: t('list_liquidity')) %>
-        <%= sort_indicator if params[:column] == "liquidity" %>
-      </th>
-      <th class="red text-end td-15">
-        <%= sort_link(column: "trade_slippage", label: t('list_slippage')) %>
-        <%= sort_indicator if params[:column] == "trade_slippage" %>
-      </th>
-      <th class="red text-end">
-        <%= sort_link(column: "volume", label: t('list_volume')) %>
-        <%= sort_indicator if params[:column] == "volume" %>
-      </th>
-      <th class="red text-end">
-        <%= sort_link(column: "mai_debt", label: t('list_debt')) %>
-        <%= sort_indicator if params[:column] == "mai_debt" %>
-      </th>
-      <th class="red text-center td-10">
-        <%= sort_link(column: "minter_id", label: t('list_available')) %>
-        <%= sort_indicator if params[:column] == "minter_id" %>
-      </th>
-      <th class="red text-center"><%= link_to t('list_grade'), tokens_path, title: "Risk Grading" %></th>
-      <% if user_signed_in? && current_user.admin? %>
-        <th class="red text-center"><%= t('actions') %></th>
-      <% end %>
-    </tr>
-    <% @tokens.each do |token| %>
-    <tr class="align-middle">
-      <td itemprop="name">
-        <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name, class: "plain_link" do %>
-          <strong><%= token.symbol %></strong>
+      <tr class="table-header">
+        <th itemprop="about" class="red">
+          <%= sort_link(column: "symbol", label: t('list_token')) %>
+          <%= sort_indicator if params[:column] == "symbol" %>
+        </th>
+        <th class="red td-5">
+          <%= t('list_chain') %>
+        </th>
+        <th class="red text-end td-15">
+          <%= sort_link(column: "risk_marketcap", label: t('rubric_mcap')) %>
+          <%= sort_indicator if params[:column] == "risk_marketcap" %>
+        </th>
+        <th class="red text-end td-10">
+          <%= sort_link(column: "liquidity", label: t('list_liquidity')) %>
+          <%= sort_indicator if params[:column] == "liquidity" %>
+        </th>
+        <th class="red text-end td-11">
+          <%= sort_link(column: "trade_slippage", label: t('list_slippage')) %>
+          <%= sort_indicator if params[:column] == "trade_slippage" %>
+        </th>
+        <th class="red text-end">
+          <%= sort_link(column: "volume", label: t('list_volume')) %>
+          <%= sort_indicator if params[:column] == "volume" %>
+        </th>
+        <th class="red text-end">
+          <%= sort_link(column: "mai_debt", label: t('list_debt')) %>
+          <%= sort_indicator if params[:column] == "mai_debt" %>
+        </th>
+        <th class="red text-center">
+          <%= sort_link(column: "token_type", label: t('list_type')) %>
+          <%= sort_indicator if params[:column] == "token_type" %>
+        </th>
+        <th class="red text-center">
+          <%= link_to t('list_grade'), tokens_path, title: "Based on Aave's risk metholody" %>
+        </th>
+        <% if user_signed_in? && current_user.admin? %>
+          <th class="red text-center"><%= t('actions') %></th>
         <% end %>
-        <!-- <% if token.created_at > (Date.today - 5.days) %>
-          <span class="new"><%= t('list_new') %></span>
-        <% end %> -->
-      </td>
-      <td itemprop="genre" style="color: <%= token.network.color %>">
-        <strong><%= link_to token.network.name, token.network, title: "View chain information for " + token.network.name, class: "network_link" %></strong>
-      </td>
-      <td class="text-end">
-        <%= number_to_currency(token.risk_marketcap) %>
-      </td>
-      <td class="text-end">
-        <%= number_to_currency(token.liquidity) %>
-      </td>
-      <td class="text-end">
-        <%= number_to_currency(token.trade_slippage) %>
-      </td>
-      <td class="text-end">
-        <%= number_to_currency(token.volume) %>
-      </td>
-      <td class="text-end">
-        <%= ((token.mai_debt.to_i / @debt_sum) * 100).round(4) %>%
-      </td>
-      <td itemprop="provider" class="text-center">
-        <% if token.minter.name == "Not Released" %>
-          <span class="text-danger"><%= t('list_released') %></span>
-        <% else %>
-          <%= link_to token.minter.name, token.minter.link, title: "Go to " + token.minter.name, target: "_blank", class: "plain_link" %>
-        <% end %>
-      </td>
-      <td itemprop="aggregateRating" class="text-center">
-        <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name do %>
-          <strong><%= token.grade %></strong>
-        <% end %>
-      </td>
-      <% if user_signed_in? && current_user.admin? %>
-        <td class="text-end">
-          <ul class="list-unstyled list-group list-group-horizontal">
-            <li class="actions">
-              <%= link_to edit_token_path(token), title: "Edit this token" do %>
-                <% if cookies[:theme] == "dark" %>
-                  <%= svg_tag "edit-dark" %>
-                <% else %>
-                  <%= svg_tag "edit" %>
-                <% end %>
-              <% end %>
-            </li>
-            <li class="actions">
-              <%= link_to token_path(token), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, title: "Delete this token" do %>
-                <% if cookies[:theme] == "dark" %>
-                  <%= svg_tag "trash-dark" %>
-                <% else %>
-                  <%= svg_tag "trash" %>
-                <% end %>
-              <% end %>
-            </li>
-          </ul>
+      </tr>
+
+      <% @tokens.each do |token| %>
+      <tr class="align-middle">
+        <td itemprop="name">
+          <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name, class: "plain_link" do %>
+            <strong><%= token.symbol %></strong>
+          <% end %>
+          <% if token.created_at > (Date.today - 5.days) %>
+            <span class="new"><%= t('list_new') %></span>
+          <% end %>
         </td>
-      <% end %>
-    </tr>
-  <% end %>
+        <td itemprop="genre">
+          <%= link_to token.network, title: "View chain information for " + token.network.name, class: "network_link" do %>
+            <%= image_tag token.network.image, class: "network_img", alt: token.network.name, width: "24px", height: "24px" %>
+          <% end %>
+        </td>
+        <td class="text-end">
+          <%= number_to_currency(token.risk_marketcap) %>
+        </td>
+        <td class="text-end">
+          <%= number_to_currency(token.liquidity) %>
+        </td>
+        <td class="text-end">
+          <%= number_to_currency(token.trade_slippage) %>
+        </td>
+        <td class="text-end">
+          <%= number_to_currency(token.volume) %>
+        </td>
+        <td class="text-end">
+          <%= '%.4f' % (token.mai_debt.to_i / @debt_sum * 100) %>%
+        </td>
+        <td class="text-center">
+          <%= token.token_type %>
+        </td>
+        <td itemprop="aggregateRating" class="text-center">
+          <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name do %>
+            <strong><%= token.grade %></strong>
+          <% end %>
+        </td>
+        <% if user_signed_in? && current_user.admin? %>
+          <td class="text-end">
+            <ul class="list-unstyled list-group list-group-horizontal">
+              <li class="actions">
+                <%= link_to edit_token_path(token), title: "Edit this token" do %>
+                  <% if cookies[:theme] == "dark" %>
+                    <%= svg_tag "edit-dark" %>
+                  <% else %>
+                    <%= svg_tag "edit" %>
+                  <% end %>
+                <% end %>
+              </li>
+              <li class="actions">
+                <%= link_to token_path(token), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, title: "Delete this token" do %>
+                  <% if cookies[:theme] == "dark" %>
+                    <%= svg_tag "trash-dark" %>
+                  <% else %>
+                    <%= svg_tag "trash" %>
+                  <% end %>
+                <% end %>
+              </li>
+            </ul>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
   </table>
-  <% if @token_count > 15 %>
-    <div class="position-absolute start-50 translate-middle-x"><%== pagy_bootstrap_nav(@pagy) %></div>
-  <% end %>
 </div>

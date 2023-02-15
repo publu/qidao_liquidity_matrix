@@ -1,5 +1,5 @@
 # Set number of items per page
-Pagy::DEFAULT[:items] = 15
+Pagy::DEFAULT[:items] = 1000
 
 # Set number of items to display before and after current page
 Pagy::DEFAULT[:size] = [1,2,2,1]

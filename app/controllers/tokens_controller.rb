@@ -1,5 +1,6 @@
 require 'csv'
 require 'json'
+require 'statistics'
 
 class TokensController < ApplicationController
   before_action :set_token, only: %i[ show edit update destroy ]
@@ -21,18 +22,17 @@ class TokensController < ApplicationController
     @networks = Network.all.order(slug: :asc)
   end
 
-  # GET /tokens or /tokens.json
   def index
       if params[:column] && params[:direction]
-        @pagy, @tokens = pagy(Token.includes(:network, :minter).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
+        @tokens = (Token.includes(:network).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
       else
-        @pagy, @tokens = pagy(Token.includes(:network, :minter).order_by_grade.order(liquidity: :desc))
+        @tokens = (Token.includes(:network).order_by_grade.order(liquidity: :desc))
       end
       @debt_sum = Token.all.sum(:mai_debt)
       @token_count = Network.all.sum(:tokens_count)
       respond_to do |format|
         format.xlsx do
-          @tokens = Token.includes(:network, :minter).order_by_grade.order(liquidity: :desc)
+          @tokens = Token.includes(:network).order_by_grade.order(liquidity: :desc)
           response.headers['Content-Disposition'] = "attachment; filename=qidao_liquidity_matrix.xlsx"
         end
         format.csv do
@@ -41,17 +41,16 @@ class TokensController < ApplicationController
         end
         format.html
         format.js
-        format.json
       end
   end
 
-  # GET /tokens/1 or /tokens/1.json
   def show
     @debt_sum = Token.all.sum(:mai_debt)
+    @ethereum = Token.where(symbol: "WETH")
+    @bitcoin = Token.where(symbol: "WBTC")
     respond_to do |format|
       format.html
       format.js
-      format.json
     end
   end
 
@@ -64,35 +63,28 @@ class TokensController < ApplicationController
   def edit
   end
 
-  # POST /tokens or /tokens.json
   def create
     @token = Token.new(token_params)
 
     respond_to do |format|
       if @token.save
         format.html { redirect_to token_url(@token), notice: "Token was successfully created." }
-        format.json { render :show, status: :created, location: @token }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @token.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /tokens/1 or /tokens/1.json
   def update
     respond_to do |format|
       if @token.update(token_params)
         format.html { redirect_to token_url(@token), notice: "Token was successfully updated." }
-        format.json { render :show, status: :ok, location: @token }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @token.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /tokens/1 or /tokens/1.json
   def destroy
     @token.destroy
     redirect_to root_path, status: :see_other

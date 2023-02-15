@@ -1,18 +1,31 @@
 require 'json'
+
 class DashboardsController < ApplicationController
 
   def index
-    @liquidity = Token.all.sum(:liquidity)
-    @networks = Network.all
-    @tokens = Token.all
-    @minters = Minter.where.not(link: "")
-    @chain_debt = Network.group(:name).sum(:debtamount)
-    @collateral_debt = Token.where.not(minter_id: 4).group(:symbol).sum(:mai_debt)
+    @liquidity = Token.all.map(&:liquidity).inject(:+)
+    @networks = Network.all.map(&:name)
+    @tokens = Token.all.map(&:symbol)
+    @tokens_sum = Token.all.sum(:mai_debt)
+    stable_prices = Stableprice.joins(:stable)
+    @mai_yesterday = stable_prices.where(stables: { symbol: "MAI" }).last.closing_price
+    @mai_prices = stable_prices.where(stables: { symbol: "MAI" }).last(30).map { |p| [p.price_date.strftime("%b %d, %Y"), p.closing_price] }
+    @chain_debt = Network.joins(:tokens).group(:name).sum(:mai_debt)
+    @collateral_debt = Token.joins(:network).where.not(minter_id: 4).group(:symbol).sum(:mai_debt)
     @backing_type = Token.where.not(minter_id: 4).group(:token_type).sum(:mai_debt)
     @grade_debt = Token.where.not(minter_id: 4).group(:grade).sum(:mai_debt)
-    @byliquidity = Token.includes(:network).where.not(minter_id: 4).order(liquidity: :desc).limit(20)
-    @byvolatility = Token.includes(:network).where.not(minter_id: 4).order(risk_volatility: :asc).limit(20)
-    @byscore = Token.includes(:network).where.not(minter_id: 4).order_by_grade.order(liquidity: :desc).limit(20)
+    @mai_volatility = stable_prices.where(stables: { symbol: "MAI" }).last(90).map { |p| [p.price_date.strftime("%b %d, %Y"), (p.volatility * 100)] }
+    @lusd_volatility = stable_prices.where(stables: { symbol: "LUSD" }).last(90).map { |p| [p.price_date.strftime("%b %d, %Y"), (p.volatility * 100)] }
+    @mim_volatility = stable_prices.where(stables: { symbol: "MIM" }).last(90).map { |p| [p.price_date.strftime("%b %d, %Y"), (p.volatility * 100)] }
+    @susd_volatility = stable_prices.where(stables: { symbol: "sUSD" }).last(90).map { |p| [p.price_date.strftime("%b %d, %Y"), (p.volatility * 100)] }
+    @alusd_volatility = stable_prices.where(stables: { symbol: "alUSD" }).last(90).map { |p| [p.price_date.strftime("%b %d, %Y"), (p.volatility * 100)] }
+  end
+
+  def stables
+    @stables = Stableprice.joins(:stable)
+    respond_to do |format|
+      format.json
+    end
   end
 
 end

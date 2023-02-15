@@ -11,7 +11,6 @@ class MintersController < ApplicationController
     redirect_to minters_path, notice: 'Chains imported!'
   end
 
-  # GET /minters or /minters.json
   def index
     @minters = Minter.all.order(name: :asc)
     respond_to do |format|
@@ -24,12 +23,11 @@ class MintersController < ApplicationController
     end
   end
 
-  # GET /minters/1 or /minters/1.json
   def show
     if params[:column] && params[:direction]
-      @pagy, @tokens = pagy(Token.where(minter_id: @minter.id).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
+      @tokens = (Token.where(minter_id: @minter.id).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
     else
-      @pagy, @tokens = pagy(Token.where(minter_id: @minter.id).order_by_grade.order(liquidity: :desc))
+      @tokens = (Token.where(minter_id: @minter.id).order_by_grade.order(liquidity: :desc))
       @token_count = Token.where(minter_id: @minter.id).size
     end
     respond_to do |format|
@@ -47,41 +45,33 @@ class MintersController < ApplicationController
   def edit
   end
 
-  # POST /minters or /minters.json
   def create
     @minter = Minter.new(minter_params)
 
     respond_to do |format|
       if @minter.save
         format.html { redirect_to minter_url(@minter), notice: "Minter was successfully created." }
-        format.json { render :show, status: :created, location: @minter }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @minter.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /minters/1 or /minters/1.json
   def update
     respond_to do |format|
       if @minter.update(minter_params)
         format.html { redirect_to minter_url(@minter), notice: "Minter was successfully updated." }
-        format.json { render :show, status: :ok, location: @minter }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @minter.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /minters/1 or /minters/1.json
   def destroy
     @minter.destroy
 
     respond_to do |format|
       format.html { redirect_to minters_url, notice: "Minter was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

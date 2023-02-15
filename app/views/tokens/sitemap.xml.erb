@@ -1,87 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://riskmanagement.qidao.community</loc>
+    <loc>https://mai.watch</loc>
     <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
   </url>
   <url>
-    <loc>https://riskmanagement.qidao.community/en</loc>
+    <loc>https://mai.watch/en</loc>
     <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
   </url>
   <url>
-    <loc>https://riskmanagement.qidao.community/es</loc>
+    <loc>https://mai.watch/es</loc>
     <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
   </url>
   <url>
-    <loc>https://riskmanagement.qidao.community/fr</loc>
+    <loc>https://mai.watch/fr</loc>
+    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
+  </url>
+  <url>
+    <loc>https://mai.watch/pt</loc>
+    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
+  </url>
+  <url>
+    <loc>https://mai.watch/de</loc>
+    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
+  </url>
+  <url>
+    <loc>https://mai.watch/assessments</loc>
+    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
+  </url>
+  <url>
+    <loc>https://mai.watch/en/assessments</loc>
+    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
+  </url>
+  <url>
+    <loc>https://mai.watch/es/assessments</loc>
+    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
+  </url>
+  <url>
+    <loc>https://mai.watch/fr/assessments</loc>
+    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
+  </url>
+  <url>
+    <loc>https://mai.watch/pt/assessments</loc>
+    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
+  </url>
+  <url>
+    <loc>https://mai.watch/de/assessments</loc>
     <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
   </url>
   <% @tokens.each do |token| %>
     <url>
-      <loc>https://riskmanagement.qidao.community/tokens/<%= token.slug %></loc>
+      <loc>https://mai.watch/assessments/<%= token.slug %></loc>
       <lastmod><%= token.updated_at.strftime("%Y-%m-%d") %></lastmod>
     </url>
     <url>
-      <loc>https://riskmanagement.qidao.community/en/tokens/<%= token.slug %></loc>
+      <loc>https://mai.watch/en/assessments/<%= token.slug %></loc>
       <lastmod><%= token.updated_at.strftime("%Y-%m-%d") %></lastmod>
     </url>
     <url>
-      <loc>https://riskmanagement.qidao.community/es/tokens/<%= token.slug %></loc>
+      <loc>https://mai.watch/es/assessments/<%= token.slug %></loc>
       <lastmod><%= token.updated_at.strftime("%Y-%m-%d") %></lastmod>
     </url>
     <url>
-      <loc>https://riskmanagement.qidao.community/fr/tokens/<%= token.slug %></loc>
+      <loc>https://mai.watch/fr/assessments/<%= token.slug %></loc>
+      <lastmod><%= token.updated_at.strftime("%Y-%m-%d") %></lastmod>
+    </url>
+    <url>
+      <loc>https://mai.watch/pt/assessments/<%= token.slug %></loc>
+      <lastmod><%= token.updated_at.strftime("%Y-%m-%d") %></lastmod>
+    </url>
+    <url>
+      <loc>https://mai.watch/de/assessments/<%= token.slug %></loc>
       <lastmod><%= token.updated_at.strftime("%Y-%m-%d") %></lastmod>
     </url>
   <% end %>
   <url>
-    <loc>https://riskmanagement.qidao.community/chains</loc>
+    <loc>https://mai.watch/chains</loc>
     <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
   </url>
   <url>
-    <loc>https://riskmanagement.qidao.community/en/chains</loc>
+    <loc>https://mai.watch/en/chains</loc>
     <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
   </url>
   <url>
-    <loc>https://riskmanagement.qidao.community/es/chains</loc>
+    <loc>https://mai.watch/es/chains</loc>
     <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
   </url>
   <url>
-    <loc>https://riskmanagement.qidao.community/fr/chains</loc>
+    <loc>https://mai.watch/fr/chains</loc>
+    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
+  </url>
+  <url>
+    <loc>https://mai.watch/pt/chains</loc>
+    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
+  </url>
+  <url>
+    <loc>https://mai.watch/de/chains</loc>
     <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
   </url>
   <% @networks.each do |network| %>
     <url>
-      <loc>https://riskmanagement.qidao.community/chains/<%= network.slug %></loc>
+      <loc>https://mai.watch/chains/<%= network.slug %></loc>
       <lastmod><%= network.updated_at.strftime("%Y-%m-%d") %></lastmod>
     </url>
     <url>
-      <loc>https://riskmanagement.qidao.community/en/chains/<%= network.slug %></loc>
+      <loc>https://mai.watch/en/chains/<%= network.slug %></loc>
       <lastmod><%= network.updated_at.strftime("%Y-%m-%d") %></lastmod>
     </url>
     <url>
-      <loc>https://riskmanagement.qidao.community/es/chains/<%= network.slug %></loc>
+      <loc>https://mai.watch/es/chains/<%= network.slug %></loc>
       <lastmod><%= network.updated_at.strftime("%Y-%m-%d") %></lastmod>
     </url>
     <url>
-      <loc>https://riskmanagement.qidao.community/fr/chains/<%= network.slug %></loc>
+      <loc>https://mai.watch/fr/chains/<%= network.slug %></loc>
+      <lastmod><%= network.updated_at.strftime("%Y-%m-%d") %></lastmod>
+    </url>
+    <url>
+      <loc>https://mai.watch/pt/chains/<%= network.slug %></loc>
+      <lastmod><%= network.updated_at.strftime("%Y-%m-%d") %></lastmod>
+    </url>
+    <url>
+      <loc>https://mai.watch/de/chains/<%= network.slug %></loc>
       <lastmod><%= network.updated_at.strftime("%Y-%m-%d") %></lastmod>
     </url>
   <% end %>
-  <url>
-    <loc>https://riskmanagement.qidao.community/dashboard</loc>
-    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
-  </url>
-  <url>
-    <loc>https://riskmanagement.qidao.community/en/dashboard</loc>
-    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
-  </url>
-  <url>
-    <loc>https://riskmanagement.qidao.community/es/dashboard</loc>
-    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
-  </url>
-  <url>
-    <loc>https://riskmanagement.qidao.community/fr/dashboard</loc>
-    <lastmod><%= @tokens[0].updated_at.strftime("%Y-%m-%d") %></lastmod>
-  </url>
 </urlset>

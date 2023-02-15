@@ -12,7 +12,6 @@ class NetworksController < ApplicationController
     redirect_to networks_path, notice: 'Chains imported!'
   end
 
-  # GET /networks or /networks.json
   def index
     @networks = Network.all.order(name: :asc)
     @debt_sum = Network.all.sum(:debtamount)
@@ -26,12 +25,11 @@ class NetworksController < ApplicationController
     end
   end
 
-  # GET /networks/1 or /networks/1.json
   def show
     if params[:column] && params[:direction]
-      @pagy, @tokens = pagy(Token.includes(:network, :minter).where(network_id: @network.id).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
+      @tokens = (Token.includes(:network).where(network_id: @network.id).order(Arel.sql("#{params[:column]} #{params[:direction]}")))
     else
-      @pagy, @tokens = pagy(Token.includes(:network, :minter).where(network_id: @network.id).order_by_grade.order(liquidity: :desc))
+      @tokens = (Token.includes(:network).where(network_id: @network.id).order_by_grade.order(liquidity: :desc))
       @token_count = Token.where(network_id: @network.id).size
     end
     @debt_sum = Token.all.sum(:mai_debt)
@@ -50,35 +48,28 @@ class NetworksController < ApplicationController
   def edit
   end
 
-  # POST /networks or /networks.json
   def create
     @network = Network.new(network_params)
 
     respond_to do |format|
       if @network.save
         format.html { redirect_to network_url(@network), notice: "Network was successfully created." }
-        format.json { render :show, status: :created, location: @network }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @network.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /networks/1 or /networks/1.json
   def update
     respond_to do |format|
       if @network.update(network_params)
         format.html { redirect_to network_url(@network), notice: "Network was successfully updated." }
-        format.json { render :show, status: :ok, location: @network }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @network.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /networks/1 or /networks/1.json
   def destroy
     @network.destroy
     redirect_to root_path, status: :see_other
@@ -92,7 +83,7 @@ class NetworksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def network_params
-      params.require(:network).permit(:name, :chain_id, :color, :blockchain_explorer, :liquidity, :volume, :debtamount, :debtpercent)
+      params.require(:network).permit(:name, :gecko_id, :chain_id, :color, :blockchain_explorer, :liquidity, :volume, :debtamount, :debtpercent, :image)
     end
 
     # Check if user is admin before accessing CRUD actions

@@ -3,12 +3,17 @@ class Token < ApplicationRecord
   validates :minter_id, presence: true
   belongs_to :network, counter_cache: true # Network.find_each { |n| Network.reset_counters(n.id, :tokens) }
   belongs_to :minter
+  has_many :prices, dependent: :destroy
 
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
   GRADES_ORDERED = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-"]
   scope :order_by_grade, -> { order(Arel.sql(order_by_case)) }
+
+  scope :order_by_debt, -> { order(mai_debt: :desc) }
+  scope :order_by_liquidity, -> { order(liquidity: :desc) }
+  scope :order_by_volatility, -> { order(risk_volatility: :asc) }
 
   def self.order_by_case
     ret = "CASE"
@@ -27,7 +32,7 @@ class Token < ApplicationRecord
 	end
 
   def should_generate_new_friendly_id?
-    slug.blank? && network_id_changed?
+    slug.blank? && symbol_changed? && network_id_changed?
   end
 
   def self.to_csv

@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <%= link_to root_url, title: "Go home" do %><%= svg_tag "qidao", class: "logo" %><% end %>
+    <%= link_to root_url, title: "Go home" do %><%= svg_tag "qidao0", class: "logo" %><% end %>
     <div class="d-none d-sm-block">
         <%= link_to root_url, title: "Go home", class: "float-start" do %>
         <h1 class="navbar-name">
-          <%= t('menu_title') %>
+          Mai Watch
         </h1>
         <% end %>
     </div>
@@ -13,27 +13,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav navbar-links">
-        <% if current_page?(root_url) %>
-          <li class="nav-item">
-            <%= link_to tokens_path(format: :xlsx), title: "Export data to spreadsheet", class: "nav-link" do %>
-              <%= t('menu_export') %>
-            <% end %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to root_url, title: "Tokens", class: "nav-link" do %>
-              <%= t('menu_tokens') %>
-            <% end %>
-          </li>
-        <% end %>
-        <li class="nav-item">
-          <%= link_to networks_path, title: "Chains", class: "nav-link" do %>
-            <%= t('menu_chains') %>
-          <% end %>
-        </li>
         <li class="nav-item">
           <%= link_to dashboard_path, title: "Dashboard", class: "nav-link" do %>
             <%= t('menu_dashboard') %>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to tokens_path, title: "Assessments", class: "nav-link" do %>
+            <%= t('menu_tokens') %>
           <% end %>
         </li>
         <li class="nav-item">
@@ -62,25 +49,25 @@
           <% end %>
         </li>
         <li>
-          <% url = 'https://api.diadata.org/v1/assetQuotation/Polygon/0x580A84C73811E1839F75d86d75d88cCa0c241fF4' %>
-          <% uri = URI(url) %>
-          <% response = Net::HTTP.get(uri) %>
-          <% prices = JSON.parse(response) %>
+          <% qi_url = 'https://coins.llama.fi/prices/current/polygon:0x580a84c73811e1839f75d86d75d88cca0c241ff4' %>
+          <% qi_uri = URI(qi_url) %>
+          <% qi_response = Net::HTTP.get(qi_uri) %>
+          <% qi_price = JSON.parse(qi_response) %>
           <%= link_to "https://docs.mai.finance/functions/smart-contract-addresses#qi-addresses", title: "Qi", target: "_blank", class: "nav-link" do %>
-            <%= svg_tag "qidao" %> $<%= (prices["Price"].to_f).round(3) %>
+            <%= svg_tag "qidao" %> $<%= qi_price["coins"]["polygon:0x580a84c73811e1839f75d86d75d88cca0c241ff4"]["price"].round(3) %>
           <% end %>
         </li>
         <li>
-          <% url = 'https://api.diadata.org/v1/assetQuotation/Polygon/0xa3Fa99A148fA48D14Ed51d610c367C61876997F1' %>
-          <% uri = URI(url) %>
-          <% response = Net::HTTP.get(uri) %>
-          <% prices = JSON.parse(response) %>
+          <% mai_url = 'https://coins.llama.fi/prices/current/polygon:0xa3fa99a148fa48d14ed51d610c367c61876997f1' %>
+          <% mai_uri = URI(mai_url) %>
+          <% mai_response = Net::HTTP.get(mai_uri) %>
+          <% mai_price = JSON.parse(mai_response) %>
           <%= link_to "https://docs.mai.finance/functions/smart-contract-addresses#mai-mimatic-addresses", title: "Mai", target: "_blank", class: "nav-link" do %>
-            <%= svg_tag "mai" %>  $<%= (prices["Price"].to_f).round(3) %>
+            <%= svg_tag "mai" %> $<%= mai_price["coins"]["polygon:0xa3fa99a148fa48d14ed51d610c367c61876997f1"]["price"].round(3) %>
           <% end %>
         </li>
         <li class="nav-item dropstart">
-          <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="settings">
             <div class="d-none d-md-none d-lg-block">
               <%= svg_tag "gear" %>
             </div>
@@ -120,8 +107,8 @@
               <% if current_user.admin? %>
                 <li class="dropdown-item disabled">Admin</li>
                 <ul class="list-unstyled">
-                  <li class="nav-item"><%= link_to new_token_path, title: "Add new token", class: "dropdown-item" do %>&#8226; Add new token<% end %></li>
-                  <li class="nav-item"><%= link_to new_network_path, title: "Add new chain", class: "dropdown-item" do %>&#8226; Add new chain<% end %></li>
+                  <li class="nav-item"><%= link_to new_token_path, title: "Add new assessment", class: "dropdown-item" do %>&#8226; New Assessment<% end %></li>
+                  <li class="nav-item"><%= link_to new_network_path, title: "Add new chain", class: "dropdown-item" do %>&#8226; New Chain<% end %></li>
                 </ul>
                 <li class="dropdown-item disabled">Account</li>
                 <ul class="list-unstyled">

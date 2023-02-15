@@ -5,12 +5,16 @@
         <%= sort_network_link(column: "symbol", label: t('list_token')) %>
         <%= sort_indicator if params[:column] == "symbol" %>
       </th>
-      <th class="red">Chain</th>
+      <th class="red"><%= t('list_chain') %></th>
+      <th class="red text-end">
+        <%= sort_network_link(column: "risk_marketcap", label: t('rubric_mcap')) %>
+        <%= sort_indicator if params[:column] == "risk_marketcap" %>
+      </th>
       <th class="red text-end">
         <%= sort_network_link(column: "liquidity", label: t('list_liquidity')) %>
         <%= sort_indicator if params[:column] == "liquidity" %>
       </th>
-      <th class="red text-end td-15">
+      <th class="red text-end td-10">
         <%= sort_network_link(column: "trade_slippage", label: t('list_slippage')) %>
         <%= sort_indicator if params[:column] == "trade_slippage" %>
       </th>
@@ -19,18 +23,13 @@
         <%= sort_indicator if params[:column] == "volume" %>
       </th>
       <th class="red text-end">
-        <%= sort_network_link(column: "mai_debt", label: t('list_chain_debt')) %>
-        <%= sort_indicator if params["column"] == "mai_debt" %>
-      </th>
-      <th class="red text-end">
         <%= sort_network_link(column: "mai_debt", label: t('list_debt')) %>
         <%= sort_indicator if params["column"] == "mai_debt" %>
       </th>
-      <th class="red text-end td-10">
-        <%= sort_network_link(column: "centralized", label: t('list_centralization')) %>
-        <%= sort_indicator if params[:column] == "centralized" %>
+      <th class="red text-center">
+        <%= sort_network_link(column: "token_type", label: t('list_type')) %>
+        <%= sort_indicator if params[:column] == "token_type" %>
       </th>
-      <th class="red text-center td-10"><%= t('list_available') %></th>
       <th class="red text-center"><%= link_to t('list_grade'), network_path, title: "Risk Grading" %></th>
       <% if user_signed_in? && current_user.admin? %>
         <th class="red text-center"><%= t('list_actions') %></th>
@@ -42,12 +41,12 @@
         <strong>
           <%= link_to token.symbol, token, title: "View rubric for " + token.symbol + " on " + token.network.name, class: "plain_link" %>
         </strong>
-        <!-- <% if token.created_at > (Date.today - 5.days) %>
-          <span class="new"><%= t('list_new') %></span>
-        <% end %> -->
       </td>
-      <td itemprop="genre" style="color: <%= token.network.color %>">
-        <%= token.network.name %>
+      <td itemprop="genre">
+        <%= image_tag token.network.image, class: "network_img", width: "24px", height: "24px", alt: token.network.name %>
+      </td>
+      <td class="text-end">
+        <%= number_to_currency(token.risk_marketcap) %>
       </td>
       <td class="text-end">
         <%= number_to_currency(token.liquidity) %>
@@ -59,24 +58,10 @@
         <%= number_to_currency(token.volume) %>
       </td>
       <td class="text-end">
-        <%= number_to_currency(token.mai_debt) %>
-      </td>
-      <td class="text-end">
-        <%= ((token.mai_debt.to_i / @debt_sum) * 100).round(4) %>%
+        <%= '%.4f' % (token.mai_debt.to_i / @debt_sum * 100) %>%
       </td>
       <td class="text-center">
-        <% if token.centralized? %>
-          <span class="text-danger"><%= t('list_yes') %></span>
-        <% else %>
-          <%= t('list_no') %>
-        <% end %>
-      </td>
-      <td class="text-center">
-        <% if token.minter.name == "Not Released" %>
-          <span class="text-danger"><%= t('list_released') %></span>
-        <% else %>
-          <%= link_to token.minter.name, token.minter.link, title: "Go to " + token.minter.name, class: "plain_link" %>
-        <% end %>
+        <%= token.token_type %>
       </td>
       <td itemprop="aggregateRating" class="text-center">
         <%= link_to token, title: "View rubric for " + token.symbol + " on " + token.network.name do %><strong><%= token.grade %><% end %>
@@ -108,7 +93,4 @@
     </tr>
     <% end %>
   </table>
-  <% if network.tokens_count > 15 %>
-    <div class="position-absolute start-50 translate-middle-x"><%== pagy_bootstrap_nav(@pagy) %></div>
-  <% end %>
 </div>
